@@ -57,8 +57,9 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	<div class="col s12 m2">
 		<div class="centered">
 			<form action="inputboard.jsp" method="post">
+			<div class="shadow p-3 mb-5 bg-white rounded">
 				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
-					width="700" class="z-depth-5">
+					width="700" class="z-depth-5 table-bordered" >
 					<tr>
 						<th class="td_color text-center"><b class="font"'>작성자</b></th>
 						<td><jsp:getProperty name="b" property="name" /></td>
@@ -82,6 +83,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 					</tr>
 
 				</table>
+			</div>
 			</form>
 		</div>
 	</div>

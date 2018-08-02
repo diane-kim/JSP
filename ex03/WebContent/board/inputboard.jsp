@@ -9,10 +9,17 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho" rel="stylesheet">
 
 <title>Insert title here</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
+
+
+.font2 {	
+font-family: 'Gaegu', cursive;
+	font-size: 20px;
+}
 
 .font {
 	font-family: 'Nanum Pen Script', cursive;
@@ -59,6 +66,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	color: #fff;
 	text-align: center;
 	line-height: 30px;
+	font-family: 'Rancho', cursive;
 }
 
 .file_input label input {
@@ -79,13 +87,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	border: 0;
 	border: 1px solid #777;
 }
+
+input::placeholder {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 18px;
+}
+
+textarea::placeholder {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 18px;
+}
 </style>
 </head>
 <body>
 	<br>
 	<br>
-
-
 	<div class="centered">
 		<!--  <form action="list.jsp" method="post">-->
 		<form action="outputboard.jsp" method="post">
@@ -93,15 +109,15 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
 					class="table table-bordered">
 					<tr>
-						<td class="td_color text-center"><b class="font">작성자</b></td>
+						<td class="td_color text-center"><b class="font2">작성자</b></td>
 						<td><input type="text" name="name" placeholder="작성자를 입력하세요."
 							autofozus required></td>
-						<td class="td_color text-center"><b class="font">작성일자</b></td>
-						<td><input type="date" name="date" id="datepicker"></td>
+						<td class="td_color text-center"><b class="font2">작성일자</b></td>
+						<td><input type="date" name="date" id="datepicker" class="font"></td>
 					</tr>
 
 					<tr>
-						<td class="td_color text-center"><b class="font">제목</b></td>
+						<td class="td_color text-center"><b class="font2">제목</b></td>
 						<td colspan="4"><input type="text" name="title" size="75"
 							placeholder="제목을 입력하세요." autofozus required></td>
 					</tr>
@@ -113,24 +129,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 					<tr>
 						<td colspan="5" align="right">
+
 							<div class="file_input">
 								<label> File Attach <input type="file"
-									onchange="javascript:document.getElementById('file_route').value=this.value">
+									onchange="javascript:document.getElementById('file_route').value=this.value"
+									name="FileName">
 								</label> <input type="text" readonly="readonly" title="File Route"
 									id="file_route">
-
-							</div> 
-							
-							<input class="btn btn-secondary btn-sm" type="submit" value="등록">
-							<input class="btn btn-secondary btn-sm" type="reset" value="취소">
+							</div> <input class="btn btn-secondary btn-sm font2" type="submit" value="등록">
+							<input class="btn btn-secondary btn-sm font2" type="reset" value="취소">
 						</td>
 					</tr>
-
 				</table>
 			</div>
 		</form>
-
-
 	</div>
 </body>
 </html>
