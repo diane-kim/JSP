@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <jsp:useBean id="b" scope="request" class="com.jyMoon.ex.Board"></jsp:useBean>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	
-	¾ÆÀÌµð : <%=b.getId()%> <br> 
-	 ºñ¹Ð¹øÈ£ : <%=b.getPassword()%><br>
-	 Á¦¸ñ :<%=b.getTitle()%><br>
-	³»¿ë :<%=b.getContent()%><br>
+	ì•„ì´ë”” : <%=b.getId()%> <br> 
+	 ë¹„ë°€ë²ˆí˜¸ : <%=b.getPassword()%><br>
+	 ì œëª© :<%=b.getTitle()%><br>
+	ë‚´ìš© :<%=b.getContent()%><br>
 
 </body>
 </html>
