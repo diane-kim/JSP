@@ -5,7 +5,7 @@ public class BoardDTO {
 	String date;
 	String title;
 	String content;
-	int count=1;
+	int count;
 	String FileName;
 	
 	
