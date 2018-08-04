@@ -95,15 +95,13 @@
 					}        			
 				}catch(SQLException e) {	
 					e.printStackTrace();	
-				}		
-					
-					
+				}							
 					
 				for(com.javalec.ex03.BoardDTO dto1 : list) {	
 				%>	
 				<tr>	
 					<td class="font2"><%=dto1.getCount()  %></td>	
-					<td class="font2"><%=dto1.getTitle()  %></td>	
+					<td class="font2"><a href="View.jsp?key=<%=dto1.getCount()%>"><%=dto1.getTitle()%></a></td>	
 					<td class="font2"><%=dto1.getName()  %></td>	
 					<td class="font2"><%=dto1.getDate()  %></td>	
 				</tr>	
