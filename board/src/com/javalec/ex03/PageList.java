@@ -5,7 +5,7 @@ public class PageList {
 		
 		
 		int totalCount = 255;	//DB에서 count(*)로 가져와야함
-		int countList = 10; 	//10개의 게시글 리스트
+		int countList = 10; 	//10개의 게시글 리스트 
 		int totalPage = totalCount / countList;	// 총 페이지의 수
 		int page = 22;	//내가 초이스 한 페이지
 		int countPage = 10; //1~10 ,11~20, 이런식으로 버튼 생성하려함

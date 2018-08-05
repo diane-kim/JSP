@@ -76,8 +76,56 @@
  				<%			
 					
 				com.javalec.ex03.BoardDTO dto = null;	
-				String sql = "select i_Count, v_Name, to_char(d_Date, 'yy-mm-dd') as d_Date, v_Title from board order by i_Count desc";	
-					
+ 				
+				String sql = "select X.rnum, X.i_Count, X.v_Name, X.v_Title, to_char(X.d_Date) as d_Date "+	    
+					      "from ("+
+					            
+					            "select rownum as rnum, A.i_Count, A.v_Name, A.v_Title, A.d_Date "+
+					            
+					              "from ("
+					                     
+					                     +"select i_Count, v_Name, v_Title, d_Date "
+					                     
+					                       +"from board "+
+					                     
+					                      "order by i_Count desc) A "+
+					            
+					             "where rownum <= 10) X "
+					    
+					     +"where X.rnum >= 1";
+				
+				
+				//-----------------------------------------------------------------------------------------------------------------		
+/* 				String sql2 = "select count(*) as a from board";
+				
+				PreparedStatement pstmt2 = conn.prepareStatement(sql2);	
+				ResultSet rs2 = pstmt.executeQuery();	
+		
+				int totalCount = rs2.getInt("a");	//DB에서 count(*)로 가져와야함
+				int countList = 10; 	//10개의 게시글 리스트 
+				int totalPage = totalCount / countList;	// 총 페이지의 수
+				int page1 = 1;	//내가 초이스 한 페이지
+				int countPage = 10; //1~10 ,11~20, 이런식으로 버튼 생성하려함
+
+				int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11
+				int endPage = startPage + countPage - 1;	// 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20
+				
+				if (totalCount % countList > 0) {	//totalCount의 자투리 부분 페이징 +1 추가 처리
+
+				    totalPage++;
+
+				}		
+				
+				if (endPage > totalPage) {	//끝나는 페이지가 전체 페이지 보다 클떄 처리
+
+				    endPage = totalPage;
+
+				} */
+
+				//-----------------------------------------------------------------------------------------------------------------					
+				
+				
+				
 				List<com.javalec.ex03.BoardDTO> list = new ArrayList<>();				
 					
 					
@@ -97,7 +145,9 @@
 					e.printStackTrace();	
 				}							
 					
-				for(com.javalec.ex03.BoardDTO dto1 : list) {	
+				for(com.javalec.ex03.BoardDTO dto1 : list) { int count =0; if(count == 10)break;
+				else
+
 				%>	
 				<tr>	
 					<td class="font2"><%=dto1.getCount()  %></td>	
@@ -106,8 +156,55 @@
 					<td class="font2"><%=dto1.getDate()  %></td>	
 				</tr>	
 				<%	
-				}  	
-				%>	
+				count++;}  	
+				%>
+
+				<%-- 				<%for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
+
+				    System.out.print(" " + iCount + " ");
+
+				}				
+				%> 
+								<%
+				
+				int totalCount = 255;	//DB에서 count(*)로 가져와야함
+				int countList = 10; 	//10개의 게시글 리스트 
+				int totalPage = totalCount / countList;	// 총 페이지의 수
+				int page1 = 2;	//내가 초이스 한 페이지
+				int countPage = 10; //1~10 ,11~20, 이런식으로 버튼 생성하려함
+
+				int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11
+				int endPage = startPage + countPage - 1;	// 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20
+				
+				if (totalCount % countList > 0) {	//totalCount의 자투리 부분 페이징 +1 추가 처리
+
+				    totalPage++;
+
+				}		
+				
+				if (endPage > totalPage) {	//끝나는 페이지가 전체 페이지 보다 클떄 처리
+
+				    endPage = totalPage;
+
+				}%>
+				
+				 			<div class="" d-flexalign-items-center"">
+				<nav aria-label="Page navigation example">
+				<ul class="pagination">
+					<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					<%
+						for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
+					%>
+					<li class="page-item"><a class="page-link" href="#"><%=iCount%></a></li>
+
+					<%
+						}
+					%>
+					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+				</ul>
+				</nav>
+
+			</div> --%>
 			</table>	
 		</div>	
 	</div>	
