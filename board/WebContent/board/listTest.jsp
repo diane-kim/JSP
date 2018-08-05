@@ -79,11 +79,38 @@ td, th {
 					<td class="td_color text-center"><b class="font">작성자</b></td>
 					<td class="td_color text-center"><b class="font">작성일자</b></td>
 				</tr>
-				<%			
-					
+				<%
+				
+				
+				%>
+				<%	
+				int page1;				
+				
+				String count = request.getParameter("key");
+				if(count == null){page1 = 1;}else{page1 = Integer.parseInt(count);}
+				int countPage = 10;				
+				
+				int query_startPage = (page1 - 1) * countPage + 1;
+				int query_endPage = page1 * countPage;
+				
 				com.javalec.ex03.BoardDTO dto = null;	
  				
-				String sql = "select i_Count, v_Name, to_char(d_Date, 'yy-mm-dd') as d_Date, v_Title from board order by i_Count desc";
+				String sql = "select X.rnum, X.i_Count, X.v_Name, X.v_Title, to_char(X.d_Date) as d_Date "+	    
+					      "from ("+
+					            
+					            "select rownum as rnum, A.i_Count, A.v_Name, A.v_Title, A.d_Date "+
+					            
+					              "from ("
+					                     
+					                     +"select i_Count, v_Name, v_Title, d_Date "
+					                     
+					                       +"from board "+
+					                     
+					                      "order by i_Count desc) A "+
+					            
+					             "where rownum <= "+ query_endPage +") X "
+					    
+					     +"where X.rnum >= "+ query_startPage +"";
 							
 				List<com.javalec.ex03.BoardDTO> list = new ArrayList<>();				
 						
@@ -116,36 +143,44 @@ td, th {
 
 			</table>
 			<%
-				int page1;
-			
-				String count = request.getParameter("key"); //내가 초이스 한 페이지
-				if(count == null){page1 = 1;}else{page1 = Integer.parseInt(count);}
+				String sql2 = "select count(*) as count from board";
+				com.javalec.ex03.BoardDTO dto2 = new com.javalec.ex03.BoardDTO();
+				List<com.javalec.ex03.BoardDTO> list2 = new ArrayList<>();	
 				
-				int totalCount = 255;	//DB에서 count(*)로 가져와야함
+				try {	
+					PreparedStatement pstmt = conn.prepareStatement(sql2);	
+					ResultSet rs = pstmt.executeQuery();
+					rs.next();
+ 					dto2.setTotalCount(rs.getInt("count"));	
+      			
+				}catch(SQLException e) {	
+					e.printStackTrace();	
+				}				
+				
+				int totalCount = dto2.getTotalCount();	//DB에서 count(*)로 가져와야함 13
+				System.out.print(totalCount);
 				int countList = 10; 	//10개의 게시글 리스트 
-				int totalPage = totalCount / countList;	// 총 페이지의 수		
-					
-				int countPage = 10; //1~10 ,11~20, 이런식으로 버튼 생성하려함
+				int totalPage = totalCount / countList;	// 총 페이지의 수	 13/10 1 
 
-				int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11
-				int endPage = startPage + countPage - 1;	// 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20
+				int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11 스타트 지점 1
+				int endPage = startPage + countPage - 1;	// 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20 끝나는 지점 1+10-1 10
 				
-				if (totalCount % countList > 0) {totalPage++;}//totalCount의 자투리 부분 페이징 +1 추가 처리				
-				if (endPage > totalPage) {endPage = totalPage;}//끝나는 페이지가 전체 페이지 보다 클떄 처리				
+				if (totalCount % countList > 0) {totalPage++;}//totalCount의 자투리 부분 페이징 +1 추가 처리 13%10 나머지 3 토탈 페이지 2개로 증가				
+				if (endPage > totalPage) {endPage = totalPage;}//10 > 2 끝나는 페이지가 전체 페이지 보다 클떄 처리 엔드페이지 2		
 			%>
 
 			<div>
 				<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
 					<li class="page-item">
-						<%
+					 	<%
 							if (page1 >= 1) {
 						%> <a class="page-link"
 						href="listTest.jsp?key=<%=(page1 - 1)%>">Previous</a>
 					</li>
 					<%
 						}
-					%>
+					%> 
 					
 					<%
 						for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
@@ -155,7 +190,7 @@ td, th {
 					<%
 						}
 					%>
-					
+ 					
 					<%
 						if (page1 <= totalPage) {
 					%>
@@ -163,7 +198,7 @@ td, th {
 						href="listTest.jsp?key=<%=(page1 + 1)%>">Next</a></li>
 					<%
 						}
-					%>
+					%> 
 				</ul>
 				</nav>
 			</div>
