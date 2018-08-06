@@ -1,3 +1,4 @@
+<%@page import="com.javalec.ex03.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%	
@@ -6,7 +7,7 @@
 <%@ page language="java" import="java.sql.*"%>
 <%@ page language="java" import="java.util.*"%>
 <jsp:useBean id="b" class="com.javalec.ex03.BoardDTO" />
-<jsp:setProperty name="b" property="*" />
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -73,89 +74,52 @@ textarea::placeholder {
 <body>
 	<br>
 	<br>
-	<%!Connection conn = null;	
-	PreparedStatement pstmt = null;%>
-	<%	
-			
-		try {	
-			String user = "hr";	
-			String pw = "hr";	
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";	
- 			Class.forName("oracle.jdbc.driver.OracleDriver");	
-			conn = DriverManager.getConnection(url, user, pw);	
- 		} catch (SQLException e) {	
-			// TODO Auto-generated catch block	
-			e.printStackTrace();	
-		} 
 	
-	
-	String count = request.getParameter("key");
-	int cast = Integer.parseInt(count);
-	List<com.javalec.ex03.BoardDTO> list = new ArrayList<>();
-	com.javalec.ex03.BoardDTO dto = null;	
-	
-	
-	String sql = "select i_count,v_name,to_char(d_date) as d_date,v_title,v_content from board where i_count = "+ cast;
-	
-	try {	
-		PreparedStatement pstmt = conn.prepareStatement(sql);	
-		ResultSet rs = pstmt.executeQuery();	
-			while(rs.next()) {	
-			dto = new com.javalec.ex03.BoardDTO();					
-			dto.setCount(rs.getInt("i_Count"));	
-			dto.setName(rs.getString("v_Name"));	
-			dto.setDate(rs.getString("d_Date"));	
-			dto.setTitle(rs.getString("v_Title"));	
-			dto.setContent(rs.getString("v_content"));
-				list.add(dto);	
-		}        			
-	}catch(SQLException e) {	
-		e.printStackTrace();	
-	}
-	%>
 	<div class="centered">
 		<div class="shadow p-3 mb-5 bg-white rounded">
 			<table border="1" rules="rows" cellpadding="0" cellspacing="0"
 				class="table table-bordered">
 				<tr>
 					<td class="td_color text-center"><b class="font2">작성자</b></td>
-					<td><%=dto.getName()%></td>
+					<td><input type="text" name="name" placeholder="작성자를 입력하세요."
+							autofozus required></td>
 					<td class="td_color text-center"><b class="font2">작성일자</b></td>
-					<td><%=dto.getDate()%></td>
+					<td><input type="date" name="date" id="datepicker"
+							class="font"></td>
 				</tr>
 				<tr>
 					<td class="td_color text-center"><b class="font2">제목</b></td>
-					<td colspan="4"><%=dto.getTitle()%></td>
+					<td colspan="4"><input type="text" name="title" size="75"
+							placeholder="제목을 입력하세요." autofozus required></td>
 				</tr>
 				<tr>
-					<td colspan="5" width="700"><%=dto.getContent()%></td>
+					<td colspan="5" width="700"><textarea cols="85" rows="7" name="content"
+								placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="5" align="right">
 					<a href="listTest.jsp">
 						<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
 					</a>					
-					<a href="updateboard.jsp?key=<%=count%>">
-						<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
+					<a href="listTest.jsp">
+						<button type="button" class="btn btn-secondary btn-sm font2"><jsp:setProperty name="b" property="*" /><%
+						String count = request.getParameter("key");
+						int cast = Integer.parseInt(count); 
+						b.setCount(cast);
+						BoardDAO boardDAO = new BoardDAO();
+
+						boardDAO.contentUpdate(b);
+						%>수정						
+						</button>
+						
 					</a>
 					<a href="listTest.jsp">
 						<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
 					</a>
 					</td>
-					<%--<%
-					try {	
-						 String sql2 = "delete from board where i_count = "+ cast; 
-							PreparedStatement pstmt = conn.prepareStatement(sql2);
-							ResultSet rs = pstmt.executeQuery();	
-						       			
-					}catch(SQLException e) {	
-						e.printStackTrace();	
-					}
-					%>--%>
 				</tr>
 			</table>
 		</div>
 	</div>
 </body>
 </html>
-
