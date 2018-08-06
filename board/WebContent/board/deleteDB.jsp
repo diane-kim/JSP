@@ -17,9 +17,9 @@
 </head>
 <body>
 	<%
-	String count = request.getParameter("key");
-	b.setCount(Integer.parseInt(count));
-	
+		String count = request.getParameter("key");
+		b.setCount(Integer.parseInt(count));
+
 		BoardDAO boardDAO = new BoardDAO();
 
 		boardDAO.contentDelete(Integer.parseInt(count));

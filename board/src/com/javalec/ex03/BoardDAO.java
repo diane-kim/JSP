@@ -38,9 +38,9 @@ public class BoardDAO extends HttpServlet{
 			conn = DriverManager.getConnection(url, user, pw);
 
 		} catch (ClassNotFoundException cnfe) {
-			System.out.println("DB �뱶�씪�씠踰� 濡쒕뵫 �떎�뙣 :"+cnfe.toString());
+			System.out.println("DB 드라이버 로딩 실패 :"+cnfe.toString());
 		} catch (SQLException sqle) {
-			System.out.println("DB �젒�냽�떎�뙣 : "+sqle.toString());
+			System.out.println("DB 접속실패 : "+sqle.toString());
 		} catch (Exception e) {
 			System.out.println("Unkonwn error");
 			e.printStackTrace();

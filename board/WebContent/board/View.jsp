@@ -2,8 +2,8 @@
 <%@page import="com.javalec.ex03.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%	
-	request.setCharacterEncoding("UTF-8");	
+<%
+	request.setCharacterEncoding("UTF-8");
 %>
 <%@ page language="java" import="java.sql.*"%>
 <%@ page language="java" import="java.util.*"%>
@@ -77,13 +77,12 @@ textarea::placeholder {
 	<br>
 
 	<%
-	String count = request.getParameter("key");
-	int cast = Integer.parseInt(count);
-	BoardDAO boardDAO = new BoardDAO();
+		String count = request.getParameter("key");
+		int cast = Integer.parseInt(count);
+		BoardDAO boardDAO = new BoardDAO();
 
-	BoardDTO dto = boardDAO.contentView(cast);
-
-	 %>
+		BoardDTO dto = boardDAO.contentView(cast);
+	%>
 
 	<div class="centered">
 		<div class="shadow p-3 mb-5 bg-white rounded">
