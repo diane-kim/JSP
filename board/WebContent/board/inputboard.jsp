@@ -131,8 +131,9 @@ textarea::placeholder {
 								</label> <input type="text" readonly="readonly" title="File Route"
 									id="file_route">
 							</div> <input class="btn btn-secondary btn-sm font2" type="submit"
-							value="등록"> <input class="btn btn-secondary btn-sm font2"
-							type="reset" value="취소">
+							value="등록"> 					<a href="listTest.jsp">
+						<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
+					</a>
 						</td>
 					</tr>
 				</table>

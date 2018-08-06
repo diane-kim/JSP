@@ -51,6 +51,7 @@ td, th {
 <body>
 	<%!Connection conn = null;
 	PreparedStatement pstmt = null;%>
+
 	<%
 		try {
 			String user = "hr";
@@ -77,13 +78,28 @@ td, th {
 					<td class="td_color text-center"><b class="font">작성자</b></td>
 					<td class="td_color text-center"><b class="font">작성일자</b></td>
 				</tr>
+
 				<%
-					
-				%>
-				<%
+					String sql2 = "select count(*) as count from board";
+					com.javalec.ex03.BoardDTO dto2 = new com.javalec.ex03.BoardDTO();
+					List<com.javalec.ex03.BoardDTO> list2 = new ArrayList<>();
+
+					try {
+						PreparedStatement pstmt = conn.prepareStatement(sql2);
+						ResultSet rs = pstmt.executeQuery();
+						rs.next();
+						dto2.setTotalCount(rs.getInt("count"));
+
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+					int totalCount = dto2.getTotalCount();
+
 					int page1;
 
 					String count = request.getParameter("key");
+
 					if (count == null) {
 						page1 = 1;
 					} else {
@@ -93,6 +109,14 @@ td, th {
 
 					int query_startPage = (page1 - 1) * countPage + 1;
 					int query_endPage = page1 * countPage;
+
+					int r_num = totalCount - (page1 - 1) * countPage;
+
+					/* System.out.println();
+										for(int i = r_num ; i > r_num-10 ; i--){
+											if(i < 1)break;
+											System.out.println(" "+ i+ " ");
+										}  */
 
 					com.javalec.ex03.BoardDTO dto = null;
 
@@ -132,33 +156,24 @@ td, th {
 					for (com.javalec.ex03.BoardDTO dto1 : list) {
 				%>
 				<tr>
-					<td class="font2"><%=dto1.getCount()%></td>
+					<td class="font2">
+						<%
+							out.print(r_num);
+						%>
+					</td>
 					<td class="font2"><a href="View.jsp?key=<%=dto1.getCount()%>"><%=dto1.getTitle()%></a></td>
 					<td class="font2"><%=dto1.getName()%></td>
 					<td class="font2"><%=dto1.getDate()%></td>
 				</tr>
 				<%
+					r_num = r_num - 1;
 					}
 				%>
 
 			</table>
 			<%
-				String sql2 = "select count(*) as count from board";
-				com.javalec.ex03.BoardDTO dto2 = new com.javalec.ex03.BoardDTO();
-				List<com.javalec.ex03.BoardDTO> list2 = new ArrayList<>();
-
-				try {
-					PreparedStatement pstmt = conn.prepareStatement(sql2);
-					ResultSet rs = pstmt.executeQuery();
-					rs.next();
-					dto2.setTotalCount(rs.getInt("count"));
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-
-				int totalCount = dto2.getTotalCount(); //DB에서 count(*)로 가져와야함 13
-				System.out.print(totalCount);
+				//DB에서 count(*)로 가져와야함 13
+				//System.out.print(totalCount);
 				int countList = 10; //10개의 게시글 리스트 
 				int totalPage = totalCount / countList; // 총 페이지의 수	 13/10 1 
 
@@ -208,7 +223,7 @@ td, th {
 				</nav>
 				<div align="right">
 					<a href="inputboard.jsp">
-						<button type="button" class="btn btn-outline-primary">글쓰기</button>
+						<button type="button" class="btn btn-outline-primary font2">글쓰기</button>
 					</a>
 				</div>
 			</div>

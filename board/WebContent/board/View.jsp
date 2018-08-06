@@ -130,8 +130,27 @@ textarea::placeholder {
 					<td colspan="5" width="700"><%=dto.getContent()%></td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right"><a href="listTest.jsp"> <input
-							class="btn btn-secondary btn-sm font2" value="돌아가기"></a></td>
+					<td colspan="5" align="right">
+					<a href="listTest.jsp">
+						<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
+					</a>					
+					<a href="listTest.jsp">
+						<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
+					</a>
+					<a href="listTest.jsp">
+						<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
+					</a>
+					</td>
+					<%--<%
+					try {	
+						 String sql2 = "delete from board where i_count = "+ cast; 
+							PreparedStatement pstmt = conn.prepareStatement(sql2);
+							ResultSet rs = pstmt.executeQuery();	
+						       			
+					}catch(SQLException e) {	
+						e.printStackTrace();	
+					}
+					%>--%>
 				</tr>
 			</table>
 		</div>
