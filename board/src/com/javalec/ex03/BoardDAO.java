@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -24,6 +25,7 @@ public class BoardDAO extends HttpServlet{
 	private DataSource dataSource;
 	
 	Connection conn = null;
+	BoardDTO dto = null;
 
 	public Connection getConection() {		
 
@@ -36,9 +38,9 @@ public class BoardDAO extends HttpServlet{
 			conn = DriverManager.getConnection(url, user, pw);
 
 		} catch (ClassNotFoundException cnfe) {
-			System.out.println("DB 드라이버 로딩 실패 :"+cnfe.toString());
+			System.out.println("DB �뱶�씪�씠踰� 濡쒕뵫 �떎�뙣 :"+cnfe.toString());
 		} catch (SQLException sqle) {
-			System.out.println("DB 접속실패 : "+sqle.toString());
+			System.out.println("DB �젒�냽�떎�뙣 : "+sqle.toString());
 		} catch (Exception e) {
 			System.out.println("Unkonwn error");
 			e.printStackTrace();
@@ -46,8 +48,27 @@ public class BoardDAO extends HttpServlet{
 		return conn;
 	}
 	
-	private void contentView() {
+	public BoardDTO contentView(int cast) {
+		getConection();					
 		
+		String sql = "select i_count,v_name,to_char(d_date) as d_date,v_title,v_content from board where i_count = "+ cast;
+
+		try {	
+			PreparedStatement pstmt = conn.prepareStatement(sql);	
+			ResultSet rs = pstmt.executeQuery();	
+				while(rs.next()) {	
+				dto = new BoardDTO();					
+				dto.setCount(rs.getInt("i_Count"));	
+				dto.setName(rs.getString("v_Name"));	
+				dto.setDate(rs.getString("d_Date"));	
+				dto.setTitle(rs.getString("v_Title"));	
+				dto.setContent(rs.getString("v_content"));
+			}        			
+		}catch(SQLException e) {	
+			e.printStackTrace();	
+		}
+		
+		return dto;
 	}
 	
 	public void contentInsert(BoardDTO dto) {
@@ -83,7 +104,18 @@ public class BoardDAO extends HttpServlet{
 			e.printStackTrace();
 		}			
 	}
-	private void contentDelete() {
+	public void contentDelete(int cast) {
+		getConection();
+		
+		String sql = "delete from board where i_count = " + cast;
+		
+		try {	
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			       			
+		}catch(SQLException e) {	
+			e.printStackTrace();	
+		}
 		
 	}
 }

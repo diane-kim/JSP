@@ -101,7 +101,7 @@ textarea::placeholder {
 	<br>
 	<br>
 	<div class="centered">
-		<form action="dbCon.jsp" method="post">
+		<form action="inputDB.jsp" method="post">
 			<div class="shadow p-3 mb-5 bg-white rounded">
 				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
 					class="table table-bordered">

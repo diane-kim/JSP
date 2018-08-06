@@ -39,9 +39,9 @@ public class Controller extends HttpServlet {
 	}
 	
 	private void actionDo(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		BoardDAO dao = new BoardDAO();
-		dao.getConection();
-		response.sendRedirect("");
+		BoardDTO dto = new BoardDTO();
+		
+		dto.setName(request.getParameter("name"));
 	}
 	
 	

@@ -1,3 +1,5 @@
+<%@page import="com.javalec.ex03.BoardDTO"%>
+<%@page import="com.javalec.ex03.BoardDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%	
@@ -73,46 +75,16 @@ textarea::placeholder {
 <body>
 	<br>
 	<br>
-	<%!Connection conn = null;	
-	PreparedStatement pstmt = null;%>
-	<%	
-			
-		try {	
-			String user = "hr";	
-			String pw = "hr";	
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";	
- 			Class.forName("oracle.jdbc.driver.OracleDriver");	
-			conn = DriverManager.getConnection(url, user, pw);	
- 		} catch (SQLException e) {	
-			// TODO Auto-generated catch block	
-			e.printStackTrace();	
-		} 
-	
-	
+
+	<%
 	String count = request.getParameter("key");
 	int cast = Integer.parseInt(count);
-	List<com.javalec.ex03.BoardDTO> list = new ArrayList<>();
-	com.javalec.ex03.BoardDTO dto = null;	
-	
-	
-	String sql = "select i_count,v_name,to_char(d_date) as d_date,v_title,v_content from board where i_count = "+ cast;
-	
-	try {	
-		PreparedStatement pstmt = conn.prepareStatement(sql);	
-		ResultSet rs = pstmt.executeQuery();	
-			while(rs.next()) {	
-			dto = new com.javalec.ex03.BoardDTO();					
-			dto.setCount(rs.getInt("i_Count"));	
-			dto.setName(rs.getString("v_Name"));	
-			dto.setDate(rs.getString("d_Date"));	
-			dto.setTitle(rs.getString("v_Title"));	
-			dto.setContent(rs.getString("v_content"));
-				list.add(dto);	
-		}        			
-	}catch(SQLException e) {	
-		e.printStackTrace();	
-	}
-	%>
+	BoardDAO boardDAO = new BoardDAO();
+
+	BoardDTO dto = boardDAO.contentView(cast);
+
+	 %>
+
 	<div class="centered">
 		<div class="shadow p-3 mb-5 bg-white rounded">
 			<table border="1" rules="rows" cellpadding="0" cellspacing="0"
@@ -131,27 +103,13 @@ textarea::placeholder {
 					<td colspan="5" width="700"><%=dto.getContent()%></td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right">
-					<a href="listTest.jsp">
-						<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
-					</a>					
-					<a href="updateboard.jsp?key=<%=count%>">
-						<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
-					</a>
-					<a href="listTest.jsp">
-						<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
-					</a>
-					</td>
-					<%--<%
-					try {	
-						 String sql2 = "delete from board where i_count = "+ cast; 
-							PreparedStatement pstmt = conn.prepareStatement(sql2);
-							ResultSet rs = pstmt.executeQuery();	
-						       			
-					}catch(SQLException e) {	
-						e.printStackTrace();	
-					}
-					%>--%>
+					<td colspan="5" align="right"><a href="listTest.jsp">
+							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
+					</a> <a href="updateboard.jsp?key=<%=count%>">
+							<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
+					</a> <a href="deleteDB.jsp?key=<%=count%>">
+							<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
+					</a></td>
 				</tr>
 			</table>
 		</div>
