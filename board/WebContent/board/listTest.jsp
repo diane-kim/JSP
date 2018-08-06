@@ -5,8 +5,6 @@
 %>
 <%@ page language="java" import="java.sql.*"%>
 <%@ page language="java" import="java.util.*"%>
-<jsp:useBean id="b" class="com.javalec.ex03.BoardDTO" />
-<jsp:setProperty name="b" property="*" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -82,7 +80,6 @@ td, th {
 				<%
 					String sql2 = "select count(*) as count from board";
 					com.javalec.ex03.BoardDTO dto2 = new com.javalec.ex03.BoardDTO();
-					List<com.javalec.ex03.BoardDTO> list2 = new ArrayList<>();
 
 					try {
 						PreparedStatement pstmt = conn.prepareStatement(sql2);
@@ -107,10 +104,10 @@ td, th {
 					}
 					int countPage = 10;
 
-					int query_startPage = (page1 - 1) * countPage + 1;
-					int query_endPage = page1 * countPage;
+					int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
+					int query_endPage = page1 * countPage; //쿼리문에 들어갈 앤드값 
 
-					int r_num = totalCount - (page1 - 1) * countPage;
+					int r_num = totalCount - (page1 - 1) * countPage; //페이지 순번 역순으로 나오게 하기
 
 					/* System.out.println();
 										for(int i = r_num ; i > r_num-10 ; i--){
