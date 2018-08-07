@@ -102,7 +102,7 @@ textarea::placeholder {
 					<td colspan="5" width="700"><%=dto.getContent()%></td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right"><a href="listTest.jsp">
+					<td colspan="5" align="right"><a href="list.jsp">
 							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
 					</a> <a href="updateboard.jsp?key=<%=count%>">
 							<button type="button" class="btn btn-secondary btn-sm font2">수정</button>

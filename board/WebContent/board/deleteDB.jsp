@@ -12,7 +12,7 @@
 <html>
 <head>
 <script type="text/javascript">
-	window.location.replace('http://localhost/board/board/listTest.jsp') //입력후 다시 돌아감.
+	window.location.replace('http://localhost/board/board/list.jsp') //입력후 다시 돌아감.
 </script>
 </head>
 <body>

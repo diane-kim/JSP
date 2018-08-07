@@ -15,6 +15,7 @@
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
+<title>게시판</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -101,7 +102,8 @@ td, th {
 						page1 = 1;
 					} else {
 						page1 = Integer.parseInt(count);
-					}
+					}//페이지 초기화
+					
 					int countPage = 10;
 
 					int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
@@ -192,7 +194,7 @@ td, th {
 						<%
 							if (page1 >= 1) {
 								page1 = 2;
-						%> <a class="page-link" href="listTest.jsp?key=<%=(page1 - 1)%>">Previous</a>
+						%> <a class="page-link" href="list.jsp?key=<%=(page1 - 1)%>">Previous</a>
 					</li>
 					<%
 						}
@@ -202,7 +204,7 @@ td, th {
 						for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
 					%>
 					<li class="page-item"><a class="page-link"
-						href="listTest.jsp?key=<%=iCount%>"><%=iCount%></a></li>
+						href="list.jsp?key=<%=iCount%>"><%=iCount%></a></li>
 					<%
 						}
 					%>
@@ -212,7 +214,7 @@ td, th {
 							page1 = totalPage - 1;
 					%>
 					<li class="page-item"><a class="page-link"
-						href="listTest.jsp?key=<%=(page1 + 1)%>">Next</a></li>
+						href="list.jsp?key=<%=(page1 + 1)%>">Next</a></li>
 					<%
 						}
 					%>

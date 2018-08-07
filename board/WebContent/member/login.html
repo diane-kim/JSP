@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -10,7 +8,7 @@
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
-<title>Insert title here</title>
+<title>로그인</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -21,6 +19,11 @@
 
 .font {
 	font-family: 'Nanum Pen Script', cursive;
+	font-size: 20px;
+}
+
+label, select {
+	font-family: 'Gaegu', cursive;
 	font-size: 20px;
 }
 
@@ -91,57 +94,60 @@ input::placeholder {
 	font-size: 18px;
 }
 
-textarea::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
+.intitle {
+	font-size: 30px;
+	padding: 0.5em;
 }
 </style>
 </head>
 <body>
-	<%
-		String count = request.getParameter("key");
-		int cast = Integer.parseInt(count);
-	%>
+
 	<br>
 	<br>
 	<div class="centered">
-		<form action="updateDB.jsp?key=<%=cast%>" method="post" enctype="multipart/form-data">
-			<div class="shadow p-3 mb-5 bg-white rounded">
-				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
-					class="table table-bordered">
-					<tr>
-						<td class="td_color text-center"><b class="font2">작성자</b></td>
-						<td><input type="text" name="name" placeholder="작성자를 입력하세요."
-							autofozus required></td>
-						<td class="td_color text-center"><b class="font2">작성일자</b></td>
-						<td><input type="date" name="date" id="datepicker"
-							class="font"></td>
-					</tr>
-					<tr>
-						<td class="td_color text-center"><b class="font2">제목</b></td>
-						<td colspan="4"><input type="text" name="title" size="75"
-							placeholder="제목을 입력하세요." autofozus required></td>
-					</tr>
-					<tr>
-						<td colspan="5"><textarea cols="85" rows="7" name="content"
-								placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
-					</tr>
-					<tr>
-						<td colspan="5" align="right">
-							<div class="file_input">
-								<label> File Attach <input type="file"
-									onchange="javascript:document.getElementById('file_route').value=this.value"
-									name="FileName">
-								</label> <input type="text" readonly="readonly" title="File Route"
-									id="file_route">
-							</div> <input class="btn btn-secondary btn-sm font2" type="submit"
-							value="등록"> <a href="list.jsp">
-								<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
-						</a>
-						</td>
-					</tr>
-				</table>
+		<form action="../board/list.jsp" method="post">
+
+			<div class="shadow p-3 mb-5 bg-white rounded" >
+				<p class="text-center font2 intitle">로그인</p>
+				<br>
+
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+						</div>
+ 						<div class="col-6">
+							<label for="exampleInputPassword1">ID</label> <input type="id"
+								class="form-control" id="exampleInputPassword1" placeholder="id" size="50">
+						</div>
+						<div class="col"></div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="row">
+						<div class="col">
+						</div>
+ 						<div class="col-6">
+							<label for="exampleInputPassword1">Password</label> <input
+								type="password" class="form-control" id="exampleInputPassword1"
+								placeholder="Password">
+						</div>
+						<div class="col"></div>
+					</div>
+				</div>
+
+				<div align="center">
+				<button type="submit" class="btn btn-outline-primary font2">로그인</button>
+				</div>
+				<br>
+				
+							<div align="left">
+				<a href="join.html"class="font2">회원가입</button>
 			</div>
+			</div>
+			
+
 		</form>
 	</div>
 </body>

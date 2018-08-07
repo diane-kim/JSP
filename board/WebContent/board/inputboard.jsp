@@ -101,7 +101,7 @@ textarea::placeholder {
 	<br>
 	<br>
 	<div class="centered">
-		<form action="inputDB.jsp" method="post">
+		<form action="inputDB.jsp" method="post" enctype="multipart/form-data">
 			<div class="shadow p-3 mb-5 bg-white rounded">
 				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
 					class="table table-bordered">
@@ -131,7 +131,7 @@ textarea::placeholder {
 								</label> <input type="text" readonly="readonly" title="File Route"
 									id="file_route">
 							</div> <input class="btn btn-secondary btn-sm font2" type="submit"
-							value="등록"> <a href="listTest.jsp">
+							value="등록"> <a href="list.jsp">
 								<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
 						</a>
 						</td>
