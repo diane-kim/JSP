@@ -2,9 +2,9 @@ package com.javalec.ex03;
 
 public class MemberDTO {
 	String id;
-	String pw;
+	String pwd;
 	String email;
-	int phone1,phone2,phone3;
+	String phone1,phone2,phone3;
 	int count;
 	
 	
@@ -14,11 +14,11 @@ public class MemberDTO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPw() {
-		return pw;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPw(String pw) {
-		this.pw = pw;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getEmail() {
 		return email;
@@ -26,22 +26,13 @@ public class MemberDTO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getPhone1() {
-		return phone1;
-	}
-	public void setPhone1(int phone1) {
+	public void setPhone1(String phone1) {
 		this.phone1 = phone1;
 	}
-	public int getPhone2() {
-		return phone2;
-	}
-	public void setPhone2(int phone2) {
+	public void setPhone2(String phone2) {
 		this.phone2 = phone2;
 	}
-	public int getPhone3() {
-		return phone3;
-	}
-	public void setPhone3(int phone3) {
+	public void setPhone3(String phone3) {
 		this.phone3 = phone3;
 	}
 	public int getCount() {
@@ -49,8 +40,8 @@ public class MemberDTO {
 	}
 	public void setCount(int count) {
 		this.count = count;
+	}	
+	public String getPhone() {
+		return phone1+"-"+phone2+"-"+phone3;
 	}
-	
-	
-	
 }
