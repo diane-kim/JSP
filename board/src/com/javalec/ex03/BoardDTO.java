@@ -7,9 +7,7 @@ package com.javalec.ex03;
 	String content;	
 	int count;	
 	String FileName;	
-	int totalCount;
-		
-		
+	int totalCount;		
 	
 	public int getTotalCount() {
 		return totalCount;
