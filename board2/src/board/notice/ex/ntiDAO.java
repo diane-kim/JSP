@@ -78,6 +78,7 @@ public class ntiDAO {
 
 
 		try {
+			conn = dataSource.getConnection();
 
 			String sql = "select X.rnum, X.i_Count, X.v_Name, X.v_Title, to_char(X.d_Date) as d_Date " + "from (" +
 
@@ -284,26 +285,25 @@ public class ntiDAO {
 
 
 		try {
+			conn = dataSource.getConnection();
 			
-			String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
+			String sql = "select X.rnum, X.i_Count, X.v_Name, X.v_Title, to_char(X.d_Date) as d_Date " + "from (" +
 
-				+ "select rownum as rnum, A.file_count, A.file_title, A.file_content, A.file_name"
+							"select rownum as rnum, A.i_Count, A.v_Name, A.v_Title, A.d_Date " +
 
-				+ " from ("
+							"from ("
 
-				+ "select file_count, file_title, file_content, file_name"
+							+ "select i_Count, v_Name, v_Title, d_Date "
 
-				+ " from board"
+							+ "from board " 
+							
+							+ "where v_Title LIKE '%" + content + "%' "							
 
-				+ " where file_title LIKE '%" + content + "%'"
+							+"order by i_Count desc) A " 
 
-				+ " order by file_count desc) A"
+							+ "where rownum <= " + query_endPage + ") X "
 
-				+ " where rownum <= " + query_endPage + ") X"
-
-				+ " where X.rnum >= " + query_startPage + "";
-
-
+							+ "where X.rnum >= " + query_startPage + "";
 
 			pstmt = conn.prepareStatement(sql);
 			rs= pstmt.executeQuery();
@@ -314,7 +314,6 @@ public class ntiDAO {
 				dto.setName(rs.getString("v_Name"));
 				dto.setDate(rs.getString("d_Date"));
 				dto.setTitle(rs.getString("v_Title"));
-				list.add(dto);
 				list.add(dto);
 			}
 		} catch (SQLException e) {

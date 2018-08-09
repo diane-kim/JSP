@@ -55,6 +55,7 @@ td, th {
 		String word = request.getParameter("word");		
 		String col = request.getParameter("col");
 		String key = request.getParameter("key");
+		out.print(col + "," + word);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		if (col == null && word == null)
 		{
@@ -117,19 +118,6 @@ td, th {
 			</div>
 		</div>
 	</div>
-		<DIV class='aside_menu'>
-		  <FORM name='frm' method='GET' action='../board2/ntiSearch.mjy'>
-		    <ASIDE style='float: right;'>
-		      <SELECT name='col'> <!-- 검색 컬럼 -->
-		        <OPTION value='none'>전체 목록</OPTION>
-		        <OPTION value='content'>내용</OPTION>
-		      </SELECT>
-		      <input type='text' name='word' size ='20' value=''>
-		      <button type='submit'>검색</button>
-		    </ASIDE> 
-		  </FORM>
-		  <DIV class='menu_line' style='clear: both;'></DIV>
-		</DIV>
 	<%}	else{ %>
 		<div class="centered">
 		<div class="shadow p-3 mb-5 bg-white rounded">
@@ -189,7 +177,9 @@ td, th {
 			</div>
 		</div>
 	</div>
-				<DIV class='aside_menu'>
+
+	<%} %>
+					<DIV class='aside_menu'>
 		  <FORM name='frm' method='GET' action='../board2/ntiSearch.mjy'>
 		    <ASIDE style='float: right;'>
 		      <SELECT name='col'> <!-- 검색 컬럼 -->
@@ -202,6 +192,5 @@ td, th {
 		  </FORM>
 		  <DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
-	<%} %>
 </body>
 </html>
