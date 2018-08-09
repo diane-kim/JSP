@@ -34,9 +34,9 @@ public class FileDAO {
 			conn = DriverManager.getConnection(url, user, pw);
 
 		} catch (ClassNotFoundException cnfe) {
-			System.out.println("DB 드라이버 로딩 실패 :"+cnfe.toString());
+			System.out.println("DB �뱶�씪�씠踰� 濡쒕뵫 �떎�뙣 :"+cnfe.toString());
 		} catch (SQLException sqle) {
-			System.out.println("DB 접속실패 : "+sqle.toString());
+			System.out.println("DB �젒�냽�떎�뙣 : "+sqle.toString());
 		} catch (Exception e) {
 			System.out.println("Unkonwn error");
 			e.printStackTrace();
@@ -182,14 +182,14 @@ public class FileDAO {
 			page1 = 1;
 		} else {
 			page1 = Integer.parseInt(count);
-		} //페이지 초기화
+		} //�럹�씠吏� 珥덇린�솕
 
 		int countPage = 8;
 
-		int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
-		int query_endPage = page1 * countPage; //쿼리문에 들어갈 앤드값 
+		int query_startPage = (page1 - 1) * countPage + 1; //荑쇰━臾몄뿉 �뱾�뼱媛� �떆�옉媛� 
+		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
 
-		int r_num = totalCount - (page1 - 1) * countPage; //페이지 순번 역순으로 나오게 하기
+		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
 		
 		String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
 
@@ -250,21 +250,21 @@ public class FileDAO {
 			page1 = 1;
 		} else {
 			page1 = Integer.parseInt(count);
-		} //페이지 초기화
+		} //�럹�씠吏� 珥덇린�솕
 
 		int countPage = 10;
-		int countList = 8; //10개의 게시글 리스트 
-		int totalPage = dto.getCount() / countList; // 총 페이지의 수	 13/10 1 
+		int countList = 8; //10媛쒖쓽 寃뚯떆湲� 由ъ뒪�듃 
+		int totalPage = dto.getCount() / countList; // 珥� �럹�씠吏��쓽 �닔	 13/10 1 
 
-		int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11 스타트 지점 1
-		int endPage = startPage + countPage - 1; // 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20 끝나는 지점 1+10-1 10
+		int startPage = ((page1 - 1) / 10) * 10 + 1; // �뒪���듃 吏��젏 1~10 �� 紐⑤몢 1, 11~20�� 紐⑤몢 11 �뒪���듃 吏��젏 1
+		int endPage = startPage + countPage - 1; // �걹�굹�뒗 吏��젏 1~10 �� 紐⑤몢 10, 11~20�� 紐⑤몢 20 �걹�굹�뒗 吏��젏 1+10-1 10
 
 		if (dto.getCount() % countList > 0) {
 			totalPage++;
-		} //totalCount의 자투리 부분 페이징 +1 추가 처리 13%10 나머지 3 토탈 페이지 2개로 증가				
+		} //totalCount�쓽 �옄�닾由� 遺�遺� �럹�씠吏� +1 異붽� 泥섎━ 13%10 �굹癒몄� 3 �넗�깉 �럹�씠吏� 2媛쒕줈 利앷�				
 		if (endPage > totalPage) {
 			endPage = totalPage;
-		} //10 > 2 끝나는 페이지가 전체 페이지 보다 클떄
+		} //10 > 2 �걹�굹�뒗 �럹�씠吏�媛� �쟾泥� �럹�씠吏� 蹂대떎 �겢�뻹
 		
 		FileNextListDTO fnldto = new FileNextListDTO();
 		
@@ -286,21 +286,21 @@ public class FileDAO {
 			page1 = 1;
 		} else {
 			page1 = Integer.parseInt(count);
-		} //페이지 초기화
+		} //�럹�씠吏� 珥덇린�솕
 
 		int countPage = 10;
-		int countList = 8; //10개의 게시글 리스트 
-		int totalPage = listsize / countList; // 총 페이지의 수	 13/10 1 
+		int countList = 8; //10媛쒖쓽 寃뚯떆湲� 由ъ뒪�듃 
+		int totalPage = listsize / countList; // 珥� �럹�씠吏��쓽 �닔	 13/10 1 
 
-		int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11 스타트 지점 1
-		int endPage = startPage + countPage - 1; // 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20 끝나는 지점 1+10-1 10
+		int startPage = ((page1 - 1) / 10) * 10 + 1; // �뒪���듃 吏��젏 1~10 �� 紐⑤몢 1, 11~20�� 紐⑤몢 11 �뒪���듃 吏��젏 1
+		int endPage = startPage + countPage - 1; // �걹�굹�뒗 吏��젏 1~10 �� 紐⑤몢 10, 11~20�� 紐⑤몢 20 �걹�굹�뒗 吏��젏 1+10-1 10
 
 		if (listsize % countList > 0) {
 			totalPage++;
-		} //totalCount의 자투리 부분 페이징 +1 추가 처리 13%10 나머지 3 토탈 페이지 2개로 증가				
+		} //totalCount�쓽 �옄�닾由� 遺�遺� �럹�씠吏� +1 異붽� 泥섎━ 13%10 �굹癒몄� 3 �넗�깉 �럹�씠吏� 2媛쒕줈 利앷�				
 		if (endPage > totalPage) {
 			endPage = totalPage;
-		} //10 > 2 끝나는 페이지가 전체 페이지 보다 클떄
+		} //10 > 2 �걹�굹�뒗 �럹�씠吏�媛� �쟾泥� �럹�씠吏� 蹂대떎 �겢�뻹
 		
 		FileNextListDTO fnldto = new FileNextListDTO();
 		
@@ -337,14 +337,14 @@ public class FileDAO {
 			page1 = 1;
 		} else {
 			page1 = Integer.parseInt(count);
-		} //페이지 초기화
+		} //�럹�씠吏� 珥덇린�솕
 
 		int countPage = 8;
 
-		int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
-		int query_endPage = page1 * countPage; //쿼리문에 들어갈 앤드값 
+		int query_startPage = (page1 - 1) * countPage + 1; //荑쇰━臾몄뿉 �뱾�뼱媛� �떆�옉媛� 
+		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
 
-		int r_num = totalCount - (page1 - 1) * countPage; //페이지 순번 역순으로 나오게 하기
+		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
 		
 		String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
 

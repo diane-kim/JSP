@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import board.notice.command.ntiCommand;
 import board.notice.command.ntiViewCommand;
 import board.notice.command.ntiListCommand;
+import board.notice.command.ntiSearchCommand;
 
 @WebServlet("*.mjy")
 public class ntiController extends HttpServlet {
@@ -49,6 +50,10 @@ public class ntiController extends HttpServlet {
 			qac = new ntiViewCommand();
 			qac.execute(req, res);
 			viewPage = "view.jsp";
+		}else if(com.equals("/ntiSearch.mjy")) {
+			qac = new ntiSearchCommand();
+			qac.execute(req, res);
+			viewPage = "ntilist.jsp";
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/notice/"+viewPage);

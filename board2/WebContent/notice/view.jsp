@@ -69,8 +69,7 @@ textarea::placeholder {
 </head>
 <body>
 	<br>
-	<br>
-	
+	<br>	
 	<div class="centered">
 		<div class="shadow p-3 mb-5 bg-white rounded">
 			<table border="1" rules="rows" cellpadding="0" cellspacing="0"
@@ -89,16 +88,12 @@ textarea::placeholder {
 					<td colspan="5" width="700">${dto.content}</td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right"><a href="ntiList.mjy">
+					<td colspan="5" align="right"><a href="../ntiList.mjy">
 							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
-					</a> <a href="updateboard.jsp?key=${dto.count}">
-							<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
-					</a> <a href="deleteDB.jsp?key=${dto.count}">
-							<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
 					</a></td>
 				</tr>
 			</table>
 		</div>
 	</div>
 </body>
-</html>l>
+</html>

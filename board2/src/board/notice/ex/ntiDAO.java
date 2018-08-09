@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
 import board.file.FileDTO;
+import board.file.FileNextListDTO;
 
 public class ntiDAO {
 
@@ -66,14 +67,14 @@ public class ntiDAO {
 			page1 = 1;
 		} else {
 			page1 = Integer.parseInt(count);
-		} //페이지 초기화
+		} //�럹�씠吏� 珥덇린�솕
 
 		int countPage = 10;
 
-		int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
-		int query_endPage = page1 * countPage; //쿼리문에 들어갈 앤드값 
+		int query_startPage = (page1 - 1) * countPage + 1; //荑쇰━臾몄뿉 �뱾�뼱媛� �떆�옉媛� 
+		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
 
-		int r_num = totalCount - (page1 - 1) * countPage; //페이지 순번 역순으로 나오게 하기
+		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
 
 
 		try {
@@ -98,15 +99,13 @@ public class ntiDAO {
 			rs= pstmt.executeQuery();
 
 			while(rs.next()) {
-				while (rs.next()) {
-					dto = new ntiDTO();
-					dto.setCount(rs.getInt("i_Count"));
-					dto.setName(rs.getString("v_Name"));
-					dto.setDate(rs.getString("d_Date"));
-					dto.setTitle(rs.getString("v_Title"));
-					list.add(dto);
-				}
+				dto = new ntiDTO();
+				dto.setCount(rs.getInt("i_Count"));
+				dto.setName(rs.getString("v_Name"));
+				dto.setDate(rs.getString("d_Date"));
+				dto.setTitle(rs.getString("v_Title"));
 				list.add(dto);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -122,9 +121,9 @@ public class ntiDAO {
 		}
 		return list;
 	}
-	
+
 	public ntiDTO contentView(int cast) {
-		
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -141,8 +140,8 @@ public class ntiDAO {
 
 			pstmt = conn.prepareStatement(sql);
 			rs= pstmt.executeQuery();	
-			
-				while(rs.next()) {	
+
+			while(rs.next()) {	
 				dto = new ntiDTO();					
 				dto.setCount(rs.getInt("i_Count"));	
 				dto.setName(rs.getString("v_Name"));	
@@ -154,6 +153,184 @@ public class ntiDAO {
 			e.printStackTrace();	
 		}		
 		return dto;
+	}
+
+
+
+	public ntiNextListDTO ntiNextList(String count){
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ntiDTO dto = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql2 = "select count(*) as count from board";
+
+		dto = new ntiDTO();
+
+		try {
+			pstmt = conn.prepareStatement(sql2);
+			rs= pstmt.executeQuery();
+			rs.next();
+			dto.setCount(rs.getInt("count"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}	
+
+		int page1;
+
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //�럹�씠吏� 珥덇린�솕
+
+		int countPage = 10;
+		int countList = 8; //10媛쒖쓽 寃뚯떆湲� 由ъ뒪�듃 
+		int totalPage = dto.getCount() / countList; // 珥� �럹�씠吏��쓽 �닔	 13/10 1 
+
+		int startPage = ((page1 - 1) / 10) * 10 + 1; // �뒪���듃 吏��젏 1~10 �� 紐⑤몢 1, 11~20�� 紐⑤몢 11 �뒪���듃 吏��젏 1
+		int endPage = startPage + countPage - 1; // �걹�굹�뒗 吏��젏 1~10 �� 紐⑤몢 10, 11~20�� 紐⑤몢 20 �걹�굹�뒗 吏��젏 1+10-1 10
+
+		if (dto.getCount() % countList > 0) {
+			totalPage++;
+		} //totalCount�쓽 �옄�닾由� 遺�遺� �럹�씠吏� +1 異붽� 泥섎━ 13%10 �굹癒몄� 3 �넗�깉 �럹�씠吏� 2媛쒕줈 利앷�				
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		} //10 > 2 �걹�굹�뒗 �럹�씠吏�媛� �쟾泥� �럹�씠吏� 蹂대떎 �겢�뻹
+
+		ntiNextListDTO nnldto = new ntiNextListDTO();
+
+		nnldto.setStartPage(startPage);
+		nnldto.setEndPage(endPage);
+		nnldto.setPage1(page1);
+		nnldto.setTotalPage(totalPage);
+
+		return nnldto;		
+	}
+
+
+	public List<ntiDTO> ntiSearchList(String count,String content){
+
+		List<ntiDTO> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ntiDTO dto = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql2 = "select count(*) as count from board";
+
+		dto = new ntiDTO();
+
+		try {
+			pstmt = conn.prepareStatement(sql2);
+			rs= pstmt.executeQuery();
+			rs.next();
+			dto.setCount(rs.getInt("count"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}	
+
+		int totalCount = dto.getCount();
+
+		int page1;
+
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //�럹�씠吏� 珥덇린�솕
+
+		int countPage = 10;
+
+		int query_startPage = (page1 - 1) * countPage + 1; //荑쇰━臾몄뿉 �뱾�뼱媛� �떆�옉媛� 
+		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
+
+		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
+
+
+		try {
+			
+			String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
+
+				+ "select rownum as rnum, A.file_count, A.file_title, A.file_content, A.file_name"
+
+				+ " from ("
+
+				+ "select file_count, file_title, file_content, file_name"
+
+				+ " from board"
+
+				+ " where file_title LIKE '%" + content + "%'"
+
+				+ " order by file_count desc) A"
+
+				+ " where rownum <= " + query_endPage + ") X"
+
+				+ " where X.rnum >= " + query_startPage + "";
+
+
+
+			pstmt = conn.prepareStatement(sql);
+			rs= pstmt.executeQuery();
+
+			while(rs.next()) {
+				dto = new ntiDTO();
+				dto.setCount(rs.getInt("i_Count"));
+				dto.setName(rs.getString("v_Name"));
+				dto.setDate(rs.getString("d_Date"));
+				dto.setTitle(rs.getString("v_Title"));
+				list.add(dto);
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+
+		return list;
 	}
 
 }
