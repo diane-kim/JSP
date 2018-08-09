@@ -61,7 +61,7 @@ public class FileDAO {
 		}	
 	}
 	
-	public List<FileDTO> fileList() {
+/*	public List<FileDTO> fileList() {
 		getConection();
 		
 		String sql = "select file_name, file_title, file_content from image";
@@ -82,7 +82,7 @@ public class FileDAO {
 			e.printStackTrace();	
 		}
 		return list;		
-	}
+	}*/
 	
 	public FileDTO contentView(int cast) {
 		getConection();					
@@ -155,4 +155,234 @@ public class FileDAO {
 		
 		return dto;
 	}
+	
+	public List<FileDTO> fileList(String count){
+		
+		getConection();
+		
+		String sql2 = "select count(*) as count from board";
+		
+		dto = new FileDTO();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql2);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			dto.setCount(rs.getInt("count"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		int totalCount = dto.getCount();
+
+		int page1;
+		
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //페이지 초기화
+
+		int countPage = 8;
+
+		int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
+		int query_endPage = page1 * countPage; //쿼리문에 들어갈 앤드값 
+
+		int r_num = totalCount - (page1 - 1) * countPage; //페이지 순번 역순으로 나오게 하기
+		
+		String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
+
+				+ "select rownum as rnum, A.file_count, A.file_title, A.file_content, A.file_name"
+
+				+ " from ("
+
+				+ "select file_count, file_title, file_content, file_name"
+
+				+ " from image"
+
+				+ " order by file_count desc) A"
+
+				+ " where rownum <= " + query_endPage + ") X"
+
+				+ " where X.rnum >= " + query_startPage + "";
+		
+		List<FileDTO> list = new ArrayList<>();
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dto =new FileDTO();
+				dto.setCount(rs.getInt("file_count"));
+				dto.setTitle(rs.getString("file_title"));
+				dto.setContent(rs.getString("file_content"));
+				dto.setFileName(rs.getString("file_name"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	public FileNextListDTO fileNextList(String count){
+		getConection();
+		
+		String sql2 = "select count(*) as count from image";
+		
+		dto = new FileDTO();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql2);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			dto.setCount(rs.getInt("count"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+			
+		int page1;
+		
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //페이지 초기화
+
+		int countPage = 10;
+		int countList = 8; //10개의 게시글 리스트 
+		int totalPage = dto.getCount() / countList; // 총 페이지의 수	 13/10 1 
+
+		int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11 스타트 지점 1
+		int endPage = startPage + countPage - 1; // 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20 끝나는 지점 1+10-1 10
+
+		if (dto.getCount() % countList > 0) {
+			totalPage++;
+		} //totalCount의 자투리 부분 페이징 +1 추가 처리 13%10 나머지 3 토탈 페이지 2개로 증가				
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		} //10 > 2 끝나는 페이지가 전체 페이지 보다 클떄
+		
+		FileNextListDTO fnldto = new FileNextListDTO();
+		
+		fnldto.setStartPage(startPage);
+		fnldto.setEndPage(endPage);
+		fnldto.setPage1(page1);
+		fnldto.setTotalPage(totalPage);
+		
+		return fnldto;
+		
+	}
+	
+	public FileNextListDTO fileNextListTwo(String count,int listsize){
+		getConection();
+					
+		int page1;
+		
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //페이지 초기화
+
+		int countPage = 10;
+		int countList = 8; //10개의 게시글 리스트 
+		int totalPage = listsize / countList; // 총 페이지의 수	 13/10 1 
+
+		int startPage = ((page1 - 1) / 10) * 10 + 1; // 스타트 지점 1~10 은 모두 1, 11~20은 모두 11 스타트 지점 1
+		int endPage = startPage + countPage - 1; // 끝나는 지점 1~10 은 모두 10, 11~20은 모두 20 끝나는 지점 1+10-1 10
+
+		if (listsize % countList > 0) {
+			totalPage++;
+		} //totalCount의 자투리 부분 페이징 +1 추가 처리 13%10 나머지 3 토탈 페이지 2개로 증가				
+		if (endPage > totalPage) {
+			endPage = totalPage;
+		} //10 > 2 끝나는 페이지가 전체 페이지 보다 클떄
+		
+		FileNextListDTO fnldto = new FileNextListDTO();
+		
+		fnldto.setStartPage(startPage);
+		fnldto.setEndPage(endPage);
+		fnldto.setPage1(page1);
+		fnldto.setTotalPage(totalPage);
+		
+		return fnldto;		
+	}
+	
+	public List<FileDTO> fileSearchList(String count,String content){
+		getConection();
+		
+		String sql2 = "select count(*) as count from board";
+		
+		dto = new FileDTO();
+		
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql2);
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			dto.setCount(rs.getInt("count"));
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		int totalCount = dto.getCount();
+
+		int page1;
+		
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //페이지 초기화
+
+		int countPage = 8;
+
+		int query_startPage = (page1 - 1) * countPage + 1; //쿼리문에 들어갈 시작값 
+		int query_endPage = page1 * countPage; //쿼리문에 들어갈 앤드값 
+
+		int r_num = totalCount - (page1 - 1) * countPage; //페이지 순번 역순으로 나오게 하기
+		
+		String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
+
+				+ "select rownum as rnum, A.file_count, A.file_title, A.file_content, A.file_name"
+
+				+ " from ("
+
+				+ "select file_count, file_title, file_content, file_name"
+
+				+ " from image"
+				
+				+ " where file_title LIKE '%" + content + "%'"
+
+				+ " order by file_count desc) A"
+
+				+ " where rownum <= " + query_endPage + ") X"
+
+				+ " where X.rnum >= " + query_startPage + "";
+		
+		List<FileDTO> list = new ArrayList<>();
+
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				dto =new FileDTO();
+				dto.setCount(rs.getInt("file_count"));
+				dto.setTitle(rs.getString("file_title"));
+				dto.setContent(rs.getString("file_content"));
+				dto.setFileName(rs.getString("file_name"));
+				list.add(dto);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
+	
 }
