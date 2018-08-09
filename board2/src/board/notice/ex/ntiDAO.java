@@ -123,5 +123,37 @@ public class ntiDAO {
 		return list;
 	}
 	
+	public ntiDTO contentView(int cast) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ntiDTO dto = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}			
+
+		try {	
+			String sql = "select i_count,v_name,to_char(d_date) as d_date,v_title,v_content from board where i_count = "+ cast;
+
+			pstmt = conn.prepareStatement(sql);
+			rs= pstmt.executeQuery();	
+			
+				while(rs.next()) {	
+				dto = new ntiDTO();					
+				dto.setCount(rs.getInt("i_Count"));	
+				dto.setName(rs.getString("v_Name"));	
+				dto.setDate(rs.getString("d_Date"));	
+				dto.setTitle(rs.getString("v_Title"));	
+				dto.setContent(rs.getString("v_content"));
+			}        			
+		}catch(SQLException e) {	
+			e.printStackTrace();	
+		}		
+		return dto;
+	}
 
 }

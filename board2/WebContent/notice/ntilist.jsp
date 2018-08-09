@@ -149,7 +149,7 @@ td, th {
 						%>
 					</td> --%>
 					<td class="font2">${l.count}</td>
-					<td class="font2"><%-- <a href="View.jsp?key=<%=dto1.getCount()%>"> --%>${l.title}</td>
+					<td class="font2"><a href="ntiView.mjy?key=${l.count}">${l.title}</td>
 					<td class="font2">${l.name}</td>
 					<td class="font2">${l.date}</td>
 				</tr>
