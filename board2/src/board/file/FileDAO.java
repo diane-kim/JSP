@@ -139,7 +139,7 @@ public class FileDAO {
 	public FileDTO fileCount() {
 		getConection();
 		
-		String sql = "select count(*) as count from board";
+		String sql = "select count(*) as count from image";
 		
 		dto = new FileDTO();
 		
@@ -160,7 +160,7 @@ public class FileDAO {
 		
 		getConection();
 		
-		String sql2 = "select count(*) as count from board";
+		String sql2 = "select count(*) as count from image";
 		
 		dto = new FileDTO();
 		
@@ -315,7 +315,7 @@ public class FileDAO {
 	public List<FileDTO> fileSearchList(String count,String content){
 		getConection();
 		
-		String sql2 = "select count(*) as count from board";
+		String sql2 = "select count(*) as count from image";
 		
 		dto = new FileDTO();
 		
