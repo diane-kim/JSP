@@ -118,13 +118,20 @@ int cast = Integer.parseInt(count);
 			</tr>
 			<tr>
 				<td colspan="5" align="right">
-					<div class="file_input">
-						<label> File Attach <input type="file"
-							onchange="javascript:document.getElementById('file_route').value=this.value"
-							name="FileName">
-						</label> <input type="text" readonly="readonly" title="File Route"
-							id="file_route">
-					</div> <input class="btn btn-secondary btn-sm font2" type="submit"
+												<div class="file_input">
+							
+								<label> 썸네일<input type="file"
+									onchange="javascript:document.getElementById('file_route').value=this.value"
+									name="FileName">
+								</label> <input type="text" readonly="readonly" title="File Route"
+									id="file_route"> 
+									
+									<label> 세부이미지 <input type="file" onchange="javascript:document.getElementById('file_route').value=this.value"
+									name="FileName2">
+								</label> <input type="text" readonly="readonly" title="File Route"
+									id="file_route">
+									
+							</div>  <input class="btn btn-secondary btn-sm font2" type="submit"
 					value="등록"> <a href="list.jsp">
 						<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
 				</a>

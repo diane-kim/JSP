@@ -49,19 +49,20 @@ td, th {
 </style>
 </head>
 <body>
+<jsp:include page="../header.jsp"></jsp:include>
 	<br>
 	<br>
+	
 	<%
 		String word = request.getParameter("word");		
 		String col = request.getParameter("col");
 		String key = request.getParameter("key");
-		out.print(col + "," + word);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
 		if (col == null && word == null)
 		{
 		%>
 	<div class="centered">
-		<div class="shadow p-3 mb-5 bg-white rounded">
+		<div class="shadow p-3 mb-5 bg-white rounded">		
 			<table border="1" rules="rows" width="750" cellpadding="0"
 				cellspacing="0" class="table table-bordered">
 				<tr>
@@ -155,9 +156,9 @@ td, th {
 				<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
 					<li class="page-item">
-					
+										
 					<c:if test="${dto.page1 >= 1}">
-					<%-- ${dto.page1 = 2}	 --%>				
+					<%-- ${dto.page1 = 2} --%>	 				
 					<a class="page-link" href="../board2/ntiList.mjy?key=${dto.page1 - 1}">Previous</a></li>
 					</c:if>
 					
@@ -177,10 +178,9 @@ td, th {
 			</div>
 		</div>
 	</div>
-
 	<%} %>
-					<DIV class='aside_menu'>
-		  <FORM name='frm' method='GET' action='../board2/ntiSearch.mjy'>
+		<DIV class='aside_menu'>
+		  <FORM name='frm' method='GET' action='../board2/ntiSearch.mjy?'>
 		    <ASIDE style='float: right;'>
 		      <SELECT name='col'> <!-- 검색 컬럼 -->
 		        <OPTION value='none'>전체 목록</OPTION>

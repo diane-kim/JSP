@@ -16,10 +16,12 @@ public class ntiSearchCommand implements ntiCommand {
 		ntiDAO dao = new ntiDAO();
 		
 		String count = request.getParameter("key");
-		String content = request.getParameter("content");
+		String content = request.getParameter("word");
+		
+		String button = null;
 
 		List<ntiDTO> list = dao.ntiSearchList(count, content);
-		ntiNextListDTO dto = dao.ntiNextList(count);
+		ntiNextListDTO dto = dao.ntiSearchNextList(count, content);
 		
 		request.setAttribute("dto", dto);			
 		request.setAttribute("list", list);

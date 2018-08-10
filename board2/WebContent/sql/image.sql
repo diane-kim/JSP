@@ -58,3 +58,29 @@ commit;
 
 
 select file_name, file_title, file_content from image where file_count = 29;
+
+create table image
+(
+  file_count NUMBER(38),
+  file_path VARCHAR2(4000),
+  file_name VARCHAR2(4000),
+  file_content VARCHAR2(4000),
+  file_name2 VARCHAR2(4000)
+)
+
+CREATE SEQUENCE image_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+    <Resource
+    	auth="Container"
+    	diverClassName="oracle.jdbc.driver.OracleDriver"
+    	url="jdbc:oracle:thin:@localhost:1521:xe"
+    	username="hr"
+    	password="hr"
+    	name="jdbc/Oracle11g"
+    	type="javax.sql.DataSource"
+    	maxActive="50"
+    	maxWait="1000"
+    	/>
+

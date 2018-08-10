@@ -25,7 +25,6 @@
 		// request.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
 			// 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
 			String uploadPath = "C:\\Users\\User\\git\\JSP\\board2\\WebContent\\image";
-			out.println("절대경로 : " + uploadPath + "<br/>");
 
 			int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
 
@@ -71,12 +70,14 @@
 			}
 
 			String my_image = multi.getOriginalFileName("FileName");
+			String my_image2 = multi.getOriginalFileName("FileName2");
 			String aaa = uploadPath + "\\" + my_image; //aaa는 DB에 들어갈 파일 경로.
 												//my_image DB에 들어갈 파일 이름.
 			out.println("파일 이름 포함 경로 : " + aaa);
 
 			FileDTO dto = new FileDTO();
 			dto.setFileName(my_image);
+			dto.setFileName2(my_image2);
 			dto.setFilePath(aaa);
 			
 			dto.setTitle(multi.getParameter("title"));
@@ -86,33 +87,5 @@
 
 			dao.fileInsert(dto);
 	%>
-
-
-	<%-- 	<%
-		String path = application.getRealPath("updownFile");
-
-		int size = 1024 * 1024 * 10; //10M
-		String file = "";
-		String oriFile = "";
-
-		String relativeDirectory = "contents";
-
-		ServletContext context = getServletContext();
-
-		String realDirectory = context.getRealPath(relativeDirectory);
-
-		MultipartRequest multi = new MultipartRequest(request, realDirectory, size, "UTF-8",
-				new DefaultFileRenamePolicy());
-
-		String my_image = multi.getOriginalFileName("FileName");
-
-		Enumeration files = multi.getFileNames();
-
-		String filesName = (String) files.nextElement();
-
-		out.print(my_image); //파일명 이걸 디비에 가져가서 경로를 지정
-		
-	%> --%>
-	<%-- <img width="30%" src="contents\member_uploaded\<%=my_image%>"> --%>
 </body>
 </html>

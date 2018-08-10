@@ -15,9 +15,19 @@
 	crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
+<style>
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+</style>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
+
+
 	<div class="container centered">
-			
+
 		<%
 		String word = request.getParameter("word");		
 		String col = request.getParameter("col");
@@ -28,29 +38,25 @@
 		%>
 
 		<div class="row">
-		
+
 			<%
 				board.file.FileDAO dao = new board.file.FileDAO();
 				String count = request.getParameter("key");
 				List<FileDTO> list = dao.fileList(count);
-
-				for (board.file.FileDTO dto : list) {
+				
+				
+				for (board.file.FileDTO dto : list) { 
 			%>
-			<div class="card" style="width: 15rem;">
-				<a href="View.jsp?key=<%=dto.getCount()%>"><img
-					class="card-img-top" src="../image/<%=dto.getFileName()%>"
-					alt="Card image cap"></a>
-				<div class="card-body">
-
-					<h5 class="card-title"><%=dto.getTitle()%></h5>
-					<p class="card-text"><%=dto.getContent()%></p>
-				</div>
+			<div class="col-3">
+				<a href="View.jsp?key=<%=dto.getCount()%>">
+				<img class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
+						alt="Card image cap"></a>
 			</div>
 			<%
-				}
+			}
 			%>
 		</div>
-		
+
 		<div>
 			<%
 				
@@ -95,37 +101,32 @@
 				%>
 			</ul>
 			</nav>
-		</div>			
+		</div>
 		<% 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		}else{ 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		%>
-		
-				<div class="row">
-		
+
+		<div class="row">
+
 			<%
 				board.file.FileDAO dao = new board.file.FileDAO();
 				String count = request.getParameter("key");
 				List<FileDTO> list = dao.fileSearchList(count,word);
 
-				for (board.file.FileDTO dto : list) {
+				for (board.file.FileDTO dto : list) { 
 			%>
-			<div class="card" style="width: 15rem;">
-				<a href="View.jsp?key=<%=dto.getCount()%>"><img
-					class="card-img-top" src="../image/<%=dto.getFileName()%>"
-					alt="Card image cap"></a>
-				<div class="card-body">
-
-					<h5 class="card-title"><%=dto.getTitle()%></h5>
-					<p class="card-text"><%=dto.getContent()%></p>
-				</div>
+			<div class="col-3">
+				<a href="View.jsp?key=<%=dto.getCount()%>">
+				<img class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
+						alt="Card image cap"></a>
 			</div>
 			<%
-				}
+			}
 			%>
 		</div>
-		
+
 		<div>
 			<%
 				
@@ -173,26 +174,25 @@
 		</div>
 		<%} 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		%>			
-		
+		%>
+
 		<div align="right">
 			<a href="input.jsp">
 				<button type="button" class="btn btn-outline-primary font2">사진업로드</button>
 			</a>
 		</div>
-		
+
 		<DIV class='aside_menu'>
-		  <FORM name='frm' method='GET' action='list.jsp'>
-		    <ASIDE style='float: right;'>
-		      <SELECT name='col'> <!-- 검색 컬럼 -->
-		        <OPTION value='none'>전체 목록</OPTION>
-		        <OPTION value='content'>내용</OPTION>
-		      </SELECT>
-		      <input type='text' name='word' size ='20' value=''>
-		      <button type='submit'>검색</button>
-		    </ASIDE> 
-		  </FORM>
-		  <DIV class='menu_line' style='clear: both;'></DIV>
+			<FORM name='frm' method='GET' action='list.jsp'>
+				<ASIDE style='float: right;'> <SELECT name='col'>
+					<!-- 검색 컬럼 -->
+					<OPTION value='none'>전체 목록</OPTION>
+					<OPTION value='content'>내용</OPTION>
+				</SELECT> <input type='text' name='word' size='20' value=''>
+				<button type='submit'>검색</button>
+				</ASIDE>
+			</FORM>
+			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
 	</div>
 </body>

@@ -4,6 +4,7 @@ public class FileDTO {
 	int count;
 	String filePath;
 	String fileName;
+	String fileName2;
 	String Title;
 	String Content;
 	
@@ -36,6 +37,12 @@ public class FileDTO {
 	}
 	public void setContent(String content) {
 		Content = content;
+	}
+	public String getFileName2() {
+		return fileName2;
+	}
+	public void setFileName2(String fileName2) {
+		this.fileName2 = fileName2;
 	}
 	
 }

@@ -87,6 +87,40 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	border: 1px solid #777;
 }
 
+.file_input2 label {
+	position: relative;
+	cursor: pointer;
+	display: inline-block;
+	vertical-align: middle;
+	overflow: hidden;
+	width: 100px;
+	height: 30px;
+	background: #777;
+	color: #fff;
+	text-align: center;
+	line-height: 30px;
+	font-family: 'Rancho', cursive;
+}
+
+.file_input2 label input {
+	position: absolute;
+	width: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+.file_input2 input[type=text] {
+	vertical-align: middle;
+	display: inline-block;
+	width: 400px;
+	height: 28px;
+	line-height: 28px;
+	font-size: 15px;
+	padding: 0;
+	border: 0;
+	border: 1px solid #777;
+}
+
 input::placeholder {
 	font-family: 'Nanum Pen Script', cursive;
 	font-size: 18px;
@@ -101,33 +135,41 @@ textarea::placeholder {
 	<div class="centered">
 		<form action="inset.jsp" method="post" enctype="multipart/form-data">
 			<div class="shadow p-3 mb-5 bg-white rounded">
-			<table border="1" rules="rows" cellpadding="0" cellspacing="0"
+				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
 					class="table table-bordered">
-			<tr>
-				<td class="td_color text-center"><b class="font2">제목</b></td>
-				<td colspan="4"><input type="text" name="title" size="75"
-					placeholder="제목을 입력하세요." autofozus required></td>
-			</tr>
-			<tr>
-				<td colspan="5"><textarea cols="85" rows="7" name="content"
-						placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
-			</tr>
-			<tr>
-				<td colspan="5" align="right">
-					<div class="file_input">
-						<label> File Attach <input type="file"
-							onchange="javascript:document.getElementById('file_route').value=this.value"
-							name="FileName">
-						</label> <input type="text" readonly="readonly" title="File Route"
-							id="file_route">
-					</div> <input class="btn btn-secondary btn-sm font2" type="submit"
-					value="등록"> <a href="list.jsp">
-						<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
-				</a>
-				</td>
-			</tr>
-		</table>
-	</form>
+					<tr>
+						<td class="td_color text-center"><b class="font2">제목</b></td>
+						<td colspan="4"><input type="text" name="title" size="75"
+							placeholder="제목을 입력하세요." autofozus required></td>
+					</tr>
+					<tr>
+						<td colspan="5"><textarea cols="85" rows="7" name="content"
+								placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
+					</tr>
+					<tr>
+						<td colspan="5" align="right">
+							<div class="file_input">							
+								<label>Thumbnail<input type="file" onchange="javascript:document.getElementById('file_route').value=this.value"
+									name="FileName">
+								</label> <input type="text" readonly="readonly" title="File Route"
+									id="file_route"> 									
+							</div> 		
+							
+							<div class="file_input2">									
+								<label>Detail <input type="file" onchange="javascript:document.getElementById('file_route2').value=this.value"
+									name="FileName2">
+								</label> <input type="text" readonly="readonly" title="File Route"
+									id="file_route2">				
+							</div>								
+							
+							<input class="btn btn-secondary btn-sm font2" type="submit"
+							value="등록"> <a href="list.jsp">
+								<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
+						</a>
+						</td>
+					</tr>
+				</table>
+		</form>
 	</div>
 </body>
 </html>

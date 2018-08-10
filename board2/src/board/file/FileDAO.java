@@ -48,46 +48,32 @@ public class FileDAO {
 		getConection();
 		
 		try {
-	 		String sql = "insert into image values(image_seq.nextval,?,?,?,?)";	
+	 		String sql = "insert into image values(image_seq.nextval,?,?,?,?,?)";	
 	 		PreparedStatement pstmt = conn.prepareStatement(sql);	
 	 		pstmt.setString(1, dto.getFilePath());	
 			pstmt.setString(2, dto.getFileName());	
 			pstmt.setString(3, dto.getTitle());	
-			pstmt.setString(4, dto.getContent());	
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getFileName2());	
 	 		pstmt.executeUpdate();	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}	
 	}
 	
-/*	public List<FileDTO> fileList() {
-		getConection();
-		
-		String sql = "select file_name, file_title, file_content from image";
-		
-		List<FileDTO> list = new ArrayList<>();
-
-		try {	
-			PreparedStatement pstmt = conn.prepareStatement(sql);	
-			ResultSet rs = pstmt.executeQuery();	
-				while(rs.next()) {	
-				dto = new FileDTO();					
-				dto.setFileName(rs.getString("file_name"));	
-				dto.setTitle(rs.getString("file_title"));	
-				dto.setContent(rs.getString("file_content"));	
-				list.add(dto);
-			}        			
-		}catch(SQLException e) {	
-			e.printStackTrace();	
-		}
-		return list;		
-	}*/
 	
 	public FileDTO contentView(int cast) {
 		getConection();					
 		
-		String sql = "select file_name, file_title, file_content from image where file_count = "+ cast;
+		String sql = "select file_name, file_title, file_content, file_name2 from image where file_count = "+ cast;
 		
 		try {	
 			PreparedStatement pstmt = conn.prepareStatement(sql);	
@@ -97,9 +83,17 @@ public class FileDAO {
 				dto.setFileName(rs.getString("file_name"));
 				dto.setContent(rs.getString("file_content"));
 				dto.setTitle(rs.getString("file_title"));
+				dto.setFileName2(rs.getString("file_name2"));
 			}        			
 		}catch(SQLException e) {	
 			e.printStackTrace();	
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}
 		
 		return dto;
@@ -109,16 +103,24 @@ public class FileDAO {
 		getConection();
 		
 		try {
-	 		String sql = "update image set file_name = ?, file_path = ?, file_title = ?, file_content = ? where file_count = "+ dto.count;	
+	 		String sql = "update image set file_name = ?, file_path = ?, file_title = ?, file_content = ?, file_name2 = ? where file_count = "+ dto.count;	
 	 		PreparedStatement pstmt = conn.prepareStatement(sql);	
 	 		pstmt.setString(1, dto.getFileName());	
 			pstmt.setString(2, dto.getFilePath());	
 			pstmt.setString(3, dto.getTitle());	
 			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getFileName2());
 	 		pstmt.executeUpdate();	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}			
 	}
 	
@@ -133,6 +135,13 @@ public class FileDAO {
 			       			
 		}catch(SQLException e) {	
 			e.printStackTrace();	
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}		
 	}
 	
@@ -151,6 +160,13 @@ public class FileDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}
 		
 		return dto;
@@ -222,6 +238,13 @@ public class FileDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}
 		
 		return list;
@@ -242,6 +265,13 @@ public class FileDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+		
+				e2.printStackTrace();
+			}
 		}
 			
 		int page1;
@@ -379,10 +409,15 @@ public class FileDAO {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
+		}finally {
+			try {
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
 		
+				e2.printStackTrace();
+			}
+		}		
 		return list;
 	}
-	
 	
 }

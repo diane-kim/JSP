@@ -70,9 +70,12 @@ textarea::placeholder {
 	font-family: 'Nanum Pen Script', cursive;
 	font-size: 18px;
 }
+
+
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp"></jsp:include>
 	<br>
 	<br>
 
@@ -85,25 +88,24 @@ textarea::placeholder {
 	%>
 	<div class="container">
 		<div class="text-center">
-			<img src="../image/<%=dto.getFileName()%>" class="rounded"> 
-			<br>
+			<img src="../image/<%=dto.getFileName()%>" class="rounded">
+			<br><br><br><br><br><br>
+			<img src="../image/<%=dto.getFileName2()%>" class="img-fluid">
+		</div>
+		<div>
+			<a href="list.jsp">
+
+
+				<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
+			</a> <a href="update.jsp?key=<%=count%>">
+				<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
+			</a> <a href="delset.jsp?key=<%=count%>">
+				<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
+			</a> <br>
 			<%=dto.getContent()%>
 			<br>
-			<%=dto.getTitle()%>	
-			<br>		
-			
-			
-			<a href="list.jsp">						
-				<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
-			</a> 
-			
-			<a href="update.jsp?key=<%=count%>">
-				<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
-			</a> 
-			
-			<a href="delset.jsp?key=<%=count%>">
-				<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
-			</a>
+			<%=dto.getTitle()%>
+			<br>
 		</div>
 	</div>
 </body>

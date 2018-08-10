@@ -67,12 +67,14 @@
 			}
 
 			String my_image = multi.getOriginalFileName("FileName");
+			String my_image2 = multi.getOriginalFileName("FileName2");
 			String aaa = uploadPath + "\\" + my_image; //aaa는 DB에 들어갈 파일 경로.
 												//my_image DB에 들어갈 파일 이름.
 
 			FileDTO dto = new FileDTO();
 			dto.setFileName(my_image);
 			dto.setFilePath(aaa);
+			dto.setFileName2(my_image2);
 			String count = multi.getParameter("key");
 			dto.setCount(Integer.parseInt(count));
 

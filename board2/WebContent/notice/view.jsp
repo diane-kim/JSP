@@ -88,7 +88,7 @@ textarea::placeholder {
 					<td colspan="5" width="700">${dto.content}</td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right"><a href="../ntiList.mjy">
+					<td colspan="5" align="right"><a href="ntiList.mjy">
 							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
 					</a></td>
 				</tr>
