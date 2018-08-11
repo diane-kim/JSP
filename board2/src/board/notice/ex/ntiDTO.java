@@ -5,9 +5,30 @@ public class ntiDTO {
 	String date;	
 	String title;	
 	String content;	
+	String fileName;
+	String filePath;
 	int count;
+	int r_num;
 	
-	
+
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+	public String getFilePath() {
+		return filePath;
+	}
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+	public int getR_num() {
+		return r_num;
+	}
+	public void setR_num(int r_num) {
+		this.r_num = r_num;
+	}
 	public String getName() {
 		return name;
 	}
@@ -38,6 +59,7 @@ public class ntiDTO {
 	public void setCount(int count) {
 		this.count = count;
 	}
+
 	
 	
 }

@@ -19,37 +19,37 @@ import javax.servlet.http.HttpServlet;
 import javax.sql.DataSource;
 
 public class FileDAO {
+
+	FileDTO dto = null;
 	
 	Connection conn = null;
-	FileDTO dto = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
 
-	public Connection getConection() {		
+	DataSource dataSource;
+	
+	public FileDAO() {		
 
-		try {
-			String user = "hr"; 
-			String pw = "hr";
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
+			try {
+				Context context = new InitialContext();
+				dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
+			} catch (Exception e) {
 
-			Class.forName("oracle.jdbc.driver.OracleDriver");        
-			conn = DriverManager.getConnection(url, user, pw);
-
-		} catch (ClassNotFoundException cnfe) {
-			System.out.println("DB �뱶�씪�씠踰� 濡쒕뵫 �떎�뙣 :"+cnfe.toString());
-		} catch (SQLException sqle) {
-			System.out.println("DB �젒�냽�떎�뙣 : "+sqle.toString());
-		} catch (Exception e) {
-			System.out.println("Unkonwn error");
-			e.printStackTrace();
-		}	    	    
-		return conn;
+				e.printStackTrace();
+			}		
 	}
 	
 	public void fileInsert(FileDTO dto) {
-		getConection();
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		try {
 	 		String sql = "insert into image values(image_seq.nextval,?,?,?,?,?)";	
-	 		PreparedStatement pstmt = conn.prepareStatement(sql);	
+	 		pstmt = conn.prepareStatement(sql);	
 	 		pstmt.setString(1, dto.getFilePath());	
 			pstmt.setString(2, dto.getFileName());	
 			pstmt.setString(3, dto.getTitle());	
@@ -61,9 +61,11 @@ public class FileDAO {
 			e.printStackTrace();
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}	
@@ -71,13 +73,17 @@ public class FileDAO {
 	
 	
 	public FileDTO contentView(int cast) {
-		getConection();					
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}						
 		
 		String sql = "select file_name, file_title, file_content, file_name2 from image where file_count = "+ cast;
 		
 		try {	
-			PreparedStatement pstmt = conn.prepareStatement(sql);	
-			ResultSet rs = pstmt.executeQuery();	
+			pstmt = conn.prepareStatement(sql);	
+			rs = pstmt.executeQuery();	
 				while(rs.next()) {	
 				dto = new FileDTO();
 				dto.setFileName(rs.getString("file_name"));
@@ -89,9 +95,11 @@ public class FileDAO {
 			e.printStackTrace();	
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}
@@ -100,11 +108,16 @@ public class FileDAO {
 	}
 	
 	public void fileUpdate(FileDTO dto) {
-		getConection();
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		try {
 	 		String sql = "update image set file_name = ?, file_path = ?, file_title = ?, file_content = ?, file_name2 = ? where file_count = "+ dto.count;	
-	 		PreparedStatement pstmt = conn.prepareStatement(sql);	
+	 		pstmt = conn.prepareStatement(sql);	
 	 		pstmt.setString(1, dto.getFileName());	
 			pstmt.setString(2, dto.getFilePath());	
 			pstmt.setString(3, dto.getTitle());	
@@ -116,45 +129,57 @@ public class FileDAO {
 			e.printStackTrace();
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}			
 	}
 	
 	public void fileDelete(int cast) {
-		getConection();
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		String sql = "delete from image where file_count = " + cast;
 		
 		try {	
-			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(sql);
 			pstmt.executeUpdate();
 			       			
 		}catch(SQLException e) {	
 			e.printStackTrace();	
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}		
 	}
 	
 	public FileDTO fileCount() {
-		getConection();
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		String sql = "select count(*) as count from image";
 		
 		dto = new FileDTO();
 		
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			rs.next();
 			dto.setCount(rs.getInt("count"));
 
@@ -162,9 +187,11 @@ public class FileDAO {
 			e.printStackTrace();
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}
@@ -174,15 +201,19 @@ public class FileDAO {
 	
 	public List<FileDTO> fileList(String count){
 		
-		getConection();
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		String sql2 = "select count(*) as count from image";
 		
 		dto = new FileDTO();
 		
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql2);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
 			rs.next();
 			dto.setCount(rs.getInt("count"));
 
@@ -240,9 +271,11 @@ public class FileDAO {
 			e.printStackTrace();
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}
@@ -251,15 +284,20 @@ public class FileDAO {
 	}
 	
 	public FileNextListDTO fileNextList(String count){
-		getConection();
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		String sql2 = "select count(*) as count from image";
 		
 		dto = new FileDTO();
 		
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql2);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
 			rs.next();
 			dto.setCount(rs.getInt("count"));
 
@@ -267,9 +305,11 @@ public class FileDAO {
 			e.printStackTrace();
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}
@@ -308,7 +348,6 @@ public class FileDAO {
 	}
 	
 	public FileNextListDTO fileNextListTwo(String count,int listsize){
-		getConection();
 					
 		int page1;
 		
@@ -343,7 +382,12 @@ public class FileDAO {
 	}
 	
 	public List<FileDTO> fileSearchList(String count,String content){
-		getConection();
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}		
 		
 		String sql2 = "select count(*) as count from image";
 		
@@ -397,8 +441,8 @@ public class FileDAO {
 		List<FileDTO> list = new ArrayList<>();
 
 		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				dto =new FileDTO();
 				dto.setCount(rs.getInt("file_count"));
@@ -411,9 +455,11 @@ public class FileDAO {
 			e.printStackTrace();
 		}finally {
 			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
-		
+
 				e2.printStackTrace();
 			}
 		}		

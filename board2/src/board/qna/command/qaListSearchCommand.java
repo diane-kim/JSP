@@ -9,21 +9,23 @@ import javax.servlet.http.HttpServletResponse;
 import board.qna.ex.qaDao;
 import board.qna.ex.qaDto;
 
-public class qaListCommand implements qaCommand {
-	
+public class qaListSearchCommand implements qaCommand {
+
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
-		//QnA 목록 command
 		qaDao dao = new qaDao();
 		List<qaDto> list = new ArrayList<qaDto>();
 		String pageNum =(String)request.getParameter("pageNum");
+		String content =(String)request.getParameter("search");
 		
-		list = dao.listQ(pageNum);
+		list = dao.searchQ(pageNum,content);
 		
-		String totalCount = dao.CountList();
+		String totalCount = dao.searchCountList(content);
+		
 		request.setAttribute("list", list);
 		request.setAttribute("totalCount", totalCount);
-	};
+		
+	}
 
 }

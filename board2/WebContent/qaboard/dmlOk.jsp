@@ -11,20 +11,42 @@
 	<%
 	String Test =(String)request.getAttribute("test");
 	int no;
-	
+	System.out.println(Test);
 	if(Test != null){
 		if("qw".equals(Test)){
-			response.sendRedirect("/board2/qaList.khy");
+		%>
+			<script language="javascript">
+			alert("정상적으로 등록되었습니다.");
+			</script>
+		
+		<% response.sendRedirect("/board2/qaList.khy");
 			
 		}else if("qd".equals(Test)){
-			no =Integer.parseInt(request.getParameter("qa_id"));
+		%>
+			<script language="javascript">
+			alert("정상적으로 삭제되었습니다.");
+			</script>
+			
+		<%	no =Integer.parseInt(request.getParameter("qa_id"));
 			response.sendRedirect("/board2/qaList.khy");
 		}
-		else if("rw".equals(Test) || "qm".equals(Test) || "rd".equals(Test)){
+		else if("rw".equals(Test)){
 			no =Integer.parseInt(request.getParameter("qa_id"));
-			response.sendRedirect("/board2/qaContent.khy?qa_id="+no);
+			%>
+				<script language="javascript">
+				alert("정상적으로 등록되었습니다.");
+				</script>
+				
+			<%
+			response.sendRedirect("/board2/qaContent.khy?qa_id="+no+"&check=false");
+		}else if("qm".equals(Test) || "rd".equals(Test) || "con".equals(Test)){
+			no =Integer.parseInt(request.getParameter("qa_id"));
+		%>
+			<script language="javascript">
+			alert("정상적으로 등록되었습니다.");
+			</script>
+		<% response.sendRedirect("/board2/qaContent.khy?qa_id="+no+"&check=false");
 		}
-			
 		else {
 	%>
 		<script language="javascript">

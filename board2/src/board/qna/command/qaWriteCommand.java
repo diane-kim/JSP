@@ -23,10 +23,11 @@ public class qaWriteCommand implements qaCommand {
 			String name = request.getParameter("name");
 			String content = request.getParameter("content");
 			String pwd = request.getParameter("qa_pwd");
+			String id = request.getParameter("id");
 		
 			qaDao dao = new qaDao();
 			
-			dao.writeQ(name, subject, content,pwd);
+			dao.writeQ(name, subject, content,pwd,id);
 			
 			//dmlOk.jsp 에서 구분 
 			request.setAttribute("test", "qw");

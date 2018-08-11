@@ -5,14 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <style>
 <!--스타일 시트 -->
-input:hover {
+input:hover[type="submit"] {
 	text-decoration: underline;
 }
 
@@ -20,14 +19,14 @@ a:hover {
 	text-decoration: underline;
 }
 
-div {
+/* div {
 	position: absolute;
 	width: 1000px;
 	height: 500px;
 	left: 50%;
 	top: 50%;
 	margin: -250px 0 0 -500px;
-}
+} */
 
 table.a {
 	width: 1000px;
@@ -44,24 +43,29 @@ p.a {
 	border: 1px solid lightgrey;
 	display: inline;
 }
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 </head>
 <body style="text-align: center">
-
-	<br />
+<jsp:include page="../header.jsp"></jsp:include>
 	<br />
 	<h3 style="text-decoration: underline">Q & A</h3>
-	<div>
+	<div class="centered">
 		<!--  QnA 내용보기  -->
-		<form action="qaboard/pwdOk.jsp" method="get">
+		<form action="qaboard/pwdOk.jsp?check=del" method="get">
 			<table class="a">
 				<tr style="border-top: 1px solid lightgrey; height: 50px">
-					<td colspan="2">&nbsp&nbsp Subject ${dto.qa_sub} <input
+					<td colspan="2">&nbsp;&nbsp; Subject ${dto.qa_sub} <input
 						type="hidden" name="subject" value="${dto.qa_sub}"></td>
 				</tr>
 				<tr style="height: 50px;">
-					<td style="width: 150px;">&nbsp&nbsp Name ${dto.qa_name} <input
-						type="hidden" name="qa_name" value="${dto.qa_name}"></td>
+					<td style="width: 150px;">&nbsp;&nbsp; Name ${dto.qa_name} <input
+						type="hidden" name="qa_name" value="${dto.qa_name}">
+					<input type="hidden" name="write_id" value="${dto.write_id}"></td>
 					<td>Date ${dto.qa_date}</td>
 				</tr>
 				<tr style="height: 300px; text-align:center">
@@ -69,8 +73,8 @@ p.a {
 						name="qa_con" value="${dto.qa_con}"></td>
 				</tr>
 				<tr style="height: 50px;">
-					<td style="width: 150px">&nbsp&nbsp Password</td>
-					<td><input type="password" name="delPwd">&nbsp&nbsp
+					<td style="width: 150px">&nbsp;&nbsp; Password</td>
+					<td><input type="password" name="delPwd">&nbsp;&nbsp;
 						삭제하려면 비밀번호를 입력하세요. <input type="hidden" name="qa_id"
 						value="${dto.qa_id}"></td>
 				</tr>
@@ -81,15 +85,15 @@ p.a {
 					<td><br />
 						<p class="a">
 							<a href="/board2/qaList.khy" style="color: grey">LIST</a>
-						</p>&nbsp
+						</p>&nbsp;
 						<p class="a">
-							<a
-								href="qaboard/modifyQnA.jsp?qa_id=${dto.qa_id}&qa_name=${dto.qa_name}&qa_con=${dto.qa_con}"
-								style="color: grey">EDIT</a>
-						</p>&nbsp
+							<a href="qaboard/pwdOk.jsp?check=mod&qa_id=${dto.qa_id}
+									&qa_con=${dto.qa_con}&write_id=${dto.write_id}" style="color: grey">
+							EDIT</a>
+						</p>&nbsp;
 						<p class="a">
 							<input type="submit" value="DELETE" name="submit"
-								style="background-color: white; border: 0px; color: grey">
+								style="background-color: white; border: 0px; color: grey;">
 						</p></td>
 				</tr>
 			</table>
@@ -98,19 +102,20 @@ p.a {
 		<!-- 답글 목록 보기 ,id가 admin이면 삭제 버튼 생김 , reply 보류  -->
 		<c:forEach var="l" items="${rList}">
 			<table style="width: 1000px; border: 1px solid lightgrey;">
-				<tr style="height: 30px; text-align: left">
-					<td style="width: 150px;">&nbsp&nbsp Name &nbsp&nbsp
+				<tr style="height: 30px; text-align: left;padding-right:0px">
+					<td style="width: 150px;">&nbsp;&nbsp; Name &nbsp;&nbsp;
 						${l.re_name}</td>
-					<td>Date &nbsp&nbsp ${l.re_date}</td>
+					<td>Date &nbsp;&nbsp; ${l.re_date}</td>
 					<td style="text-align: right">
-						<%-- <c:if test="${id = 'admin'}"> --%>
-						<p class="a" style="padding: 2px 25px 3px 25px;">
+						
+						<p class="a" style="padding: 3px 25px 5px 25px;">
 							<a href="" style="color: grey">REPLY</a>
 						</p>
-						<p class="a" style="padding: 2px 25px 3px 25px;">
-							<a href="/board2/ReplyDelete.khy?re_id=${l.re_id}&qa_id=${dto.qa_id}"
+						<c:if test="${id=='admin'}">
+						<p class="a" style="padding: 3px 25px 5px 25px;">
+							<a href="ReplyDelete.khy?re_id=${l.re_id}&qa_id=${dto.qa_id}"
 								style="color: grey">DELETE</a>
-						</p> <%-- </c:if> --%>
+						</p> </c:if>
 					</td>
 				</tr>
 				<tr style="height: 100px;">
@@ -124,7 +129,7 @@ p.a {
 		<br />
 		<% if(("admin").equals(session.getAttribute("id"))) {%>
 		<c:if test="${dto.qa_count<=3}">
-		<form action="/board2/writeReply.khy">
+		<form action="writeReply.khy">
 			<input type="hidden" name="qa_id" value="${dto.qa_id}">
 			<fieldset style="border: 1px solid lightgrey">
 				<p style="padding: 10px 0px 0px 5px;">
@@ -146,6 +151,8 @@ p.a {
 			<br />
 		</p>
 	</div>
+
+<jsp:include page="../footer.html"/>
 
 
 </body>

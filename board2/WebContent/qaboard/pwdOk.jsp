@@ -12,38 +12,60 @@
 	request.setCharacterEncoding("UTF-8");
 	
 	int qa_id = Integer.parseInt(request.getParameter("qa_id"));
+	String check = (String)request.getParameter("check");
+	
 	String pwd = request.getParameter("delPwd");
 	String id = (String)session.getAttribute("id");
+	String write_id = (String)request.getParameter("write_id");
 	
 	System.out.println(id);
+	System.out.println(write_id);
 
 	
-	qaDao dao = new qaDao();
-	int CheckNum = dao.pwdCheck(qa_id,pwd);
 	
-	if(("admin").equals(id)){
+		if(("admin").equals(id)){
 		response.sendRedirect("/board2/qaDelete.khy?qa_id=" + qa_id);}
-	else {
-		if(pwd == ""){
-	%>
-		<script language="javascript">
-					alert("수정&삭제하려면 비밀번호를 입력하세요.");
-					history.go(-1);
-		</script>
-	<%	}else{
-		if(CheckNum == 0) {
-	%>
-				<script language="javascript">
-					alert("비밀번호가 틀립니다.");
-					history.go(-1);
-				</script>
-	<%
-		} else {
+		else {
 			
-				response.sendRedirect("/board2/modifyQnA.khy?qa_id=" + qa_id);
-			
-		}}}
-		%>
+			if((write_id).equals(id)){
+				
+				if(("mod").equals(check)){
+					
+					RequestDispatcher dispatcher = request.getRequestDispatcher("modifyQnA.jsp");
+					dispatcher.forward(request, response);}
+				
+				else {
+					
+					qaDao dao = new qaDao();
+					int CheckNum = dao.pwdCheck(qa_id,pwd);
+					
+					if(pwd == ""){
+					%>
+						<script language="javascript">
+						alert("삭제하려면 비밀번호를 입력하세요.");
+						history.go(-1);
+						</script>
+					<%	}
+					else{
+							if(CheckNum == 0) {
+					%>
+									<script language="javascript">
+										alert("비밀번호가 틀립니다.");
+										history.go(-1);
+									</script>
+					<%
+							} else {
+								
+									response.sendRedirect("/board2/modifyQnA.khy?qa_id=" + qa_id);}}}}
+						
+				
+				else {
+					%>
+						<script language="javascript">
+							alert("작성자만 가능합니다.");
+							history.go(-1);
+						</script>
+			<%}}%>
 	
 </body>
 </html>

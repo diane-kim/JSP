@@ -17,9 +17,10 @@ public class qaConCommand implements qaCommand{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		int no = Integer.parseInt(request.getParameter("qa_id"));
+		String check = (String) request.getParameter("check");
 		
 		qaDao dao = new qaDao();
-		qaDto dto = dao.contentQ(no);
+		qaDto dto = dao.contentQ(no,check);
 		
 		request.setAttribute("dto",dto);
 		
@@ -28,6 +29,8 @@ public class qaConCommand implements qaCommand{
 		
 		list = rdao.listR(no);
 		request.setAttribute("rList", list);
+		
+		
 		
 	};
 

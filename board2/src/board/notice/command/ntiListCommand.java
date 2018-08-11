@@ -20,11 +20,12 @@ public class ntiListCommand implements ntiCommand{
 
 		String count = request.getParameter("key");
 
-		List<ntiDTO> list = dao.ntilist(count);	
+		List<ntiDTO> list = dao.ntilist(count);
 		ntiNextListDTO dto = dao.ntiNextList(count);
+		String totalCount = dao.ntilistTotalcount();
 		
 		request.setAttribute("dto", dto);			
 		request.setAttribute("list", list);
-				
+		request.setAttribute("totalCount", totalCount);
 	}
 }

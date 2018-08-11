@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -19,14 +18,14 @@ a:hover {
 	text-decoration: underline;
 }
 
-div {
+/* div {
 	position: absolute;
 	width: 1000px;
 	height: 500px;
 	left: 50%;
 	top: 50%;
 	margin: -250px 0 0 -500px;
-}
+} */
 
 table.a {
 	width: 1000px;
@@ -48,16 +47,20 @@ p {
 	border: 0px;
 	color: grey
 }
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
 </style>
 </head>
 <body style="text-align: center">
+<jsp:include page="../header.jsp"></jsp:include>
 <% String qa_id = request.getParameter("qa_id");
-   String qa_name = request.getParameter("qa_name");
    String qa_con = request.getParameter("qa_con");%>
 	<br />
-	<br />
 	<h3 style="text-decoration: underline">Q & A</h3>
-	<div>
+	<div class="centered">
 		<form action="/board2/modifyQnA.khy" method="post">
 			<table style="text-align: left;" class="a">
 				<tr style="border-top: 1px solid lightgrey; height: 50px" class="a">
@@ -71,7 +74,7 @@ p {
 					</select></td>
 				</tr>
 				<tr style="height: 50px;" class="a">
-					<td style="width: 150px;">&nbsp&nbsp Name <%= qa_name %></td>
+					<td style="width: 150px;">&nbsp&nbsp Name ${name}</td>
 					<td>Date</td>
 				</tr>
 				<tr style="height: 300px; text-align: center" class="a">
@@ -90,6 +93,9 @@ p {
 				<tr>
 					<td>
 						<br/>
+						<p class="a">
+							<a href="../qaList.khy" style="color: grey">LIST</a>
+						</p>&nbsp;
 						<p><input type="reset" value="RESET" id="btn"></p>
 						<p><input type="submit" value="EDIT" id="btn"></p>
 					</td>
@@ -97,5 +103,8 @@ p {
 			</table>
 		</form>
 	</div>
+
+<jsp:include page="../footer.html"/>
+
 </body>
 </html>

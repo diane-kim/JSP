@@ -17,13 +17,13 @@ public class ntiSearchCommand implements ntiCommand {
 		
 		String count = request.getParameter("key");
 		String content = request.getParameter("word");
-		
-		String button = null;
 
 		List<ntiDTO> list = dao.ntiSearchList(count, content);
 		ntiNextListDTO dto = dao.ntiSearchNextList(count, content);
+		String totalCount = dao.ntilistSearchcount(count, content);
 		
 		request.setAttribute("dto", dto);			
 		request.setAttribute("list", list);
+		request.setAttribute("totalCount", totalCount);
 	}
 }

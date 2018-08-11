@@ -12,10 +12,23 @@ public class qaDto {
 	private int qa_read;
 	private int qa_count;
 	private String qa_pwd;
+	private String write_id;
 	
+	
+		
 	public qaDto() {
 		
 	}
+	
+	
+	public String getWrite_id() {
+		return write_id;
+	}
+
+	public void setWrite_id(String write_id) {
+		this.write_id = write_id;
+	}
+
 	public int getQa_id() {
 		return qa_id;
 	}

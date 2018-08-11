@@ -19,9 +19,17 @@ public class MemberDAO {
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet set = null;
+	DataSource dataSource;
 	
-	public MemberDAO() {
-		
+	public MemberDAO() {		
+
+			try {
+				Context context = new InitialContext();
+				dataSource = (DataSource) context.lookup("java:comp/env/jdbc/Oracle11g");
+			} catch (Exception e) {
+
+				e.printStackTrace();
+			}		
 	}
 	
 	public static MemberDAO getInstance(){
@@ -32,10 +40,16 @@ public class MemberDAO {
 		
 		int ri = 0;
 		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "select id from member where id = ?";
 		
 		try {
-			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			set = pstmt.executeQuery();
@@ -48,10 +62,11 @@ public class MemberDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				set.close();
-				pstmt.close();
-				conn.close();
+				if(set != null) set.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
 			} catch (Exception e2) {
+
 				e2.printStackTrace();
 			}
 		}
@@ -60,12 +75,18 @@ public class MemberDAO {
 	}
 	
 	public MemberDTO getMember(String id) {
-	
-		String sql = "select * from member where id = ?";
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql = "select id,pwd,name,email,phone1,phone2,phone3 from member where id = ?";
 		MemberDTO dto = null;
 		
 		try {
-			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			set = pstmt.executeQuery();
@@ -82,26 +103,31 @@ public class MemberDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
+		} finally {			
 			try {
-				set.close();
-				pstmt.close();
-				conn.close();
+				if(set != null) set.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
 			} catch (Exception e2) {
+
 				e2.printStackTrace();
 			}
-		}
-		
-		return dto;
-		
+		}		
+		return dto;	
 	}
 	
 	public int insertMember(MemberDTO dto) {
 		int ri = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		String sql = "insert into member values (member_seq.nextval,?,?,?,?,?,?,?)";
 		
 		try {
-			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPwd());
@@ -131,11 +157,17 @@ public class MemberDAO {
 		String dbPw;
 		ResultSet set = null;
 		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "select pwd from member where id = ?";
 		
 		
 		try {
-			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			set = pstmt.executeQuery();
@@ -155,10 +187,11 @@ public class MemberDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				set.close();
-				pstmt.close();
-				conn.close();
+				if(set != null) set.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
 			} catch (Exception e2) {
+
 				e2.printStackTrace();
 			}
 		}
@@ -168,10 +201,16 @@ public class MemberDAO {
 	public int updateMember(MemberDTO dto) {
 		int ri = 0;
 		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
 		String sql = "update member set pwd=?, email=?, phone1=?, phone2=?, phone3=? where id=?";
 		
 		try {
-			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getPwd());
 			pstmt.setString(2, dto.getEmail());
@@ -184,39 +223,15 @@ public class MemberDAO {
 			e.printStackTrace();
 		} finally {
 			try {
-				pstmt.close();
-				conn.close();
+				if(set != null) set.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
 			} catch (Exception e2) {
+
 				e2.printStackTrace();
 			}
 		}
 		
 		return ri;
-	}
-
-	
-	
-	public Connection getConnection() {		
-
-		try {
-			String user = "hr"; 
-			String pw = "hr";
-			String url = "jdbc:oracle:thin:@localhost:1521:xe";
-
-			Class.forName("oracle.jdbc.driver.OracleDriver");        
-			conn = DriverManager.getConnection(url, user, pw);
-
-		} catch (ClassNotFoundException cnfe) {
-			System.out.println("DB ����̹� �ε� ���� :"+cnfe.toString());
-		} catch (SQLException sqle) {
-			System.out.println("DB ���ӽ��� : "+sqle.toString());
-		} catch (Exception e) {
-			System.out.println("Unkonwn error");
-			e.printStackTrace();
-		}	    	    
-		return conn;
-	}
-	
-	
-	
+	}	
 }

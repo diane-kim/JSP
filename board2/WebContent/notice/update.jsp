@@ -98,14 +98,14 @@ textarea::placeholder {
 </style>
 </head>
 <body>
-	<%
+	<br>
+	<br>
+		<%
 		String count = request.getParameter("key");
 		int cast = Integer.parseInt(count);
 	%>
-	<br>
-	<br>
 	<div class="centered">
-		<form action="updateDB.jsp?key=<%=cast%>" method="post" enctype="multipart/form-data">
+		<form action="upset.jsp?key=<%=cast%>" method="post" enctype="multipart/form-data">
 			<div class="shadow p-3 mb-5 bg-white rounded">
 				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
 					class="table table-bordered">
@@ -127,7 +127,7 @@ textarea::placeholder {
 								placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
 					</tr>
 					<tr>
-						<td colspan="5" align="right">
+						<td colspan="5" align="right">						
 							<div class="file_input">
 								<label> File Attach <input type="file"
 									onchange="javascript:document.getElementById('file_route').value=this.value"
@@ -135,7 +135,7 @@ textarea::placeholder {
 								</label> <input type="text" readonly="readonly" title="File Route"
 									id="file_route">
 							</div> <input class="btn btn-secondary btn-sm font2" type="submit"
-							value="등록"> <a href="list.jsp">
+							value="등록"> <a href="../ntiList.mjy">
 								<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
 						</a>
 						</td>

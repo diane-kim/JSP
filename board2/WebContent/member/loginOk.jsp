@@ -16,10 +16,11 @@
 	if(id.equals("admin") && pwd.equals("admin")){
 		MemberDTO dto = dao.getMember(id);
 		
-		String name=dto.getName();
+		String name= dto.getName();
 		session.setAttribute("id", id);
 		session.setAttribute("name", name);
-		response.sendRedirect("../board/list.jsp");
+		response.sendRedirect("../ntiList.mjy");
+		
 	}else{
 		if(checkNum == -1) {
 			%>

@@ -12,8 +12,6 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
-import board.file.FileDTO;
-import board.file.FileNextListDTO;
 
 public class ntiDAO {
 
@@ -29,10 +27,143 @@ public class ntiDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public void ntilistDelete(int cast) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String sql = "delete from board where i_count = " + cast;
+		
+		try {	
+			pstmt = conn.prepareStatement(sql);
+			pstmt.executeUpdate();
+			       			
+		}catch(SQLException e) {	
+			e.printStackTrace();	
+		}
+		
+	}
+	
+	public String ntilistTotalcount() {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String count = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql2 = "select count(*) as count from board";
+
+		try {
+			pstmt = conn.prepareStatement(sql2);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count=rs.getString("count");
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		
+		return count;
+	}
+	
+	public String ntilistSearchcount(String count,String content) {
+		
+		List<ntiDTO> list = new ArrayList<>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ntiDTO dto = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}		
+
+		int page1;
+
+		if (count == null) {
+			page1 = 1;
+		} else {
+			page1 = Integer.parseInt(count);
+		} //�럹�씠吏� 珥덇린�솕
+
+		int countPage = 10;
+
+		int query_startPage = (page1 - 1) * countPage + 1; //荑쇰━臾몄뿉 �뱾�뼱媛� �떆�옉媛� 
+		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
+
+
+		try {
+			conn = dataSource.getConnection();
+			
+			String sql = "select count(*) as count " + "from (" +
+
+							"select rownum as rnum, A.i_Count, A.v_Name, A.v_Title, A.d_Date " +
+
+							"from ("
+
+							+ "select i_Count, v_Name, v_Title, d_Date "
+
+							+ "from board " 
+							
+							+ "where v_Title LIKE '%" + content + "%' "							
+
+							+"order by i_Count desc) A " 
+
+							+ "where rownum <= " + query_endPage + ") X "
+
+							+ "where X.rnum >= " + query_startPage + "";
+
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count=rs.getString("count");
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		return count;
+	}
 
 	public List<ntiDTO> ntilist(String count) {
 
 		List<ntiDTO> list = new ArrayList<ntiDTO>();
+		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -114,8 +245,8 @@ public class ntiDAO {
 				dto.setName(rs.getString("v_Name"));
 				dto.setDate(rs.getString("d_Date"));
 				dto.setTitle(rs.getString("v_Title"));
+				dto.setR_num(r_num);
 				list.add(dto);
-
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -146,7 +277,7 @@ public class ntiDAO {
 		}			
 
 		try {	
-			String sql = "select i_count,v_name,to_char(d_date) as d_date,v_title,v_content from board where i_count = "+ cast;
+			String sql = "select i_count,v_name,to_char(d_date) as d_date,v_title,v_content,file_name,file_path from board where i_count = "+ cast;
 
 			pstmt = conn.prepareStatement(sql);
 			rs= pstmt.executeQuery();	
@@ -158,6 +289,8 @@ public class ntiDAO {
 				dto.setDate(rs.getString("d_Date"));	
 				dto.setTitle(rs.getString("v_Title"));	
 				dto.setContent(rs.getString("v_content"));
+				dto.setFileName(rs.getString("file_name"));
+				dto.setFilePath(rs.getString("file_path"));
 			}        			
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -420,6 +553,122 @@ public class ntiDAO {
 		}
 
 		return list;
+	}
+	
+	public void ntiInsert(ntiDTO dto) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}	
+		
+		try {
+	 		String sql = "insert into board values(board_seq.nextval,?,?,?,?,?,?)";	
+	 		pstmt = conn.prepareStatement(sql);
+	 		pstmt.setString(1, dto.getName());
+			pstmt.setString(2, dto.getDate());	
+			pstmt.setString(3, dto.getTitle());	
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getFileName());	
+			pstmt.setString(6, dto.getFilePath());
+	 		pstmt.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}	
+	}
+	
+	public ntiDTO fileDown(int count) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ntiDTO dto = null;
+
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		String sql2 = "select file_path from board where i_Count = "+count;
+
+		dto = new ntiDTO();
+
+		try {
+			pstmt = conn.prepareStatement(sql2);
+			rs= pstmt.executeQuery();
+			rs.next();
+			dto.setFilePath(rs.getString("file_path"));
+			System.out.println(dto.getFilePath());
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
+		
+		return dto;
+	}
+	
+	public void ntiUpdate(ntiDTO dto, int count) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}	
+		
+		try {
+	 		String sql = "update board set v_name = ?, d_date = ?, v_title = ?, v_content = ?, file_name = ?, file_path = ? where i_count = "+ count;	
+	 		pstmt = conn.prepareStatement(sql);	
+	 		pstmt.setString(1, dto.getName());	
+			pstmt.setString(2, dto.getDate());	
+			pstmt.setString(3, dto.getTitle());	
+			pstmt.setString(4, dto.getContent());
+			pstmt.setString(5, dto.getFileName());
+			pstmt.setString(6, dto.getFilePath());
+	 		pstmt.executeUpdate();	
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -15,6 +15,7 @@ import board.qna.command.qaCommand;
 import board.qna.command.qaConCommand;
 import board.qna.command.qaDeleteCommand;
 import board.qna.command.qaListCommand;
+import board.qna.command.qaListSearchCommand;
 import board.qna.command.qaModifyCommand;
 import board.qna.command.qaWriteCommand;
 
@@ -52,15 +53,27 @@ public class qaController extends HttpServlet {
 		String uri = req.getRequestURI();
 		String conPath = req.getContextPath();
 		String com = uri.substring(conPath.length());
+		System.out.println(com);
 		
 		if(com.equals("/qaList.khy")) {				//QnA 목록 
 			qac = new qaListCommand();
 			qac.execute(req, res);
 			viewPage = "listQnA.jsp";
-		}else if(com.equals("/qaContent.khy")) {	//QnA 내용 
-			qac = new qaConCommand();
-			qac.execute(req, res);
-			viewPage = "contentQnA.jsp";
+		}else if(com.equals("/qaContent.khy")) {	//QnA 내용
+			
+			String check = (String)req.getParameter("check");		
+			if(("true").equals(check)) {
+				qac = new qaConCommand();
+				qac.execute(req, res);
+				req.setAttribute("test","con");
+				viewPage = "dmlOk.jsp";					//새로고침으로 인한 조회수 증가 방지 
+				
+			}
+			if(("false").equals(check)) {						
+				qac = new qaConCommand();
+				qac.execute(req, res);
+				viewPage = "contentQnA.jsp"; }	
+				
 		}else if(com.equals("/writeReply.khy")) {	//답글 작성 
 			qac = new ReplyWriteCommand();
 			qac.execute(req,res);
@@ -81,6 +94,10 @@ public class qaController extends HttpServlet {
 			qac = new ReplyDeleteCommand();
 			qac.execute(req,res);
 			viewPage = "dmlOk.jsp";	
+		}else if(com.equals("/searchQnA.khy")) {
+			qac = new qaListSearchCommand();
+			qac.execute(req, res);
+			viewPage = "listQnA.jsp";
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/qaboard/"+viewPage);

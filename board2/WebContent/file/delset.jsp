@@ -18,12 +18,11 @@
 <body>
 	<%
 		String count = request.getParameter("key");
-			b.setCount(Integer.parseInt(count));
+		b.setCount(Integer.parseInt(count));
 
-			board.file.FileDAO dao = new board.file.FileDAO();
+		board.file.FileDAO dao = new board.file.FileDAO();
 
-			dao.fileDelete(Integer.parseInt(count));
+		dao.fileDelete(Integer.parseInt(count));
 	%>
-	<%-- <jsp:forward page="list.jsp"> --%>
 </body>
 </html>

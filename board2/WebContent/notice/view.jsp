@@ -68,6 +68,14 @@ textarea::placeholder {
 </style>
 </head>
 <body>
+	<jsp:include page="../header.jsp"></jsp:include>
+	<br>
+	<br>
+<%
+		String count = request.getParameter("key");
+		int cast = Integer.parseInt(count);
+		
+		 %>
 	<br>
 	<br>	
 	<div class="centered">
@@ -88,9 +96,26 @@ textarea::placeholder {
 					<td colspan="5" width="700">${dto.content}</td>
 				</tr>
 				<tr>
-					<td colspan="5" align="right"><a href="ntiList.mjy">
-							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
-					</a></td>
+				<td>
+				<%-- <c:set var='filePath' value='${dto.filePath}'/>
+				<c:url value='${dto.filePath}'/>  --%>
+				
+				<a href="notice/filedown.jsp?key=<%=cast%>">${dto.fileName}</a></td>
+				
+					<td colspan="5" align="right"><a href="ntiList.mjy">					
+							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>							
+					</a>
+					
+					
+					<% 
+					if(session.getAttribute("id").equals("admin")) {%>
+					<a href="notice/update.jsp?key=<%=cast%>">					
+							<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
+					</a> <a href="notice/delset.jsp?key=<%=cast%>">
+							<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
+					</a>
+					<%}%>
+					</td>
 				</tr>
 			</table>
 		</div>

@@ -1,4 +1,6 @@
 <%-- <%@page import="com.javalec.ex03.BoardDAO"%> --%>
+<%@page import="board.notice.ex.ntiDAO"%>
+<%@page import="board.notice.ex.ntiDTO"%>
 <%@page import="board.file.FileDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -12,12 +14,10 @@
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <!DOCTYPE>
 <!-- <meta http-equiv="refresh" content="1;url=http://exampleURL.com"> -->
-<<jsp:useBean id="b" class="board.file.FileDTO" />
-<%-- <jsp:setProperty name="b" property="*" /> --%>
 <html>
 <head>
 <script type="text/javascript">
-	window.location.replace('http://localhost/board2/file/list.jsp') //입력후 다시 돌아감.
+	window.location.replace('http://localhost/board2/ntiList.mjy') //입력후 다시 돌아감.
 </script>
 </head>
 <body>
@@ -25,7 +25,7 @@
 		// request.getRealPath("상대경로") 를 통해 파일을 저장할 절대 경로를 구해온다.
 			// 운영체제 및 프로젝트가 위치할 환경에 따라 경로가 다르기 때문에 아래처럼 구해오는게 좋음
 			//String uploadPath = "C:\\Users\\User\\git\\JSP\\board2\\WebContent\\image"; 학원경로
-			String uploadPath = "C:\\Users\\moon\\git\\JSP2\\board2\\WebContent\\image"; //집경로
+			String uploadPath = "C:\\Users\\moon\\git\\JSP2\\board2\\WebContent\\upfile"; //집경로
 
 			int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
 
@@ -41,7 +41,7 @@
 
 			try {
 		// request,파일저장경로,용량,인코딩타입,중복파일명에 대한 기본 정책
-		multi = new MultipartRequest(request, uploadPath, maxSize, "euc-kr", new DefaultFileRenamePolicy());
+		multi = new MultipartRequest(request, uploadPath, maxSize, "UTF-8", new DefaultFileRenamePolicy());
 
 		// form내의 input name="name" 인 녀석 value를 가져옴
 		name = multi.getParameter("name");
@@ -71,22 +71,23 @@
 			}
 
 			String my_image = multi.getOriginalFileName("FileName");
-			String my_image2 = multi.getOriginalFileName("FileName2");
-			String aaa = uploadPath + "\\" + my_image; //aaa는 DB에 들어갈 파일 경로.
+			String filepath = uploadPath + "\\" + my_image; //aaa는 DB에 들어갈 파일 경로.
 												//my_image DB에 들어갈 파일 이름.
-			out.println("파일 이름 포함 경로 : " + aaa);
+			out.println("파일 이름 포함 경로 : " + filepath);
 
-			FileDTO dto = new FileDTO();
-			dto.setFileName(my_image);
-			dto.setFileName2(my_image2);
-			dto.setFilePath(aaa);
+			board.notice.ex.ntiDTO dto = new board.notice.ex.ntiDTO();
+			board.notice.ex.ntiDAO dao = new board.notice.ex.ntiDAO();
 			
+			dto.setFileName(my_image);	
+			dto.setFilePath(filepath);
+			dto.setName(multi.getParameter("name"));
+			dto.setDate(multi.getParameter("date"));
 			dto.setTitle(multi.getParameter("title"));
 			dto.setContent(multi.getParameter("content"));
+			
+			System.out.print(dto.getFileName()+" "+ dto.getName()+ " " + dto.getDate() + " " + dto.getTitle() + " " + dto.getContent());			
 
-			board.file.FileDAO dao = new board.file.FileDAO();
-
-			dao.fileInsert(dto);
+			dao.ntiInsert(dto);
 	%>
 </body>
 </html>

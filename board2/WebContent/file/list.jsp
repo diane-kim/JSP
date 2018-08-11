@@ -29,31 +29,40 @@
 	<div class="container centered">
 
 		<%
-		String word = request.getParameter("word");		
-		String col = request.getParameter("col");
-		String key = request.getParameter("key");
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-		if (col == null && word == null)
-		{
+			String word = request.getParameter("word");
+			String col = request.getParameter("col");
+			String key = request.getParameter("key");
+
+			String pageNum = (String) request.getParameter("key");
+			System.out.println(pageNum);
+			int pageNo;
+
+			if (pageNum == null) {
+				pageNo = 1;
+			} else {
+				pageNo = Integer.parseInt(pageNum);
+			}
+
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+			if (col == null && word == null) {
 		%>
 
 		<div class="row">
 
 			<%
 				board.file.FileDAO dao = new board.file.FileDAO();
-				String count = request.getParameter("key");
-				List<FileDTO> list = dao.fileList(count);
-				
-				
-				for (board.file.FileDTO dto : list) { 
+					String count = request.getParameter("key");
+					List<FileDTO> list = dao.fileList(count);
+
+					for (board.file.FileDTO dto : list) {
 			%>
 			<div class="col-3">
-				<a href="View.jsp?key=<%=dto.getCount()%>">
-				<img class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
-						alt="Card image cap"></a>
+				<a href="View.jsp?key=<%=dto.getCount()%>"> <img
+					class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
+					alt="Card image cap"></a>
 			</div>
 			<%
-			}
+				}
 			%>
 		</div>
 
@@ -66,14 +75,85 @@
 				<li class="page-item">
 					<%
 						board.file.FileDAO dao2 = new board.file.FileDAO();
-						board.file.FileNextListDTO fnldto = dao2.fileNextList(count);
-						int page1 = fnldto.getPage1();
-						int startPage = fnldto.getStartPage();
-						int endPage = fnldto.getEndPage();
-						int totalPage = fnldto.getTotalPage();
+							board.file.FileNextListDTO fnldto = dao2.fileNextList(count);
 
-						if (page1 >= 1) {
-							page1 = 2;
+							int page1 = fnldto.getPage1();
+							int startPage = fnldto.getStartPage();
+							int endPage = fnldto.getEndPage();
+							int totalPage = fnldto.getTotalPage();
+
+							int pre;
+							int next;
+
+							if (pageNo > 1)
+								pre = pageNo - 1;
+							else
+								pre = pageNo;
+
+							if ((pageNo + 1) <= totalPage)
+								next = pageNo + 1;
+							else
+								next = totalPage;
+					%>
+					<a class="page-link" href="list.jsp?key=<%=pre%>">Previous</a>
+				</li>
+				<%
+					for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
+				%>
+				<li class="page-item"><a class="page-link"
+					href="list.jsp?key=<%=iCount%>"><%=iCount%></a></li>
+				<%
+					}
+				%>
+
+				<li class="page-item"><a class="page-link"
+					href="list.jsp?key=<%=next%>">Next</a></li>
+
+			</ul>
+			</nav>
+		</div>
+		<%
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			} else {
+				////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		%>
+
+		<div class="row">
+
+			<%
+				board.file.FileDAO dao = new board.file.FileDAO();
+					String count = request.getParameter("key");
+					List<FileDTO> list = dao.fileSearchList(count, word);
+
+					for (board.file.FileDTO dto : list) {
+			%>
+			<div class="col-3">
+				<a href="View.jsp?key=<%=dto.getCount()%>"> <img
+					class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
+					alt="Card image cap"></a>
+			</div>
+			<%
+				}
+			%>
+		</div>
+
+		<div>
+			<%
+				
+			%>
+			<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item">
+					<%
+						board.file.FileDAO dao2 = new board.file.FileDAO();
+							board.file.FileNextListDTO fnldto = dao2.fileNextListTwo(count, list.size());
+							int page1 = fnldto.getPage1();
+							int startPage = fnldto.getStartPage();
+							int endPage = fnldto.getEndPage();
+							int totalPage = fnldto.getTotalPage();
+
+							if (page1 >= 1) {
+								page1 = 2;
 					%> <a class="page-link" href="list.jsp?key=<%=(page1 - 1)%>">Previous</a>
 				</li>
 				<%
@@ -91,96 +171,32 @@
 
 				<%
 					if (page1 <= totalPage) {
-						page1 = totalPage - 1;
+							page1 = totalPage - 1;
 				%>
 				<li class="page-item"><a class="page-link"
 					href="list.jsp?key=<%=(page1 + 1)%>">Next</a></li>
 				<%
 					}
-				int page2 = 2;
+						int page2 = 2;
 				%>
 			</ul>
 			</nav>
 		</div>
-		<% 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		}else{ 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		%>
-
-		<div class="row">
-
-			<%
-				board.file.FileDAO dao = new board.file.FileDAO();
-				String count = request.getParameter("key");
-				List<FileDTO> list = dao.fileSearchList(count,word);
-
-				for (board.file.FileDTO dto : list) { 
-			%>
-			<div class="col-3">
-				<a href="View.jsp?key=<%=dto.getCount()%>">
-				<img class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
-						alt="Card image cap"></a>
-			</div>
-			<%
+		<%
 			}
-			%>
-		</div>
-
-		<div>
-			<%
-				
-			%>
-			<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item">
-					<%
-						board.file.FileDAO dao2 = new board.file.FileDAO();
-						board.file.FileNextListDTO fnldto = dao2.fileNextListTwo(count,list.size());
-						int page1 = fnldto.getPage1();
-						int startPage = fnldto.getStartPage();
-						int endPage = fnldto.getEndPage();
-						int totalPage = fnldto.getTotalPage();
-
-						if (page1 >= 1) {
-							page1 = 2;
-					%> <a class="page-link" href="list.jsp?key=<%=(page1 - 1)%>">Previous</a>
-				</li>
-				<%
-					}
-				%>
-
-				<%
-					for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
-				%>
-				<li class="page-item"><a class="page-link"
-					href="list.jsp?key=<%=iCount%>"><%=iCount%></a></li>
-				<%
-					}
-				%>
-
-				<%
-					if (page1 <= totalPage) {
-						page1 = totalPage - 1;
-				%>
-				<li class="page-item"><a class="page-link"
-					href="list.jsp?key=<%=(page1 + 1)%>">Next</a></li>
-				<%
-					}
-				int page2 = 2;
-				%>
-			</ul>
-			</nav>
-		</div>
-		<%} 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		%>
-
+		<%
+			if (session.getAttribute("id").equals("admin")) {
+		%>
 		<div align="right">
 			<a href="input.jsp">
 				<button type="button" class="btn btn-outline-primary font2">사진업로드</button>
 			</a>
 		</div>
+		<%
+			}
+		%>
 
 		<DIV class='aside_menu'>
 			<FORM name='frm' method='GET' action='list.jsp'>
@@ -195,5 +211,6 @@
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
 	</div>
+	<jsp:include page="../footer.html" />
 </body>
 </html>
