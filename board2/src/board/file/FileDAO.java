@@ -219,6 +219,15 @@ public class FileDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
 		}	
 		
 		int totalCount = dto.getCount();
@@ -237,6 +246,12 @@ public class FileDAO {
 		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
 
 		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}	
 		
 		String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
 
@@ -389,21 +404,9 @@ public class FileDAO {
 			e1.printStackTrace();
 		}		
 		
-		String sql2 = "select count(*) as count from image";
-		
+		/*String sql2 = "select count(*) as count from image";
+		*/
 		dto = new FileDTO();
-		
-		try {
-			PreparedStatement pstmt = conn.prepareStatement(sql2);
-			ResultSet rs = pstmt.executeQuery();
-			rs.next();
-			dto.setCount(rs.getInt("count"));
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}	
-		
-		int totalCount = dto.getCount();
 
 		int page1;
 		
@@ -417,9 +420,9 @@ public class FileDAO {
 
 		int query_startPage = (page1 - 1) * countPage + 1; //荑쇰━臾몄뿉 �뱾�뼱媛� �떆�옉媛� 
 		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
-
+/*
 		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
-		
+*/		
 		String sql = "select X.rnum, X.file_count, X.file_title, X.file_content, X.file_name from ("
 
 				+ "select rownum as rnum, A.file_count, A.file_title, A.file_content, A.file_name"

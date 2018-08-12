@@ -11,13 +11,11 @@
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
 <!DOCTYPE>
-<!-- <meta http-equiv="refresh" content="1;url=http://exampleURL.com"> -->
-<<jsp:useBean id="b" class="board.file.FileDTO" />
-<%-- <jsp:setProperty name="b" property="*" /> --%>
+<jsp:useBean id="b" class="board.file.FileDTO" />
 <html>
 <head>
 <script type="text/javascript">
-	window.location.replace('http://localhost/board2/file/list.jsp') //입력후 다시 돌아감.
+	window.location.replace('http://localhost/board2/image.fmjy') //입력후 다시 돌아감.
 </script>
 </head>
 <body>

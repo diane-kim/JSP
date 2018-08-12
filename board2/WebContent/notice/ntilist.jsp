@@ -31,12 +31,6 @@
 	font-size: 20px;
 }
 
-td, th {
-	border: 0.2px solid gray;
-	margin: 10px;
-	padding: 10px;
-}
-
 .td_color {
 	background-color: #EAEAEA;
 	font-size: 13px;
@@ -47,17 +41,33 @@ td, th {
 	margin-left: auto;
 	margin-right: auto;
 }
+
+a:hover {
+	text-decoration: underline;
+}
+
+a {
+	color: grey;
+}
+
+tr.b {
+	border-bottom: 1px solid lightgrey;
+}
 </style>
 </head>
-<body>
+<body style="text-align: center">
 	<jsp:include page="../header.jsp"></jsp:include>
-	<br>
+	<br />
+	<h3>Notice</h3>
 	<br>
 	<div class="centered">
 		<%
 		String word = request.getParameter("word");		
 		String col = request.getParameter("col");
 		String pageNum = request.getParameter("key");
+		
+		session.getAttribute("id");
+		session.getAttribute("name");
 		
 		System.out.println(pageNum);
 		int pageNo;
@@ -99,127 +109,115 @@ td, th {
 		if (col == null && word == null)
 		{
 		%>
-
-		<div class="shadow p-3 mb-5 bg-white rounded">
-			<table border="1" rules="rows" width="750" cellpadding="0"
-				cellspacing="0" class="table table-bordered">
-				<tr>
-					<td class="td_color text-center" width="50px"><b class="font">순번</b>
-					</td>
-					<td class="td_color text-center" width="500px"><b class="font">제목</b>
-					</td>
-					<td class="td_color text-center"><b class="font">작성자</b></td>
-					<td class="td_color text-center"><b class="font">작성일자</b></td>
+		<table style="width: 1000px; text-align: center;">
+			<tr style="color: grey; height: 50px" class="b">
+				<td style="width: 150px" class="font">순번</td>
+				<td style="width: 150px" class="font">제목</td>
+				<td style="width: 150px" class="font">작성자</td>
+				<td style="width: 100px" class="font">작성일자</td>
+			</tr>
+			<c:forEach var="l" items="${list}">
+				<tr class="b">
+					<td style="width: 150px; height: 65px" class="font2"><%=No%></td>
+					<td style="width: 150px" class="font2"><a
+						href="ntiView.mjy?key=${l.count}">${l.title}</td>
+					<td style="width: 150px" class="font2">${l.name}</td>
+					<td style="width: 100px" class="font2">${l.date}</td>
+					<% No = No - 1; %>
 				</tr>
-				<c:forEach var="l" items="${list}">
-					<tr>
-						<td class="font2"><%=No%></td>
-						<td class="font2"><a href="ntiView.mjy?key=${l.count}">${l.title}</td>
-						<td class="font2">${l.name}</td>
-						<td class="font2">${l.date}</td>
-						<% No = No - 1; %>
-					</tr>
+			</c:forEach>
+		</table>
+		<br>
+		<div align="right">
+			<% if(("admin").equals(session.getAttribute("id"))) {%>
+			<p
+				style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+				<a href="../board2/notice/input.jsp">WRITE</a>
+			</p>
+			<%}%>
+		</div>
+		<div>
+			<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a class="page-link"
+					href="../board2/ntiList.mjy?key=<%=pre%>">Previous</a></li>
+
+
+				<c:forEach var="i" begin="${dto.startPage}" end="${dto.endPage}"
+					step="1">
+					<li class="page-item"><a class="page-link"
+						href="../board2/ntiList.mjy?key=${i}">${i}</a></li>
 				</c:forEach>
 
-				<%-- 				<%
-					r_num = r_num - 1;
-					}
-				%> --%>
-			</table>
-			<div>
-				<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link"
-						href="../board2/ntiList.mjy?key=<%=pre%>">Previous</a></li>
+				<li class="page-item"><a class="page-link"
+					href="../board2/ntiList.mjy?key=<%=next%>">Next</a></li>
 
-
-					<c:forEach var="i" begin="${dto.startPage}" end="${dto.endPage}"
-						step="1">
-						<li class="page-item"><a class="page-link"
-							href="../board2/ntiList.mjy?key=${i}">${i}</a></li>
-					</c:forEach>
-
-					<li class="page-item"><a class="page-link"
-						href="../board2/ntiList.mjy?key=<%=next%>">Next</a></li>
-
-				</ul>
-				</nav>
-			</div>
-			<div align="right">
-				<% 
-					if(session.getAttribute("id").equals("admin")) {%>
-				<a href="../board2/notice/input.jsp">
-					<button type="button" class="btn btn-secondary btn-sm font2">글등록</button>
-				</a>
-				<%}%>
-			</div>
+			</ul>
+			</nav>
 		</div>
-
 		<%}	else{ %>
 
-		<div class="shadow p-3 mb-5 bg-white rounded">
-			<table border="1" rules="rows" width="750" cellpadding="0"
-				cellspacing="0" class="table table-bordered">
-				<tr>
-					<td class="td_color text-center" width="50px"><b class="font">순번</b>
-					</td>
-					<td class="td_color text-center" width="500px"><b class="font">제목</b>
-					</td>
-					<td class="td_color text-center"><b class="font">작성자</b></td>
-					<td class="td_color text-center"><b class="font">작성일자</b></td>
+		<table style="width: 1000px; text-align: center;">
+			<tr style="color: grey; height: 50px" class="b">
+				<td style="width: 150px" class="font">순번</td>
+				<td style="width: 150px" class="font">제목</td>
+				<td style="width: 150px" class="font">작성자</td>
+				<td style="width: 100px" class="font">작성일자</td>
+			</tr>
+
+			<c:forEach var="l" items="${list}">
+				<tr class="b">
+					<td style="width: 150px; height: 65px" class="font2"><%=No%></td>
+					<td style="width: 150px" class="font2"><a
+						href="ntiView.mjy?key=${l.count}">${l.title}</td>
+					<td style="width: 150px" class="font2">${l.name}</td>
+					<td style="width: 100px" class="font2">${l.date}</td>
+					<% No = No - 1; %>
 				</tr>
-
-				<c:forEach var="l" items="${list}">
-					<tr>
-						<td class="font2"><%=No%></td>
-						<td class="font2"><a href="ntiView.mjy?key=${l.count}">${l.title}</td>
-						<td class="font2">${l.name}</td>
-						<td class="font2">${l.date}</td>
-						<% No = No - 1; %>
-					</tr>
-				</c:forEach>
-
-			</table>
-			<div>
-				<nav aria-label="Page navigation example">
-				<ul class="pagination justify-content-center">
-					<li class="page-item"><a class="page-link"
-						href="../board2/ntiList.mjy?key=<%=pre%>">Previous</a></li>
-
-
-					<c:forEach var="i" begin="${dto.startPage}" end="${dto.endPage}"
-						step="1">
-						<li class="page-item"><a class="page-link"
-							href="../board2/ntiList.mjy?key=${i}">${i}</a></li>
-					</c:forEach>
-
-					<li class="page-item"><a class="page-link"
-						href="../board2/ntiList.mjy?key=<%=next%>">Next</a></li>
-				</ul>
-				</nav>
-			</div>
-			<div align="right">
-				<% 
-					if(session.getAttribute("id").equals("admin")) {%>
-				<a href="../board2/notice/input.jsp">
-					<button type="button" class="btn btn-secondary btn-sm font2">글등록</button>
-				</a>
-				<%}%>
-			</div>
+			</c:forEach>
+		</table>
+		<br>
+		<div align="right">
+			<% if(("admin").equals(session.getAttribute("id"))) {%>
+			<p
+				style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+				<a href="../board2/notice/input.jsp">WRITE</a>
+			</p>
+			<%}%>
 		</div>
 
+		<div>
+			<nav aria-label="Page navigation example">
+			<ul class="pagination justify-content-center">
+				<li class="page-item"><a class="page-link"
+					href="../board2/ntiList.mjy?key=<%=pre%>">Previous</a></li>
+
+
+				<c:forEach var="i" begin="${dto.startPage}" end="${dto.endPage}"
+					step="1">
+					<li class="page-item"><a class="page-link"
+						href="../board2/ntiList.mjy?key=${i}">${i}</a></li>
+				</c:forEach>
+
+				<li class="page-item"><a class="page-link"
+					href="../board2/ntiList.mjy?key=<%=next%>">Next</a></li>
+			</ul>
+			</nav>
+		</div>
+
+
 		<%} %>
-		<DIV class='aside_menu'>
-			<FORM name='frm' method='GET' action='../board2/ntiSearch.mjy?'>
-				<ASIDE style='float: right;'> <SELECT name='col'>
+		<DIV class="aside_menu">
+			<FORM name="frm" method="GET" action="../board2/ntiSearch.mjy?">
+				<ASIDE style="float: right;"> <SELECT name="col">
 					<!-- 검색 컬럼 -->
-					<OPTION value='none'>전체 목록</OPTION>
-					<OPTION value='content'>내용</OPTION>
-				</SELECT> <input type='text' name='word' size='20' value=''>
-				<button type='submit'>검색</button>
+					<OPTION value="none">전체 목록</OPTION>
+					<OPTION value="content">내용</OPTION>
+				</SELECT> <input type="text" name="word" size="20" value="">
+				<button type="submit">검색</button>
 				</ASIDE>
 			</FORM>
-			<DIV class='menu_line' style='clear: both;'></DIV>
+			<DIV class="menu_line" style="clear: both;"></DIV>
 		</DIV>
 	</div>
 	<jsp:include page="../footer.html" />

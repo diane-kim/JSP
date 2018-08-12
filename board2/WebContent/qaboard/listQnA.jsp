@@ -19,15 +19,9 @@ a:hover {
 	text-decoration: underline;
 }
 a { color:grey;}
-/* div {
-	position: absolute;
-	width: 1000px;
-	height: 500px;
-	left: 50%;
-	top: 50%;
-	margin: -250px 0 0 -500px;
-} */
+
 tr.b { border-bottom: 1px solid lightgrey; }
+
 .centered {
 	display: table;
 	margin-left: auto;
@@ -78,6 +72,7 @@ tr.b { border-bottom: 1px solid lightgrey; }
 %>
 	<br />
 	<h3>Q & A</h3>
+	<br>
 	<div class="centered">
 		<table style="width: 1000px; text-align: center;">
 		<tr style="color:grey; height: 50px" class="b">

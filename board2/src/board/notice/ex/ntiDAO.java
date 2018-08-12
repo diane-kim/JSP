@@ -48,6 +48,15 @@ public class ntiDAO {
 			       			
 		}catch(SQLException e) {	
 			e.printStackTrace();	
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+
+				e2.printStackTrace();
+			}
 		}
 		
 	}
@@ -167,6 +176,7 @@ public class ntiDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
+		
 		ntiDTO dto = null;
 
 		try {
@@ -215,10 +225,15 @@ public class ntiDAO {
 		int query_endPage = page1 * countPage; //荑쇰━臾몄뿉 �뱾�뼱媛� �븻�뱶媛� 
 
 		int r_num = totalCount - (page1 - 1) * countPage; //�럹�씠吏� �닚踰� �뿭�닚�쑝濡� �굹�삤寃� �븯湲�
-
-
+		
 		try {
 			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
 
 			String sql = "select X.rnum, X.i_Count, X.v_Name, X.v_Title, to_char(X.d_Date) as d_Date " + "from (" +
 

@@ -13,37 +13,22 @@
 <title>Insert title here</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-
-.font2 {
-	font-family: 'Gaegu', cursive;
-	font-size: 20px;
+input:hover {
+	text-decoration: underline;
 }
 
-.font {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 20px;
+a:hover {
+	text-decoration: underline;
 }
 
-.td_color {
-	background-color: #EAEAEA;
-	font-size: 13px;
+p {
+	padding: 5px 25px 5px 25px;
+	border: 1px solid lightgrey;
+	display: inline;
 }
 
-td, th {
-	border: 0.2px solid gray;
-	margin: 10px;
-	padding: 10px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0); //
-	숨긴다 opacity: 1;
-	display: block;
-	background:
-		url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
-		no-repeat; // 대체할 아이콘 width : 20px;
-	height: 20px;
-	border-width: thin;
+tr.b {
+	border-bottom: 1px solid lightgrey
 }
 
 .centered {
@@ -51,93 +36,58 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	margin-left: auto;
 	margin-right: auto;
 }
-
-.file_input label {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	overflow: hidden;
-	width: 100px;
-	height: 30px;
-	background: #777;
-	color: #fff;
-	text-align: center;
-	line-height: 30px;
-	font-family: 'Rancho', cursive;
-}
-
-.file_input label input {
-	position: absolute;
-	width: 0;
-	height: 0;
-	overflow: hidden;
-}
-
-.file_input input[type=text] {
-	vertical-align: middle;
-	display: inline-block;
-	width: 400px;
-	height: 28px;
-	line-height: 28px;
-	font-size: 15px;
-	padding: 0;
-	border: 0;
-	border: 1px solid #777;
-}
-
-input::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
-}
-
-textarea::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
-}
 </style>
 </head>
-<body>
+<body style="text-align: center">
+	<jsp:include page="../header.jsp"></jsp:include>
 	<br>
-	<br>
+	<br />
+	<h3 style="text-decoration: underline">Notice</h3>
 	<div class="centered">
 		<form action="inset.jsp" method="post" enctype="multipart/form-data">
-			<div class="shadow p-3 mb-5 bg-white rounded">
-				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
-					class="table table-bordered">
-					<tr>
-						<td class="td_color text-center"><b class="font2">작성자</b></td>
-						<td><input type="text" name="name" placeholder="작성자를 입력하세요."
-							autofozus required></td>
-						<td class="td_color text-center"><b class="font2">작성일자</b></td>
-						<td><input type="date" name="date" id="datepicker"
-							class="font"></td>
-					</tr>
-					<tr>
-						<td class="td_color text-center"><b class="font2">제목</b></td>
-						<td colspan="4"><input type="text" name="title" size="75"
-							placeholder="제목을 입력하세요." autofozus required></td>
-					</tr>
-					<tr>
-						<td colspan="5"><textarea cols="85" rows="7" name="content"
-								placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
-					</tr>
-					<tr>
-						<td colspan="5" align="right">						
-							<div class="file_input">
-								<label> File Attach <input type="file"
-									onchange="javascript:document.getElementById('file_route').value=this.value"
-									name="FileName">
-								</label> <input type="text" readonly="readonly" title="File Route"
-									id="file_route">
-							</div> <input class="btn btn-secondary btn-sm font2" type="submit"
-							value="등록"> <a href="../ntiList.mjy">
-								<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
-						</a>
-						</td>
-					</tr>
-				</table>
-			</div>
+			<table style="width: 1000px; text-align: left; border: 1px solid lightgrey;">
+
+				<tr style="border-top: 1px solid lightgrey; height: 50px" class="b">
+					<td colspan="2">&nbsp;&nbsp; Subject <input type="text"
+						name="title" autofozus required size="80">
+					</td>
+				</tr>
+
+				<tr style="height: 50px;" class="b">
+
+					<td style="width: 250px;">&nbsp;&nbsp; Name&nbsp;&nbsp;&nbsp;<input type="text" name="name"></td>
+					<td>&nbsp;&nbsp; Date <input type="date" name="date" id="datepicker"></td>
+				</tr>
+
+
+				<tr style="height: 300px; text-align: center" class="b">
+					<td colspan="2"><textarea name="content"
+							style="width: 900px; height: 250px; resize: none;"
+							placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
+				</tr>
+
+				<tr style="height: 50px;" class="b">
+					<td align="center">&nbsp;&nbsp; File</td>
+					<td><input type="file"
+							onchange="javascript:document.getElementById('file_route').value=this.value"
+							name="FileName">
+					<input type="text" readonly="readonly" title="File Route"
+						id="file_route" size="50"></td>
+				</tr>
+
+			</table>
+			<table style="width: 1000px; text-align: right;">
+				<tr>
+					<td><br />
+						<p>
+							<a href="../ntiList.mjy" style="color: grey">LIST</a>
+						</p>
+						<p>
+							<input type="submit" value="WRITE"
+								style="background-color: white; border: 0px; color: grey">
+						</p></td>
+				</tr>
+			</table>
 		</form>
 	</div>
 </body>

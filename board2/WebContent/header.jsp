@@ -42,8 +42,9 @@
 				
 				<div class="col-4 d-flex justify-content-end align-items-center">
 				<%out.print(session.getAttribute("name")+"님 안녕하세요"); %>&nbsp;
-					<a class="text-muted" href="#"> </a> <a
-						class="btn btn-sm btn-outline-secondary" href="member/logout.jsp">로그아웃</a>
+					<a class="text-muted" href="#"> </a>
+					<a class="btn btn-sm btn-outline-secondary" href="<%=request.getContextPath()%>/member/updateMember.jsp">회원정보수정</a>&nbsp; 
+					<a class="btn btn-sm btn-outline-secondary" href="<%=request.getContextPath()%>/member/logout.jsp">로그아웃</a>
 				</div>				
 				<hr>
 		</header>
@@ -53,7 +54,7 @@
 		<nav class="nav d-flex justify-content-between">
 			<a class="p-2 text-muted" href="/board2/ntiList.mjy">Notice</a>
 			 <a class="p-2 text-muted" href="/board2/qaList.khy">Q & A</a> <a class="p-2 text-muted"
-				href="file/list.jsp">Image</a>
+				href="/board2/image.fmjy">Image</a>
 		</nav>
 	</div>
 	<hr>

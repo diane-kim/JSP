@@ -23,36 +23,9 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
-.font2 {
-	font-family: 'Gaegu', cursive;
-	font-size: 20px;
-}
-
-.font {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 20px;
-}
-
 .td_color {
 	background-color: #EAEAEA;
 	font-size: 13px;
-}
-
-td, th {
-	border: 0.2px solid gray;
-	margin: 10px;
-	padding: 10px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0); //
-	숨긴다 opacity: 1;
-	display: block;
-	background:
-		url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
-		no-repeat; // 대체할 아이콘 width : 20px;
-	height: 20px;
-	border-width: thin;
 }
 
 .centered {
@@ -61,53 +34,85 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	margin-right: auto;
 }
 
-input::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
+a:hover {
+	text-decoration: underline;
 }
 
-textarea::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
+a {
+	color: grey;
 }
 
+tr.b {
+	border-bottom: 1px solid lightgrey;
+}
 
 </style>
 </head>
 <body>
-	<jsp:include page="header.jsp"></jsp:include>
+	<jsp:include page="../header.jsp"/>
 	<br>
 	<br>
 
 	<%
 		String count = request.getParameter("key");
-			int cast = Integer.parseInt(count);
-			board.file.FileDAO dao = new board.file.FileDAO();
+		int cast = Integer.parseInt(count);
+		board.file.FileDAO dao = new board.file.FileDAO();
 
-			FileDTO dto = dao.contentView(cast);
+		FileDTO dto = dao.contentView(cast);
 	%>
-	<div class="container">
-		<div class="text-center">
-			<img src="../image/<%=dto.getFileName()%>" class="rounded">
-			<br><br><br><br><br><br>
-			<img src="../image/<%=dto.getFileName2()%>" class="img-fluid">
-		</div>
-		<div>
-			<a href="list.jsp">
+	<div class="centered">
+		<table
+			style="width: 1000px; text-align: center; border: 1px solid lightgrey;">
+			<tr>
+				<td><br><img src="../image/<%=dto.getFileName()%>" class="rounded"></td>
+				<td><%=dto.getTitle()%><br><%=dto.getContent()%></td>
+			</tr>
+			<tr>
+				<td colspan="2"><img src="../image/<%=dto.getFileName2()%>"
+					class="img-fluid"></td>
+			</tr>
+		</table>
+		<br>
 
 
-				<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>
-			</a> <a href="update.jsp?key=<%=count%>">
-				<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
-			</a> <a href="delset.jsp?key=<%=count%>">
-				<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
-			</a> <br>
-			<%=dto.getContent()%>
-			<br>
-			<%=dto.getTitle()%>
-			<br>
+	<div align="right">
+		<p style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+			<a href="<%=request.getContextPath()%>/file/list.jsp">List</a>
+		</p>
+
+		<% if(("admin").equals(session.getAttribute("id"))) {%>
+		<p style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+			<a href="<%=request.getContextPath()%>/file/update.jsp?key=<%=count%>">수정</a>
+		</p>
+		
+		<p style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+			<a href="<%=request.getContextPath()%>/file/delset.jsp?key=<%=count%>">삭제</a>
+		</p>
+		<%} %>
 		</div>
-	</div>
+	
+		<form action="writeReply.khy">
+			<input type="hidden" name="qa_id" value="${dto.qa_id}">
+			<fieldset style="border: 1px solid lightgrey">
+				<p style="padding: 10px 0px 0px 5px;">
+					<strong> COMMENT</strong>
+				</p>
+				<textarea name="comment"
+					style="width: 900px; height: 100px; margin: 10px; resize: none"></textarea>
+				<p style="text-align: right; padding: 20px 30px 5px 5px;">
+					<input type="submit" value="WRITE"
+						style="padding: 5px 25px 5px 25px; border: 1px solid lightgrey; background-color: white; color: grey">
+				</p>
+			</fieldset>
+		</form>
+		</div>
+		
+<!--  	<div id="SP_goTopEnd" style="opacity: 1; display: block;">
+		<a class="goKakaoTalk" onclick="window.open('https://lc1.lunasoft.co.kr/lunachat/api-connect/@secretlabel/main');" href="#">
+		<img src="http://cdn1-aka.makeshop.co.kr/design/label55/smartpc/custom_img/top_down_bt1.png"></a>
+		<a class="goTop" href="#header"><img src="http://cdn1-aka.makeshop.co.kr/design/label55/smartpc/custom_img/top_down_bt2.png"></a>
+		<a class="goEnd" href="#footer"><img src="http://cdn1-aka.makeshop.co.kr/design/label55/smartpc/custom_img/top_down_bt3.png"></a>
+	</div>  -->	
 </body>
 </html>
 

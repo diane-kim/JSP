@@ -66,4 +66,10 @@ CREATE SEQUENCE board_SEQ
 START WITH 1
 INCREMENT BY 1;
 
+
+ora-12519 에러 발생시 was 를 끊고
+sqld 에서 conn / as sysdba
+alter system set processes=500 scope=spfile;
+commit;
+
   

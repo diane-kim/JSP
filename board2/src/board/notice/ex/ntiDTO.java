@@ -11,6 +11,9 @@ public class ntiDTO {
 	int r_num;
 	
 
+	public ntiDTO() {
+		
+	}
 	public String getFileName() {
 		return fileName;
 	}

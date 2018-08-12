@@ -19,15 +19,6 @@ a:hover {
 	text-decoration: underline;
 }
 
-/* div {
-	position: absolute;
-	width: 1000px;
-	height: 500px;
-	left: 50%;
-	top: 50%;
-	margin: -250px 0 0 -500px;
-} */
-
 table.a {
 	width: 1000px;
 	text-align: left;

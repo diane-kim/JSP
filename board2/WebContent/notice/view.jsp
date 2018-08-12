@@ -3,7 +3,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,36 +18,24 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
-.font2 {
-	font-family: 'Gaegu', cursive;
-	font-size: 20px;
+a:hover {
+	text-decoration: underline;
 }
 
-.font {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 20px;
+table.a {
+	width: 1000px;
+	text-align: left;
+	border: 1px solid lightgrey;
 }
 
-.td_color {
-	background-color: #EAEAEA;
-	font-size: 13px;
+tr {
+	border-bottom: 1px solid lightgrey;
 }
 
-td, th {
-	border: 0.2px solid gray;
-	margin: 10px;
-	padding: 10px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0); //
-	숨긴다 opacity: 1;
-	display: block;
-	background:
-		url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
-		no-repeat; // 대체할 아이콘 width : 20px;
-	height: 20px;
-	border-width: thin;
+p.a {
+	padding: 5px 25px 5px 25px;
+	border: 1px solid lightgrey;
+	display: inline;
 }
 
 .centered {
@@ -55,70 +43,55 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	margin-left: auto;
 	margin-right: auto;
 }
-
-input::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
-}
-
-textarea::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
-}
 </style>
 </head>
-<body>
+<body style="text-align: center">
 	<jsp:include page="../header.jsp"></jsp:include>
-	<br>
-	<br>
-<%
+	<%
 		String count = request.getParameter("key");
 		int cast = Integer.parseInt(count);
 		
 		 %>
-	<br>
-	<br>	
+	<h3 style="text-decoration: underline">Notice</h3>
 	<div class="centered">
-		<div class="shadow p-3 mb-5 bg-white rounded">
-			<table border="1" rules="rows" cellpadding="0" cellspacing="0"
-				class="table table-bordered">
-				<tr>
-					<td class="td_color text-center"><b class="font2">작성자</b></td>
-					<td>${dto.name}</td>
-					<td class="td_color text-center"><b class="font2">작성일자</b></td>
-					<td>${dto.date}</td>
-				</tr>
-				<tr>
-					<td class="td_color text-center"><b class="font2">제목</b></td>
-					<td colspan="4">${dto.title}</td>
-				</tr>
-				<tr>
-					<td colspan="5" width="700">${dto.content}</td>
-				</tr>
-				<tr>
-				<td>
-				<%-- <c:set var='filePath' value='${dto.filePath}'/>
-				<c:url value='${dto.filePath}'/>  --%>
-				
-				<a href="notice/filedown.jsp?key=<%=cast%>">${dto.fileName}</a></td>
-				
-					<td colspan="5" align="right"><a href="ntiList.mjy">					
-							<button type="button" class="btn btn-secondary btn-sm font2">돌아가기</button>							
-					</a>
-					
-					
-					<% 
-					if(session.getAttribute("id").equals("admin")) {%>
-					<a href="notice/update.jsp?key=<%=cast%>">					
-							<button type="button" class="btn btn-secondary btn-sm font2">수정</button>
-					</a> <a href="notice/delset.jsp?key=<%=cast%>">
-							<button type="button" class="btn btn-secondary btn-sm font2">삭제</button>
-					</a>
+		<table class="a">
+			<tr style="border-top: 1px solid lightgrey; height: 50px">
+				<td colspan="2">&nbsp;&nbsp; Subject ${dto.title}</td>
+			</tr>
+			<tr style="height: 50px;">
+				<td style="width: 150px;">&nbsp;&nbsp; Name ${dto.name}</td>
+				<td>Date ${dto.date}</td>
+			</tr>
+			<tr style="height: 300px; text-align: center">
+				<td colspan="2"><p>${dto.content}</p></td>
+			</tr>
+
+			<tr style="height: 50px;">
+				<td style="width: 150px">&nbsp;&nbsp; file</td>
+				<td><a href="notice/filedown.jsp?key=<%=cast%>">${dto.fileName}</a></td>
+			</tr>
+
+		</table>
+		<table style="width: 1000px; text-align: right;">
+				<tr style="border: 0px">
+					<td><br />
+						<p class="a">
+							<a href="ntiList.mjy" style="color: grey">LIST</a>
+						</p>&nbsp;
+
+					<%
+					 if(("admin").equals(session.getAttribute("id"))) {%>
+						<p class="a">
+							<a href="notice/update.jsp?key=<%=cast%>">
+							EDIT</a>
+						</p>&nbsp;
+						<p class="a">
+							<a href="notice/delset.jsp?key=<%=cast%>">DELETE
+						</p></td>
 					<%}%>
-					</td>
 				</tr>
 			</table>
-		</div>
 	</div>
+	<jsp:include page="../footer.html"></jsp:include>
 </body>
 </html>

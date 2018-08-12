@@ -22,31 +22,33 @@
 	margin-right: auto;
 }
 </style>
-<body>
-	<jsp:include page="header.jsp"></jsp:include>
+<body style="text-align: center">
+	<jsp:include page="../header.jsp"></jsp:include>
+	<br />
+	<h3>Image</h3>
+	<br>
+	<%
+		String word = request.getParameter("word");
+		String col = request.getParameter("col");
+		String key = request.getParameter("key");
 
+		session.getAttribute("id");
+		session.getAttribute("name");
 
-	<div class="container centered">
+		String pageNum = (String) request.getParameter("key");
+		System.out.println(pageNum);
+		int pageNo;
 
-		<%
-			String word = request.getParameter("word");
-			String col = request.getParameter("col");
-			String key = request.getParameter("key");
+		if (pageNum == null) {
+			pageNo = 1;
+		} else {
+			pageNo = Integer.parseInt(pageNum);
+		}
 
-			String pageNum = (String) request.getParameter("key");
-			System.out.println(pageNum);
-			int pageNo;
-
-			if (pageNum == null) {
-				pageNo = 1;
-			} else {
-				pageNo = Integer.parseInt(pageNum);
-			}
-
-			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
-			if (col == null && word == null) {
-		%>
-
+		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		if (col == null && word == null) {
+	%>
+	<div class="centered">
 		<div class="row">
 
 			<%
@@ -57,9 +59,12 @@
 					for (board.file.FileDTO dto : list) {
 			%>
 			<div class="col-3">
-				<a href="View.jsp?key=<%=dto.getCount()%>"> <img
-					class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
-					alt="Card image cap"></a>
+				<a
+					href="<%=request.getContextPath()%>/file/View.jsp?key=<%=dto.getCount()%>">
+					<img class="img-thumbnail"
+					src="<%=request.getContextPath()%>/image/<%=dto.getFileName()%>"
+					alt="Card image cap">
+				</a>
 			</div>
 			<%
 				}
@@ -67,8 +72,18 @@
 		</div>
 
 		<div>
+			<br>
 			<%
-				
+				if (("admin").equals(session.getAttribute("id"))) {
+			%>
+			<div align="right">
+				<p
+					style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+					<a href="<%=request.getContextPath()%>/file/input.jsp">WRITE</a>
+				</p>
+			</div>
+			<%
+				}
 			%>
 			<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
@@ -82,6 +97,10 @@
 							int endPage = fnldto.getEndPage();
 							int totalPage = fnldto.getTotalPage();
 
+							int No = totalPage - (pageNo - 1) * 10;
+
+							int pageCount = totalPage / 10 + 1;
+
 							int pre;
 							int next;
 
@@ -90,24 +109,23 @@
 							else
 								pre = pageNo;
 
-							if ((pageNo + 1) <= totalPage)
+							if ((pageNo + 1) <= pageCount)
 								next = pageNo + 1;
 							else
-								next = totalPage;
-					%>
-					<a class="page-link" href="list.jsp?key=<%=pre%>">Previous</a>
+								next = pageCount;
+					%> <a class="page-link" href="image.fmjy?key=<%=pre%>">Previous</a>
 				</li>
 				<%
 					for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
 				%>
 				<li class="page-item"><a class="page-link"
-					href="list.jsp?key=<%=iCount%>"><%=iCount%></a></li>
+					href="image.fmjy?key=<%=iCount%>"><%=iCount%></a></li>
 				<%
 					}
 				%>
 
 				<li class="page-item"><a class="page-link"
-					href="list.jsp?key=<%=next%>">Next</a></li>
+					href="image.fmjy?key=<%=next%>">Next</a></li>
 
 			</ul>
 			</nav>
@@ -128,9 +146,12 @@
 					for (board.file.FileDTO dto : list) {
 			%>
 			<div class="col-3">
-				<a href="View.jsp?key=<%=dto.getCount()%>"> <img
-					class="img-thumbnail" src="../image/<%=dto.getFileName()%>"
-					alt="Card image cap"></a>
+				<a
+					href="<%=request.getContextPath()%>/file/View.jsp?key=<%=dto.getCount()%>">
+					<img class="img-thumbnail"
+					src="<%=request.getContextPath()%>/image/<%=dto.getFileName()%>"
+					alt="Card image cap">
+				</a>
 			</div>
 			<%
 				}
@@ -138,9 +159,19 @@
 		</div>
 
 		<div>
+			<br>
 			<%
-				
+				if (("admin").equals(session.getAttribute("id"))) {
 			%>
+			<div align="right">
+				<p style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+					<a href="<%=request.getContextPath()%>/file/input.jsp">WRITE</a>
+				</p>
+			</div>
+			<%
+				}
+			%>
+
 			<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item">
@@ -152,33 +183,38 @@
 							int endPage = fnldto.getEndPage();
 							int totalPage = fnldto.getTotalPage();
 
-							if (page1 >= 1) {
-								page1 = 2;
-					%> <a class="page-link" href="list.jsp?key=<%=(page1 - 1)%>">Previous</a>
+							int No = totalPage - (pageNo - 1) * 10;
+
+							int pageCount = totalPage / 10 + 1;
+
+							int pre;
+							int next;
+
+							if (pageNo > 1)
+								pre = pageNo - 1;
+							else
+								pre = pageNo;
+
+							if ((pageNo + 1) <= pageCount)
+								next = pageNo + 1;
+							else
+								next = pageCount;
+					%> <a class="page-link" href="image.fmjy?key=<%=pre%>">Previous</a>
 				</li>
-				<%
-					}
-				%>
+
 
 				<%
 					for (int iCount = startPage; iCount <= endPage; iCount++) { //1~10 11~20 .... 이부분에 html 와야함
 				%>
 				<li class="page-item"><a class="page-link"
-					href="list.jsp?key=<%=iCount%>"><%=iCount%></a></li>
+					href="image.fmjy?key=<%=iCount%>"><%=iCount%></a></li>
 				<%
 					}
 				%>
 
-				<%
-					if (page1 <= totalPage) {
-							page1 = totalPage - 1;
-				%>
 				<li class="page-item"><a class="page-link"
-					href="list.jsp?key=<%=(page1 + 1)%>">Next</a></li>
-				<%
-					}
-						int page2 = 2;
-				%>
+					href="image.fmjy?key=<%=next%>">Next</a></li>
+
 			</ul>
 			</nav>
 		</div>
@@ -186,29 +222,19 @@
 			}
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		%>
-		<%
-			if (session.getAttribute("id").equals("admin")) {
-		%>
-		<div align="right">
-			<a href="input.jsp">
-				<button type="button" class="btn btn-outline-primary font2">사진업로드</button>
-			</a>
-		</div>
-		<%
-			}
-		%>
 
-		<DIV class='aside_menu'>
-			<FORM name='frm' method='GET' action='list.jsp'>
-				<ASIDE style='float: right;'> <SELECT name='col'>
+
+		<DIV class="aside_menu">
+			<FORM name="frm" method="GET" action="../board2/image.fmjy?">
+				<ASIDE style="float: right;"> <SELECT name="col">
 					<!-- 검색 컬럼 -->
-					<OPTION value='none'>전체 목록</OPTION>
-					<OPTION value='content'>내용</OPTION>
-				</SELECT> <input type='text' name='word' size='20' value=''>
-				<button type='submit'>검색</button>
+					<OPTION value="none">전체 목록</OPTION>
+					<OPTION value="content">내용</OPTION>
+				</SELECT> <input type="text" name="word" size="20" value="">
+				<button type="submit">검색</button>
 				</ASIDE>
 			</FORM>
-			<DIV class='menu_line' style='clear: both;'></DIV>
+			<DIV class="menu_line" style="clear: both;"></DIV>
 		</DIV>
 	</div>
 	<jsp:include page="../footer.html" />

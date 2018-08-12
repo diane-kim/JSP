@@ -15,44 +15,6 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
-.font2 {
-	font-family: 'Gaegu', cursive;
-	font-size: 20px;
-}
-
-.font {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 20px;
-}
-
-.td_color {
-	background-color: #EAEAEA;
-	font-size: 13px;
-}
-
-td, th {
-	border: 0.2px solid gray;
-	margin: 10px;
-	padding: 10px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0); //
-	숨긴다 opacity: 1;
-	display: block;
-	background:
-		url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
-		no-repeat; // 대체할 아이콘 width : 20px;
-	height: 20px;
-	border-width: thin;
-}
-
-.centered {
-	display: table;
-	margin-left: auto;
-	margin-right: auto;
-}
-
 .file_input label {
 	position: relative;
 	cursor: pointer;
@@ -87,88 +49,82 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	border: 1px solid #777;
 }
 
-.file_input2 label {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	overflow: hidden;
-	width: 100px;
-	height: 30px;
-	background: #777;
-	color: #fff;
-	text-align: center;
-	line-height: 30px;
-	font-family: 'Rancho', cursive;
+input:hover {
+	text-decoration: underline;
 }
 
-.file_input2 label input {
-	position: absolute;
-	width: 0;
-	height: 0;
-	overflow: hidden;
+a:hover {
+	text-decoration: underline;
 }
 
-.file_input2 input[type=text] {
-	vertical-align: middle;
-	display: inline-block;
-	width: 400px;
-	height: 28px;
-	line-height: 28px;
-	font-size: 15px;
-	padding: 0;
-	border: 0;
-	border: 1px solid #777;
+p {
+	padding: 5px 25px 5px 25px;
+	border: 1px solid lightgrey;
+	display: inline;
 }
 
-input::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
+tr.b {
+	border-bottom: 1px solid lightgrey
 }
 
-textarea::placeholder {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 18px;
+.centered {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
 }
 </style>
-<body>
+<body style="text-align: center">
+	<jsp:include page="../header.jsp"></jsp:include>
+	<br>
+	<br />
+	<h3 style="text-decoration: underline">Image</h3>
 	<div class="centered">
 		<form action="inset.jsp" method="post" enctype="multipart/form-data">
-			<div class="shadow p-3 mb-5 bg-white rounded">
-				<table border="1" rules="rows" cellpadding="0" cellspacing="0"
-					class="table table-bordered">
-					<tr>
-						<td class="td_color text-center"><b class="font2">제목</b></td>
-						<td colspan="4"><input type="text" name="title" size="75"
-							placeholder="제목을 입력하세요." autofozus required></td>
-					</tr>
-					<tr>
-						<td colspan="5"><textarea cols="85" rows="7" name="content"
-								placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
-					</tr>
-					<tr>
-						<td colspan="5" align="right">
-							<div class="file_input">							
-								<label>Thumbnail<input type="file" onchange="javascript:document.getElementById('file_route').value=this.value"
-									name="FileName">
-								</label> <input type="text" readonly="readonly" title="File Route"
-									id="file_route"> 									
-							</div> 		
-							
-							<div class="file_input2">									
-								<label>Detail <input type="file" onchange="javascript:document.getElementById('file_route2').value=this.value"
-									name="FileName2">
-								</label> <input type="text" readonly="readonly" title="File Route"
-									id="file_route2">				
-							</div>								
-							
-							<input class="btn btn-secondary btn-sm font2" type="submit"
-							value="등록"> <a href="list.jsp">
-								<button type="button" class="btn btn-secondary btn-sm font2">취소</button>
-						</a>
-						</td>
-					</tr>
-				</table>
+			<table style="width: 1000px; text-align: center; border: 1px solid lightgrey;">
+
+				<tr style="border-top: 1px solid lightgrey; height: 50px" class="b">
+					<td colspan="2">&nbsp;&nbsp; Subject <input type="text"
+						name="title" autofozus required size="80">
+					</td>
+				</tr>
+
+				<tr style="height: 300px; text-align: center" class="b">
+					<td colspan="2"><textarea name="content"
+							style="width: 900px; height: 250px; resize: none;"
+							placeholder="내용을 입력하세요." autofozus required style="resize: none"></textarea></td>
+				</tr>
+
+				<tr style="height: 50px;" class="b">
+					<td colspan="2">
+					<div class="file_input">
+							<label>Thumbnail<input type="file"
+								onchange="javascript:document.getElementById('file_route').value=this.value"
+								name="FileName">
+								</label> <input type="text" readonly="readonly"	title="File Route" 
+								id="file_route" size="50">
+								<br>
+
+							<label>Detail <input type="file"
+								onchange="javascript:document.getElementById('file_route2').value=this.value"
+								name="FileName2">
+							</label> <input type="text" readonly="readonly" title="File Route"
+								id="file_route2" size="50">
+						</div></td>
+				</tr>
+
+			</table>
+			<table style="width: 1000px; text-align: right;">
+				<tr>
+					<td><br />
+						<p>
+							<a href="../image.fmjy" style="color: grey">LIST</a>
+						</p>
+						<p>
+							<input type="submit" value="WRITE"
+								style="background-color: white; border: 0px; color: grey">
+						</p></td>
+				</tr>
+			</table>
 		</form>
 	</div>
 </body>

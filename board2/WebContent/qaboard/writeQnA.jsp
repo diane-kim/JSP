@@ -45,12 +45,14 @@ tr.b { border-bottom: 1px solid lightgrey}
 							<option>기타</option>
 					</select></td>
 				</tr>
+				
 				<tr style="height: 50px;" class="b">
 					<td style="width: 150px;">&nbsp&nbsp Name ${name} 
 					<input type="hidden" name="name" value="${name}">
 					<input type="hidden" name="id" value="${id}"></td>
 					<td>Date</td>
 				</tr>
+				
 				<tr style="height: 300px;  text-align: center" class="b">
 					<td colspan="2">
 					<textarea name="content" style="width: 900px; height: 250px; resize: none;" 
