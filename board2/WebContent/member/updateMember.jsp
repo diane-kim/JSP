@@ -198,7 +198,7 @@ input::placeholder {
 				<div align="right">
 					<button type="submit" onclick="infoConfirm()"
 						class="btn btn-outline-primary font2">회원정보 수정</button>
-					<a href="login.jsp">
+					<a href="<%=request.getContextPath()%>/ntiList.mjy">
 						<button type="button" class="btn btn-outline-primary font2">취소</button>
 					</a>
 				</div>

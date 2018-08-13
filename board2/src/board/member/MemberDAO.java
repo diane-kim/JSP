@@ -98,8 +98,8 @@ public class MemberDAO {
 				dto.setName(set.getString("name"));
 				dto.setEmail(set.getString("email"));
 				dto.setPhone1(set.getString("phone1"));
-				dto.setPhone1(set.getString("phone2"));
-				dto.setPhone1(set.getString("phone3"));
+				dto.setPhone2(set.getString("phone2"));
+				dto.setPhone3(set.getString("phone3"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

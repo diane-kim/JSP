@@ -106,7 +106,7 @@ input::placeholder {
 </style>
 </head>
 <body>
- 	<br>
+	<br>
 	<br>
 	<div class="centered">
 		<form action="joinOk.jsp" method="post">
@@ -191,10 +191,9 @@ input::placeholder {
 				<br> <br>
 				<div align="right">
 					<button type="submit" onclick="infoConfirm()"
-						class="btn btn-outline-primary font2">가입</button>
+						class="btn btn-outline-primary">가입</button>
 					<a href="login.jsp">
-						<button type="button" class="btn btn-outline-primary font2">취소</button>
-					</a>
+						<button type="button" class="btn btn-outline-secondary">취소</button>
 				</div>
 			</div>
 		</form>

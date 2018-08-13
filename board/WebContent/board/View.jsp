@@ -26,6 +26,7 @@
 .font2 {
 	font-family: 'Gaegu', cursive;
 	font-size: 20px;
+	font-color: grey;
 }
 
 .font {

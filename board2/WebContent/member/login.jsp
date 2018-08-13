@@ -108,19 +108,17 @@ input::placeholder {
 </head>
 <body>
 	<form action="loginOk.jsp" method="post">
-	<br>
-	<br>
-	<div class="centered">
-			<div class="shadow p-3 mb-5 bg-white rounded" >
+		<br> <br>
+		<div class="centered">
+			<div class="shadow p-3 mb-5 bg-white rounded">
 				<p class="text-center font2 intitle">로그인</p>
 				<br>
 
 
 				<div class="form-group">
 					<div class="row">
-						<div class="col">
-						</div>
- 						<div class="col-6">
+						<div class="col"></div>
+						<div class="col-6">
 							<label for="exampleInputPassword1">ID</label> <input type="id"
 								class="form-control" name="id" placeholder="id" size="50">
 						</div>
@@ -130,9 +128,8 @@ input::placeholder {
 
 				<div class="form-group">
 					<div class="row">
-						<div class="col">
-						</div>
- 						<div class="col-6">
+						<div class="col"></div>
+						<div class="col-6">
 							<label for="exampleInputPassword1">Password</label> <input
 								type="password" class="form-control" name="pwd"
 								placeholder="Password">
@@ -142,15 +139,16 @@ input::placeholder {
 				</div>
 
 				<div align="center">
-				<button type="submit" class="btn btn-outline-primary font2">로그인</button>
+					<button type="submit" class="btn btn-outline-secondary">로그인</button>
 				</div>
 				<br>
-				
-							<div align="left">
-				<a href="join.jsp"class="font2">회원가입</button>
+
+				<div align="left">
+					<a href="join.jsp" class="font2">회원가입
+						</button>
+				</div>
 			</div>
-			</div>
-	</div>
+		</div>
 	</form>
 </body>
 </html>

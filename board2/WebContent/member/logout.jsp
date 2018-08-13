@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	session.invalidate();
-	response.sendRedirect("login.jsp");
+	response.sendRedirect("../ntiList.mjy");
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
