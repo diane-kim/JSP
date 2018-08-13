@@ -66,6 +66,17 @@ CREATE SEQUENCE board_SEQ
 START WITH 1
 INCREMENT BY 1;
 
+create table rBoard
+(
+  i_rid number(4),
+  v_rname varchar2(40),
+  d_rdate date,
+  v_rcontent varchar2(1000),
+  i_file_count number(38)
+);
+
+create sequence re_board_seq;
+
 
 ora-12519 에러 발생시 was 를 끊고
 sqld 에서 conn / as sysdba
