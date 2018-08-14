@@ -90,7 +90,7 @@
 				<li class="page-item">
 					<%
 						board.file.FileDAO dao2 = new board.file.FileDAO();
-							board.file.FileNextListDTO fnldto = dao2.fileNextList(count);
+						board.file.FileNextListDTO fnldto = dao2.fileNextList(count);
 
 							int page1 = fnldto.getPage1();
 							int startPage = fnldto.getStartPage();

@@ -24,7 +24,17 @@
 	
 	
 		if(("admin").equals(id)){
-		response.sendRedirect("/board2/qaDelete.khy?qa_id=" + qa_id);}
+			if(("mod").equals(check)){
+				%>
+						<script language="javascript">
+							alert("작성자만 가능합니다.");
+							history.go(-1);
+						</script>
+				<%}
+			else
+				response.sendRedirect("/board2/qaDelete.khy?qa_id=" + qa_id);
+				
+		}
 		else {
 			
 			if((write_id).equals(id)){
@@ -56,7 +66,7 @@
 					<%
 							} else {
 								
-									response.sendRedirect("/board2/modifyQnA.khy?qa_id=" + qa_id);}}}}
+									response.sendRedirect("/board2/qaDelete.khy?qa_id=" + qa_id);}}}}
 						
 				
 				else {

@@ -233,5 +233,32 @@ public class MemberDAO {
 		}
 		
 		return ri;
-	}	
+	}
+	public int deleteMember(MemberDTO dto) {
+		int ri = 0;   
+
+		try {
+			conn = dataSource.getConnection();
+			String sql = "delete from member where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			ri = pstmt.executeUpdate();
+			
+			if(ri > 0 )
+				System.out.println(ri+"개의 행 삭제 성공");
+			else
+				System.out.println("실패");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return ri;
+	}
 }

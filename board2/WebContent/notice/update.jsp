@@ -62,8 +62,7 @@ tr.b {
 
 				<tr style="height: 50px;" class="b">
 
-					<td style="width: 250px;">&nbsp;&nbsp; Name&nbsp;&nbsp;&nbsp;<input
-						type="text" name="name"></td>
+					<td style="width: 250px;">&nbsp;&nbsp; Name&nbsp;&nbsp;&nbsp;${name}<input type="hidden" name="name" value="${name}"></td>
 					<td>&nbsp;&nbsp; Date <input type="date" name="date"
 						id="datepicker"></td>
 				</tr>

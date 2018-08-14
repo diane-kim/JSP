@@ -382,7 +382,7 @@ public class FileDAO {
 		fnldto.setStartPage(startPage);
 		fnldto.setEndPage(endPage);
 		fnldto.setPage1(page1);
-		fnldto.setTotalPage(totalPage);
+		fnldto.setTotalPage(dto.getCount());
 
 		return fnldto;
 

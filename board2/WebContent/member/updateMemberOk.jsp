@@ -17,7 +17,7 @@
 %>
 	<script language="javascript">
 		alert("회원정보가 수정 되었습니다.");
-		document.location.href="login.jsp";
+		document.location.href="<%=request.getContextPath()%>/ntiList.mjy";
 	</script>
 <%
 	} else {

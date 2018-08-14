@@ -61,7 +61,7 @@ public class qaController extends HttpServlet {
 			viewPage = "listQnA.jsp";
 		}else if(com.equals("/qaContent.khy")) {	//QnA 내용
 			
-			String check = (String)req.getParameter("check");		
+			String check = (String)req.getParameter("check");
 			if(("true").equals(check)) {
 				qac = new qaConCommand();
 				qac.execute(req, res);

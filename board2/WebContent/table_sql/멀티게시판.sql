@@ -83,4 +83,12 @@ sqld 에서 conn / as sysdba
 alter system set processes=500 scope=spfile;
 commit;
 
+delete from board;
+delete from QNABOARD;
+delete from REPLYBOARD;
+delete from member;
+delete from image;
+delete from Rboard;
+
+commit;
   

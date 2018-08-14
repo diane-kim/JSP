@@ -19,6 +19,10 @@ public class qaConCommand implements qaCommand{
 		int no = Integer.parseInt(request.getParameter("qa_id"));
 		String check = (String) request.getParameter("check");
 		
+		
+		
+		System.out.println(no);
+		
 		qaDao dao = new qaDao();
 		qaDto dto = dao.contentQ(no,check);
 		
@@ -27,12 +31,9 @@ public class qaConCommand implements qaCommand{
 		rDao rdao = new rDao();
 		ArrayList<rDto> list = new ArrayList<rDto>();
 		
-		list = rdao.listR(no);
+		list = rdao.listR(no);		
+		
 		request.setAttribute("rList", list);
-		
-		
-		
 	};
-
 }
 

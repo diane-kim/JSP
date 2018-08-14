@@ -7,7 +7,7 @@
 	String id = (String)session.getAttribute("id");
 	MemberDAO dao = MemberDAO.getInstance();
 	MemberDTO dto = dao.getMember(id);
-%>    
+%>  
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,8 +18,7 @@
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
-<title>회원정보 수정</title>
-<script language="JavaScript" src="members.js"></script>
+<title>login</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -41,6 +40,7 @@ label, select {
 .td_color {
 	background-color: #EAEAEA;
 	font-size: 13px;
+	
 }
 
 td, th {
@@ -110,33 +110,24 @@ input::placeholder {
 	padding: 0.5em;
 }
 </style>
+<title>회원탈퇴</title>
 </head>
 <body>
-<br>
-	<br>
-	<div class="centered">
-		<form action="updateMemberOk.jsp" method="post">
-
+	<form action="deleteMemberOk.jsp" method="post">
+		<br> <br>
+		<div class="centered">
 			<div class="shadow p-3 mb-5 bg-white rounded">
-				<p class="text-right font2 intitle">회원정보 수정</p>
+				<p class="text-center font2 intitle">회원탈퇴</p>
 				<br>
+
+
 				<div class="form-group">
 					<div class="row">
-						<div class="col">
-
-							<label for="exampleInputPassword1">NAME</label>
-							<%= dto.getName() %>
-						</div>
 						<div class="col"></div>
-					</div>
-				</div>
-
-				<div class="form-group">
-					<div class="row">
-						<div class="col">
-
+						<div class="col-6">
 							<label for="exampleInputPassword1">ID</label>
-							<%= dto.getId() %>
+							<input type="id" class="form-control" name="id" size="50"
+									value="<%= dto.getId()%>">
 						</div>
 						<div class="col"></div>
 					</div>
@@ -144,68 +135,20 @@ input::placeholder {
 
 				<div class="form-group">
 					<div class="row">
-						<div class="col">
-							<label for="exampleInputPassword1">Password</label> <input
-								type="password" class="form-control" name="pwd"
-								placeholder="Password">
+						<div class="col"></div>
+						<div class="col-6">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" name="pwd"> 
 						</div>
 						<div class="col"></div>
 					</div>
 				</div>
-
-				<div class="form-group">
-
-					<label for="exampleInputEmail1">Email address</label>
-					<div class="row">
-						<div class="col-8">
-							<input type="email" class="form-control" name="email"
-								value="<%= dto.getEmail()%>">
-						</div>
-						<div class="col-4"></div>
-					</div>
-
-
-					<small id="emailHelp" class="form-text text-muted">We'll
-						never share your email with anyone else.</small>
-				</div>
-
-				<div class="form-group">
-					<label for="exampleFormControlSelect1">핸드폰 번호</label>
-
-					<div class="row">
-						<div class="col-sm">
-							<select class="form-control" name="phone1">
-								<option>010</option>
-								<option>011</option>
-								<option>016</option>
-								<option>017</option>
-							</select>
-						</div>
-						-
-						<div class="col-sm">
-							<input type="text" class="form-control" name="phone2"
-							 value="<%= dto.getPhone2()%>">
-						</div>
-						-
-						<div class="col-sm">
-							<input type=text" class="form-control" name="phone3"
-							 value="<%= dto.getPhone3()%>">
-						</div>
-						<div class="col-sm"></div>
-					</div>
-				</div>
-				<br> <br>
-				<div align="right">
-					<button type="submit" onclick="infoConfirm()" class="btn btn-outline-primary">회원정보 수정</button>
-					<a href="<%=request.getContextPath()%>/ntiList.mjy">
-						<button type="button" class="btn btn-outline-secondary">취소</button>
-					</a>
-				</div>
-				<div align="left">
-				<a href="deleteMember.jsp">회원탈퇴</a>
+				<br>
+				<div align="center">
+					<button type="submit" class="btn btn-outline-secondary">회원탈퇴</button>
 				</div>
 			</div>
-		</form>
-	</div>
+		</div>
+	</form>
 </body>
 </html>

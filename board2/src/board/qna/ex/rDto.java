@@ -1,13 +1,12 @@
 package board.qna.ex;
 
-import java.sql.Timestamp;
 
 public class rDto {
 	
 	private int re_id;
 	private String re_name;
 	private String re_con;
-	private Timestamp re_date;
+	private String re_date;
 	private int re_group;
 	private int re_indent;
 	private int qa_id;
@@ -31,10 +30,10 @@ public class rDto {
 	public void setRe_con(String re_con) {
 		this.re_con = re_con;
 	}
-	public Timestamp getRe_date() {
+	public String getRe_date() {
 		return re_date;
 	}
-	public void setRe_date(Timestamp re_date) {
+	public void setRe_date(String re_date) {
 		this.re_date = re_date;
 	}
 	public int getRe_group() {

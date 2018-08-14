@@ -12,10 +12,13 @@ public class ReplyDeleteCommand implements qaCommand {
 		
 		//Reply 삭제 command, admin만 가능 
 		int re_id = Integer.parseInt(request.getParameter("re_id"));
+		int qa_id = Integer.parseInt(request.getParameter("qa_id"));
 		System.out.println(re_id);
+		System.out.println(qa_id);
 		
 		rDao dao = new rDao();
-		dao.deleteQ(re_id);
+		dao.deleteQ(re_id,qa_id);
+		dao.deleteRR(re_id);
 		
 		//dmlOk.jsp 에서 구분 
 		request.setAttribute("test", "rd");
