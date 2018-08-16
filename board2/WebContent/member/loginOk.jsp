@@ -9,12 +9,14 @@
 	String pwd = request.getParameter("pwd");
 	
 	MemberDAO dao = MemberDAO.getInstance();
-	int checkNum = dao.userCheck(id, pwd);
-	dao.getMember(id);
-	%>
-<%
+	MemberDTO dto = new MemberDTO();
+	
+	dto = dao.getMember(id);
+	
+	int checkNum = dao.userCheck(dto);
+
 	if(id.equals("admin") && pwd.equals("admin")){
-		MemberDTO dto = dao.getMember(id);
+		dto = dao.getMember(id);
 		
 		String name= dto.getName();
 		session.setAttribute("id", id);
@@ -54,7 +56,7 @@
 					}
 				}	
 			%>
-			<%
+	<%
 	}
 %>
 	

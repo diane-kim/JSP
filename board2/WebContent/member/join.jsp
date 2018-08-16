@@ -5,7 +5,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
@@ -13,7 +12,7 @@
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
 <title>회원가입</title>
-<script language="JavaScript" src="members.js"></script>
+<script language="JavaScript" src="members.js" ></script>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -43,55 +42,10 @@ td, th {
 	padding: 10px;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0); //
-	숨긴다 opacity: 1;
-	display: block;
-	background:
-		url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
-		no-repeat; // 대체할 아이콘 width : 20px;
-	height: 20px;
-	border-width: thin;
-}
-
 .centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
-}
-
-.file_input label {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	overflow: hidden;
-	width: 100px;
-	height: 30px;
-	background: #777;
-	color: #fff;
-	text-align: center;
-	line-height: 30px;
-	font-family: 'Rancho', cursive;
-}
-
-.file_input label input {
-	position: absolute;
-	width: 0;
-	height: 0;
-	overflow: hidden;
-}
-
-.file_input input[type=text] {
-	vertical-align: middle;
-	display: inline-block;
-	width: 400px;
-	height: 28px;
-	line-height: 28px;
-	font-size: 15px;
-	padding: 0;
-	border: 0;
-	border: 1px solid #777;
 }
 
 input::placeholder {
@@ -109,17 +63,15 @@ input::placeholder {
 	<br>
 	<br>
 	<div class="centered">
-		<form action="joinOk.jsp" method="post">
-
+		<form action="joinOk.jsp" method="post" name="reg_frm" onSubmit="return infoConfirm();">		
 			<div class="shadow p-3 mb-5 bg-white rounded">
 				<p class="text-right font2 intitle">회원가입</p>
 				<br>
 				<div class="form-group">
 					<div class="row">
 						<div class="col">
-
-							<label for="exampleInputPassword1">NAME</label> <input
-								type="name" class="form-control" name="name" placeholder="name">
+							<label for="exampleInputPassword1">NAME</label> 
+							<input type="name" class="form-control" name="name" placeholder="name">
 						</div>
 						<div class="col"></div>
 					</div>
@@ -129,7 +81,7 @@ input::placeholder {
 					<div class="row">
 						<div class="col">
 
-							<label for="exampleInputPassword1">ID</label> <input type="id"
+							<label for="exampleInputPassword1">ID</label> <input type="text"
 								class="form-control" name="id" placeholder="id">
 						</div>
 						<div class="col"></div>
@@ -162,6 +114,28 @@ input::placeholder {
 					<small id="emailHelp" class="form-text text-muted">We'll
 						never share your email with anyone else.</small>
 				</div>
+				
+<!-- 				<div class="div-addr">
+						<input type="text" id="addrnum" name="addrnum">&nbsp;&nbsp;<input
+							type="button" onclick="SearchPostcode()" value="우편번호검색"
+							class=" btn btn-primary  btn-xs btn1"><br>
+						<div id="layer"
+							style="display: none; position: fixed; overflow: hidden; z-index: 1; -webkit-overflow-scrolling: touch;">
+							<img
+								src="//t1.daumcdn.net/localimg/localimages/07/postcode/320/close.png"
+								id="btnCloseLayer"
+								style="cursor: pointer; position: absolute; right: -3px; top: -3px; z-index: 1"
+								onclick="closeDaumPostcode()" alt="닫기 버튼">
+						</div>
+						<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+						<script src="SearchAddr.js"></script>
+					</div>
+					<div class="div-addr">
+						<input type="text" id="addr" name="addr" class="addr">
+					</div>
+					<div class="div-addr">
+						<input type="text" name="addrdetail" class="addrdetail">
+					</div> -->
 
 				<div class="form-group">
 					<label for="exampleFormControlSelect1">핸드폰 번호</label>
@@ -190,10 +164,10 @@ input::placeholder {
 				</div>
 				<br> <br>
 				<div align="right">
-					<button type="submit" onclick="infoConfirm()"
-						class="btn btn-outline-primary">가입</button>
+					<input type="submit" class="btn btn-outline-primary" value="회원가입">
 					<a href="login.jsp">
 						<button type="button" class="btn btn-outline-secondary">취소</button>
+						</a>
 				</div>
 			</div>
 		</form>

@@ -44,56 +44,12 @@ td, th {
 	padding: 10px;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0); //
-	숨긴다 opacity: 1;
-	display: block;
-	background:
-		url(https://mywildalberta.ca/images/GFX-MWA-Parks-Reservations.png)
-		no-repeat; // 대체할 아이콘 width : 20px;
-	height: 20px;
-	border-width: thin;
-}
-
 .centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.file_input label {
-	position: relative;
-	cursor: pointer;
-	display: inline-block;
-	vertical-align: middle;
-	overflow: hidden;
-	width: 100px;
-	height: 30px;
-	background: #777;
-	color: #fff;
-	text-align: center;
-	line-height: 30px;
-	font-family: 'Rancho', cursive;
-}
-
-.file_input label input {
-	position: absolute;
-	width: 0;
-	height: 0;
-	overflow: hidden;
-}
-
-.file_input input[type=text] {
-	vertical-align: middle;
-	display: inline-block;
-	width: 400px;
-	height: 28px;
-	line-height: 28px;
-	font-size: 15px;
-	padding: 0;
-	border: 0;
-	border: 1px solid #777;
-}
 
 input::placeholder {
 	font-family: 'Nanum Pen Script', cursive;

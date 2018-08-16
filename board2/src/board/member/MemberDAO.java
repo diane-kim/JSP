@@ -1,5 +1,6 @@
 package board.member;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -125,6 +126,7 @@ public class MemberDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		String sql = "insert into member values (member_seq.nextval,?,?,?,?,?,?,?)";
 		
 		try {
@@ -151,9 +153,9 @@ public class MemberDAO {
 		return ri;
 	}
 	
-	public int userCheck(String id, String pwd) {
+	public int userCheck(MemberDTO dto) {
 		
-		int ri = 0;
+		int check = 0;
 		String dbPw;
 		ResultSet set = null;
 		
@@ -162,26 +164,21 @@ public class MemberDAO {
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		
-		String sql = "select pwd from member where id = ?";
-		
+		}		
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			set = pstmt.executeQuery();
+			CallableStatement cstmt = conn.prepareCall("{call pro_log(?,?,?,?)}");
 			
-			if(set.next()) {
-				dbPw = set.getString("pwd");
-				if(dbPw.equals(pwd)) {
-					ri = 1;		// �α��� Ok
-				} else {
-					ri = 0;		// ��� X
-				}
-			} else {
-				ri = -1;		// ȸ�� X	
-			}
+			cstmt.setString(1, dto.getId());
+			cstmt.setString(2, dto.getPwd());
+			cstmt.setString(3, dto.getName());
+			cstmt.registerOutParameter(4,java.sql.Types.INTEGER);
+			
+			int r = cstmt.executeUpdate();
+			
+			check = cstmt.getInt(4);	
+			System.out.println("try 안의 check : " + check);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -195,7 +192,8 @@ public class MemberDAO {
 				e2.printStackTrace();
 			}
 		}
-		return ri;
+		System.out.println("try 밖의 check :" + check);
+		return check;
 	}
 	
 	public int updateMember(MemberDTO dto) {

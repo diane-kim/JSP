@@ -1,5 +1,6 @@
 <%@page import="board.file.FileDAO"%>
 <%@page import="board.file.FileDTO"%>
+<%@page import="board.file.FileNextListDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page language="java" import="java.sql.*"%>
@@ -30,13 +31,14 @@
 	<%
 		String word = request.getParameter("word");
 		String col = request.getParameter("col");
-		String key = request.getParameter("key");
 
 		session.getAttribute("id");
 		session.getAttribute("name");
 
-		String pageNum = (String) request.getParameter("key");
-		System.out.println(pageNum);
+		String pageNum = request.getParameter("key");
+
+		System.out.println("현재 페이지 번호 : " + pageNum);
+
 		int pageNo;
 
 		if (pageNum == null) {
@@ -45,52 +47,44 @@
 			pageNo = Integer.parseInt(pageNum);
 		}
 
-		////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////		
+		//"검색 한 내용"이 없을때 그냥 리스트만 뿌려줌
 		if (col == null && word == null) {
 	%>
 	<div class="centered">
 		<div class="row">
-
 			<%
-				board.file.FileDAO dao = new board.file.FileDAO();
-					String count = request.getParameter("key");
-					List<FileDTO> list = dao.fileList(count);
+				FileDAO daoImage = new FileDAO();
+				List<FileDTO> list = daoImage.fileList(pageNum);
 
-					for (board.file.FileDTO dto : list) {
+				for (FileDTO dto : list) { //현재 페이지(1~8)개의 내용을 뿌려줌
 			%>
 			<div class="col-3">
-				<a
-					href="<%=request.getContextPath()%>/file/View.jsp?key=<%=dto.getCount()%>">
-					<img class="img-thumbnail"
-					src="<%=request.getContextPath()%>/image/<%=dto.getFileName()%>"
-					alt="Card image cap">
+				<a href="<%=request.getContextPath()%>/file/View.jsp?key=<%=dto.getCount()%>">
+					<img class="img-thumbnail" src="<%=request.getContextPath()%>/image/<%=dto.getFileName()%>">
 				</a>
 			</div>
-			<%
-				}
-			%>
+			<%}%>
 		</div>
 
 		<div>
 			<br>
 			<%
-				if (("admin").equals(session.getAttribute("id"))) {
+				if (("admin").equals(session.getAttribute("id"))) {	//관리자 id 일때 이미지 리스트의 글쓰기 버튼을 활성화
 			%>
 			<div align="right">
-				<p
-					style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+				<p style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
 					<a href="<%=request.getContextPath()%>/file/input.jsp">WRITE</a>
 				</p>
 			</div>
-			<%
-				}
-			%>
+			<%}%>
+			
 			<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item">
 					<%
-						board.file.FileDAO dao2 = new board.file.FileDAO();
-						board.file.FileNextListDTO fnldto = dao2.fileNextList(count);
+						//페이징 버튼
+						FileDAO daoPaging = new FileDAO();
+						FileNextListDTO fnldto = daoPaging.fileNextList(pageNum);
 
 							int page1 = fnldto.getPage1();
 							int startPage = fnldto.getStartPage();
@@ -133,7 +127,7 @@
 		<%
 			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			} else {
-				////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		%>
 
 		<div class="row">
@@ -164,7 +158,8 @@
 				if (("admin").equals(session.getAttribute("id"))) {
 			%>
 			<div align="right">
-				<p style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
+				<p
+					style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
 					<a href="<%=request.getContextPath()%>/file/input.jsp">WRITE</a>
 				</p>
 			</div>

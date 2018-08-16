@@ -1,5 +1,7 @@
+<%@page import="board.file.FileDAO"%>
 <%@page import="board.file.FileDTO"%>
-<%@page import="board.file.FileDTO"%>
+<%@page import="board.file.ReplyDAO"%>
+<%@page import="board.file.ReplyDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -8,19 +10,16 @@
 <%@ page language="java" import="java.sql.*"%>
 <%@ page language="java" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="b" class="board.file.FileDTO" />
-<jsp:setProperty name="b" property="*" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
-<title>Insert title here</title>
+<title>Image View</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
@@ -87,14 +86,12 @@ a.jcm-top:hover {
 	<br>
 
 	<%
-		String count = request.getParameter("key");
-		int cast = Integer.parseInt(count);
+		String key = request.getParameter("key");
 
-		board.file.FileDAO dao = new board.file.FileDAO();
-		System.out.println("view count: " + count);
+		FileDAO dao = new FileDAO();
+		System.out.println("view count: " + key);
 
-		FileDTO dto = dao.contentView(cast);
-		System.out.println("view에서 getCount() : " + dto.getCount());
+		FileDTO dto = dao.contentView(key);		
 	%>
 	<div class="centered">
 		<table
@@ -126,20 +123,20 @@ a.jcm-top:hover {
 						</div>
 						<select class="custom-select col-8" id="inputGroupSelect01">
 							<option selected>Choose...</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
+							<option value="1">사이즈1</option>
+							<option value="2">사이즈2</option>
 						</select>
 					</div> <br>
 					<div>
 						<img src="<%=request.getContextPath()%>/imgButton/buy.gif"
 							class="img-fluid"> <img
 							src="<%=request.getContextPath()%>/imgButton/cart.gif"
-							class="img-fluid"><%--  
-							<img src="<%=request.getContextPath()%>/imgButton/wish.gif"
+							class="img-fluid">
+						<%--  
+						<img src="<%=request.getContextPath()%>/imgButton/wish.gif"
 							class="img-fluid"> --%>
 					</div></td>
-								</tr>
+			</tr>
 			<tr>
 				<td colspan="2"><img
 					src="<%=request.getContextPath()%>/image/<%=dto.getFileName2()%>"
@@ -158,14 +155,12 @@ a.jcm-top:hover {
 			%>
 			<p
 				style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
-				<a
-					href="<%=request.getContextPath()%>/file/update.jsp?key=<%=count%>">수정</a>
+				<a href="<%=request.getContextPath()%>/file/update.jsp?key=<%=key%>">수정</a>
 			</p>
 
 			<p
 				style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
-				<a
-					href="<%=request.getContextPath()%>/file/delset.jsp?key=<%=count%>">삭제</a>
+				<a href="<%=request.getContextPath()%>/file/delset.jsp?key=<%=key%>">삭제</a>
 			</p>
 			<%
 				}
@@ -173,31 +168,36 @@ a.jcm-top:hover {
 		</div>
 		<br> <br> <br>
 
-		<c:forEach var="l" items="${list}">
-			<table style="width: 1000px; border: 1px solid lightgrey;">
-				<tr style="height: 30px; text-align: left; padding-right: 0px">
-					<td style="width: 150px;">&nbsp;&nbsp; Name &nbsp;&nbsp;
-						${l.rname}</td>
-					<td>Date &nbsp;&nbsp; ${l.d_date}</td>
-					<td style="text-align: right">
-						<%
+
+		<%
+			ReplyDAO daoReply = new ReplyDAO();
+			List<ReplyDTO> list = daoReply.listReply(key);
+			for (ReplyDTO dto2 : list) {
+		%>
+		<table style="width: 1000px; border: 1px solid lightgrey;">
+			<tr style="height: 30px; text-align: left; padding-right: 0px">
+				<td style="width: 150px;">&nbsp;&nbsp; Name &nbsp;&nbsp; <%=dto2.getRname()%></td>
+				<td>Date &nbsp;&nbsp; <%=dto2.getD_date()%></td>
+				<td style="text-align: right">
+					<%
 							if (("admin").equals(session.getAttribute("id"))) {
 						%>
-						<p class="a" style="padding: 3px 25px 5px 25px;">
-							<a href="" style="color: grey">DELETE</a>
-						</p> <%
+					<p class="a" style="padding: 3px 25px 5px 25px;">
+						<a href="" style="color: grey">DELETE</a>
+					</p><%
 							}
 						%>
-					</td>
-				</tr>
-				<tr style="height: 100px;">
-					<td colspan="3">${l.rcontent}</td>
-				</tr>
-			</table>
-			<br />
-		</c:forEach>
+				</td>
+			</tr>
+			<tr style="height: 100px;">
+				<td colspan="3"><%=dto2.getRcontent()%></td>
+			</tr>
+		</table>
+		<br/>
+		<%}%>
 
-		<form action="<%=request.getContextPath()%>/view.fmjy">
+
+		<form action="<%=request.getContextPath()%>/rinput.fmjy">
 			<input type="hidden" name="key" value="<%=dto.getCount()%>">
 			<input type="hidden" name="name"
 				value="<%=session.getAttribute("name")%>">
@@ -223,37 +223,24 @@ a.jcm-top:hover {
 	</div>  -->
 	<!-- 맨위로 가기 이미지 버튼 시작 -->
 
-	<a href="#" class="jcm-top hidden-xs hidden-sm"><i class="icon icon-angle-up"></i></a>
-
-
+	<a href="#" class="jcm-top hidden-xs hidden-sm"><i
+		class="icon icon-angle-up"></i></a>
 
 	<script>
 		$(document).ready(function() {
-
 			$(window).scroll(function() {
-
 				if ($(this).scrollTop() > 200) {
-
 					$('.jcm-top').fadeIn();
-
 				} else {
-
 					$('.jcm-top').fadeOut();
-
 				}
-
 			});
-
 			$('.jcm-top').click(function() {
-
 				$('html, body').animate({
 					scrollTop : 0
-				}, 400);
-
+					}, 400);
 				return false;
-
 			});
-
 		});
 	</script>
 

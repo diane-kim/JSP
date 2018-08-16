@@ -13,7 +13,7 @@
 %>
 		<script language="javascript">
 			alert("이미 존재하는 아이디입니다.");
-			history.back();
+			history.go(-1);
 		</script>
 <%
 		} else {
@@ -41,7 +41,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
-<body>
-	
+<body>	
 </body>
 </html>
