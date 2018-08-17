@@ -10,8 +10,9 @@
 	
 		
 	MemberDAO dao = MemberDAO.getInstance();
-	int checkNum = dao.userCheck(id, pwd);
 	MemberDTO dto = dao.getMember(id);
+	int checkNum = dao.userCheck(dto, pwd);
+	
 	dao.getMember(pwd);		
 
 	if (checkNum == 0) {

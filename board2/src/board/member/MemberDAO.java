@@ -153,11 +153,9 @@ public class MemberDAO {
 		return ri;
 	}
 	
-	public int userCheck(MemberDTO dto) {
+	public int userCheck(MemberDTO dto,String pwd) {
 		
 		int check = 0;
-		String dbPw;
-		ResultSet set = null;
 		
 		try {
 			conn = dataSource.getConnection();
@@ -170,9 +168,9 @@ public class MemberDAO {
 			CallableStatement cstmt = conn.prepareCall("{call pro_log(?,?,?,?)}");
 			
 			cstmt.setString(1, dto.getId());
-			cstmt.setString(2, dto.getPwd());
+			cstmt.setString(2, pwd);
 			cstmt.setString(3, dto.getName());
-			cstmt.registerOutParameter(4,java.sql.Types.INTEGER);
+			cstmt.registerOutParameter(4,java.sql.Types.FLOAT);
 			
 			int r = cstmt.executeUpdate();
 			
@@ -258,5 +256,37 @@ public class MemberDAO {
 			}
 		}
 		return ri;
+	}
+	
+	
+	public void logout(MemberDTO dto) {
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql =  "insert into logrec values (log_seq.nextval, ?, ?, 'logout', sysdate)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getName());
+
+			pstmt.executeUpdate();
+			
+			System.out.println("logout insert 완료.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}		
 	}
 }

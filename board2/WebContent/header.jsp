@@ -46,6 +46,8 @@
 					href="<%=request.getContextPath()%>/member/login.jsp">로그인</a>
 				<%} else if (("admin").equals(session.getAttribute("id"))) { %>
 				<a class="btn btn-sm btn-outline-secondary"
+					href="<%=request.getContextPath()%>/loghistory.do">LogHistory</a>&nbsp;				
+				<a class="btn btn-sm btn-outline-secondary"
 					href="<%=request.getContextPath()%>/member/logout.jsp">로그아웃</a>
 				<%} else { %>
 				<%out.print(session.getAttribute("name")+"님 안녕하세요"); %>&nbsp; <a
