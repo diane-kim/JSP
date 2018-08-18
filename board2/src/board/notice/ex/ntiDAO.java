@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 
@@ -685,5 +686,4 @@ public class ntiDAO {
 			}
 		}
 	}
-
 }

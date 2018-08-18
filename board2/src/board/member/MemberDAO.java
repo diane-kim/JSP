@@ -1,5 +1,6 @@
 package board.member;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -125,6 +126,7 @@ public class MemberDAO {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+		
 		String sql = "insert into member values (member_seq.nextval,?,?,?,?,?,?,?)";
 		
 		try {
@@ -151,37 +153,31 @@ public class MemberDAO {
 		return ri;
 	}
 	
-	public int userCheck(String id, String pwd) {
+	public int userCheck(MemberDTO dto,String pwd,String ip) {
 		
-		int ri = 0;
-		String dbPw;
-		ResultSet set = null;
+		int check = 0;
 		
 		try {
 			conn = dataSource.getConnection();
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
-		
-		String sql = "select pwd from member where id = ?";
-		
+		}		
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, id);
-			set = pstmt.executeQuery();
+			CallableStatement cstmt = conn.prepareCall("{call pro_log(?,?,?,?,?)}");
 			
-			if(set.next()) {
-				dbPw = set.getString("pwd");
-				if(dbPw.equals(pwd)) {
-					ri = 1;		// �α��� Ok
-				} else {
-					ri = 0;		// ��� X
-				}
-			} else {
-				ri = -1;		// ȸ�� X	
-			}
+			cstmt.setString(1, dto.getId());
+			cstmt.setString(2, pwd);			
+			cstmt.setString(3, dto.getName());
+			cstmt.setString(4, ip);
+			cstmt.registerOutParameter(5,java.sql.Types.FLOAT);
+			
+			int r = cstmt.executeUpdate();
+			
+			check = cstmt.getInt(5);	
+			System.out.println("try 안의 check : " + check);
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -195,7 +191,8 @@ public class MemberDAO {
 				e2.printStackTrace();
 			}
 		}
-		return ri;
+		System.out.println("try 밖의 check :" + check);
+		return check;
 	}
 	
 	public int updateMember(MemberDTO dto) {
@@ -233,5 +230,65 @@ public class MemberDAO {
 		}
 		
 		return ri;
-	}	
+	}
+	public int deleteMember(MemberDTO dto) {
+		int ri = 0;   
+
+		try {
+			conn = dataSource.getConnection();
+			String sql = "delete from member where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			ri = pstmt.executeUpdate();
+			
+			if(ri > 0 )
+				System.out.println(ri+"개의 행 삭제 성공");
+			else
+				System.out.println("실패");
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return ri;
+	}
+	
+	
+	public void logout(MemberDTO dto,String ip) {
+		
+		try {
+			conn = dataSource.getConnection();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		String sql =  "insert into logrec values (log_seq.nextval, ?, ?, 'logout', sysdate, ?)";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getId());
+			pstmt.setString(2, dto.getName());
+			pstmt.setString(3, ip);
+
+			pstmt.executeUpdate();
+			
+			System.out.println("logout insert 완료.");
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}		
+	}
 }

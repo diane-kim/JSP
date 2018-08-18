@@ -1,32 +1,31 @@
 package board.qna.ex;
 
-import java.sql.Timestamp;
-
 public class qaDto {
 	
 	private int qa_id;
 	private String qa_name;
 	private String qa_sub;
 	private String qa_con;
-	private Timestamp qa_date;
+	private String qa_date;
 	private int qa_read;
 	private int qa_count;
 	private String qa_pwd;
 	private String write_id;
+	private int count;
+	private int rnum;
 	
 	
-		
+	
 	public qaDto() {
 		
 	}
-	
-	
-	public String getWrite_id() {
-		return write_id;
+
+	public int getRnum() {
+		return rnum;
 	}
 
-	public void setWrite_id(String write_id) {
-		this.write_id = write_id;
+	public void setRnum(int rnum) {
+		this.rnum = rnum;
 	}
 
 	public int getQa_id() {
@@ -53,10 +52,10 @@ public class qaDto {
 	public void setQa_con(String qa_con) {
 		this.qa_con = qa_con;
 	}
-	public Timestamp getQa_date() {
+	public String getQa_date() {
 		return qa_date;
 	}
-	public void setQa_date(Timestamp qa_date) {
+	public void setQa_date(String qa_date) {
 		this.qa_date = qa_date;
 	}
 	public int getQa_read() {
@@ -76,7 +75,22 @@ public class qaDto {
 	}
 	public void setQa_pwd(String qa_pwd) {
 		this.qa_pwd = qa_pwd;
+	}
+	public String getWrite_id() {
+		return write_id;
+	}
+
+	public void setWrite_id(String write_id) {
+		this.write_id = write_id;
+	}
+
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
 	}	
+	
 	
 
 }

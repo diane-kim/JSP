@@ -49,22 +49,24 @@ public class ImgController extends HttpServlet {
 			count = "0";
 		}
 		System.out.println("action Do : " +count);
-		int num =Integer.parseInt(count);
-		
+		int num =Integer.parseInt(count);		
 		
 		if(com.equals("/image.fmjy")) {
 			System.out.println("con /image.fmjy : ");			
 			viewPage = "list.jsp";
 		}else if(com.equals("/view.fmjy")) {
-			System.out.println("view.fmjy 호출");
+			System.out.println("view.fmjy 호출");			
+			System.out.println("현재 키 " + count);	
+			viewPage = "View.jsp";
+		}else if(com.equals("/rinput.fmjy")) {
+			System.out.println("rinput.fmjy 호출");			
+			System.out.println("현재 키 " + count);	
 			String name = req.getParameter("name"); 
 			String comment = req.getParameter("comment"); 
 			dao.insertReply(num,name,comment);
-			System.out.println(count);		
-			
-			List<ReplyDTO> list = dao.listReply(count);
-			req.setAttribute("list",list);
-			viewPage = "View.jsp";
+						
+			req.setAttribute("key", req.getParameter("key"));
+			viewPage = "dmlOk.jsp";
 		}
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/file/"+viewPage);

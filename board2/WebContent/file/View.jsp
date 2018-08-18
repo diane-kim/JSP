@@ -1,5 +1,7 @@
+<%@page import="board.file.FileDAO"%>
 <%@page import="board.file.FileDTO"%>
-<%@page import="board.file.FileDTO"%>
+<%@page import="board.file.ReplyDAO"%>
+<%@page import="board.file.ReplyDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
@@ -8,55 +10,44 @@
 <%@ page language="java" import="java.sql.*"%>
 <%@ page language="java" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<jsp:useBean id="b" class="board.file.FileDTO" />
-<jsp:setProperty name="b" property="*" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
-<title>Insert title here</title>
+<title>Image View</title>
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
-
 .font2 {
 	font-family: 'Gaegu', cursive;
 	font-size: 18px;
 }
-
 .font {
 	font-family: 'Nanum Pen Script', cursive;
 	font-size: 20px;
 }
-
 .td_color {
 	background-color: #EAEAEA;
 	font-size: 13px;
 }
-
 .centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
-
 a:hover {
 	text-decoration: underline;
 }
-
 a {
 	color: grey;
 }
-
 tr.b {
 	border-bottom: 1px solid lightgrey;
 }
-
 a.jcm-top {
 	position: fixed;
 	right: 15px;
@@ -67,15 +58,12 @@ a.jcm-top {
 	width: 45px;
 	height: 45px;
 	font-size: 40px;
-	/*background-color: rgba(50,50,50,0.5);*/
 	background-color: #323232;
 	opacity: 0.5;
 	filter: alpha(opacity = 50);
-	/*ie8 호환을 위한코드 위와 동일한 것임 호환필요없으면 한줄로 rgba적으면됨*/
 	z-index: 999;
 	display: none;
 }
-
 a.jcm-top:hover {
 	background-color: #000
 }
@@ -84,23 +72,15 @@ a.jcm-top:hover {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body>
-	<script>
-		
-	</script>
 	<jsp:include page="../header.jsp" />
 	<br>
 	<br>
 
-
 	<%
-		String count = request.getParameter("key");
-		int cast = Integer.parseInt(count);
-
-		board.file.FileDAO dao = new board.file.FileDAO();
-		System.out.println("view count: " + count);
-
-		FileDTO dto = dao.contentView(cast);
-		System.out.println("view에서 getCount() : " + dto.getCount());
+		String key = request.getParameter("key");
+		FileDAO dao = new FileDAO();
+		System.out.println("view count: " + key);
+		FileDTO dto = dao.contentView(key);		
 	%>
 	<div class="centered">
 		<table
@@ -110,8 +90,7 @@ a.jcm-top:hover {
 					src="<%=request.getContextPath()%>/image/<%=dto.getFileName()%>"
 					class="rounded"></td>
 				<td class="font"><%=dto.getTitle()%><br> <br class="font2">
-				<p class="text-danger"><%=dto.getContent()%></p>
-					<br>
+					<p class="text-danger"><%=dto.getContent()%></p> <br>
 					<div class="de_popup_wrap">
 						<div class="d-flex justify-content-center">
 							<div class="p-1 mr-3" style="margin-left: 45px;">부가정보</div>
@@ -133,21 +112,19 @@ a.jcm-top:hover {
 						</div>
 						<select class="custom-select col-8" id="inputGroupSelect01">
 							<option selected>Choose...</option>
-							<option value="1">One</option>
-							<option value="2">Two</option>
-							<option value="3">Three</option>
+							<option value="1">사이즈1</option>
+							<option value="2">사이즈2</option>
 						</select>
 					</div> <br>
 					<div>
 						<img src="<%=request.getContextPath()%>/imgButton/buy.gif"
 							class="img-fluid"> <img
 							src="<%=request.getContextPath()%>/imgButton/cart.gif"
-							class="img-fluid"> <img
-							src="<%=request.getContextPath()%>/imgButton/wish.gif"
 							class="img-fluid">
+						<%--  
+						<img src="<%=request.getContextPath()%>/imgButton/wish.gif"
+							class="img-fluid"> --%>
 					</div></td>
-
-
 			</tr>
 			<tr>
 				<td colspan="2"><img
@@ -167,14 +144,12 @@ a.jcm-top:hover {
 			%>
 			<p
 				style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
-				<a
-					href="<%=request.getContextPath()%>/file/update.jsp?key=<%=count%>">수정</a>
+				<a href="<%=request.getContextPath()%>/file/update.jsp?key=<%=key%>">수정</a>
 			</p>
 
 			<p
 				style="padding: 2px 25px 3px 25px; border: 1px solid lightgrey; display: inline;">
-				<a
-					href="<%=request.getContextPath()%>/file/delset.jsp?key=<%=count%>">삭제</a>
+				<a href="<%=request.getContextPath()%>/file/delset.jsp?key=<%=key%>">삭제</a>
 			</p>
 			<%
 				}
@@ -182,32 +157,36 @@ a.jcm-top:hover {
 		</div>
 		<br> <br> <br>
 
-		<c:forEach var="l" items="${list}">
-			<table style="width: 1000px; border: 1px solid lightgrey;">
-				<tr style="height: 30px; text-align: left; padding-right: 0px">
-					<td style="width: 150px;">&nbsp;&nbsp; Name &nbsp;&nbsp;
-						${l.rname}</td>
-					<td>Date &nbsp;&nbsp; ${l.d_date}</td>
-					<td style="text-align: right">
-						<%
+
+		<%
+			ReplyDAO daoReply = new ReplyDAO();
+			List<ReplyDTO> list = daoReply.listReply(key);
+			for (ReplyDTO dto2 : list) {
+		%>
+		<table style="width: 1000px; border: 1px solid lightgrey;">
+			<tr style="height: 35px; text-align: left; padding-right: 0px">
+				<td style="width: 150px;">&nbsp;&nbsp; Name &nbsp;&nbsp; <%=dto2.getRname()%></td>
+				<td>Date &nbsp;&nbsp; <%=dto2.getD_date()%></td>
+				<td style="text-align: right">
+					<%
 							if (("admin").equals(session.getAttribute("id"))) {
 						%>
-						<p class="a" style="padding: 3px 25px 5px 25px;">
-							<a href="" style="color: grey">DELETE</a>
-						</p>
-						<%
+					<p class="a" style="padding: 3px 25px 5px 25px;">
+						<a href="" style="color: grey">DELETE</a>
+					</p><%
 							}
 						%>
-					</td>
-				</tr>
-				<tr style="height: 100px;">
-					<td colspan="3">${l.rcontent}</td>
-				</tr>
-			</table>
-			<br />
-		</c:forEach>
+				</td>
+			</tr>
+			<tr style="height: 100px;">
+				<td colspan="3"><%=dto2.getRcontent()%></td>
+			</tr>
+		</table>
+		<br/>
+		<%}%>
 
-		<form action="<%=request.getContextPath()%>/view.fmjy">
+
+		<form action="<%=request.getContextPath()%>/rinput.fmjy">
 			<input type="hidden" name="key" value="<%=dto.getCount()%>">
 			<input type="hidden" name="name"
 				value="<%=session.getAttribute("name")%>">
@@ -223,44 +202,36 @@ a.jcm-top:hover {
 				</p>
 			</fieldset>
 		</form>
-
 	</div>
 
+	<!--  	<div id="SP_goTopEnd" style="opacity: 1; display: block;">
+		<a class="goKakaoTalk" onclick="window.open('https://lc1.lunasoft.co.kr/lunachat/api-connect/@secretlabel/main');" href="#">
+		<img src="http://cdn1-aka.makeshop.co.kr/design/label55/smartpc/custom_img/top_down_bt1.png"></a>
+		<a class="goTop" href="#header"><img src="http://cdn1-aka.makeshop.co.kr/design/label55/smartpc/custom_img/top_down_bt2.png"></a>
+		<a class="goEnd" href="#footer"><img src="http://cdn1-aka.makeshop.co.kr/design/label55/smartpc/custom_img/top_down_bt3.png"></a>
+	</div>  -->
+	<!-- 맨위로 가기 이미지 버튼 시작 -->
+
 	<a href="#" class="jcm-top hidden-xs hidden-sm"><i
-		class="icon icon-angle_up"></i></a>
+		class="icon icon-angle-up"></i></a>
 
 	<script>
 		$(document).ready(function() {
-
 			$(window).scroll(function() {
-
 				if ($(this).scrollTop() > 200) {
-
 					$('.jcm-top').fadeIn();
-
 				} else {
-
 					$('.jcm-top').fadeOut();
-
 				}
-
 			});
-
 			$('.jcm-top').click(function() {
-
 				$('html, body').animate({
 					scrollTop : 0
-				}, 400);
-
+					}, 400);
 				return false;
-
 			});
-
 		});
 	</script>
 
-
 </body>
-<a id="footer"></a>
 </html>
-

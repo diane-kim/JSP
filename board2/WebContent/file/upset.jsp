@@ -15,7 +15,8 @@
 <html>
 <head>
 <script type="text/javascript">
-	window.location.replace('http://localhost/board2/image.fmjy') //입력후 다시 돌아감.
+	/* window.location.replace('http://localhost/board2/image.fmjy') //입력후 다시 돌아감. */
+	document.location.href="<%=request.getContextPath()%>/image.fmjy";
 </script>
 </head>
 <body>

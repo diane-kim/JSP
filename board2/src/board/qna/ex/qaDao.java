@@ -15,6 +15,7 @@ public class qaDao {
 
 	DataSource dataSource;
 	Connection conn = null;
+	Connection conn2 = null;
 	PreparedStatement pstmt = null;
 	PreparedStatement pstmt2 = null;
 	ResultSet rs = null;
@@ -32,8 +33,43 @@ public class qaDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public int countOneQ (int qaNo) {
+		
+		int count = 0;
+		
+	
+		try {
+			conn = dataSource.getConnection();
 
+			String sql = "select count(*) from ReplyBoard where qa_id = ?";
 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, qaNo);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				System.out.println("replyCount 검색 성공 ");
+				count = 1;
+			} else {
+					System.out.println("실패");		
+			}
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return count;
+	
+	}
 	//QnA 내용 보기 + 조회수 1 증가 
 	public qaDto contentQ(int no,String check) {
 		qaDto dto = new qaDto();
@@ -51,7 +87,7 @@ public class qaDao {
 			}
 
 
-			String sql2 = "select qa_id, qa_name, qa_subject,qa_content, qa_pwd,qa_date, qa_read, qa_replyCount,write_id from QnAboard" 
+			String sql2 = "select qa_id, qa_name, qa_subject,qa_content, qa_pwd, to_char(qa_date,'yyyy-MM-dd HH:mm') qa_date , qa_read, qa_replyCount,write_id from QnAboard" 
 					+" where qa_id = ?";
 
 			pstmt2 = conn.prepareStatement(sql2);
@@ -66,7 +102,7 @@ public class qaDao {
 				dto.setQa_sub(rs2.getString("qa_subject"));
 				dto.setQa_con(rs2.getString("qa_content"));
 				dto.setQa_pwd(rs2.getString("qa_pwd"));
-				dto.setQa_date(rs2.getTimestamp("qa_date"));
+				dto.setQa_date(rs2.getString("qa_date"));
 				dto.setQa_read(rs2.getInt("qa_read"));
 				dto.setQa_count(rs2.getInt("qa_replyCount"));
 				dto.setWrite_id(rs2.getString("write_id"));
@@ -179,36 +215,55 @@ public class qaDao {
 	public void deleteQ(int no) {
 
 		try {
+			
+			if(countOneQ(no)>0) {
 			conn = dataSource.getConnection();
-
-			String sql = "delete from QnAboard where qa_id = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			rn = pstmt.executeUpdate();
-
+			
 			String sql2 = "delete from ReplyBoard where qa_id = ?";
 
-			pstmt2 = conn.prepareStatement(sql2);
-			pstmt2.setInt(1, no);
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setInt(1, no);
+			
 			rn2 = pstmt.executeUpdate();
+			}}catch (SQLException e) {
 
-			if(rn == 1)
-				System.out.println(rn + "개의 행이(가) QnAboard로부터 삭제되었습니다.");
-			else
-				System.out.println("실패");
+				e.printStackTrace();
+			}finally {
+				try {
+					
+					if(pstmt != null) pstmt.close();
+					if(conn != null) conn.close();
+				}catch (SQLException e) {
 
-			if(rn2 > 0)
-				System.out.println(rn2 + "개의 행이(가) ReplyBoard로부터 삭제되었습니다.");
-			else
-				System.out.println("실패");
+					e.printStackTrace();
+				}}
+			try {
+					conn = dataSource.getConnection();
+					
+					String sql = "delete from QnAboard where qa_id = ?";
+
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, no);
+					rn = pstmt.executeUpdate();
+
+					
+
+					if(rn == 1)
+						System.out.println(rn + "개의 행이(가) QnAboard로부터 삭제되었습니다.");
+					else
+						System.out.println("실패");
+
+					if(rn2 > 0)
+						System.out.println(rn2 + "개의 행이(가) ReplyBoard로부터 삭제되었습니다.");
+					else
+						System.out.println("실패");
+				
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}finally {
 			try {
-				if(pstmt2 != null) pstmt2.close();
 				if(pstmt != null) pstmt.close();
 				if(conn != null) conn.close();
 			} catch (Exception e2) {
@@ -217,7 +272,7 @@ public class qaDao {
 			}
 		}
 
-
+			
 	}
 
 	//QnA 내용 수정 
@@ -284,9 +339,6 @@ public class qaDao {
 				e2.printStackTrace();
 			}
 		}
-
-
-
 		return count;
 	}
 	
@@ -329,6 +381,7 @@ public class qaDao {
 	public List<qaDto> listQ(String pageNum){
 
 		int i = 1;
+		int rCount = 0;
 		qaDto dto = null;
 		List<qaDto> list = new ArrayList<>();
 
@@ -359,7 +412,7 @@ public class qaDao {
 
 				+ " from ("
 
-				+ "select qa_id, qa_name, qa_subject,qa_pwd, qa_date, qa_read, qa_replyCount"
+				+ "select qa_id, qa_name, qa_subject,qa_pwd,to_char(qa_date,'yyyy-MM-dd HH:mm') as qa_date, qa_read, qa_replyCount"
 
 				+ " from QnAboard"
 
@@ -380,9 +433,14 @@ public class qaDao {
 				dto.setQa_name(rs2.getString("qa_name"));
 				dto.setQa_sub(rs2.getString("qa_subject"));
 				dto.setQa_pwd(rs2.getString("qa_pwd"));
-				dto.setQa_date(rs2.getTimestamp("qa_date"));
+				dto.setQa_date(rs2.getString("qa_date"));
 				dto.setQa_read(rs2.getInt("qa_read"));
-				dto.setQa_count(rs2.getInt("qa_replyCount"));
+				rCount = rs2.getInt("qa_replyCount");
+				
+				if(rCount < 0 )
+					dto.setQa_count(0);
+				else
+					dto.setQa_count(rCount);
 
 				list.add(dto);
 				System.out.println(i++);
@@ -413,6 +471,7 @@ public class qaDao {
 		int i = 1;
 		qaDto dto = null;
 		List<qaDto> list = new ArrayList<>();
+		System.out.println("content:"+content);
 
 		try {
 
@@ -441,7 +500,7 @@ public class qaDao {
 
 				+ " from ("
 
-				+ "select qa_id, qa_name, qa_subject,qa_pwd, qa_date, qa_read, qa_replyCount"
+				+ "select qa_id, qa_name, qa_subject,qa_pwd, to_char(qa_date,'yyyy-MM-dd HH:mm') qa_date , qa_read, qa_replyCount"
 
 				+ " from QnAboard"
 
@@ -464,7 +523,7 @@ public class qaDao {
 				dto.setQa_name(rs2.getString("qa_name"));
 				dto.setQa_sub(rs2.getString("qa_subject"));
 				dto.setQa_pwd(rs2.getString("qa_pwd"));
-				dto.setQa_date(rs2.getTimestamp("qa_date"));
+				dto.setQa_date(rs2.getString("qa_date"));
 				dto.setQa_read(rs2.getInt("qa_read"));
 				dto.setQa_count(rs2.getInt("qa_replyCount"));
 

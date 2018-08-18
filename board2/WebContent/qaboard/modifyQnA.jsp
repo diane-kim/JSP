@@ -61,7 +61,7 @@ p {
 	<br />
 	<h3 style="text-decoration: underline">Q & A</h3>
 	<div class="centered">
-		<form action="/board2/modifyQnA.khy" method="post">
+		<form action="/board2/modifyQnA.khy?qa_id=<%=qa_id%>" method="post">
 			<table style="text-align: left;" class="a">
 				<tr style="border-top: 1px solid lightgrey; height: 50px" class="a">
 					<td colspan="2">&nbsp&nbsp Subject &nbsp&nbsp <select
@@ -85,7 +85,7 @@ p {
 				</tr>
 				<tr style="height: 50px;" class="a">
 					<td style="width: 150px"></td>
-					<td><input type="hidden" name="qa_id" value="<%= qa_id%>">
+					<td>
 					</td>
 				</tr>
 			</table>
@@ -94,7 +94,7 @@ p {
 					<td>
 						<br/>
 						<p class="a">
-							<a href="../qaList.khy" style="color: grey">LIST</a>
+							<a href="<%=request.getContextPath()%>/qaList.khy" style="color: grey">LIST</a>
 						</p>&nbsp;
 						<p><input type="reset" value="RESET" id="btn"></p>
 						<p><input type="submit" value="EDIT" id="btn"></p>
@@ -103,7 +103,6 @@ p {
 			</table>
 		</form>
 	</div>
-
 <jsp:include page="../footer.html"/>
 
 </body>

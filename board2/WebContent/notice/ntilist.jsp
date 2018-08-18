@@ -66,6 +66,10 @@ tr.b {
 		String col = request.getParameter("col");
 		String pageNum = request.getParameter("key");
 		
+		String ip = request.getRemoteAddr();
+		
+		System.out.print(ip);
+		
 		session.getAttribute("id");
 		session.getAttribute("name");
 		
@@ -111,17 +115,16 @@ tr.b {
 		%>
 		<table style="width: 1000px; text-align: center;">
 			<tr style="color: grey; height: 50px" class="b">
-				<td style="width: 150px" class="font">순번</td>
-				<td style="width: 150px" class="font">제목</td>
-				<td style="width: 150px" class="font">작성자</td>
-				<td style="width: 100px" class="font">작성일자</td>
+				<td style="width: 30px" class="font">순번</td>
+				<td class="font">제목</td>
+				<td style="width: 50px" class="font">작성자</td>
+				<td style="width: 50px" class="font">작성일자</td>
 			</tr>
 			<c:forEach var="l" items="${list}">
 				<tr class="b">
-					<td style="width: 150px; height: 65px" class="font2"><%=No%></td>
-					<td style="width: 150px" class="font2"><a
-						href="ntiView.mjy?key=${l.count}">${l.title}</td>
-					<td style="width: 150px" class="font2">${l.name}</td>
+					<td style="width: 100px; height: 65px" class="font2"><%=No%></td>
+					<td class="font2"><a href="ntiView.mjy?key=${l.count}">${l.title}</td>
+					<td style="width: 100px" class="font2">${l.name}</td>
 					<td style="width: 100px" class="font2">${l.date}</td>
 					<% No = No - 1; %>
 				</tr>
@@ -205,14 +208,13 @@ tr.b {
 			</nav>
 		</div>
 
-
 		<%} %>
 		<DIV class="aside_menu">
 			<FORM name="frm" method="GET" action="../board2/ntiSearch.mjy?">
 				<ASIDE style="float: right;"> <SELECT name="col">
 					<!-- 검색 컬럼 -->
 					<OPTION value="none">전체 목록</OPTION>
-					<OPTION value="content">내용</OPTION>
+					<OPTION value="content">제목</OPTION>
 				</SELECT> <input type="text" name="word" size="20" value="">
 				<button type="submit">검색</button>
 				</ASIDE>

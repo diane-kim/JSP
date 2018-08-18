@@ -61,7 +61,9 @@
 %>
 <script>
 	alert("파일이 존재 하지 않습니다.");
+	window.location.replace('http://localhost/board2/ntiList.mjy')
 	self.close();
+	
 </script>
 <%
 	}

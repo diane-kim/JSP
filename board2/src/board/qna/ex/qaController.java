@@ -61,19 +61,18 @@ public class qaController extends HttpServlet {
 			viewPage = "listQnA.jsp";
 		}else if(com.equals("/qaContent.khy")) {	//QnA 내용
 			
-			String check = (String)req.getParameter("check");		
+			String check = (String)req.getParameter("check");
 			if(("true").equals(check)) {
 				qac = new qaConCommand();
 				qac.execute(req, res);
 				req.setAttribute("test","con");
-				viewPage = "dmlOk.jsp";					//새로고침으로 인한 조회수 증가 방지 
-				
+				viewPage = "dmlOk.jsp";					//새로고침으로 인한 조회수 증가 방지 				
 			}
 			if(("false").equals(check)) {						
 				qac = new qaConCommand();
 				qac.execute(req, res);
 				viewPage = "contentQnA.jsp"; }	
-				
+			
 		}else if(com.equals("/writeReply.khy")) {	//답글 작성 
 			qac = new ReplyWriteCommand();
 			qac.execute(req,res);

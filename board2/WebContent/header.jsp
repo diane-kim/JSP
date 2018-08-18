@@ -36,7 +36,7 @@
 			<div class="col-4 text-center">
 				<a class="blog-header-logo text-dark"
 					href="<%=request.getContextPath()%>/ntiList.mjy"> <img
-					src="<%=request.getContextPath()%>/yedam.png" width="125"
+					src="<%=request.getContextPath()%>/imgButton/yedam.png" width="125"
 					height="45" border="0">
 			</div>
 
@@ -44,7 +44,10 @@
 				<%if(session.getAttribute("id") == null) {%>
 				<a class="btn btn-sm btn-outline-secondary"
 					href="<%=request.getContextPath()%>/member/login.jsp">로그인</a>
-				<%} else if (("admin").equals(session.getAttribute("id"))) { %>
+				<%} else if (("admin").equals(session.getAttribute("id"))) 				
+				{ out.print(session.getAttribute("name")+"님 안녕하세요"); %>&nbsp; <a
+					class="btn btn-sm btn-outline-secondary"
+					href="<%=request.getContextPath()%>/loghistory.do">LogHistory</a>&nbsp;
 				<a class="btn btn-sm btn-outline-secondary"
 					href="<%=request.getContextPath()%>/member/logout.jsp">로그아웃</a>
 				<%} else { %>

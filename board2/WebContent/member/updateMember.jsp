@@ -183,12 +183,12 @@ input::placeholder {
 						</div>
 						-
 						<div class="col-sm">
-							<input type="tel" class="form-control " name="phone2"
+							<input type="text" class="form-control" name="phone2"
 							 value="<%= dto.getPhone2()%>">
 						</div>
 						-
 						<div class="col-sm">
-							<input type=tel" class="form-control" name="phone3"
+							<input type=text" class="form-control" name="phone3"
 							 value="<%= dto.getPhone3()%>">
 						</div>
 						<div class="col-sm"></div>
@@ -196,11 +196,13 @@ input::placeholder {
 				</div>
 				<br> <br>
 				<div align="right">
-					<button type="submit" onclick="infoConfirm()"
-						class="btn btn-outline-primary font2">회원정보 수정</button>
+					<button type="submit" onclick="infoConfirm()" class="btn btn-outline-primary">회원정보 수정</button>
 					<a href="<%=request.getContextPath()%>/ntiList.mjy">
-						<button type="button" class="btn btn-outline-primary font2">취소</button>
+						<button type="button" class="btn btn-outline-secondary">취소</button>
 					</a>
+				</div>
+				<div align="left">
+				<a href="deleteMember.jsp">회원탈퇴</a>
 				</div>
 			</div>
 		</form>
