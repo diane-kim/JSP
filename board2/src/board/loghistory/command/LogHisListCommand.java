@@ -22,10 +22,8 @@ public class LogHisListCommand implements LogHisCommand{
 
 		list = dao.LogHislist(count);	
 		String totalCount = dao.CountList();
-		String check = "1";
 		
 		request.setAttribute("list", list);		
 		request.setAttribute("totalCount", totalCount);
-		request.setAttribute("check", check);
 	}		
 }

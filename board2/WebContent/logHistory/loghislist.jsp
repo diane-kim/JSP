@@ -10,17 +10,21 @@
 	background-color: #EAEAEA;
 	font-size: 13px;
 }
+
 .centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
+
 a:hover {
 	text-decoration: underline;
 }
+
 a {
 	color: grey;
 }
+
 tr.b {
 	border-bottom: 1px solid lightgrey;
 }
@@ -31,7 +35,7 @@ tr.b {
 	<jsp:include page="../header.jsp"></jsp:include>
 	<%
 	String pageNum = (String) request.getParameter("pageNum");
-	System.out.println(pageNum);
+	System.out.println("pageNum : "+pageNum);
 	int pageNo;
 	if (pageNum == null) {
 		pageNo = 1;
@@ -101,24 +105,23 @@ tr.b {
 			</c:forEach>
 		</table>
 		<br />
-		<% if(("1").equals(check)) {%>
 		<div>
 			<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item"><a class="page-link"
-					href="/board2/loghistory.do?pageNum=<%=pre%>">Previous</a></li>
+					href="/board2/loghistory.do?pageNum=<%=pre%>&content=<%=content%>">Previous</a></li>
 				<%for (int i = 1; i<=pageCount;i++){ %>
 				<li class="page-item"><a class="page-link"
-					href="/board2/loghistory.do?pageNum=<%=i%>">&nbsp;<%= i %>&nbsp;
+					href="/board2/loghistory.do?pageNum=<%=i%>&content=<%=content%>">&nbsp;<%= i %>&nbsp;
 				</a></li>
 				<% } %>
 				<li class="page-item"><a class="page-link"
-					href="/board2/loghistory.do?pageNum=<%=next%>">Next</a></li>
+					href="/board2/loghistory.do?pageNum=<%=next%>&content=<%=content%>">Next</a></li>
 			</ul>
 			</nav>
 		</div>
-		<%}else if(("2").equals(check)) {%>
-				<div>
+<%-- 		<%}else if(("2").equals(check)) {%>
+		<div>
 			<nav aria-label="Page navigation example">
 			<ul class="pagination justify-content-center">
 				<li class="page-item"><a class="page-link"
@@ -134,25 +137,21 @@ tr.b {
 			</nav>
 		</div>
 		<%} %>
-		
+ --%>
 		<DIV class='aside_menu'>
-			<FORM name='frm' method='post' action="/board2/searchHis.do">
-				<ASIDE style='float: right;'> 
-				<SELECT name='col'>
+			<FORM name='frm' method='post' action="/board2/loghistory.do">
+				<ASIDE style='float: right;'> <SELECT name='col'>
 					<OPTION value='none'>전체 목록</OPTION>
 					<OPTION value='searchId'>아이디</OPTION>
-				</SELECT> 
-				<input type='text' name="content" size='20'>
-				<input type="hidden" name="pageNum" value="<%=pageNo%>">
-				
-				</ASIDE>
+				</SELECT> <input type='text' name="content" size='20'> <input
+					type="hidden" name="pageNum" value="<%=pageNo%>"> </ASIDE>
 			</FORM>
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
-		
-<form method='post' action="/board2/excelDownData.do">		
-<button type='submit'>엑셀 다운로드</button>
-</form>
+
+		<form method='post' action="/board2/excelDownData.do">
+			<button type='submit'>엑셀 다운로드</button>
+		</form>
 
 	</div>
 </body>

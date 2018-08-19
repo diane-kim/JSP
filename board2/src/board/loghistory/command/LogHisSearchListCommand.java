@@ -22,11 +22,9 @@ public class LogHisSearchListCommand implements LogHisCommand {
 		list = dao.searchLogHis(pageNum,content);
 		
 		String totalCount = dao.searchCountList(content);
-		String check = "2";		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("totalCount", totalCount);
-		request.setAttribute("check", check);
 		request.setAttribute("content", content);		
 	}
 }

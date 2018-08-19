@@ -44,6 +44,7 @@ public class LogHisController extends HttpServlet {
 	protected void actionDo(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
+		
 		String viewPage = null;
 		LogHisCommand lhc = null;
 		
@@ -51,16 +52,26 @@ public class LogHisController extends HttpServlet {
 		String conPath = req.getContextPath();
 		String com = uri.substring(conPath.length());
 		
+		String content = req.getParameter("content");	
+		System.out.println("content의 값 : "+content);
+		
+		if(content == null || content.trim().equals("")) {
+			content = "0";
+			System.out.println("content null 여부 체크 : "+content);
+		}
+		
 		if(com.equals("/loghistory.do")) {
-			lhc = new LogHisListCommand();
-			System.out.println("LogHisListCommand 객체 생성 완료.");
-			lhc.execute(req, res);
-			viewPage = "loghislist.jsp";
-		}else if(com.equals("/searchHis.do")){
-			lhc = new LogHisSearchListCommand();
-			System.out.println("LogHisSearchListCommand 객체 생성 완료.");
-			lhc.execute(req, res);
-			viewPage = "loghislist.jsp";
+			if(content.equals("0")) {
+				lhc = new LogHisListCommand();
+				System.out.println("LogHisListCommand 객체 생성 완료.");
+				lhc.execute(req, res);
+				viewPage = "loghislist.jsp";
+			}else {
+				lhc = new LogHisSearchListCommand();
+				System.out.println("LogHisSearchListCommand 객체 생성 완료.");
+				lhc.execute(req, res);
+				viewPage = "loghislist.jsp";				
+			}			
 		}else if(com.equals("/excelDownData.do")){
 			lhc = new LogHisListCommand();
 			System.out.println("LogHisListCommand 객체 생성 완료.");
