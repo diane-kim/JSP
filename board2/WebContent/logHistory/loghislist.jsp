@@ -10,21 +10,17 @@
 	background-color: #EAEAEA;
 	font-size: 13px;
 }
-
 .centered {
 	display: table;
 	margin-left: auto;
 	margin-right: auto;
 }
-
 a:hover {
 	text-decoration: underline;
 }
-
 a {
 	color: grey;
 }
-
 tr.b {
 	border-bottom: 1px solid lightgrey;
 }
@@ -37,7 +33,6 @@ tr.b {
 	String pageNum = (String) request.getParameter("pageNum");
 	System.out.println(pageNum);
 	int pageNo;
-
 	if (pageNum == null) {
 		pageNo = 1;
 	} else {
@@ -50,7 +45,6 @@ tr.b {
 	String check = (String) request.getAttribute("check");
 	
 	int TotalCount = 0;
-
 	if (tc != null) {
 		TotalCount = Integer.parseInt(tc);
 	}
@@ -150,11 +144,16 @@ tr.b {
 				</SELECT> 
 				<input type='text' name="content" size='20'>
 				<input type="hidden" name="pageNum" value="<%=pageNo%>">
-				<button type='submit'>검색</button>
+				
 				</ASIDE>
 			</FORM>
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
+		
+<form method='post' action="/board2/excelDownData.do">		
+<button type='submit'>엑셀 다운로드</button>
+</form>
+
 	</div>
 </body>
 </html>

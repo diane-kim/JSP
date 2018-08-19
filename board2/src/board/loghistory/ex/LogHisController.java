@@ -61,7 +61,12 @@ public class LogHisController extends HttpServlet {
 			System.out.println("LogHisSearchListCommand 객체 생성 완료.");
 			lhc.execute(req, res);
 			viewPage = "loghislist.jsp";
-		}
+		}else if(com.equals("/excelDownData.do")){
+			lhc = new LogHisListCommand();
+			System.out.println("LogHisListCommand 객체 생성 완료.");
+			lhc.execute(req, res);
+			viewPage = "excelDownData.jsp";
+		}		
 		
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/logHistory/"+viewPage);
 		
