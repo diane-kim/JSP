@@ -17,7 +17,7 @@
 		%>
 			<script language="javascript">
 			alert("정상적으로 등록되었습니다.");
-			document.location.href="/board2/qaList.khy";
+			document.location.href="/board2/qaList.khy";  
 			</script>
 		<%-- <% response.sendRedirect("/board2/qaList.khy");%> --%>
 		<%

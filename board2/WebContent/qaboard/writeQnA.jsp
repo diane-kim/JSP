@@ -33,7 +33,7 @@ tr.b { border-bottom: 1px solid lightgrey}
 	<br />
 	<h3 style="text-decoration: underline">Q & A</h3>
 	<div class="centered">
-		<form action="/board2/writeQnA.khy?name=${name}&id=${id}" method="post">
+		<form action="<%=request.getContextPath()%>/writeQnA.khy" method="post"  enctype="multipart/form-data">
 			<table
 				style="width: 1000px; text-align: left; border: 1px solid lightgrey;">
 				<tr style="border-top: 1px solid lightgrey; height: 50px" class="b">
@@ -52,18 +52,21 @@ tr.b { border-bottom: 1px solid lightgrey}
 				</tr>
 				<tr style="height: 300px;  text-align: center" class="b">
 					<td colspan="2">
-					<textarea name="content" style="width: 900px; height: 250px; resize: none;" 
-					placeholder=
-					"사이즈 문의시, 신체 사이즈와
-					평소 착용하시는 사이즈를 적어주세요. 정확한 답변에 도움이 됩니다 :)
-
-					---------------------------------------------------------------">
+					<textarea name="content" style="width: 900px; height: 250px; resize: none;" >
 					</textarea></td>
 				</tr>
 				<tr style="height: 50px;" class="b">
 					<td style="width: 150px">&nbsp&nbsp Password</td>
 					<td><input type="password" name="qa_pwd" required> &nbsp;&nbsp;
 						비밀번호를 입력하세요.</td>
+				</tr>
+				<tr style="height: 50px;" class="b">
+					<td style="width: 150px">&nbsp&nbsp File</td>
+					<td><input type="file" onchange="javascript:document.getElementById('file_route').value=this.value" name="file">
+					 &nbsp;&nbsp; <input type="text" readonly="readonly" title="File Route"
+						name="file_route" size="50">
+					<input type="hidden" name="name" value="${name}">
+					<input type="hidden" name="id" value="${id}"></td>
 				</tr>
 				
 			</table>

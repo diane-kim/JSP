@@ -21,7 +21,7 @@
 <style>
 @import url(//fonts.googleapis.com/earlyaccess/nanumpenscript.css);
 
-.font2 {
+/* .font2 {
 	font-family: 'Gaegu', cursive;
 	font-size: 20px;
 }
@@ -29,7 +29,7 @@
 .font {
 	font-family: 'Nanum Pen Script', cursive;
 	font-size: 20px;
-}
+} */
 
 .td_color {
 	background-color: #EAEAEA;
@@ -115,17 +115,17 @@ tr.b {
 		%>
 		<table style="width: 1000px; text-align: center;">
 			<tr style="color: grey; height: 50px" class="b">
-				<td style="width: 30px" class="font">순번</td>
+				<td style="width: 30px">순번</td>
 				<td class="font">제목</td>
-				<td style="width: 50px" class="font">작성자</td>
-				<td style="width: 50px" class="font">작성일자</td>
+				<td style="width: 50px">작성자</td>
+				<td style="width: 50px">작성일자</td>
 			</tr>
 			<c:forEach var="l" items="${list}">
 				<tr class="b">
-					<td style="width: 100px; height: 65px" class="font2"><%=No%></td>
+					<td style="width: 100px; height: 65px"><%=No%></td>
 					<td class="font2"><a href="ntiView.mjy?key=${l.count}">${l.title}</td>
-					<td style="width: 100px" class="font2">${l.name}</td>
-					<td style="width: 100px" class="font2">${l.date}</td>
+					<td style="width: 100px">${l.name}</td>
+					<td style="width: 100px">${l.date}</td>
 					<% No = No - 1; %>
 				</tr>
 			</c:forEach>
@@ -162,19 +162,19 @@ tr.b {
 
 		<table style="width: 1000px; text-align: center;">
 			<tr style="color: grey; height: 50px" class="b">
-				<td style="width: 150px" class="font">순번</td>
-				<td style="width: 150px" class="font">제목</td>
-				<td style="width: 150px" class="font">작성자</td>
-				<td style="width: 100px" class="font">작성일자</td>
+				<td style="width: 150px">순번</td>
+				<td style="width: 150px">제목</td>
+				<td style="width: 150px">작성자</td>
+				<td style="width: 100px">작성일자</td>
 			</tr>
 
 			<c:forEach var="l" items="${list}">
 				<tr class="b">
-					<td style="width: 150px; height: 65px" class="font2"><%=No%></td>
-					<td style="width: 150px" class="font2"><a
+					<td style="width: 150px; height: 65px"><%=No%></td>
+					<td style="width: 150px"><a
 						href="ntiView.mjy?key=${l.count}">${l.title}</td>
-					<td style="width: 150px" class="font2">${l.name}</td>
-					<td style="width: 100px" class="font2">${l.date}</td>
+					<td style="width: 150px">${l.name}</td>
+					<td style="width: 100px">${l.date}</td>
 					<% No = No - 1; %>
 				</tr>
 			</c:forEach>

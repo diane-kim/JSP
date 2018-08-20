@@ -1,15 +1,20 @@
 package board.qna.ex;
 
+import java.io.File;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.oreilly.servlet.MultipartRequest;
 
 public class qaDao {
 
@@ -34,42 +39,7 @@ public class qaDao {
 		}
 	}
 	
-	public int countOneQ (int qaNo) {
-		
-		int count = 0;
-		
 	
-		try {
-			conn = dataSource.getConnection();
-
-			String sql = "select count(*) from ReplyBoard where qa_id = ?";
-
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, qaNo);
-			rs = pstmt.executeQuery();
-
-			if(rs.next()) {
-				System.out.println("replyCount 검색 성공 ");
-				count = 1;
-			} else {
-					System.out.println("실패");		
-			}
-			
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(conn != null) conn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
-		}
-		return count;
-	
-	}
 	//QnA 내용 보기 + 조회수 1 증가 
 	public qaDto contentQ(int no,String check) {
 		qaDto dto = new qaDto();
@@ -87,8 +57,9 @@ public class qaDao {
 			}
 
 
-			String sql2 = "select qa_id, qa_name, qa_subject,qa_content, qa_pwd, to_char(qa_date,'yyyy-MM-dd HH:mm') qa_date , qa_read, qa_replyCount,write_id from QnAboard" 
-					+" where qa_id = ?";
+			String sql2 = "select qa_id, qa_name, qa_subject,qa_content, qa_pwd, to_char(qa_date,'yyyy-MM-dd HH2424:mm') qa_date , qa_read, "
+					      + "qa_replyCount,write_id,fileName, filePath from QnAboard" 
+					      +" where qa_id = ?";
 
 			pstmt2 = conn.prepareStatement(sql2);
 			pstmt2.setInt(1, no);
@@ -106,6 +77,8 @@ public class qaDao {
 				dto.setQa_read(rs2.getInt("qa_read"));
 				dto.setQa_count(rs2.getInt("qa_replyCount"));
 				dto.setWrite_id(rs2.getString("write_id"));
+				dto.setFileName(rs2.getString("fileName"));
+				dto.setFilePath(rs2.getString("filePath"));
 
 			}
 
@@ -131,24 +104,26 @@ public class qaDao {
 	}
 
 	//writeform 으로 QnAboard insert 
-	public void writeQ(String name, String subject, String content, String pwd,String id) {
+	public void writeQ(qaDto dto) {
 
 		try {
 			conn = dataSource.getConnection();
 
-			String sql = "insert into QnAboard values(qna_board_sequence.nextval,?,?,?,sysdate,0,0,?,?)";
+			String sql = "insert into QnAboard values(qna_board_sequence.nextval,?,?,?,sysdate,0,0,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, name);
-			pstmt.setString(2, subject);
-			pstmt.setString(3, content);
-			pstmt.setString(4, pwd);
-			pstmt.setString(5, id);
+			pstmt.setString(1, dto.getQa_name());
+			pstmt.setString(2, dto.getQa_sub());
+			pstmt.setString(3, dto.getQa_con());
+			pstmt.setString(4, dto.getQa_pwd());
+			pstmt.setString(5, dto.getWrite_id());
+			pstmt.setString(6, dto.getFileName());
+			pstmt.setString(7, dto.getFilePath());
 
 			rn = pstmt.executeUpdate();
 
 			if(rn == 1)
-				System.out.println(rs + "개의 행이(가) QnAboard에 삽입되었습니다.");
+				System.out.println(rn + "개의 행이(가) QnAboard에 삽입되었습니다.");
 			else
 				System.out.println("실패");
 
@@ -216,48 +191,20 @@ public class qaDao {
 
 		try {
 			
-			if(countOneQ(no)>0) {
-			conn = dataSource.getConnection();
+			conn = dataSource.getConnection(); 
 			
-			String sql2 = "delete from ReplyBoard where qa_id = ?";
-
-			pstmt = conn.prepareStatement(sql2);
-			pstmt.setInt(1, no);
+			CallableStatement cstmt = conn.prepareCall("{call deleteQ(?)}");
 			
-			rn2 = pstmt.executeUpdate();
-			}}catch (SQLException e) {
+			cstmt.setInt(1, no);
+			
+			rn = cstmt.executeUpdate();
+			
+			if(rn>0)
+				System.out.println("deleteQ 실행 성공");
+			else
+				System.out.println("deleteQ 실행 실패");
 
-				e.printStackTrace();
-			}finally {
-				try {
-					
-					if(pstmt != null) pstmt.close();
-					if(conn != null) conn.close();
-				}catch (SQLException e) {
-
-					e.printStackTrace();
-				}}
-			try {
-					conn = dataSource.getConnection();
-					
-					String sql = "delete from QnAboard where qa_id = ?";
-
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, no);
-					rn = pstmt.executeUpdate();
-
-					
-
-					if(rn == 1)
-						System.out.println(rn + "개의 행이(가) QnAboard로부터 삭제되었습니다.");
-					else
-						System.out.println("실패");
-
-					if(rn2 > 0)
-						System.out.println(rn2 + "개의 행이(가) ReplyBoard로부터 삭제되었습니다.");
-					else
-						System.out.println("실패");
-				
+		
 
 		} catch (SQLException e) {
 
@@ -339,6 +286,9 @@ public class qaDao {
 				e2.printStackTrace();
 			}
 		}
+
+
+
 		return count;
 	}
 	
@@ -412,7 +362,7 @@ public class qaDao {
 
 				+ " from ("
 
-				+ "select qa_id, qa_name, qa_subject,qa_pwd,to_char(qa_date,'yyyy-MM-dd HH:mm') as qa_date, qa_read, qa_replyCount"
+				+ "select qa_id, qa_name, qa_subject,qa_pwd,to_char(qa_date,'yyyy-MM-dd HH24:mm') as qa_date, qa_read, qa_replyCount"
 
 				+ " from QnAboard"
 
@@ -500,7 +450,7 @@ public class qaDao {
 
 				+ " from ("
 
-				+ "select qa_id, qa_name, qa_subject,qa_pwd, to_char(qa_date,'yyyy-MM-dd HH:mm') qa_date , qa_read, qa_replyCount"
+				+ "select qa_id, qa_name, qa_subject,qa_pwd, to_char(qa_date,'yyyy-MM-dd HH24:mm') qa_date , qa_read, qa_replyCount"
 
 				+ " from QnAboard"
 
@@ -549,8 +499,35 @@ public class qaDao {
 
 		return list;
 	}
-
-
-
-
+	
+	public void fileUpload(MultipartRequest multi) {
+		
+		String FileName = ""; // 중복처리된 이름
+		String originalName1 = ""; // 중복 처리전 실제 원본 이름
+		long fileSize = 0; // 파일 사이즈
+		String fileType = ""; // 파일 타입
+		
+		
+		Enumeration files = multi.getFileNames();
+		
+		System.out.println(files);
+		while (files.hasMoreElements()) {
+			// form 태그에서 <input type="file" name="여기에 지정한 이름" />을 가져온다.
+			String file1 = (String) files.nextElement(); // 파일 input에 지정한 이름을 가져옴
+			// 그에 해당하는 실제 파일 이름을 가져옴
+			originalName1 = multi.getOriginalFileName(file1);
+			// 파일명이 중복될 경우 중복 정책에 의해 뒤에 1,2,3 처럼 붙어 unique하게 파일명을 생성하는데
+			// 이때 생성된 이름을 filesystemName이라 하여 그 이름 정보를 가져온다.(중복에 대한 처리)
+			FileName = multi.getFilesystemName(file1);
+			// 파일 타입 정보를 가져옴
+			fileType = multi.getContentType(file1);
+			// input file name에 해당하는 실제 파일을 가져옴
+			File file = multi.getFile(file1);
+			// 그 파일 객체의 크기를 알아냄
+//			fileSize = file.length();
+			
+			
+		}
+			
+	}
 }

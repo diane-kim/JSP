@@ -13,6 +13,8 @@ public class qaDto {
 	private String write_id;
 	private int count;
 	private int rnum;
+	private String fileName;
+	private String filePath;
 	
 	
 	
@@ -89,8 +91,25 @@ public class qaDto {
 	}
 	public void setCount(int count) {
 		this.count = count;
-	}	
-	
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public String getFilePath() {
+		return filePath;
+	}
+
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
+	}
+
+		
 	
 
 }

@@ -17,8 +17,7 @@ public class ReplyDeleteCommand implements qaCommand {
 		System.out.println(qa_id);
 		
 		rDao dao = new rDao();
-		dao.deleteQ(re_id,qa_id);
-		dao.deleteRR(re_id);
+		dao.deleteR(re_id,qa_id);
 		
 		//dmlOk.jsp 에서 구분 
 		request.setAttribute("test", "rd");

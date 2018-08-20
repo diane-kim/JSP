@@ -56,7 +56,7 @@ public class LogHistoryDAO {
 
 		try {
 
-			String sql = "select X.rnum, X.lognum, X.id, X.name, to_char(X.logtime,'yyyy-MM-dd HH:mm:ss') as logtime, X.record, X.ip from ("
+			String sql = "select X.rnum, X.lognum, X.id, X.name, to_char(X.logtime,'yyyy-MM-dd HH24:mm:ss') as logtime, X.record, X.ip from ("
 
 					+"select rownum as rnum, A.lognum, A.id, A.name, A.logtime, A.record, A.ip " 
 
@@ -156,7 +156,7 @@ public class LogHistoryDAO {
 
 		try {
 
-			String sql = "select X.rnum, X.lognum, X.id, X.name, to_char(X.logtime,'yyyy-MM-dd HH:mm:ss') as logtime, X.record, X.ip from ("
+			String sql = "select X.rnum, X.lognum, X.id, X.name, to_char(X.logtime,'yyyy-MM-dd HH24:mm:ss') as logtime, X.record, X.ip from ("
 
 					+"select rownum as rnum, A.lognum, A.id, A.name, A.logtime, A.record, A.ip " 
 

@@ -41,6 +41,9 @@ tr.b { border-bottom: 1px solid lightgrey; }
 <jsp:include page="../header.jsp"></jsp:include>
 <% 
 
+	String content = (String)request.getParameter("search");
+	System.out.println("content : "+ content);
+ 
 	String pageNum = (String)request.getParameter("pageNum");
 	System.out.println(pageNum);
 	int pageNo;
@@ -51,7 +54,6 @@ tr.b { border-bottom: 1px solid lightgrey; }
 	pageNo = Integer.parseInt(pageNum);
 	}	  
 	
-	qaDao dao = new qaDao();
 	String tc = (String)request.getAttribute("totalCount");
 	int TotalCount = 0;
 	
@@ -122,8 +124,8 @@ tr.b { border-bottom: 1px solid lightgrey; }
 					</p>
 			</c:if>
 			</div>
-			
-			
+		
+			<% if(content == null) {%>
 			<div>
 				<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-center">
@@ -138,7 +140,22 @@ tr.b { border-bottom: 1px solid lightgrey; }
 				</ul>
 				</nav>
 			</div>
-			
+			<% }else {%>
+			<div>
+				<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item">
+					<a class="page-link" href="/board2/searchQnA.khy?pageNum=<%=pre%>&search=<%=content%>">Previous</a></li>
+					<%for (int i = 1; i<=pageCount;i++){ %>
+					<li class="page-item">
+					<a class="page-link" href="/board2/searchQnA.khy?pageNum=<%=i%>&search=<%=content%>">&nbsp;<%= i %>&nbsp;</a></li>
+					<% } %>
+					<li class="page-item">
+					<a class="page-link" href="/board2/searchQnA.khy?pageNum=<%=next%>&search=<%=content%>">Next</a></li>
+				</ul>
+				</nav>
+			</div>
+			<% } %>
 			<DIV class='aside_menu'>
 			<FORM name='frm' method='post' action="/board2/searchQnA.khy">
 				<ASIDE style='float: right;'> <SELECT name='col'>

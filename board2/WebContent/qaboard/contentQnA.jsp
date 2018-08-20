@@ -90,7 +90,11 @@ p.a {
 					<td><input type="password" name="delPwd">&nbsp;&nbsp;
 						삭제하려면 비밀번호를 입력하세요. </td>
 				</tr>
-				
+				<tr style="height: 50px;" class="b">
+					<td style="width: 150px">&nbsp&nbsp File</td>
+					<td><a href="">${dto.fileName}</a>
+					</td>
+				</tr>
 			</table>
 			<!-- 버튼 , delete 누르면  form태그로 전송 비밀번호 체크  -->
 			<table style="width: 1000px; text-align: right;">
@@ -112,7 +116,7 @@ p.a {
 			</table>
 		</form>
 		<br />
-		<!-- 답글 목록 보기 ,id가 admin이면 삭제 버튼 생김 , reply 보류  -->
+		<!-- 답글 목록 보기 ,id가 admin이면 삭제 버튼 생김  -->
 		<c:if test="${rList.size()>0}">
 		<div class="centered">
 		<c:forEach var="i" begin="0" end="${rList.size()-1}">

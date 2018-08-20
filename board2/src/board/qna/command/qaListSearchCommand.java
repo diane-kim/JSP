@@ -16,7 +16,7 @@ public class qaListSearchCommand implements qaCommand {
 		
 		qaDao dao = new qaDao();
 		List<qaDto> list = new ArrayList<qaDto>();
-		String pageNum =(String)request.getParameter("pageNo");
+		String pageNum =(String)request.getParameter("pageNum");
 		String content =(String)request.getParameter("search");
 		
 		list = dao.searchQ(pageNum,content);
