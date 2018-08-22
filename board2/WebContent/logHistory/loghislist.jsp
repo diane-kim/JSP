@@ -140,11 +140,14 @@ tr.b {
  --%>
 		<DIV class='aside_menu'>
 			<FORM name='frm' method='post' action="/board2/loghistory.do">
-				<ASIDE style='float: right;'> <SELECT name='col'>
+				<ASIDE style='float: right;'> 
+				<SELECT name='col'>
 					<OPTION value='none'>전체 목록</OPTION>
 					<OPTION value='searchId'>아이디</OPTION>
-				</SELECT> <input type='text' name="content" size='20'> <input
-					type="hidden" name="pageNum" value="<%=pageNo%>"> </ASIDE>
+				</SELECT> 
+				<input type='text' name="content" size='20'> 
+				<input type="hidden" name="pageNum" value="<%=pageNo%>"> </ASIDE>
+					<button type="submit">검색</button>
 			</FORM>
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
