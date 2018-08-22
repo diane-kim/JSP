@@ -9,6 +9,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+
 <title>Blog Template for Bootstrap</title>
 
 <!-- Bootstrap core CSS -->
@@ -73,6 +74,8 @@
 			href="<%=request.getContextPath()%>/image.fmjy">Image</a> </nav>
 	</div>
 	<hr>
+	
+	
 
 </body>
 </html>

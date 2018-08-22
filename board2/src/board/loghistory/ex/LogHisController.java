@@ -55,11 +55,12 @@ public class LogHisController extends HttpServlet {
 		String content = req.getParameter("content");	
 		System.out.println("content의 값 : "+content);
 		
-		if(content == null || content.trim().equals("")) {
+		if(content == null || content.trim().equals("") || ("null").equals(content)) {
 			content = "0";
 			System.out.println("content null 여부 체크 : "+content);
-		}
+		}	
 		
+
 		if(com.equals("/loghistory.do")) {
 			if(content.equals("0")) {
 				lhc = new LogHisListCommand();
