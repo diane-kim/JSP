@@ -1,12 +1,16 @@
-<html><head><title>W3.CSS Template</title>
+<html><head><title>Travel</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> 
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .myLink {display: none}
+#toTop{background:none; position:fixed; bottom:1px; right:1px; cursor:pointer; text-decoration:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; padding:5px}
+
+
 </style>
 </head><body class="w3-light-grey" contenteditable="false">
 
@@ -180,6 +184,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <!-- End page content -->
 </div>
 
+
 <!-- Footer -->
 <footer class="w3-container w3-center w3-opacity w3-margin-bottom">
   <h5>Find Us On</h5>
@@ -191,7 +196,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
   </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">w3.css</a></p>
+  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">Travel</a></p>
+  
 </footer>
 
 <script>
@@ -214,6 +220,10 @@ document.getElementsByClassName("tablink")[0].click();
 </script>
 
 
+<script src="./images/jquery.scroll.pack.js"></script> 
+<script src="./images/jquery.easing.js">
+</script>
 
+<a id="toTop" href="#"><img src="up-arrow-icon.png" width="55" height="55" alt="맨 위로"></a>
 </body>
 </html>
