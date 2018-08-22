@@ -120,24 +120,7 @@ tr.b {
 			</ul>
 			</nav>
 		</div>
-<%-- 		<%}else if(("2").equals(check)) {%>
-		<div>
-			<nav aria-label="Page navigation example">
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link"
-					href="/board2/searchHis.do?pageNum=<%=pre%>&content=<%=content%>">Previous</a></li>
-				<%for (int i = 1; i<=pageCount;i++){ %>
-				<li class="page-item"><a class="page-link"
-					href="/board2/searchHis.do?pageNum=<%=i%>&content=<%=content%>">&nbsp;<%= i %>&nbsp;
-				</a></li>
-				<% } %>
-				<li class="page-item"><a class="page-link"
-					href="/board2/searchHis.do?pageNum=<%=next%>&content=<%=content%>">Next</a></li>
-			</ul>
-			</nav>
-		</div>
-		<%} %>
- --%>
+
 		<DIV class='aside_menu'>
 			<FORM name='frm' method='post' action="/board2/loghistory.do">
 				<ASIDE style='float: right;'> 
@@ -147,7 +130,9 @@ tr.b {
 				</SELECT> 
 				<input type='text' name="content" size='20'> 
 				<input type="hidden" name="pageNum" value="<%=pageNo%>"> </ASIDE>
+				<input type="hidden" name="pageNum" value="<%=pageNo%>"> 
 					<button type="submit">검색</button>
+					</ASIDE>
 			</FORM>
 			<DIV class='menu_line' style='clear: both;'></DIV>
 		</DIV>
@@ -155,7 +140,6 @@ tr.b {
 		<form method='post' action="/board2/excelDownData.do">
 			<button type='submit'>엑셀 다운로드</button>
 		</form>
-
 	</div>
 </body>
 </html>

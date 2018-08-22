@@ -60,6 +60,7 @@ req.setCharacterEncoding("UTF-8");
 			System.out.println("content null 여부 체크 : "+content);
 		}	
 		
+
 		if(com.equals("/loghistory.do")) {
 			if(content.equals("0")) {
 				lhc = new LogHisListCommand();
