@@ -14,6 +14,8 @@
 <script src="application.js" type="text/javascript"></script>
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css" />
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/rank.css" />
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .myLink {display: none}
@@ -43,39 +45,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     bottom: 15%;
  	left: 0%; 
 }
-#rank a {
-    color: black; /*글자색*/
-    text-decoration: none;
-}
 
-#rank a:hover { /*검색어 마우스 올릴시 밑줄 언더라인*/
-    text-decoration: underline;
-}
-
-#rank { /*구역 부분 위치조정*/
-    overflow: hidden;
-    width: 160px;
-    height: 30px; 
-    margin: 0;
-}
-
-#rank ul {
-    position: relative;
-    margin: 0;
-}
-
-#rank ol { /* 글자 위치 부분 */
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;    
-}
-#rank li { /* 순위 문장 사이의 거리 */
-    height: 35px;
-    line-height: 35px;
-}
 </style>
 </head><body class="w3-light-grey" contenteditable="false">
 <div id="content">			
@@ -97,13 +67,14 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
             </div>
       </div>
 <!-- Navigation Bar -->
+
 <div class="w3-bar w3-white w3-border-bottom w3-xlarge">
   <a href="#" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Logo</b></a>
+  <button class="w3-bar-item w3-button w3-text-red w3-hover-red" onclick="document.getElementById('id01').style.display='block'">Login</button>
   <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
 </div>
-  
-
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="member/loginform.jsp"/>
+<jsp:include page="header.jsp"/>
 
 <!-- Page content -->
 <div class="w3-content" style="max-width:1100px;">
@@ -181,7 +152,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       </div>
     </div> --%>
     </c:forEach>
-    </div>
+    </div>   
 
   <!-- Newsletter -->
   <div class="w3-container">
@@ -226,7 +197,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
     <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
     <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
-    <form action="<%=request.getContextPath()%>/insert.jhw" target="_blank"> sdfsdbsafdsabd
+    <form action="<%=request.getContextPath()%>/insert.jhw" target="_blank"> 
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required="" name="Name"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required="" name="Email"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required="" name="Message"></p>
@@ -259,7 +230,8 @@ $(document).ready(function(){
 <!-- 채팅 -->
  <script>
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting');
+        /* var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting'); */
+        var webSocket = new WebSocket('ws://58.227.79.238/travel/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
     webSocket.onerror = function(event) {
       onError(event)
