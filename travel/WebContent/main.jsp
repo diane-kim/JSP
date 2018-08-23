@@ -1,66 +1,109 @@
-<html><head><title>Travel</title>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<html><head><title>여행</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script> 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- JQuery 호출하기 위한 링크 선언 -->
+<script src="application.js" type="text/javascript"></script>
+<link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
+	rel="stylesheet">
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .myLink {display: none}
-#toTop{background:none; position:fixed; bottom:1px; right:1px; cursor:pointer; text-decoration:none; border-radius:5px; -moz-border-radius:5px; -webkit-border-radius:5px; padding:5px}
+ .font2 {
+	font-family: 'Gaegu', cursive;
+	font-size: 30px;
+}
 
+.font {
+	font-family: 'Nanum Pen Script', cursive;
+	font-size: 20px;
+}
+#content {
+    width: 100px;
+    position: fixed;
+    bottom: 3%;
+    right: 3%; 
+}
+#_chatimage {
+    position: fixed;
+    bottom: 3%;
+	left: 1%;
+	width: 100px;
+}
+#_chatbox {
+    position: fixed;
+    bottom: 15%;
+ 	left: 0%; 
+}
+#rank a {
+    color: black; /*글자색*/
+    text-decoration: none;
+}
 
+#rank a:hover { /*검색어 마우스 올릴시 밑줄 언더라인*/
+    text-decoration: underline;
+}
+
+#rank { /*구역 부분 위치조정*/
+    overflow: hidden;
+    width: 160px;
+    height: 30px; 
+    margin: 0;
+}
+
+#rank ul {
+    position: relative;
+    margin: 0;
+}
+
+#rank ol { /* 글자 위치 부분 */
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;    
+}
+#rank li { /* 순위 문장 사이의 거리 */
+    height: 35px;
+    line-height: 35px;
+}
 </style>
 </head><body class="w3-light-grey" contenteditable="false">
-
+<div id="content">			
+            <div id="rank">
+                <ul>
+                    <ol>
+                        <li><a href="#" class="font2">1 하노이</a></li>
+                        <li><a href="#" class="font2">2 도쿄</a></li>
+                        <li><a href="#" class="font2">3 싱가포르</a></li>
+                        <li><a href="#" class="font2">4 LA</a></li>
+                        <li><a href="#" class="font2">5 런던</a></li>
+                        <li><a href="#" class="font2">6 오사카</a></li>
+                        <li><a href="#" class="font2">7 상해</a></li>
+                        <li><a href="#" class="font2">8 평양</a></li>
+                        <li><a href="#" class="font2">9 시드니</a></li>
+                        <li><a href="#" class="font2">10 멜버른</a></li>
+                    </ol>
+                </ul>
+            </div>
+      </div>
 <!-- Navigation Bar -->
 <div class="w3-bar w3-white w3-border-bottom w3-xlarge">
   <a href="#" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Logo</b></a>
   <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
 </div>
+  
 
-<!-- Header -->
-<header class="w3-display-container w3-content w3-hide-small" style="max-width:1500px">
-  <img class="w3-image" src="<%=request.getContextPath()%>/w3images/london.jpg" alt="London" width="1500" height="700">
-  <div class="w3-display-middle" style="width:65%">
-    <div class="w3-bar w3-black">
-      <button class="w3-bar-item w3-button tablink w3-red" onclick="openLink(event, 'Flight');"><i class="fa fa-plane w3-margin-right"></i>Flight</button>
-      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Hotel');"><i class="fa fa-bed w3-margin-right"></i>Hotel</button>
-      <button class="w3-bar-item w3-button tablink" onclick="openLink(event, 'Car');"><i class="fa fa-car w3-margin-right"></i>Rental</button>
-    </div>
-
-    <!-- Tabs -->
-    <div id="Flight" class="w3-container w3-white w3-padding-16 myLink" style="display: block;">
-      <h3>Travel the world with us</h3>
-      <div class="w3-row-padding" style="margin:0 -16px;">
-        <div class="w3-half">
-          <label>From</label>
-          <input class="w3-input w3-border" type="text" placeholder="Departing from">
-        </div>
-        <div class="w3-half">
-          <label>To</label>
-          <input class="w3-input w3-border" type="text" placeholder="Arriving at">
-        </div>
-      </div>
-      <p><button class="w3-button w3-dark-grey">Search and find dates</button></p>
-    </div>
-
-    <div id="Hotel" class="w3-container w3-white w3-padding-16 myLink" style="display: none;">
-      <h3>Find the best hotels</h3>
-      <p>Book a hotel with us and get the best fares and promotions.</p>
-      <p>We know hotels - we know comfort.</p>
-      <p><button class="w3-button w3-dark-grey">Search Hotels</button></p>
-    </div>
-
-    <div id="Car" class="w3-container w3-white w3-padding-16 myLink" style="display: none;">
-      <h3>Best car rental in the world!</h3>
-      <p><span class="w3-tag w3-deep-orange">DISCOUNT!</span> Special offer if you book today: 25% off anywhere in the world with CarServiceRentalRUs</p>
-      <input class="w3-input w3-border" type="text" placeholder="Pick-up point">
-      <p><button class="w3-button w3-dark-grey">Search Availability</button></p>
-    </div>
-  </div>
-</header>
+<jsp:include page="header.jsp"></jsp:include>
 
 <!-- Page content -->
 <div class="w3-content" style="max-width:1100px;">
@@ -109,41 +152,25 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
   </div>
 
-  <!-- Explore Nature -->
+  <!-- Explore Nature 리스트를 보여줄 예정 -->
   <div class="w3-container">
     <h3>Explore Nature</h3>
     <p>Travel with us and see nature at its finest.</p>
   </div>
+  
+  
   <div class="w3-row-padding">
+  <c:forEach var="l" items="${list}">
     <div class="w3-half w3-margin-bottom">
-      <img src="<%=request.getContextPath()%>/w3images/sea.jpg" alt="Norway" style="width:100%">
+      <img src="<%=request.getContextPath()%>/Imagelist/${l.thumnail}" alt="Norway" style="width:100%">
       <div class="w3-container w3-white">
-        <h3>West Coast, Norway</h3>
-        <p class="w3-opacity">Roundtrip from $79</p>
-        <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
+        <h3>${l.title}</h3>
+        <p class="w3-opacity">${l.price}</p>
+        <p>${l.content}</p>
         <button class="w3-button w3-margin-bottom">Buy Tickets</button>
       </div>
     </div>
-    <div class="w3-half w3-margin-bottom">
-      <img src="<%=request.getContextPath()%>/w3images/mountain.jpg" alt="Austria" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>Mountains, Austria</h3>
-        <p class="w3-opacity">One-way from $39</p>
-        <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-        <button class="w3-button w3-margin-bottom">Buy Tickets</button>
-      </div>
-    </div>
-  </div>
-    <div class="w3-row-padding">
-    <div class="w3-half w3-margin-bottom">
-      <img src="<%=request.getContextPath()%>/w3images/sea.jpg" alt="Norway" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>West Coast, Norway</h3>
-        <p class="w3-opacity">Roundtrip from $79</p>
-        <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-        <button class="w3-button w3-margin-bottom">Buy Tickets</button>
-      </div>
-    </div>
+<%--     
     <div class="w3-half w3-margin-bottom">
       <img src="<%=request.getContextPath()%>/w3images/mountain.jpg" alt="Austria" style="width:100%">
       <div class="w3-container w3-white">
@@ -152,8 +179,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
         <button class="w3-button w3-margin-bottom">Buy Tickets</button>
       </div>
+    </div> --%>
+    </c:forEach>
     </div>
-  </div>
 
   <!-- Newsletter -->
   <div class="w3-container">
@@ -166,6 +194,31 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     </div>
   </div>
   
+   <div id="_chatbox" style="display: none">
+    <fieldset>
+        <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
+        <br/>
+        <input id="inputMessage" type="text"/>
+        <input type="submit" value="send" onclick="send()" />
+    </fieldset>  
+
+    </div>
+    <img id="_chatimage" class="chat" src="./img/chat.png" />
+    
+    <script>
+    $(".chat").on({
+        "click" : function() {
+            if ($(this).attr("src") == "./img/chat.png") {
+                $(".chat").attr("src", "./img/chathide.png");
+                $("#_chatbox").css("display", "block");
+            } else if ($(this).attr("src") == "./img/chathide.png") {
+                $(".chat").attr("src", "./img/chat.png");
+                $("#_chatbox").css("display", "none");
+            }
+        }
+    });
+	</script>  
+  
   <!-- Contact -->
   <div class="w3-container">
     <h2>Contact</h2>
@@ -173,7 +226,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     <i class="fa fa-map-marker" style="width:30px"></i> Chicago, US<br>
     <i class="fa fa-phone" style="width:30px"></i> Phone: +00 151515<br>
     <i class="fa fa-envelope" style="width:30px"> </i> Email: mail@mail.com<br>
-    <form action="/action_page.php" target="_blank">
+    <form action="<%=request.getContextPath()%>/insert.jhw" target="_blank"> sdfsdbsafdsabd
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required="" name="Name"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required="" name="Email"></p>
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required="" name="Message"></p>
@@ -183,23 +236,55 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
   
 <!-- End page content -->
 </div>
-
-
-<!-- Footer -->
-<footer class="w3-container w3-center w3-opacity w3-margin-bottom">
-  <h5>Find Us On</h5>
-  <div class="w3-xlarge w3-padding-16">
-    <i class="fa fa-facebook-official w3-hover-opacity"></i>
-    <i class="fa fa-instagram w3-hover-opacity"></i>
-    <i class="fa fa-snapchat w3-hover-opacity"></i>
-    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
-    <i class="fa fa-twitter w3-hover-opacity"></i>
-    <i class="fa fa-linkedin w3-hover-opacity"></i>
-  </div>
-  <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank" class="w3-hover-text-green">Travel</a></p>
-  
-</footer>
-
+<jsp:include page="footer.jsp"></jsp:include>
+<script>
+$(document).ready(function(){
+        
+    $("#_chatimage").hide(); // 탑 버튼 숨김
+    $(function () {
+               try{  
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) { // 스크롤 내릴 표시
+                $('#_chatimage').fadeIn();
+            } else {
+                $('#_chatimage').fadeOut();
+            }
+        });
+        }catch(e){
+        console.log(e);
+        }
+    }); 
+});
+</script>
+<!-- 채팅 -->
+ <script>
+        var textarea = document.getElementById("messageWindow");
+        var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting');
+        var inputMessage = document.getElementById('inputMessage');
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    function onMessage(event) {
+        textarea.value += "상대 : " + event.data + "\n";
+    }
+    function onOpen(event) {
+        textarea.value += "연결 성공\n";
+    }
+    function onError(event) {
+      alert(event.data);
+    }
+    function send() {
+        textarea.value += "나 : " + inputMessage.value + "\n";
+        webSocket.send(inputMessage.value);
+        inputMessage.value = "";
+    }
+  </script>
 <script>
 // Tabs
 function openLink(evt, linkName) {
@@ -218,12 +303,23 @@ function openLink(evt, linkName) {
 // Click on the first tablink on load
 document.getElementsByClassName("tablink")[0].click();
 </script>
+<script>
+$('#something').click(function() {
+location.reload();
+});
 
+$(function() {
+    var count = $('#rank li').length;
+    var height = $('#rank li').height();
 
-<script src="./images/jquery.scroll.pack.js"></script> 
-<script src="./images/jquery.easing.js">
+    function step(index) {
+        $('#rank ol').delay(2000).animate({top: -height * index }, 500, function() {
+            step((index + 1 ) % count);
+        });
+    }
+    step(1);
+});
 </script>
 
-<a id="toTop" href="#"><img src="up-arrow-icon.png" width="55" height="55" alt="맨 위로"></a>
 </body>
 </html>

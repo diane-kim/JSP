@@ -1,4 +1,4 @@
-package travel.sendMessage.command;
+package travel.controller;
 
 import java.io.IOException;
 
@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import travel.image.command.ImageListCommand;
+import travel.image.command.ImageListUploadCommand;
+import travel.image.command.MainImageListCommand;
 
-@WebServlet("*.jhw")
-public class sendMessageController extends HttpServlet {
+
+@WebServlet("*.mjy")
+public class ImageListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	   
-    public sendMessageController() {
+    public ImageListController() {
         super();
     
     }
@@ -35,20 +39,26 @@ public class sendMessageController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		String viewPage = null;
-		sendMessageCommand smc = null;
+		ImageListCommand ilc = null;
 		
 		String uri = req.getRequestURI();
 		String conPath = req.getContextPath();
 		String com = uri.substring(conPath.length());
+				
 		
-		
-		if(com.equals("/admintomessage.jhw")) {
-			smc = new sendMessageInCommand();
-			smc.execute(req, res);
+		if(com.equals("/imageUpload.mjy")) {
+			ilc = new ImageListUploadCommand();
+			System.out.println("파일 업로드");
+			ilc.execute(req, res);
+			viewPage = "main.jsp";
+		}else if(com.equals("/imageList.mjy")) {
+			ilc = new MainImageListCommand();
+			System.out.println("이미지 리스트 호출");
+			ilc.execute(req, res);
+			
 			viewPage = "main.jsp";			
-		}
-		
-		RequestDispatcher dispatcher = req.getRequestDispatcher("/travel/"+viewPage);
+		}		
+		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 		
 		dispatcher.forward(req, res);	
 	}
