@@ -11,11 +11,15 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- JQuery 호출하기 위한 링크 선언 -->
-<script src="application.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/scroll.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
+<script src="<%=request.getContextPath()%>/js/main.js" type="text/javascript"></script>
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/rank.css" />
+<% session.getAttribute("id");
+%>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .myLink {display: none}
@@ -138,33 +142,26 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <h3>${l.title}</h3>
         <p class="w3-opacity">${l.price}</p>
         <p>${l.content}</p>
-        <button class="w3-button w3-margin-bottom">Buy Tickets</button>
+        <button class="w3-button w3-margin-bottom" onclick="location.href='<%=request.getContextPath()%>/listView.jsp'">Buy Tickets</button><%-- ${l.key} --%>
       </div>
     </div>
-<%--     
-    <div class="w3-half w3-margin-bottom">
-      <img src="<%=request.getContextPath()%>/w3images/mountain.jpg" alt="Austria" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>Mountains, Austria</h3>
-        <p class="w3-opacity">One-way from $39</p>
-        <p>Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-        <button class="w3-button w3-margin-bottom">Buy Tickets</button>
-      </div>
-    </div> --%>
     </c:forEach>
     </div>   
 
-  <!-- Newsletter -->
+   <!-- Newsletter -->
   <div class="w3-container">
     <div class="w3-panel w3-padding-16 w3-black w3-opacity w3-card w3-hover-opacity-off">
       <h2>Get the best offers first!</h2>
       <p>Join our newsletter.</p>
       <label>E-mail</label>
-      <input class="w3-input w3-border" type="text" placeholder="Your Email address">
-      <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
+      <form action="<%=request.getContextPath()%>/submail.jhw" target="_blank"> 
+      <input class="w3-input w3-border" type="text" placeholder="Your Email address" name="Submail">
+      <button class="w3-button w3-red w3-margin-top" type="submit" >Subscribe</button>
+      </form>
     </div>
   </div>
   
+  <!-- 채팅 -->
    <div id="_chatbox" style="display: none">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
@@ -172,7 +169,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <input id="inputMessage" type="text"/>
         <input type="submit" value="send" onclick="send()" />
     </fieldset>  
-
     </div>
     <img id="_chatimage" class="chat" src="./img/chat.png" />
     
@@ -188,7 +184,37 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
             }
         }
     });
-	</script>  
+	</script> 
+	
+	 <script>
+        var textarea = document.getElementById("messageWindow");
+        var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting'); 
+        var inputMessage = document.getElementById('inputMessage');
+        
+    webSocket.onerror = function(event) {
+      onError(event)
+    };
+    webSocket.onopen = function(event) {
+      onOpen(event)
+    };
+    webSocket.onmessage = function(event) {
+      onMessage(event)
+    };
+    function onMessage(event) {
+        textarea.value += event.data + "\n";
+    }
+    function onOpen(event) {
+        textarea.value += "연결 성공\n";
+    }
+    function onError(event) {
+      alert(event.data);
+    }
+    function send() {
+        textarea.value += "<%=session.getAttribute("id")%> : " + inputMessage.value + "\n";
+        webSocket.send("<%=session.getAttribute("id")%>" +" : "+inputMessage.value);
+        inputMessage.value = "";
+    }
+  </script> 
   
   <!-- Contact -->
   <div class="w3-container">
@@ -208,90 +234,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <!-- End page content -->
 </div>
 <jsp:include page="footer.jsp"></jsp:include>
-<script>
-$(document).ready(function(){
-        
-    $("#_chatimage").hide(); // 탑 버튼 숨김
-    $(function () {
-               try{  
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 100) { // 스크롤 내릴 표시
-                $('#_chatimage').fadeIn();
-            } else {
-                $('#_chatimage').fadeOut();
-            }
-        });
-        }catch(e){
-        console.log(e);
-        }
-    }); 
-});
-</script>
-<!-- 채팅 -->
- <script>
-        var textarea = document.getElementById("messageWindow");
-        /* var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting'); */
-        var webSocket = new WebSocket('ws://58.227.79.238/travel/broadcasting');
-        var inputMessage = document.getElementById('inputMessage');
-    webSocket.onerror = function(event) {
-      onError(event)
-    };
-    webSocket.onopen = function(event) {
-      onOpen(event)
-    };
-    webSocket.onmessage = function(event) {
-      onMessage(event)
-    };
-    function onMessage(event) {
-        textarea.value += "상대 : " + event.data + "\n";
-    }
-    function onOpen(event) {
-        textarea.value += "연결 성공\n";
-    }
-    function onError(event) {
-      alert(event.data);
-    }
-    function send() {
-        textarea.value += "나 : " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
-        inputMessage.value = "";
-    }
-  </script>
-<script>
-// Tabs
-function openLink(evt, linkName) {
-  var i, x, tablinks;
-  x = document.getElementsByClassName("myLink");
-  for (i = 0; i < x.length; i++) {
-      x[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablink");
-  for (i = 0; i < x.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" w3-red", "");
-  }
-  document.getElementById(linkName).style.display = "block";
-  evt.currentTarget.className += " w3-red";
-}
-// Click on the first tablink on load
-document.getElementsByClassName("tablink")[0].click();
-</script>
-<script>
-$('#something').click(function() {
-location.reload();
-});
-
-$(function() {
-    var count = $('#rank li').length;
-    var height = $('#rank li').height();
-
-    function step(index) {
-        $('#rank ol').delay(2000).animate({top: -height * index }, 500, function() {
-            step((index + 1 ) % count);
-        });
-    }
-    step(1);
-});
-</script>
 
 </body>
 </html>

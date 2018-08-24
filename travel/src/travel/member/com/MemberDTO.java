@@ -2,7 +2,7 @@ package travel.member.com;
 
 public class MemberDTO {
 	private String id;
-	private int pw;
+	private String pw;
 	private String phone;
 	private int gender;
 	private String address;
@@ -14,7 +14,7 @@ public class MemberDTO {
 
 	}
 
-	public MemberDTO(String id, int pw, String phone, int gender, String address, String name, String email) {
+	public MemberDTO(String id, String pw, String phone, int gender, String address, String name, String email) {
 
 		this.id = id;
 		this.pw = pw;
@@ -33,11 +33,11 @@ public class MemberDTO {
 		this.id = id;
 	}
 
-	public int getPw() {
+	public String getPw() {
 		return pw;
 	}
 
-	public void setPw(int pw) {
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
 

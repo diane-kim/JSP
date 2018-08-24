@@ -7,8 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
-<script type="text/javascript" src="/trip/js/MemberJoinCheck.js"></script>
-<script type="text/javascript" src="/trip/js/MemberIdCheck.js"></script>
+<script type="text/javascript" src="/travel/js/MemberJoinCheck.js"></script>
+<script type="text/javascript" src="/travel/js/MemberIdCheck.js"></script>
 </head>
 <body>
 	<form action="MemberForm.do" method="post" name="userInfo"
@@ -18,10 +18,10 @@
 				<td>아이디</td>
 				<td><input type="text" name="id" maxlength="20" value='${id}' onchange="IdCheck()"> 
 					<c:if test="${check==0}">
-					중복된ID가 없습니다.
+					중복된ID가 없습니다.	
 					</c:if> 
 					<c:if test="${check==1}">
-					중복된ID입니다.
+					중복된ID입니다.					
 					</c:if>
 				</td>
 			</tr>
@@ -39,9 +39,22 @@
 			</tr>
 			<tr>
 				<td>성별</td>
+				 
 				<td><input type="radio" name="gender" value="1">남자 
 					<input type="radio" name="gender" value="2">여자
 				</td>
+				
+				
+				
+				<c:if test="${gender==1}">
+					<script>document.userInfo.gender.value= 1</script>
+				</c:if>
+				<c:if test="${gender==2}">
+					<script>document.userInfo.gender.value= 2</script>
+				</c:if>
+				
+				
+				
 			</tr>
 			<tr>
 				<td>휴대전화</td>
@@ -70,7 +83,7 @@
 		<input type="reset" value="다시작성"> 
 		<input type="hidden" name="check" value="${check}" />
 	</form>
-	<script src="/trip/js/Addr.js"></script>
+	<script src="/travel/js/Addr.js"></script>
 
 	<form action="MemberIdCheck.do" method="post" name="idCheck">
 		<input type="hidden" name="id" value="" />

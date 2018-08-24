@@ -115,17 +115,17 @@ public class ImageListDAO {
 
 		try {
 
-			String sql = "select X.rnum, X.id, X.title, X.content, X.thumnail, X.detail, X.price,X.hits from ( "
+			String sql = "select X.rnum, X.key, X.title, X.content, X.thumnail, X.detail, X.price,X.hits from ( "
 
-						 +"select rownum as rnum, A.id, A.title, A.content, A.thumnail, A.detail, A.price, A.hits "
+						 +"select rownum as rnum, A.key, A.title, A.content, A.thumnail, A.detail, A.price, A.hits "
 
 						 +"from ( "
 
-						 +"select id, title, content, thumnail,detail,price,hits "
+						 +"select key, title, content, thumnail,detail,price,hits "
 
 						 +"from image " 
 
-						 +"order by id desc) A " 
+						 +"order by key desc) A " 
 
 						 +"where rownum <= "+query_endPage+") X " 
 
@@ -140,7 +140,7 @@ public class ImageListDAO {
 				dto.setContent(rs.getString("content"));
 				dto.setDetail(rs.getString("detail"));
 				dto.setHits(rs.getString("hits"));
-				dto.setId(rs.getString("id"));
+				dto.setKey(rs.getString("key"));
 				dto.setPrice(rs.getString("price"));
 				dto.setThumnail(rs.getString("thumnail"));
 				dto.setTitle(rs.getString("title"));			
