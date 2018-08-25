@@ -21,7 +21,6 @@ public class MainImageListCommand implements ImageListCommand{
 		
 		list = dao.imageList(count);
 		
-		request.setAttribute("list", list);		
-		
+		request.setAttribute("list", list);				
 	}
 }

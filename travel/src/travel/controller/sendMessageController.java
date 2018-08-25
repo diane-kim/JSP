@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import travel.sendMessage.command.sendMessageCommand;
 import travel.sendMessage.command.sendMessageInCommand;
 
+import travel.sendMessage.command.subMailInCommand;
+
 
 @WebServlet("*.jhw")
 public class sendMessageController extends HttpServlet {
@@ -51,6 +53,13 @@ public class sendMessageController extends HttpServlet {
 			viewPage = "index.jsp";			
 		}
 		
+		else if(com.equals("/submail.jhw")) {
+			smc = new subMailInCommand();
+			smc.execute(req, res);
+			viewPage = "index.jsp";	
+		}
+		
+			
 		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 		
 		dispatcher.forward(req, res);	

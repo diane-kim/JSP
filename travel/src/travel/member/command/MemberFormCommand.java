@@ -14,7 +14,7 @@ public class MemberFormCommand implements MemberCommand {
 		// TODO Auto-generated method stub
 		int check;
 		String id = request.getParameter("id");
-		int pw = Integer.parseInt(request.getParameter("password"));
+		String pw = request.getParameter("password");
 		String name = request.getParameter("name");
 		int gender = Integer.parseInt(request.getParameter("gender"));
 		String phone = request.getParameter("phone1") +"-"+request.getParameter("phone2") +"-"+ request.getParameter("phone3");	

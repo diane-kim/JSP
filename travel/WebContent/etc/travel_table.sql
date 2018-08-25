@@ -1,6 +1,6 @@
 create table image
 (
-  id NUMBER(38),
+  key NUMBER(38),
   path VARCHAR2(4000),
   title VARCHAR2(4000),
   content VARCHAR2(4000),
@@ -23,7 +23,7 @@ create table subscribe (
 
 create table member ( 
 id VARCHAR2(30) primary key,
-pw number not null,
+pw VARCHAR2(30) not null,
 phone VARCHAR2(50) not null,
 address VARCHAR2(200) not null,
 gender number not null,
@@ -32,11 +32,26 @@ email VARCHAR2(100) not null,
 member_date date default sysdate
 );
 
-create sequence subscribe_seq
-start with 1
-increment by 1
-maxvalue 200;
- 
+
+create table destination(
+key NUMBER,
+latitude VARCHAR2(4000),
+longitude VARCHAR2(4000),
+destinationName VARCHAR2(4000),
+hits VARCHAR2(4000),
+title VARCHAR2(4000),
+content VARCHAR2(4000)
+);
+
+create table destinationImage(
+key NUMBER,
+fileName VARCHAR2(4000)
+);
+
+create sequence destinationImage_SEQ;
+create sequence destination_SEQ;
+create sequence subscribe_seq; 
 create sequence image_SEQ;
+
 
 

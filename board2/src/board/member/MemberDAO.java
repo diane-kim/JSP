@@ -194,6 +194,7 @@ public class MemberDAO {
 		System.out.println("try 밖의 check :" + check);
 		return check;
 	}
+	 
 	
 	public int updateMember(MemberDTO dto) {
 		int ri = 0;

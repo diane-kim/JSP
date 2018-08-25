@@ -52,19 +52,19 @@ public class MemberControll extends HttpServlet {
 
 		/* 회원 관련 */
 		// 회원가입 화면으로 이동
-		if (com.equals("/member/MemberJoin.do")) {
+		if (com.equals("/MemberJoin.do")) {
 			viewPage = "/member/MemberForm.jsp";
 		}
 		// 회원가입 처리
-		else if (com.equals("/member/MemberForm.do")) {
+		else if (com.equals("/MemberForm.do")) {
 			command = new MemberFormCommand();
 			command.execute(request, response);
 			viewPage = "/member/MemberResultForm.jsp";
 		}
-		else if (com.equals("/member/MemberIdCheck.do")) {
+		else if (com.equals("/MemberIdCheck.do")) {
 			command = new MemberIdCheckCommand();
 			command.execute(request, response);	
-			viewPage = "/member/MemberJoin.do";
+			viewPage = "MemberJoin.do";
 		}
 
 		//RequestDispatcher dispatcher = request.getRequestDispatcher( "member/" +viewPage);
