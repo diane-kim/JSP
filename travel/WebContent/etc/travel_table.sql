@@ -53,5 +53,15 @@ create sequence imageList_SEQ;
 create sequence subscribe_seq; 
 create sequence image_SEQ;
 
+insert into SEARCHDATA values(searchdata_seq.nextval, '런던', 'good', 'very good', 0);
+
+insert into IMAGELIST values('런던','런던1.png');
+insert into IMAGELIST values('런던','런던2.png');
+insert into IMAGELIST values('런던','런던3.png');
+insert into IMAGELIST values('런던','런던4.png');
+
+select * from imagelist;
+select * from SEARCHDATA;
+
 
 
