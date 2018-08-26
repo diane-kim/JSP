@@ -11,37 +11,22 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script><!-- JQuery 호출하기 위한 링크 선언 -->
-<script src="<%=request.getContextPath()%>/js/scroll.js" type="text/javascript"></script>
+<%-- <script src="<%=request.getContextPath()%>/js/scroll.js" type="text/javascript"></script> --%>
 <script src="<%=request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/main.js" type="text/javascript"></script>
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/rank.css" />
-<% session.getAttribute("id");
-%>
+<% String id = (String)session.getAttribute("id");%>
 <style>
 body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 .myLink {display: none}
- .font2 {
-	font-family: 'Gaegu', cursive;
-	font-size: 30px;
-}
-.font {
-	font-family: 'Nanum Pen Script', cursive;
-	font-size: 20px;
-}
-#content {
-    width: 100px;
-    position: fixed;
-    bottom: 3%;
-    right: 3%; 
-}
 #_chatimage {
-    position: fixed;
+	position: fixed;
     bottom: 3%;
 	left: 1%;
-	width: 100px;
+	width: 100px; 
 }
 #_chatbox {
     position: fixed;
@@ -49,26 +34,11 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
  	left: 0%; 
 }
 </style>
-</head><body class="w3-light-grey" contenteditable="false">
-<div id="content">			
-            <div id="rank">
-                <ul>
-                    <ol>
-                        <li><a href="#" class="font2">1 하노이</a></li>
-                        <li><a href="#" class="font2">2 도쿄</a></li>
-                        <li><a href="#" class="font2">3 싱가포르</a></li>
-                        <li><a href="#" class="font2">4 LA</a></li>
-                        <li><a href="#" class="font2">5 런던</a></li>
-                        <li><a href="#" class="font2">6 오사카</a></li>
-                        <li><a href="#" class="font2">7 상해</a></li>
-                        <li><a href="#" class="font2">8 평양</a></li>
-                        <li><a href="#" class="font2">9 시드니</a></li>
-                        <li><a href="#" class="font2">10 멜버른</a></li>
-                    </ol>
-                </ul>
-            </div>
-      </div>
-<!-- Navigation Bar -->
+</head>
+<body class="w3-light-grey" contenteditable="false">
+
+
+<jsp:include page="rank.jsp"/>
 
 <div class="w3-bar w3-white w3-border-bottom w3-xlarge">
   <a href="#" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Logo</b></a>
@@ -82,7 +52,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <div class="w3-content" style="max-width:1100px;">
 
   <!-- Good offers -->
-  <div class="w3-container w3-margin-top">
+  <%-- <div class="w3-container w3-margin-top">
     <h3>Good Offers Right Now</h3>
     <h6>Up to <strong>50%</strong> discount.</h6>
   </div>
@@ -123,10 +93,10 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         </div>
       </div>
     </div>
-  </div>
+  </div> --%>
 
   <!-- Explore Nature 리스트를 보여줄 예정 -->
-  <div class="w3-container">
+<%--   <div class="w3-container">
     <h3>Explore Nature</h3>
     <p>Travel with us and see nature at its finest.</p>
   </div>
@@ -140,13 +110,13 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         <h3>${l.title}</h3>
         <p class="w3-opacity">${l.price}</p>
         <p>${l.content}</p>
-        <button class="w3-button w3-margin-bottom" onclick="location.href='<%=request.getContextPath()%>/listView.jsp'">Buy Tickets</button><%-- ${l.key} --%>
+        <button class="w3-button w3-margin-bottom" onclick="location.href='<%=request.getContextPath()%>/listView.jsp'">Buy Tickets</button>${l.key}
       </div>
     </div>
     </c:forEach>
-    </div>   
+    </div>    --%>
 
-   <!-- Newsletter -->
+<%--    <!-- Newsletter -->
   <div class="w3-container">
     <div class="w3-panel w3-padding-16 w3-black w3-opacity w3-card w3-hover-opacity-off">
       <h2>Get the best offers first!</h2>
@@ -157,7 +127,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <button class="w3-button w3-red w3-margin-top" type="submit" >Subscribe</button>
       </form>
     </div>
-  </div>
+  </div> --%>
   
   <!-- 채팅 -->
    <div id="_chatbox" style="display: none">
@@ -186,7 +156,8 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 	
 	 <script>
         var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting'); 
+       /*  var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting');  */
+        var webSocket = new WebSocket('ws://192.168.0.2/travel/broadcasting'); 
         var inputMessage = document.getElementById('inputMessage');
         
     webSocket.onerror = function(event) {
@@ -214,7 +185,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     }
   </script> 
   
-  <!-- Contact -->
+<%--   <!-- Contact -->
   <div class="w3-container">
     <h2>Contact</h2>
     <p>Let us book your next trip!</p>
@@ -227,7 +198,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
       <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required="" name="Message"></p>
       <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
     </form>
-  </div>
+  </div> --%>
   
 <!-- End page content -->
 </div>

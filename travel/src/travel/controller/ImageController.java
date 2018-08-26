@@ -9,29 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import travel.sendMessage.command.sendMessageCommand;
-import travel.sendMessage.command.sendMessageInCommand;
+import travel.image.command.ImageListCommand;
+import travel.image.command.ImageListUploadCommand;
+import travel.image.command.MainImageListCommand;
 
-import travel.sendMessage.command.subMailInCommand;
-
-
-@WebServlet("*.jhw")
-public class sendMessageController extends HttpServlet {
+@WebServlet("*.mjy")
+public class ImageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	   
-    public sendMessageController() {
-        super();
-    
+    public ImageController() {
+        super();    
     }
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+		System.out.println("doGet");
 		actionDo(req,res);
 	
 	}
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+		System.out.println("doPost");
 		actionDo(req,res);
 		
 	}
@@ -40,26 +37,30 @@ public class sendMessageController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		String viewPage = null;
-		sendMessageCommand smc = null;
+		ImageListCommand ilc = null;
 		
 		String uri = req.getRequestURI();
 		String conPath = req.getContextPath();
 		String com = uri.substring(conPath.length());
+				
 		
-		
-		if(com.equals("/insert.jhw")) {
-			smc = new sendMessageInCommand();
-			smc.execute(req, res);
-			viewPage = "index.jsp";			
-		}
-		
-		else if(com.equals("/submail.jhw")) {
-			smc = new subMailInCommand();
-			smc.execute(req, res);
-			viewPage = "index.jsp";	
-		}
-		
+		if(com.equals("/imageUpload.mjy")) {
+			ilc = new ImageListUploadCommand();
+			System.out.println("imageUpload 호출");
+			ilc.execute(req, res);
+			viewPage = "main.jsp";
+		}else if(com.equals("/imageList.mjy")) {
+			/*ilc = new MainImageListCommand();*/
+			System.out.println("imageList 호출");
+			/*ilc.execute(req, res);*/
 			
+			viewPage = "main.jsp";			
+		}/*else if(com.equals("/destinationImage.mjy")) {
+			ilc = new SearchViewMainCommand();
+			System.out.println("destinationImage 호출");
+			ilc.execute(req, res);
+			viewPage = "/destinationImage/searchView.jsp";
+		}*/
 		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 		
 		dispatcher.forward(req, res);	

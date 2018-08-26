@@ -11,7 +11,7 @@
 		
 	MemberDAO dao = MemberDAO.getInstance();
 	MemberDTO dto = dao.getMember(id);
-	int checkNum = dao.userCheck(dto, pwd);
+	int checkNum = dao.userCheck(dto, pwd); 
 	
 	dao.getMember(pwd);		
 

@@ -33,23 +33,23 @@ member_date date default sysdate
 );
 
 
-create table destination(
+create table searchData(
 key NUMBER,
-latitude VARCHAR2(4000),
-longitude VARCHAR2(4000),
-destinationName VARCHAR2(4000),
-hits VARCHAR2(4000),
+fromName VARCHAR2(4000),
+toName VARCHAR2(4000),
 title VARCHAR2(4000),
-content VARCHAR2(4000)
+content VARCHAR2(4000),
+hits NUMBER
 );
 
-create table destinationImage(
-key NUMBER,
-fileName VARCHAR2(4000)
+create table imageList(
+toName VARCHAR2(4000),
+imageName VARCHAR2(4000)
 );
 
-create sequence destinationImage_SEQ;
-create sequence destination_SEQ;
+create sequence searchData_SEQ;
+create sequence imageList_SEQ;
+
 create sequence subscribe_seq; 
 create sequence image_SEQ;
 
