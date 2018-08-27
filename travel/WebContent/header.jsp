@@ -62,6 +62,8 @@ body, h1, h2, h3, h4, h5, h6 {
 					<input type="hidden" id="fromLongitude" name="fromLongitude"> 
 					<input type="hidden" id="toLatitude" name="toLatitude">
 					<input type="hidden" id="toLongitude" name="toLongitude">
+					<input type="hidden" id="toCountryCode" name="toCountryCode">
+					<input type="hidden" id="fromCountryCode" name="fromCountryCode">
 				</form>
 
 			</div>

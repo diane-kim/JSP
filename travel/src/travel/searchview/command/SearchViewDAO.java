@@ -43,7 +43,6 @@ public class SearchViewDAO {
 				dto.setTitle(rs.getString("title"));
 				dto.setContent(rs.getString("content"));
 			}
-
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {

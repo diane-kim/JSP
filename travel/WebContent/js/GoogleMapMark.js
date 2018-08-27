@@ -75,7 +75,7 @@ function createMap(fromName, toName, fromLatitude, toLatitude, fromLongitude, to
 			addMarker();
 		}
 		addPolyline();
-	}
+	}	
 	// 마커 간에 경로 긋기
 	function addPolyline() {
 

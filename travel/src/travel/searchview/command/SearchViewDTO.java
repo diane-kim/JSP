@@ -13,8 +13,22 @@ public class SearchViewDTO {
 	String fileName;	
 	String fromName; 
 	String toName;
+	String toCountryCode;
+	String fromCountryCode;
 	
 	
+	public String getToCountryCode() {
+		return toCountryCode;
+	}
+	public void setToCountryCode(String toCountryCode) {
+		this.toCountryCode = toCountryCode;
+	}
+	public String getFromCountryCode() {
+		return fromCountryCode;
+	}
+	public void setFromCountryCode(String fromCountryCode) {
+		this.fromCountryCode = fromCountryCode;
+	}
 	public int getHits() {
 		return hits;
 	}

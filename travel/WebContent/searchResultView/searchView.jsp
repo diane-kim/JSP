@@ -34,6 +34,8 @@
 			<span class="dot" onclick="currentSlide(${l.count})"></span>
 		</c:forEach>
 	</div>
+	
+	
 
 	<script>
 var slideIndex = 1;

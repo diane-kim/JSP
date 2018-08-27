@@ -19,18 +19,16 @@
 <div class="w3-display-container" style="margin-bottom:50px">
   <img src="<%=request.getContextPath()%>/w3images/beach3.jpg" style="width:100%">
   <div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
-  <h2><b>4 Good Reasons<br>For travelling with us</b></h2>
+  <h2><b>${dto.title}<br>${dto.content}</b></h2>
 </div>
 </div>
 
 <div class="w3-row w3-container" style="margin:50px 0">
 <div class="w3-half w3-container">
   <div class="w3-topbar w3-border-amber">
-  <div id="map" style="width:800px;height:600px;margin-top:20px;"></div>
+  <div id="map" style="width:100%;height:400px;"></div>
   </div>
 </div>
-
-
 
 
 <div class="w3-half w3-container">
@@ -39,7 +37,7 @@
 		<c:forEach var="l" items="${list}">
 			<div class="mySlides fade">
 				<div class="numbertext">${l.count}/ ${list.size()}</div>
-				<img src="<%=request.getContextPath()%>/img/${l.fileName}" style="width: 100%">
+				<img src="<%=request.getContextPath()%>/img/${l.fileName}" style="width: 100%;height:400px;">
 			</div>
 		</c:forEach>
 
