@@ -47,10 +47,9 @@ public class SearchViewController extends HttpServlet {
 			svc = new SearchViewMainCommand();
 			System.out.println("searchResultView 호출");
 			svc.execute(req, res);
-			viewPage = "searchResultView/test.jsp";
+			viewPage = "searchResultView/searchView.jsp";
 		}
-		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
-		
+		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);		
 		dispatcher.forward(req, res);	
 	}
 }

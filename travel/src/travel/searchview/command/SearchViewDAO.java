@@ -32,7 +32,7 @@ public class SearchViewDAO {
 	
 	public SearchViewDTO getDestinationContents(SearchViewDTO dto) {
 
-		String sql = "select title, content from searchData where toName = '" + dto.getToName() + "'";
+		String sql = "select title, content from searchData where countryCode = '" + dto.getToCountryCode() + "'";
 		
 		try {
 			conn = dataSource.getConnection();
@@ -60,7 +60,7 @@ public class SearchViewDAO {
 	
 	public List<SearchViewDTO> getDestinationFileName(SearchViewDTO dto){	
 		
-		String sql = "select imageName from imageList where toName = '"+ dto.getToName() + "'";
+		String sql = "select imageName from imageList where countryCode = '"+ dto.getToCountryCode() + "'";
 		
 		int i = 1;
 		

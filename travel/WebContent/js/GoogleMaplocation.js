@@ -34,8 +34,7 @@ $(function() {
 			geocoder.geocode({ 'address' : addressArray[i] }, (function(i) { return function(results, status) {
 				if (status == google.maps.GeocoderStatus.OK) {
 					
-					results[0].geometry.location;
-					
+					results[0].geometry.location;					
 					
 					for (var j=0; j<results[0].address_components.length; j++) {
 			            for (var b=0;b<results[0].address_components[j].types.length; b++) {

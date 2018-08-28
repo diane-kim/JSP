@@ -20,14 +20,14 @@ public class SearchViewMainCommand implements SearchViewCommand{
 		dto.setToLatitude(request.getParameter("toLatitude"));
 		dto.setToLongitude(request.getParameter("toLongitude"));
 		dto.setFromName(request.getParameter("fromName"));
-		dto.setToName(request.getParameter("toName"));	
-		dto.setToCountryCode(request.getParameter("toCountryCode"));	
-		dto.setFromCountryCode(request.getParameter("fromCountryCode"));			
+		dto.setToName(request.getParameter("toName"));				
+		dto.setFromCountryCode(request.getParameter("fromCountryCode"));		
+		dto.setToCountryCode(request.getParameter("toCountryCode"));
 
 		System.out.println("출발지 : " + dto.getFromName()+ ", 도착지 : " + dto.getToName());
 		System.out.println("출발지 위도 : " + dto.getFromLatitude()+", 출발지 경도 : " + dto.getFromLongitude());
 		System.out.println("도착지 위도 : " + dto.getToLatitude() +", 도착지 경도 : " + dto.getToLongitude());
-		System.out.println(dto.getToCountryCode() + " " + dto.getFromCountryCode());
+		System.out.println("출발지 국가 코드"+ dto.getFromCountryCode() + ", 도착지 국가 코드 " + dto.getToCountryCode());
 
 		HttpSession session=request.getSession();
 
@@ -61,7 +61,6 @@ public class SearchViewMainCommand implements SearchViewCommand{
 		list = dao.getDestinationFileName(dto); //파일 이름을 가져옴
 
 		System.out.println(dto.getContent() + " : " + dto.getTitle());
-		System.out.println(list.size());
 
 		request.setAttribute("list", list);
 		request.setAttribute("dto", dto);

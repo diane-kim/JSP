@@ -100,8 +100,6 @@ public class SearchViewDTO {
 	}
 	public void setToName(String toName) {
 		this.toName = toName;
-	} 	
-	
-	
+	}	
 
 }

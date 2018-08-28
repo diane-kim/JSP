@@ -1,25 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/searchView.css" />
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs&sensor=false"></script>
-    <script type="text/javascript" src="<%=request.getContextPath()%>/js/GoogleMapMark.js"></script>
-<head>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs&sensor=false"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/GoogleMapMark.js"></script>
+
+<head><title>여행검색</title>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/searchView.css" />
 </head>
 <body>
 <script>createMap('${dto.fromName}','${dto.toName}',${dto.fromLatitude},${dto.toLatitude},${dto.fromLongitude},${dto.toLongitude}) </script>
-<div id="map" style="width:800px;height:600px;margin-top:20px;"></div>
 
-	<div class="slideshow-container">
+<div class="w3-display-container" style="margin-bottom:50px">
+  <img src="<%=request.getContextPath()%>/w3images/beach3.jpg" style="width:100%">
+  <div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
+  <h2><b>${dto.title}<br>${dto.content}</b></h2>
+</div>
+</div>
+
+<div class="w3-row w3-container" style="margin:50px 0">
+<div class="w3-half w3-container">
+  <div class="w3-topbar w3-border-amber">
+  <div id="map" style="width:100%;height:400px;"></div>
+  </div>
+</div>
+
+
+<div class="w3-half w3-container">
+  <div class="w3-topbar w3-border-amber">
+    	<div class="slideshow-container">
 		<c:forEach var="l" items="${list}">
 			<div class="mySlides fade">
 				<div class="numbertext">${l.count}/ ${list.size()}</div>
-				<img src="<%=request.getContextPath()%>/img/${l.fileName}" style="width: 100%">
+				<img src="<%=request.getContextPath()%>/img/${l.fileName}" style="width: 100%;height:400px;">
 			</div>
 		</c:forEach>
 
@@ -34,10 +52,11 @@
 			<span class="dot" onclick="currentSlide(${l.count})"></span>
 		</c:forEach>
 	</div>
-	
-	
+  </div>
+</div>
+</div>
 
-	<script>
+<script>
 var slideIndex = 1;
 showSlides(slideIndex);
 
@@ -65,5 +84,5 @@ function showSlides(n) {
   dots[slideIndex-1].className += " active";
 }
 </script>
-</body>
-</html>
+
+</body></html>
