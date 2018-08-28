@@ -26,7 +26,6 @@ public class test {
 			while(true){
 				// parsing할 url 지정(API 키 포함해서)
 				String url = "http://openapi.airport.co.kr/service/rest/FlightStatusList/getFlightStatusList?ServiceKey=dRWo2wKq2B%2FKrt7Y7XfVsQkh5Kd5K%2BblTUQR2rCFXPVLNO5ThHE%2BTgha3kfg4eAJP76aeHgLQqQOaSsj%2BC%2BKeg%3D%3D&schStTime="+date+"&schEdTime="+1800+"&schLineType=I&schIOType=I&schAirCode="+"TAE"+"&pageNo="+page;
-
 				
 				DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 				DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
