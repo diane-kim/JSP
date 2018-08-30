@@ -30,6 +30,7 @@
 				getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());
 		});
 	});
+	
 	function getAirLine(from , to , date) {
 		alert(from + to + date);
 		$.ajax({
