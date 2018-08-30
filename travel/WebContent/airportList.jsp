@@ -9,18 +9,19 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/rank.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/main.js" type="text/javascript"></script>
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/login.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/rank.css" />
+<css src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 <% String id = (String)session.getAttribute("id");%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
 		$("#btn").click(function() {
-			alert("aaaa");
 			getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());
 		});
 
@@ -32,36 +33,41 @@
 	});
 	
 	function getAirLine(from , to , date) {
-		alert(from + to + date);
 		$.ajax({
-				url : "https://api.flightstats.com/flex/schedules/rest/v1/json/from/"+from+"/to/"+to+"/departing/"+date+"?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590",
+				url : "https://api.flightstats.com/flex/schedules/rest/v1/json/from/"+from+"/to/"+to+"/departing/"+date+"?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590&extendedOptions=languageCode:ko",
 				success : function(datas) {
-					console.log(datas);
-					var airlines;
-					var innerHtml = "<table border='1' style='width:1000px;'><th>No</th><th>출발지</th><th>출발시간</th>"
-							+ "<th>도착지</th><th>도착시간</th><th>항공기종</th><th>항공사</th>";					
+					alert(from+to+date);
+					var dataSet = [];
 					
 					for (var i = 0; i < datas.scheduledFlights.length; i++) {
-						console.log(datas.appendix.airlines.length);
 						for(var j = 0 ; j < datas.appendix.airlines.length ; j++){
-							console.log(datas.scheduledFlights[i].carrierFsCode);
-							console.log(datas.appendix.airlines[j].fs);
 				        	if(datas.scheduledFlights[i].carrierFsCode == datas.appendix.airlines[j].fs){
 				        		airlines = datas.appendix.airlines[j].name;
 							}
 				        } 
-						innerHtml += "<tr><td>" + i
-								+ "</td><td>" + datas.scheduledFlights[i].departureAirportFsCode
-								+ "</td><td>" + datas.scheduledFlights[i].departureTime.substring(11,16)
-						        + "</td><td>" + datas.scheduledFlights[i].arrivalAirportFsCode
-						        + "</td><td>" + datas.scheduledFlights[i].arrivalTime.substring(11,16)
-						        + "</td><td>" + datas.scheduledFlights[i].carrierFsCode + datas.scheduledFlights[i].flightNumber
-	 					        + "</td><td>" + airlines
-								+ "</td></tr>";
+						var dataArr = [];
+						dataArr.push(datas.scheduledFlights[i].departureAirportFsCode);
+						dataArr.push(datas.scheduledFlights[i].departureTime.substring(11,16))
+						dataArr.push(datas.scheduledFlights[i].arrivalAirportFsCode)
+						dataArr.push(datas.scheduledFlights[i].arrivalTime.substring(11,16))
+						dataArr.push(datas.scheduledFlights[i].carrierFsCode + datas.scheduledFlights[i].flightNumber)
+	 					dataArr.push(airlines);
+						dataSet.push(dataArr);
 					}
-					innerHtml += "</table>";
-					$("#txtHint").html(innerHtml);
-			   }
+					console.log(dataSet);
+					$('#realTime').DataTable({
+				        data: dataSet,
+				        columns: [
+				            { title: "From" },
+				            { title: "Depart.Time" },
+				            { title: "To" },
+				            { title: "Arrial.Time" },
+				            { title: "AirLine" },
+				            { title: "AirCode" }
+
+						]
+					});
+				}
 			});
 	}
 </script>
@@ -73,11 +79,6 @@
 }
 #btn {
 	width:100px;
-} 
-tr.b {
-	border-bottom: 1px solid lightgrey;
-	color: grey; 
-	height: 50px
 } 
 </style>
 </head>
@@ -100,7 +101,7 @@ tr.b {
 			<button id="btn">검색</button>
 		</div>
 		
-		<div id="txtHint"></div>
+		<table id="realTime" class="display" width="100%"></table>
 	</div>
 </body>
 </html>
