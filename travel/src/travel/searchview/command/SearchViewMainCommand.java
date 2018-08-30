@@ -61,6 +61,15 @@ public class SearchViewMainCommand implements SearchViewCommand{
 		list = dao.getDestinationFileName(dto); //파일 이름을 가져옴
 
 		System.out.println(dto.getContent() + " : " + dto.getTitle());
+		
+		System.out.println(list.size());
+		
+		
+		if(list.size() == 0) {
+			list.add(new SearchViewDTO());
+			list.get(0).setFileName("ready.gif");
+			//list.get(1).setFileName("ready.gif");
+		}
 
 		request.setAttribute("list", list);
 		request.setAttribute("dto", dto);

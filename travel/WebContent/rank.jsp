@@ -19,8 +19,8 @@
 #content {
     width: 100px;
     position: fixed;
-    top: 2%;
-    right: 5%; 
+    top: 7%;
+    right: 2%; 
 }
 </style>
 </head>

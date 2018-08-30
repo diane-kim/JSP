@@ -87,6 +87,23 @@ body, html {height: 100%}
     background-size: cover;
 }
 
+
+.bgimg1 {
+    background-image: url('../w3images/hosu.jpg'); /* subscribe 배경화면 부분  */
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+
+.bgimg2 {
+    background-image: url('../w3images/sea.jpg'); /* contact 배경화면부분  */
+    min-height: 100%;
+    background-position: center;
+    background-size: cover;
+}
+
+
 /* The Close Button (x) */
 .close {
     position: absolute;

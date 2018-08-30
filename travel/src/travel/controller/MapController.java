@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import travel.image.command.ImageListUploadCommand;
 import travel.map.command.MapCommand;
 import travel.map.command.MapMarkCommand;
-
-
 
 
 @WebServlet("*.map")

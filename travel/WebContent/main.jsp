@@ -40,10 +40,12 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 <jsp:include page="rank.jsp"/>
 
-<div class="w3-bar w3-white w3-border-bottom w3-xlarge">
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge " >
   <a href="#" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Logo</b></a>
   <button class="w3-bar-item w3-button w3-text-red w3-hover-red" onclick="document.getElementById('id01').style.display='block'">Login</button>
-  <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>
+  <a href="#" class="w3-bar-item w3-button w3-right w3-hover-red w3-text-grey"><i class="fa fa-search"></i></a>  
+  <button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id02').style.display='block'">Subscribe</button>
+  <button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id03').style.display='block'">Contact</button>
 </div>
 <jsp:include page="member/loginform.jsp"/>
 <jsp:include page="header.jsp"/>
@@ -51,83 +53,6 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 <!-- Page content -->
 <div class="w3-content" style="max-width:1100px;">
 
-  <!-- Good offers -->
-  <%-- <div class="w3-container w3-margin-top">
-    <h3>Good Offers Right Now</h3>
-    <h6>Up to <strong>50%</strong> discount.</h6>
-  </div>
-  <div class="w3-row-padding w3-text-white w3-large">
-    <div class="w3-half w3-margin-bottom">
-      <div class="w3-display-container">
-        <img src="<%=request.getContextPath()%>/w3images/vally.jpg" alt="Cinque Terre" style="width:100%">
-        <span class="w3-display-bottomleft w3-padding">Cinque Terre</span>
-      </div>
-    </div>
-    <div class="w3-half">
-      <div class="w3-row-padding" style="margin:0 -16px">
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-display-container">
-            <img src="<%=request.getContextPath()%>/w3images/Liberty.jpg" alt="New York" style="width:100%">
-            <span class="w3-display-bottomleft w3-padding">New York</span>
-          </div>
-        </div>
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-display-container">
-            <img src="<%=request.getContextPath()%>/w3images/bridge.jpg" alt="San Francisco" style="width:100%">
-            <span class="w3-display-bottomleft w3-padding">San Francisco</span>
-          </div>
-        </div>
-      </div>
-      <div class="w3-row-padding" style="margin:0 -16px">
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-display-container">
-            <img src="<%=request.getContextPath()%>/w3images/top.jpg" alt="Pisa" style="width:100%">
-            <span class="w3-display-bottomleft w3-padding">Pisa</span>
-          </div>
-        </div>
-        <div class="w3-half w3-margin-bottom">
-          <div class="w3-display-container">
-            <img src="<%=request.getContextPath()%>/w3images/tower.jpg" alt="Paris" style="width:100%">
-            <span class="w3-display-bottomleft w3-padding">Paris</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div> --%>
-
-  <!-- Explore Nature 리스트를 보여줄 예정 -->
-<%--   <div class="w3-container">
-    <h3>Explore Nature</h3>
-    <p>Travel with us and see nature at its finest.</p>
-  </div>
-  
-  
-  <div class="w3-row-padding">
-  <c:forEach var="l" items="${list}">
-    <div class="w3-half w3-margin-bottom">
-      <img src="<%=request.getContextPath()%>/Imagelist/${l.thumnail}" alt="Norway" style="width:100%">
-      <div class="w3-container w3-white">
-        <h3>${l.title}</h3>
-        <p class="w3-opacity">${l.price}</p>
-        <p>${l.content}</p>
-        <button class="w3-button w3-margin-bottom" onclick="location.href='<%=request.getContextPath()%>/listView.jsp'">Buy Tickets</button>${l.key}
-      </div>
-    </div>
-    </c:forEach>
-    </div>    --%>
-
-<%--    <!-- Newsletter -->
-  <div class="w3-container">
-    <div class="w3-panel w3-padding-16 w3-black w3-opacity w3-card w3-hover-opacity-off">
-      <h2>Get the best offers first!</h2>
-      <p>Join our newsletter.</p>
-      <label>E-mail</label>
-      <form action="<%=request.getContextPath()%>/submail.jhw" target="_blank"> 
-      <input class="w3-input w3-border" type="text" placeholder="Your Email address" name="Submail">
-      <button class="w3-button w3-red w3-margin-top" type="submit" >Subscribe</button>
-      </form>
-    </div>
-  </div> --%>
   
   <!-- 채팅 -->
    <div id="_chatbox" style="display: none">

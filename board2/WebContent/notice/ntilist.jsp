@@ -52,6 +52,7 @@ a {
 
 tr.b {
 	border-bottom: 1px solid lightgrey;
+	
 }
 </style>
 </head>
