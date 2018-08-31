@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -17,7 +18,7 @@ public class MemberDAO {
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 	MemberDTO dto = null;
-	ArrayList<MemberDTO> dtos = null;
+	List<MemberDTO> dtos = null;
 
 	// 커넥션 풀 사용
 	public MemberDAO() {
@@ -93,7 +94,7 @@ public class MemberDAO {
 	}
 	
 	
-public int getMember(String id) {
+	public int getMember(String id) {
 		
 		int check =0;
 		
@@ -173,5 +174,34 @@ public int getMember(String id) {
 		}
 		return ri;
 	}
+	
+	public MemberDTO getMemberInfo(String id){
 
+		
+		String sql = "SELECT name,email,phone FROM member WHERE id = ?";
+		
+		try {			
+
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			
+			if (rs.next()) {
+				dto.setName(rs.getString("name"));
+				dto.setEmail(rs.getString("email"));
+				dto.setPhone(rs.getString("phone"));
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}		
+
+		return dto;		
+	}
 }
