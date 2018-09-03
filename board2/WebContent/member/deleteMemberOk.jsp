@@ -11,7 +11,8 @@
 		
 	MemberDAO dao = MemberDAO.getInstance();
 	MemberDTO dto = dao.getMember(id);
-	int checkNum = dao.userCheck(dto, pwd); 
+	String ip=null; // ip 받아오면됨.
+	int checkNum = dao.userCheck(dto, pwd,ip); 
 	
 	dao.getMember(pwd);		
 

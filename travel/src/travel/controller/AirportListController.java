@@ -39,6 +39,13 @@ public class AirportListController extends HttpServlet {
 		String conPath = request.getContextPath();
 		String com = uri.substring(conPath.length());
 		
+/*		System.out.println(request.getParameter("departureAirportFsCode"));
+		System.out.println(request.getParameter("departureTime"));
+		System.out.println(request.getParameter("arrivalAirportFsCode"));
+		System.out.println(request.getParameter("arrivalTime"));
+		System.out.println(request.getParameter("carrierFsCode"));*/
+		System.out.println(request.getParameter("param"));
+		
 		if (com.equals("/AirportList.al")) {
 			System.out.println("AirportList 호출");
 			alc = new AirportListMainCommand();

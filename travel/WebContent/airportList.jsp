@@ -25,6 +25,7 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/rank.css">
 <css src="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
 
+
 <% String id = (String)session.getAttribute("id");%>
 
 <style>
@@ -49,18 +50,26 @@
 </div>
 	<jsp:include page="member/loginform.jsp" />
 	<div class="centered">	
+		
 	
 		<h3>실시간 운항 정보</h3>
 		
 		<div>
-			출발공항: <input class="dia_bt3" id="txt1" value="${from}"/> 
-			도착공항: <input class="dia_bt4" id="txt2" value="${to}"/>
-			출발날짜: <input id="txt3" value="${fromdate}" />
+			출발공항: <input class="dia_bt3" id="txt1" value="GMP"<%-- value="${from}" --%>/> 
+			도착공항: <input class="dia_bt4" id="txt2" value="HND"<%-- value="${to}" --%>/>
+			출발날짜: <input id="txt3" value="2018/09/03"<%-- value="${date}" --%> />
 			<button id="btn">검색</button>
 		</div>
 		
+		<form action="AirportList.al">
 		<table id="realTime" class="display" width="100%"></table>
 		
+		<input type="hidden" name="param"/>
+<!-- 		<input type="hidden" name="departureTime"/>
+		<input type="hidden" name="arrivalAirportFsCode"/>
+		<input type="hidden" name="arrivalTime"/>
+		<input type="hidden" name="carrierFsCode"/> -->
+		</form>
 	</div>      
 </body>
 </html>

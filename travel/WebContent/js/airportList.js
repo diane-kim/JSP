@@ -11,6 +11,7 @@ $(document).ready(function() {
 	});
 	
 	function getAirLine(from , to , date) {
+		var price;
 		
 		console.log(from + to + date);
 		$.ajax({
@@ -27,18 +28,35 @@ $(document).ready(function() {
 							}
 				        } 
 						var dataArr = [];
-						dataArr.push(datas.scheduledFlights[i].departureAirportFsCode);
-						dataArr.push(datas.scheduledFlights[i].departureTime.substring(11,16))
-						dataArr.push(datas.scheduledFlights[i].arrivalAirportFsCode)
-						dataArr.push(datas.scheduledFlights[i].arrivalTime.substring(11,16))
-						dataArr.push(datas.scheduledFlights[i].carrierFsCode + datas.scheduledFlights[i].flightNumber)
-	 					dataArr.push(airlines);		 /*
-						dataArr.push("<img src='../img/스페인2.jpg'/>"); */
-						dataArr.push("<img src='../img/스페인2.jpg'/>");						
-						dataSet.push(dataArr);
+						//임의대로 가격 설정부분.
+						price = Math.floor(Math.random() * 10000)+100;
+						price = price.toString().substring(0,3);
+						price = price + ",000";
 						
+						dataArr.push(datas.scheduledFlights[i].departureAirportFsCode);
+						dataArr.push(datas.scheduledFlights[i].departureTime.substring(11,16));
+						dataArr.push(datas.scheduledFlights[i].arrivalAirportFsCode);
+						dataArr.push(datas.scheduledFlights[i].arrivalTime.substring(11,16));
+						dataArr.push(datas.scheduledFlights[i].carrierFsCode + datas.scheduledFlights[i].flightNumber);
+	 					dataArr.push(airlines);		 
+	 					/* dataArr.push("<img src='../img/스페인2.jpg'/>"); */
+						dataArr.push(price);	
+						dataArr.push("<button type='submit' >예약</button>"); 
+						dataArr.push("<input type='hidden' name='param' value='departureAirportFsCode=dataArr[0]&departureTime=dataArr[1]'");
+						console.log(dataArr[1]);
+						
+						//console.log($("input[name=departureAirportFsCode]").val(dataArr[0]));	
+						console.log($("input[name=departureTime]").val(dataArr[1]));	
+						$("input[name=arrivalAirportFsCode]").val(dataArr[2]);	
+						$("input[name=arrivalTime]").val(dataArr[3]);	
+						$("input[name=carrierFsCode]").val(dataArr[4]);	
+						
+						
+						console.log(dataArr);
+						dataSet.push(dataArr);		
 					}
-					console.log(dataSet);
+					
+					/*console.log(dataSet);*/
 					$('#realTime').DataTable({
 						destroy: true,
 				        data: dataSet,
@@ -50,6 +68,7 @@ $(document).ready(function() {
 				            { title: "AirLine" },
 				            { title: "AirCode" },
 				            { title: "price" }, 
+				            { title: "예약" }
 						]
 					});					
 				}

@@ -15,5 +15,4 @@ google.maps.event.addListener(autocomplete, 'place_changed', function() {
       }
     }
   }
-
 });
