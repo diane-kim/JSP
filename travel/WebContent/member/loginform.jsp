@@ -9,7 +9,7 @@
 <body>
 	<div id="id01" class="modal">
 
-		<form class="modal-content animate w3-border w3-hover-border-red" action="/action_page.php">
+		<form class="modal-content animate w3-border w3-hover-border-red" action="<%=request.getContextPath()%>/member/loginOk.jsp">
 			<div
 				class="bgimg w3-display-container w3-animate-opacity w3-text-white">
 				<span onclick="document.getElementById('id01').style.display='none'"
@@ -17,9 +17,9 @@
 
 				<div class="w3-display-middle">
 					<label for="uname" class="w3-jumbo w3-animate-top"><b>Username</b></label>
-					<input type="text" placeholder="Enter Username" name="uname"
+					<input type="text" placeholder="Enter Username" name="id"
 						required> <label for="psw" class="w3-jumbo w3-animate-top"><b>Password</b></label>
-					<input type="password" placeholder="Enter Password" name="psw"
+					<input type="password" placeholder="Enter Password" name="pwd"
 						required>
 
 					<button type="submit"><b>Login</b></button>

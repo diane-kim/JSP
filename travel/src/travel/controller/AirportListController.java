@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import travel.airportList.command.AirportListCommand;
 import travel.airportList.command.AirportListMainCommand;
+import travel.airportList.command.AirportListReservationCommand;
 
 @WebServlet("*.al")
 public class AirportListController extends HttpServlet {
@@ -37,18 +38,16 @@ public class AirportListController extends HttpServlet {
 		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
-		String com = uri.substring(conPath.length());
-		
-/*		System.out.println(request.getParameter("departureAirportFsCode"));
-		System.out.println(request.getParameter("departureTime"));
-		System.out.println(request.getParameter("arrivalAirportFsCode"));
-		System.out.println(request.getParameter("arrivalTime"));
-		System.out.println(request.getParameter("carrierFsCode"));*/
-		System.out.println(request.getParameter("param"));
+		String com = uri.substring(conPath.length());			
 		
 		if (com.equals("/AirportList.al")) {
-			System.out.println("AirportList 호출");
+			System.out.println("AirportList 호출");			
 			alc = new AirportListMainCommand();
+			alc.execute(request, response);
+			viewPage = "/airportList.jsp";
+		}else if (com.equals("/AirportReservation.al")) {
+			System.out.println("AirportReservation 호출");			
+			alc = new AirportListReservationCommand();
 			alc.execute(request, response);
 			viewPage = "/airportList.jsp";
 		}

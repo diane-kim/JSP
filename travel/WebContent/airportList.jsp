@@ -37,6 +37,9 @@
 #btn {
 	width:100px;
 } 
+#btn2 {
+	width:100px;
+} 
 </style>
 </head>
 <body>
@@ -55,21 +58,35 @@
 		<h3>실시간 운항 정보</h3>
 		
 		<div>
-			출발공항: <input class="dia_bt3" id="txt1" value="GMP"<%-- value="${from}" --%>/> 
-			도착공항: <input class="dia_bt4" id="txt2" value="HND"<%-- value="${to}" --%>/>
-			출발날짜: <input id="txt3" value="2018/09/03"<%-- value="${date}" --%> />
-			<button id="btn">검색</button>
+			출발공항: <input class="dia_bt3" id="txt1" value="${from}" size="10"/> 
+			도착공항: <input class="dia_bt4" id="txt2" value="${to}" size="10"/>
+			출발날짜: <input id="txt3" value="${fromdate}" size="10"/>
+			<button id="btn" style="width:10%px; height:15%px;">검색</button>
+			<button id="btn2" style="width:10%px; height:15%px;" >변경</button>
 		</div>
 		
-		<form action="AirportList.al">
-		<table id="realTime" class="display" width="100%"></table>
+		<script>
+		$("#btn2").click(function swap_content(){
+			var tmp = document.getElementById('txt1').value;
+			document.getElementById('txt1').value = document.getElementById('txt2').value;
+			document.getElementById('txt2').value = tmp;
+		});
+
+		$("#btn").click(function check() {
+			if (!$("#txt1").val()) {
+				alert("출발공항을 입력해 주세요.");
+				return false; 
+			}else if(!$("#txt2").val()){
+				alert("도착공항을 입력해 주세요.");
+				return false; 
+			}else if(!$("#txt3").val()){
+				alert("날짜를 입력해 주세요.");
+				return false; 
+			}
+		}); 
+		</script>
 		
-		<input type="hidden" name="param"/>
-<!-- 		<input type="hidden" name="departureTime"/>
-		<input type="hidden" name="arrivalAirportFsCode"/>
-		<input type="hidden" name="arrivalTime"/>
-		<input type="hidden" name="carrierFsCode"/> -->
-		</form>
+		<table id="realTime" class="display" width="100%"></table>		
 	</div>      
 </body>
 </html>

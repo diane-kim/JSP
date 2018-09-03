@@ -176,19 +176,22 @@ public class MemberDAO {
 	}
 	
 	public MemberDTO getMemberInfo(String id){
-
 		
-		String sql = "SELECT name,email,phone FROM member WHERE id = ?";
+		String sql = "SELECT name, email, phone FROM member WHERE id = ?";
 		
 		try {			
 
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
 			if (rs.next()) {
+				dto = new MemberDTO();
 				dto.setName(rs.getString("name"));
 				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getString("phone"));
+				dto.setPhone(rs.getString("phone"));				
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
