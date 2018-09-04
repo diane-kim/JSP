@@ -23,9 +23,9 @@ $('html').click(function(e) {
 // 달력 UI
 $(function() {
     $(".testDatepicker" ).datepicker({
-    	showOn: "both", 
+/*    	showOn: "both", 
     	 buttonImage: "button.png", 
-         buttonImageOnly: true ,
+         buttonImageOnly: true ,*/
     	dateFormat : "yy/mm/dd",
     	dayNames : ['월요일','화요일','수요일','목요일','금요일','토요일','일요일'],
     	dayNamesMin: ['월', '화', '수', '목', '금', '토', '일'], 

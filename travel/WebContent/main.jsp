@@ -79,7 +79,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
     });
 	</script> 
 	
-	 <script>
+	 <%-- <script>
         var textarea = document.getElementById("messageWindow");
        /*  var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting');  */
         var webSocket = new WebSocket('ws://192.168.0.73/travel/broadcasting'); 
@@ -108,7 +108,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
         webSocket.send("<%=session.getAttribute("id")%>" +" : "+inputMessage.value);
         inputMessage.value = "";
     }
-  </script> 
+  </script>  --%>
   
 <%--   <!-- Contact -->
   <div class="w3-container">

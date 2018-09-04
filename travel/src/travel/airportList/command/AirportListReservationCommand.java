@@ -12,32 +12,31 @@ public class AirportListReservationCommand implements AirportListCommand{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-
+		
 		MemberDAO dao = new MemberDAO();
 		MemberDTO dto = new MemberDTO();
 		
 		HttpSession session=request.getSession();
 		
 		String id = (String) session.getAttribute("id");
-		
-		String from = request.getParameter("from");
-		String to = request.getParameter("to");
-		String num =  request.getParameter("num");
+		String from = request.getParameter("from"); 		//항공 출발위치 
+		String to = request.getParameter("to");		//항공 도착위치
+		int num = Integer.parseInt(request.getParameter("num"));
 		String seat =  request.getParameter("seat");
 		String fromdate =  request.getParameter("fromdate");
 		String todate =  request.getParameter("todate");
-		String dafc = request.getParameter("departureAirportFsCode"); 
-		String dt = request.getParameter("departureTime");
-		String aafc = request.getParameter("arrivalAirportFsCode");
+		String dt = request.getParameter("departureTime");	
 		String at = request.getParameter("arrivalTime");
 		String al = request.getParameter("airLine");
 		String ac = request.getParameter("airCode");
-		String price = request.getParameter("price");
+		int price = Integer.parseInt(request.getParameter("price"));
+		int TotalPrice = num * price; 
+		
+		String PriceStr = String.format("%,d", price);		
+		String TotalPriceStr = String.format("%,d", TotalPrice);
 		
 		System.out.println(num + " " + seat + " " + fromdate + " " + todate + " " + to + " "+ from);
-		System.out.println(dafc + " " + dt + " " + aafc + " " + at + " " + al + " "+ ac + " " + price);
 		
-
 		System.out.println("접속한 ID : "+ id); 
 		int check = 0;
 		if(id == null) {
@@ -54,15 +53,13 @@ public class AirportListReservationCommand implements AirportListCommand{
 		request.setAttribute("todate", todate);	
 		request.setAttribute("from", from);	
 		request.setAttribute("to", to);			
-		////////////////////////////////////////////////////////////////
-		request.setAttribute("dafc", dafc);	//출발지에 대한 iata ex)GMP
+		////////////////////////////////////////////////////////////////	
 		request.setAttribute("dt", dt);		//출발시간
-		request.setAttribute("aafc", aafc);	//도착지에 대한 iata ex)HND
 		request.setAttribute("at", at);		//도착시간
 		request.setAttribute("al", al);		//항공사 비행기 번호
 		request.setAttribute("ac", ac);		//항공사
-		request.setAttribute("price", price);	//가격
+		request.setAttribute("price", PriceStr+"원");	//가격
+		request.setAttribute("TotalPrice", TotalPriceStr+"원");	//전체가격
 		request.setAttribute("check", check);	//로그인 여부 확인
 	}	
-
 }

@@ -23,7 +23,8 @@
 						required>
 
 					<button type="submit"><b>Login</b></button>
-
+					<button class="w3-button w3-red w3-margin-middle" type="submit" onclick="location.href='MemberJoin.do'"><b>Join</b></button>
+					
 					<span class="psw">Forgot <a href="#">password?</a></span>
 				</div>
 
@@ -93,6 +94,7 @@
 		</form>
 	</div>
 	
+	
 
 	<script>
 // Get the modal
@@ -112,6 +114,8 @@ window.onclick = function(event) {
         modal2.style.display = "none";
     }
 }
+
+
 
 </script>
 </body>

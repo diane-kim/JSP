@@ -38,8 +38,8 @@ public class AirportListController extends HttpServlet {
 		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
-		String com = uri.substring(conPath.length());			
-		
+		String com = uri.substring(conPath.length());		
+			
 		if (com.equals("/AirportList.al")) {
 			System.out.println("AirportList 호출");			
 			alc = new AirportListMainCommand();
@@ -49,7 +49,7 @@ public class AirportListController extends HttpServlet {
 			System.out.println("AirportReservation 호출");			
 			alc = new AirportListReservationCommand();
 			alc.execute(request, response);
-			viewPage = "/airportList.jsp";
+			viewPage = "/View/Reservation.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

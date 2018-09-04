@@ -13,22 +13,39 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/searchView.css" />
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/searchView2.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--  아이콘-->  
+
 <!--  달력 --> 
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->  
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  <!--  jQuery 기본 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><!-- jQuery UI 라이브러리 js파일  -->
+
+<style>
+
+
+.bbb {
+width : 500px;
+
+}
+
+
+</style>
+
 </head>
+
 <body>
 <!--  타이틀 -->
 <div class="w3-display-container" style="margin-bottom:50px">
-	<img src="<%=request.getContextPath()%>/w3images/beach3.jpg" style="width:100%">
-	<div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%;opacity:0.7;width:70%">
+	<img src="<%=request.getContextPath()%>/w3images/beach3.jpg" style="width:100%; height:1000px;"> <!-- 배경화면 높이 넓이  -->
+	<div class="w3-display-bottomleft w3-container w3-amber w3-hover-orange w3-hide-small" style="bottom:10%; opacity:0.7; width:70%">
 		<h2><b>${dto.title}<br>${dto.content}</b></h2>
 	</div>
 </div>
+
+
 <!--  지도 -->
 <div class="w3-row w3-container" style="margin:50px 0">
 <jsp:include page="/mapmark.jsp"></jsp:include>
+
 <!--  이미지 슬라이더 -->
 <div class="w3-half w3-container">
 	<div class="w3-topbar w3-border-amber">
@@ -50,64 +67,81 @@
 		</div>
 	</div>
 </div>
+
 </div>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchView.js"></script>
+
+
+
+
 <!--  항공편 조회폼 -->
-<form action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1000px;margin:auto" onsubmit="return check()">
-   	<div class="input-container">   	
-   		<i class="fa fa-user icon"></i>	
+<form action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" onsubmit="return check()">
+   	<div class="input-container">
+   		<i class="fa fa-plane icon" style="font-size:24px"></i>	 <!-- 비행기 아이콘 -->
+   		
    		<div class="dropdown">
-    		<input id="dia_bt" class="input-field area" type="text" placeholder="출발지" name="f" readonly="readonly">
+    		
+    		<input id="dia_bt" class="input-field area bbb" type="text" placeholder="출발지" name="f" readonly="readonly">
+    		
     		<div class="dropdown-content area">
-    			<table border=1 class="area">
-    				<tr><td class="area">국내</td></tr>
+    			<table class="area">
+    				<tr><td class="area"><h4><b>국내</b></h4></td></tr>
     				<tr><td><a class ="contury" href="#;">서울</a></td><td><a class ="contury" href="#;">부산</a></td><td><a class ="contury" href="#;">제주</a></td></tr>
-    				<tr><td class="area">중화권</td></tr>
+    				<tr><td class="area"><h4><b>중화권</b></h4></td></tr>
     				<tr><td><a class ="contury" href="#;">홍콩</a></td><td><a class ="contury" href="#;">타이페이</a></td><td><a class ="contury" href="#;">마카오</a></td><td><a class ="contury" href="#;">상하이</a></td><td><a class ="contury" href="#;">베이징</a></td><td><a class ="contury" href="#;">칭다오</a></td></tr>
-    				<tr><td class="area">아시아</td></tr>
+    				<tr><td class="area"><h4><b>아시아</b></h4></td></tr>
     				<tr><td><a class ="contury" href="#;">도쿄</a></td><td><a class ="contury" href="#;">싱가포르</a></td><td><a class ="contury" href="#;">방콕</a></td><td><a class ="contury" href="#;">마닐라</a></td><td><a class ="contury" href="#;">쿠알라룸푸르</a></td><td><a class ="contury" href="#;">하노이</a></td></tr>
-    				<tr><td class="area">미주/유럽</td></tr>      
+    				<tr><td class="area"><h4><b>미주/유럽</b></h4></td></tr>      
 	    			<tr><td><a class ="contury" href="#;">런던</a></td><td><a class ="contury" href="#;">파리</a></td><td><a class ="contury" href="#;">로마</a></td><td><a class ="contury" href="#;">로스앤젤레스</a></td><td><a class ="contury" href="#;">뉴욕</a></td><td><a class ="contury" href="#;">샌프란시스코</a></td></tr>
     			</table>
       		</div>
     	</div>
-		<i class="fa fa-user icon"></i>
+    	
+    	
+		<i class="fa fa-plane icon" style="font-size:24px" ></i>
     	<div class="dropdown2">   
-    		<input id="dia_bt2" class="input-field area2" type="text" placeholder="도착지" name="t" readonly="readonly">
+    		<input id="dia_bt2" class="input-field area2 bbb" type="text" placeholder="도착지" name="t" readonly="readonly">
     		<div class="dropdown2-content area2">
-      			<table border=1 class="area2">
-      				<tr><td class="area2">국내</td></tr>
+      			<table class="area2">
+      				<tr><td class="area2"><h4><b>국내</b></h4></td></tr>
       				<tr><td><a class ="tocontury" href="#;">서울</a></td><td><a class ="tocontury" href="#;">부산</a></td><td><a class ="tocontury" href="#;">제주</a></td></tr>
-      				<tr><td class="area2">중화권</td></tr>
+      				<tr><td class="area2"><h4><b>중화권</b></h4></td></tr>
       				<tr><td><a class ="tocontury" href="#;">홍콩</a></td><td><a class ="tocontury" href="#;">타이페이</a></td><td><a class ="tocontury" href="#;">마카오</a></td><td><a class ="tocontury" href="#;">상하이</a></td><td><a class ="tocontury" href="#;">베이징</a></td><td><a class ="tocontury" href="#;">칭다오</a></td></tr>
-     				<tr><td class="area2">아시아</td></tr>
+     				<tr><td class="area2"><h4><b>아시아</b></h4></td></tr>
       				<tr><td><a class ="tocontury" href="#;">도쿄</a></td><td><a class ="tocontury" href="#;">싱가포르</a></td><td><a class ="tocontury" href="#;">방콕</a></td><td><a class ="tocontury" href="#;">마닐라</a></td><td><a class ="tocontury" href="#;">쿠알라룸푸르</a></td><td><a class ="tocontury" href="#;">하노이</a></td></tr>
-      				<tr><td class="area2">미주/유럽</td></tr>      
+      				<tr><td class="area2"><h4><b>미주/유럽</b></h4></td></tr>      
       				<tr><td><a class ="tocontury" href="#;">런던</a></td><td><a class ="tocontury" href="#;">파리</a></td><td><a class ="tocontury" href="#;">로마</a></td><td><a class ="tocontury" href="#;">로스앤젤레스</a></td><td><a class ="tocontury" href="#;">뉴욕</a></td><td><a class ="tocontury" href="#;">샌프란시스코</a></td></tr>
       			</table>
       		</div>
     	</div>   
   	</div>
   <div class="input-container">
-  	<i class="fa fa-envelope icon"></i>
-    <input class="input-field testDatepicker" type="text" placeholder="출발날짜" name="fromdate" id="fromdate" readonly="readonly">
-    <i class="fa fa-envelope icon"></i>
-    <input class="input-field testDatepicker" type="text" placeholder="도착날짜" name="todate" id="todate" readonly="readonly">
+  	<i class="fa fa-calendar icon" style="font-size:24px"></i> <!-- 달력 아이콘  -->
+    <input class="input-field testDatepicker bbb" type="text" placeholder="출발날짜" name="fromdate" id="fromdate" readonly="readonly">
+    <i class="fa fa-calendar icon" style="font-size:24px"></i>
+    <input class="input-field testDatepicker bbb" type="text" placeholder="도착날짜" name="todate" id="todate" readonly="readonly">
   </div>
+  
+  
   <div class="input-container">	
-  	<h2>성인 </h2>
-    <a href="javascript:;" class="bt_up fa fa-plus cal no-uline" > </a>
+  	<h2><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  	성인&nbsp;&nbsp;</b> </h2>
+  	
+    <a href="javascript:;" style="font-size:30px" class="bt_up fa fa-plus cal no-uline " > </a> <!-- 숫자 부분  -->
     <input class="num" type="text" placeholder="성인" value="0" readonly="readonly" name="num">
-    <a href="javascript:;" class="bt_down fa fa-minus cal no-uline" > </a>
-    <h2> 좌석 </h2>
-    <select name="seat">
-    	<option value="일반">일반</option>
-    	<option value="비즈니스">비즈니스</option>
+    
+
+    <a href="javascript:;" style="font-size:30px" class="bt_down fa fa-minus cal no-uline" > </a> <!-- 좌석 등급 부분  -->
+    
+    <h2><b>&nbsp;&nbsp;&nbsp;&nbsp;좌석 등급 &nbsp;&nbsp;&nbsp;</b></h2>
+    <select name="seat" font-size="10px">
+    	<option value="일반"><b>일반</b></option>
+    	<option value="비즈니스"><b>비즈니스</b></option>
     </select>
   </div>
   <input type="hidden" name="from"/>
   <input type="hidden" name="to"/>
-  <button type="submit" class="btn" id="getBtn">조회</button>
+  <button type="submit" class="btn" id="getBtn">조회</button><br><br><br><br>
 </form>
 </body>
 </html>

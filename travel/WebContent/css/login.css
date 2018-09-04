@@ -20,7 +20,7 @@ button {
     margin: 8px 0;
     border: none;
     cursor: pointer;
-    width: 50%;
+    width: 100%;
   	font-weight: bold;
 }
 
@@ -80,6 +80,7 @@ span.psw {
     width: 50%; /* Could be more or less, depending on screen size */
 }
 body, html {height: 100%}
+
 .bgimg {
     background-image: url('../w3images/forestbridge.jpg');
     min-height: 100%;
@@ -102,6 +103,7 @@ body, html {height: 100%}
     background-position: center;
     background-size: cover;
 }
+
 
 
 /* The Close Button (x) */

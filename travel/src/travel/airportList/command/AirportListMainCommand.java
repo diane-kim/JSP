@@ -16,19 +16,20 @@ public class AirportListMainCommand implements AirportListCommand {
 		MemberDTO dto = new MemberDTO();
 		
 		HttpSession session=request.getSession();
+
+		String f = request.getParameter("f");
+		String t = request.getParameter("t");
 		
 		String id = (String) session.getAttribute("id");
-		
 		String from = request.getParameter("from");
 		String to = request.getParameter("to");
-		String num =  request.getParameter("num");
+		String num = request.getParameter("num");
 		String seat =  request.getParameter("seat");
 		String fromdate =  request.getParameter("fromdate");
 		String todate =  request.getParameter("todate");
-		
-		System.out.println(num + " " + seat + " " + fromdate + " " + todate + " " + to + " "+ from);
-		
 
+		System.out.println(num + " " + seat + " " + fromdate + " " + todate + " " + t+ " "+ f);
+		
 		System.out.println("접속한 ID : "+ id); 
 		int check = 0;
 		if(id == null) {
@@ -42,9 +43,11 @@ public class AirportListMainCommand implements AirportListCommand {
 		request.setAttribute("num", num);	//성인 카운트		
 		request.setAttribute("seat", seat);
 		request.setAttribute("fromdate", fromdate);	
-		request.setAttribute("todate", todate);	
+		request.setAttribute("todate", todate);		
 		request.setAttribute("from", from);	
-		request.setAttribute("to", to);			
-		////////////////////////////////////////////////////////////////
+		request.setAttribute("to", to);		
+		request.setAttribute("f", f);	
+		request.setAttribute("t", t);		
+		request.setAttribute("check", check);	//로그인 여부 확인
 	}	
 }
