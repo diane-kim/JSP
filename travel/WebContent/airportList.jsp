@@ -74,8 +74,8 @@
     	  	&nbsp;출발날짜: <input class="testDatepicker" id="txt3" value="${fromdate}" size="10" readonly="readonly"/>
       		
       		</div>  
-      		<button id="btn" class="btn default" onclick="reserv('${f}','${t}','${fromdate}','${todate}','${num}','${seat}')">검색</button>
-      		<button id="btn2" class="btn default" >변경</button>
+      		<button id="btn" class="btn2 default" onclick="reserv('${f}','${t}','${fromdate}','${todate}','${num}','${seat}')">검색</button>
+      		<button id="btn2" class="btn2 default" >변경</button>
     </div>	
 		<script>
 		$("#btn2").click(function swap_content(){

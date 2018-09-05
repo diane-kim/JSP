@@ -1,13 +1,14 @@
 $(document).ready(function() {
-	$("#nearAirport").click(function(e) {
-		e.preventDefault();
+	$("#btn4").click(function() {
 		getLocation();
 		//getAirLine1();
-});
+	});
+	$("#btn4").click();
 
 
-var latitude;
-var longitude;
+	var latitude;
+	var longitude;
+	var map;
 
 	function getLocation() {
 		if (navigator.geolocation) { // GPS를 지원하면
@@ -15,17 +16,20 @@ var longitude;
 				//alert(position.coords.latitude + ' ' + position.coords.longitude);
 				//latitude = position.coords.latitude;
 				//longitude = position.coords.longitude;
-				console.log("longtitude2 : " + position.coords.longitude);
-				console.log("latitude2 : " + position.coords.latitude);
+
+				longitude = position.coords.longitude;
+				latitude = position.coords.latitude;
+				console.log("longtitude2 : " + longitude);
+				console.log("latitude2 : " + latitude);
 				////////////////////////
 				$.ajax({
-					url: "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/" + position.coords.longitude + "/" + position.coords.latitude + "/30?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590",
+					url: "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/" + longitude + "/" + latitude + "/30?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590",
 					dataType: 'json',
 					success: function(datas) {
-						console.log(position.coords.latitude);
-						console.log(position.coords.longitude);
-						console.log(datas);
-						var map;
+						console.log(longitude);
+						console.log(latitude);
+						console.log(datas);						
+
 						$(function() {
 							var x = function(a, b) {
 								var mapOptions = {
@@ -36,9 +40,9 @@ var longitude;
 										mapTypeId: google.maps.MapTypeId.ROADMAP,
 										center: new google.maps.LatLng(a, b)
 								};
-								map = new google.maps.Map(document.getElementById('map'), mapOptions);
+								map = new google.maps.Map(document.getElementById('map1'), mapOptions);
 							}
-							google.maps.event.addDomListener(window, 'load', x(position.coords.latitude,position.coords.longitude));
+							google.maps.event.addDomListener(window, 'load', x(latitude,longitude));
 						});
 					},
 				});
