@@ -95,3 +95,45 @@ insert into IMAGELIST values('일본','JP','일본4.jpg');
 
 
 
+//
+create sequence reservation_seq;
+create table reservation ( 
+key number primary key,
+departure varchar2(30) not null,
+arrival varchar2(30) not null,
+departure_date varchar2(30) not null,
+departure_time varchar2(30) not null,
+arrival_time varchar2(30) not null,
+flight_number varchar2(30) not null,
+ticket number not null,
+seat varchar2(30) not null,
+price varchar2(50) not null,
+total_price varchar2(50) not null,
+airline varchar2(50) not null,
+lname VARCHAR2(10) not null,
+fname VARCHAR2(30) not null,
+nationality VARCHAR2(30) not null,
+phone VARCHAR2(50) not null,
+email VARCHAR2(100) not null,
+reservation_date date default sysdate,
+id VARCHAR2(20) not null
+);
+COMMENT ON TABLE reservation IS '예약정보';
+COMMENT ON COLUMN reservation.key IS '시퀀스번호';
+COMMENT ON COLUMN reservation.departure IS '출발지';
+COMMENT ON COLUMN reservation.arrival IS '도착지';
+COMMENT ON COLUMN reservation.departure_date IS '출발날짜';
+COMMENT ON COLUMN reservation.departure_time IS '출발시간';
+COMMENT ON COLUMN reservation.arrival_time IS '도착시간';
+COMMENT ON COLUMN reservation.flight_number IS '비행기번호';
+COMMENT ON COLUMN reservation.ticket IS '구매표 개수';
+COMMENT ON COLUMN reservation.seat IS '구매한 좌석의 유형';
+COMMENT ON COLUMN reservation.price IS '표 한개의 가격';
+COMMENT ON COLUMN reservation.total_price IS '전체구매한 표의 가격';
+COMMENT ON COLUMN reservation.airline IS '항공사이름';
+COMMENT ON COLUMN reservation.lname IS '성';
+COMMENT ON COLUMN reservation.fname IS '이름';
+COMMENT ON COLUMN reservation.phone IS '휴대전화번호';
+COMMENT ON COLUMN reservation.email IS '이메일';
+COMMENT ON COLUMN reservation.reservation_date IS '예약한 날짜';
+COMMENT ON COLUMN reservation.ID IS '접속한 회원ID';

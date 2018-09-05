@@ -12,22 +12,38 @@ $(document).ready(function() {
 				success : function(datas) {
 					console.log(datas);
 					var dataSet = [];
-					var base = [];
-					var coverage = [];	
-					var src;
 					var name;
 					var city;
 					var latitude;
 					var longitude;
 					var map;
+					var value;
+					var temperatureCelsius;
+					var speedKnots;
 					
 					name = datas.appendix.airports[0].name;
 					city = datas.appendix.airports[0].city;			
 					latitude = datas.appendix.airports[0].latitude;
 					longitude = datas.appendix.airports[0].longitude;	
+					
+					temperatureCelsius = datas.metar.temperatureCelsius;
+					
+					speedKnots = datas.metar.conditions.wind.speedKnots;
+					
 						
 					document.getElementById("name").innerHTML = "공항 : "+ name;
 					document.getElementById("city").innerHTML = "도시 : "+ city;
+					document.getElementById("temperatureCelsius").innerHTML = "기온 : "+ temperatureCelsius;
+					document.getElementById("speedKnots").innerHTML = "풍속 : "+ speedKnots + "m/s";		
+					
+					for(var i = 0 ; i< datas.metar.tags.length;i++){
+						if(datas.metar.tags[i].key == "Prevailing Conditions"){
+							value = datas.metar.tags[i].value;
+						}
+					}
+					
+					document.getElementById("weather").src = "./img/"+value+".png";
+					
 					
 /*					base[0] = datas.metar.conditions.skyConditions[0].base;
 					coverage[0] = datas.metar.conditions.skyConditions[0].coverage;	
@@ -39,15 +55,14 @@ $(document).ready(function() {
 						document.getElementById("coverage").innerHTML = "반경 "+base[i]+"./img/"+coverage[i]+".jpg";
 					}*/
 					
-					for(var i = 0; i < datas.metar.conditions.skyConditions.length ; i++){
+/*					for(var i = 0; i < datas.metar.conditions.skyConditions.length ; i++){
 						base[i] = datas.metar.conditions.skyConditions[i].base;
 						coverage[i] = datas.metar.conditions.skyConditions[i].coverage;	
 						console.log(base[i]);
 						console.log(coverage[i]);
-					}
+					}*/
 					
-					console.log(latitude);
-					console.log(longitude);
+					console.log(value);
 					
 					$(function() {								
 						var x = function(a, b) {

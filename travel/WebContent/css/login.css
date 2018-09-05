@@ -13,7 +13,7 @@ input[type=text], input[type=password] {
 }
 
 /* Set a style for all buttons */
-button {
+button.bt{
     background-color: white;
     color: black;
     padding: 14px 20px;

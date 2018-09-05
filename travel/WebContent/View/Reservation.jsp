@@ -33,12 +33,12 @@
 </div>
   
 <div style="max-width:1000px; margin:50px">
-	<form action="/travel/index.jsp;" onsubmit="return check()">  
+	<form action="./AirportPayment.al" onsubmit="return check()" method="post">  
   		<table border="1">  	
  			<tr><td>성</td><td>이름</td><td>국적</td></tr>
  			<tr><td><input type="text" placeholder="예:HONG" name="성" maxlength="10"></td>
  				<td><input type="text" placeholder="예:GILDONG" name="이름" maxlength="30"></td>
- 				<td><select name="contury" >
+ 				<td><select name="nationality" >
     					<option value="한국" selected>한국</option>
     					<option value="일본">일본</option>
     					<option value="중국">중국</option>
@@ -51,6 +51,17 @@
  			</tr> 
     		<tr><td colspan="3" align="right"><button type="submit">예약</button></td></tr>
   		</table>
+  		<input type="hidden" name="출발지" value="${from}">
+  		<input type="hidden" name="도착지" value="${to}">
+  		<input type="hidden" name="출발날짜" value="${fromdate}">
+  		<input type="hidden" name="비행기번호" value="${al}">
+  		<input type="hidden" name="구매한표개수" value="${num}">
+  		<input type="hidden" name="좌석유형" value="${seat}">
+  		<input type="hidden" name="구매표개당가격" value="${price}">
+  		<input type="hidden" name="총가격" value="${TotalPrice}">
+  		<input type="hidden" name="항공사이름" value="${ac}">
+  		<input type="hidden" name="출발시간" value="${dt}">
+  		<input type="hidden" name="도착시간" value="${at}">
 	</form>
 </div>
 </body>

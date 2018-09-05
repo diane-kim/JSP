@@ -22,14 +22,14 @@
 					<input type="password" placeholder="Enter Password" name="pwd"
 						required>
 
-					<button type="submit"><b>Login</b></button>
-					<button class="w3-button w3-red w3-margin-middle" type="submit" onclick="location.href='MemberJoin.do'"><b>Join</b></button>
+					<button class="bt" type="submit"><b>Login</b></button>
+					<button class="w3-button w3-red w3-margin-middle bt" type="submit" onclick="location.href='MemberJoin.do'"><b>Join</b></button>
 					
 					<span class="psw">Forgot <a href="#">password?</a></span>
 				</div>
 
 				<div class="w3-display-bottomleft w3-padding-large">
-					<button type="button"
+					<button type="button" class="bt"
 						onclick="document.getElementById('id01').style.display='none'"><b>Cancel</b></button>
 				</div>
 			</div>
@@ -51,14 +51,14 @@
 					
 
      	 			<input type="text" placeholder="Enter Your Email address" name="Submail" required>
-      				<button class="w3-button w3-red w3-margin-top" type="submit" >Subscribe</button>
+      				<button class="w3-button w3-red w3-margin-top bt" type="submit" >Subscribe</button>
    	  				
 
 					
 				</div>
 
 				<div class="w3-display-bottomleft w3-padding-large">
-					<button type="button"
+					<button type="button" class="bt"
 						onclick="document.getElementById('id02').style.display='none'"><b>Cancel</b></button>
 				</div>
 			</div>
@@ -80,14 +80,14 @@
      	 			<input type="text" placeholder="Enter Username" name="Name" required>
      	 			<input type="text" placeholder="Enter Your Email address" name="Email" required>
      	 			<input type="text" placeholder="Please enter a message" name="Message" required>
-      				<button class="w3-button w3-red w3-margin-top" type="submit">Send Message</button>
+      				<button class="w3-button w3-red w3-margin-top bt" type="submit">Send Message</button>
    	  				
 					
 					
 				</div>
 
 				<div class="w3-display-bottomleft w3-padding-large">
-					<button type="button"
+					<button type="button" class="bt"
 						onclick="document.getElementById('id03').style.display='none'"><b>Cancel</b></button>
 				</div>
 			</div>

@@ -34,7 +34,6 @@ $(function() {
         minDate: -0, 
         maxDate: "+3M"
     });
-
 });
 // 항공권 개수증가
 $(function(){ 
