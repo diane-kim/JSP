@@ -24,6 +24,5 @@
 
 		boardDAO.contentDelete(Integer.parseInt(count));
 	%>
-	<%-- <jsp:forward page="list.jsp"> --%>
 </body>
 </html>

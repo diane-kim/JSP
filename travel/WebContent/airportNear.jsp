@@ -75,8 +75,8 @@ form.example::after {
   clear: both;
   display: table;
 }
-
 </style>
+
 </head>
 <body>
 <jsp:include page="rank.jsp"/>
@@ -84,9 +84,9 @@ form.example::after {
 <jsp:include page="member/loginform.jsp" />
 <jsp:include page="sidebar.jsp" />
 
-	<div class="centered main">
+	<div class="centered main" >
 	<br><br><br><br>	
-		
+
 		<div>
 			<button type="hidden" class="btn default" id="btn4" style="display:none;">검색</button>
 		</div>
@@ -94,10 +94,11 @@ form.example::after {
 		<br>
 		<div class="w3-half w3-container">
 		</div>
+
 		<div class="w3-half w3-container">
 			<div id="map1" style="width: 80%; height: 400px;"></div>
 		</div>
-			
+
 	</div>
 </body>
 </html>
