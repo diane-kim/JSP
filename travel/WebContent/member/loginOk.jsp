@@ -39,7 +39,7 @@
 						session.setAttribute("id", id);
 						session.setAttribute("name", name);
 						response.sendRedirect("../index.jsp");
-						}	
+					}	
 			%>
 <%
 	}

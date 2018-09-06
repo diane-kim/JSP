@@ -6,21 +6,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet"
-	href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="/travel/js/GoogleMaplocation.js"></script>
-<script type="text/javascript"
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
 <style>
 body, h1, h2, h3, h4, h5, h6 {
 	font-family: "Raleway", Arial, Helvetica, sans-serif
-}
-
-.myLink {
-	display: none
 }
 </style>
 </head>
@@ -52,9 +45,8 @@ body, h1, h2, h3, h4, h5, h6 {
 					</div>
 				</div>
 				<p>
-					<button class="w3-button w3-dark-grey" id="getBtn">Search and find dates</button>
+					<button class="w3-button w3-dark-grey bttn" id="getBtn">Search and find dates</button>
 				</p>
-
 				<form name="MarkMap" action="<%=request.getContextPath()%>/searchResultView.sv" method="get">
 					<input type="hidden" id="fromName" name="fromName">
 					<input type="hidden" id="toName" name="toName"> 

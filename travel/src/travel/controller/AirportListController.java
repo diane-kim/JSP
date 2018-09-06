@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import travel.airportList.command.AirportListCommand;
 import travel.airportList.command.AirportListMainCommand;
-import travel.airportList.command.AirportListPaymentCommand;
 import travel.airportList.command.AirportListReservationCommand;
 
 @WebServlet("*.al")
@@ -51,10 +50,6 @@ public class AirportListController extends HttpServlet {
 			alc = new AirportListReservationCommand();
 			alc.execute(request, response);
 			viewPage = "/View/Reservation.jsp";
-		}else if (com.equals("/AirportPayment.al")) {			
-			alc = new AirportListPaymentCommand();
-			alc.execute(request, response);
-			viewPage = "/View/Payment.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

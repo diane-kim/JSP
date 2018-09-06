@@ -17,13 +17,13 @@
 
 				<div class="w3-display-middle">
 					<label for="uname" class="w3-jumbo w3-animate-top"><b>Username</b></label>
-					<input type="text" placeholder="Enter Username" name="id"
+					<input class="typetext" type="text" placeholder="Enter Username" name="id"
 						required> <label for="psw" class="w3-jumbo w3-animate-top"><b>Password</b></label>
 					<input type="password" placeholder="Enter Password" name="pwd"
 						required>
 
-					<button class="bt" type="submit"><b>Login</b></button>
-					<button class="w3-button w3-red w3-margin-middle bt" type="submit" onclick="location.href='MemberJoin.do'"><b>Join</b></button>
+					<button class="bt" type="submit"><b>Login</b></button> 
+					<button class="w3-button w3-red w3-margin-middle bt" onclick="location.href='MemberJoin.do'"><b>Join</b></button>
 					
 					<span class="psw">Forgot <a href="#">password?</a></span>
 				</div>
@@ -50,7 +50,7 @@
 					<label for="uname" class="w3-xlarge w3-animate-top"><b>Join our newsletter.</b></label>
 					
 
-     	 			<input type="text" placeholder="Enter Your Email address" name="Submail" required>
+     	 			<input class="typetext" type="text" placeholder="Enter Your Email address" name="Submail" required>
       				<button class="w3-button w3-red w3-margin-top bt" type="submit" >Subscribe</button>
    	  				
 
@@ -77,9 +77,9 @@
 				<div class="w3-display-middle">
 				<label for="uname" class="w3-xxxlarge w3-animate-top "><br><b>Contact us</b></br></label>
 
-     	 			<input type="text" placeholder="Enter Username" name="Name" required>
-     	 			<input type="text" placeholder="Enter Your Email address" name="Email" required>
-     	 			<input type="text" placeholder="Please enter a message" name="Message" required>
+     	 			<input class="typetext" type="text" placeholder="Enter Username" name="Name" required>
+     	 			<input class="typetext" type="text" placeholder="Enter Your Email address" name="Email" required>
+     	 			<input class="typetext" type="text" placeholder="Please enter a message" name="Message" required>
       				<button class="w3-button w3-red w3-margin-top bt" type="submit">Send Message</button>
    	  				
 					
