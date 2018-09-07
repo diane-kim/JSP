@@ -22,9 +22,8 @@
 <jsp:include page="sidebar.jsp" />
 
 	<br><br><br><br>	
-	<p class="prompt">현재 위치에서 가장 가까운 공항을 탐색합니다. 반경은 30 마일 입니다.  모든 시간은 현지 시각 기준입니다 (지정된 위치의 지정된 반경 내에있는 공항의 목록을 반환합니다.)</p>
-	<p class="prompt">Returns a listing of airports located within a specified radius of the given position.</p>
-
+		<p class="prompt">현재 위치에서 가장 가까운 공항을 탐색합니다. 반경은 30 마일 입니다.  모든 시간은 현지 시각 기준입니다 (지정된 위치의 지정된 반경 내에있는 공항의 목록을 반환합니다.)</p>
+		<p class="prompt">Returns a listing of airports located within a specified radius of the given position.</p>
 		<br>
 		<div class="w3-half w3-container">
 			<div class="w3-topbar w3-border-amber">

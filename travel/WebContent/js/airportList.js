@@ -20,6 +20,9 @@ seat = param6;
 }
 
 $(document).ready(function() {	
+		/*getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());*/
+	
+	
 		$("#btn").click(function() {
 			if (!$("#txt1").val()) {
 				alert("출발공항을 입력해 주세요.");

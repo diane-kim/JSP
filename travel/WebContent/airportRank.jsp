@@ -75,12 +75,14 @@
       		<button id="btn5" class="btn2 default">검색</button>
       		<button id="btn6" class="btn2 default" >변경</button>
 	   	 </div>	
-		<p class="prompt"></p>
-		
+		<p class="prompt"></p>		
 		<p class="prompt">주어진 출발 및 도착 공항을 가진 모든 항공편의 계산 된 등급 정보를 반환합니다.</p>
 		<p class="prompt">Returns the calculated ratings information for all flights having the given departure and arrival airports</p>
 		
-		<table id="airportRank" class="display" width="100%"></table>		
+			
 	</div>      
+	<div class="centered main">
+	<table id="airportRank" class="display" width="100%"></table>	
+	</div>
 </body>
 </html>
