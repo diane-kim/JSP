@@ -74,7 +74,7 @@ width : 500px;
 
 
 
-<!--  항공편 조회폼 -->
+<%-- <!--  항공편 조회폼 -->
 <form action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" onsubmit="return check()">
    	<div class="input-container">
    		<i class="fa fa-plane icon" style="font-size:24px"></i>	 <!-- 비행기 아이콘 -->
@@ -142,6 +142,6 @@ width : 500px;
   <input type="hidden" name="from"/>
   <input type="hidden" name="to"/>
   <button type="submit" class="btn" id="getBtn">조회</button><br><br><br><br>
-</form>
+</form> --%>
 </body>
 </html>
