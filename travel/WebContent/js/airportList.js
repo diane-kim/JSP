@@ -20,11 +20,31 @@ seat = param6;
 }
 
 $(document).ready(function() {	
+		/*getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());*/
+	
+	
 		$("#btn").click(function() {
+			if (!$("#txt1").val()) {
+				alert("출발공항을 입력해 주세요.");
+				return false; 
+			}else if(!$("#txt2").val()){
+				alert("도착공항을 입력해 주세요.");
+				return false; 
+			}else if(!$("#txt3").val()){
+				alert("날짜를 입력해 주세요.");
+				return false; 
+			}
+			else{
 			getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());
+			}
 		});
-
-		
+	
+		$("#btn2").click(function(){
+			var tmp = document.getElementById('txt1').value;
+			document.getElementById('txt1').value = document.getElementById('txt2').value;
+			document.getElementById('txt2').value = tmp;
+		});
+	
 		$("#txt3").keyup(function(e) {
 			if (e.keyCode == 13)
 			getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());
@@ -95,4 +115,22 @@ $(document).ready(function() {
 				}
 			});
 	}
+// 공항 변경
+/*	$("#btn2").click(function swap_content(){
+		var tmp = document.getElementById('txt1').value;
+		document.getElementById('txt1').value = document.getElementById('txt2').value;
+		document.getElementById('txt2').value = tmp;
+	});*/
 
+/*	$("#btn").click(function check() {
+		if (!$("#txt1").val()) {
+			alert("출발공항을 입력해 주세요.");
+			return false; 
+		}else if(!$("#txt2").val()){
+			alert("도착공항을 입력해 주세요.");
+			return false; 
+		}else if(!$("#txt3").val()){
+			alert("날짜를 입력해 주세요.");
+			return false; 
+		}
+	}); */

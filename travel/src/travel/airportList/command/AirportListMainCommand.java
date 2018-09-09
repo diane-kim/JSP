@@ -17,8 +17,17 @@ public class AirportListMainCommand implements AirportListCommand {
 		
 		HttpSession session=request.getSession();
 
-		String f = request.getParameter("f");
-		String t = request.getParameter("t");
+/*		String f = request.getParameter("f");
+		String t = request.getParameter("t");*/
+		
+		session.setAttribute("f", request.getParameter("f"));
+		session.setAttribute("t", request.getParameter("t"));
+		session.setAttribute("from", request.getParameter("from"));
+		session.setAttribute("to", request.getParameter("to"));
+		session.setAttribute("num", request.getParameter("num"));
+		session.setAttribute("seat", request.getParameter("seat"));
+		session.setAttribute("fromdate", request.getParameter("fromdate"));
+		session.setAttribute("todate", request.getParameter("todate"));
 		
 		String id = (String) session.getAttribute("id");
 		String from = request.getParameter("from");
@@ -27,8 +36,10 @@ public class AirportListMainCommand implements AirportListCommand {
 		String seat =  request.getParameter("seat");
 		String fromdate =  request.getParameter("fromdate");
 		String todate =  request.getParameter("todate");
+		
+		System.out.println("searchView : "+(String)session.getAttribute("f"));
 
-		System.out.println(num + " " + seat + " " + fromdate + " " + todate + " " + t+ " "+ f);
+/*		System.out.println(num + " " + seat + " " + fromdate + " " + todate + " " + t+ " "+ f);*/
 		
 		System.out.println("접속한 ID : "+ id); 
 		int check = 0;
@@ -40,14 +51,14 @@ public class AirportListMainCommand implements AirportListCommand {
 		}
 		
 		request.setAttribute("dto", dto);	//이름,이메일,핸드폰 정보
-		request.setAttribute("num", num);	//성인 카운트		
+/*		request.setAttribute("num", num);	//성인 카운트		
 		request.setAttribute("seat", seat);
 		request.setAttribute("fromdate", fromdate);	
 		request.setAttribute("todate", todate);		
 		request.setAttribute("from", from);	
 		request.setAttribute("to", to);		
 		request.setAttribute("f", f);	
-		request.setAttribute("t", t);		
+		request.setAttribute("t", t);	*/	
 		request.setAttribute("check", check);	//로그인 여부 확인
 	}	
 }

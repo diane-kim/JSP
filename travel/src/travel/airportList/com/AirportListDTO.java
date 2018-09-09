@@ -18,13 +18,14 @@ public class AirportListDTO {
 	private String NATIONALITY;
 	private String PHONE;
 	private String EMAIL;
+	private String ADDRESS;
 
 	public AirportListDTO() {
 
 	}
 	public AirportListDTO(String ID,String dEPARTURE, String aRRIVAL, String dEPARTURE_DATE, String dEPARTURE_TIME,
 			String aRRIVAL_TIME, String fLIGHT_NUMBER, int tICKET, String sEAT, String pRICE, String tOTAL_PRICE,
-			String aIRLINE, String lNAME, String fNAME, String nATIONALITY, String pHONE, String eMAIL) {
+			String aIRLINE, String lNAME, String fNAME, String nATIONALITY, String pHONE, String eMAIL, String aDDRESS) {
 		this.ID = ID;
 		this.DEPARTURE = dEPARTURE;
 		this.ARRIVAL = aRRIVAL;
@@ -42,8 +43,15 @@ public class AirportListDTO {
 		this.NATIONALITY = nATIONALITY;
 		this.PHONE = pHONE;
 		this.EMAIL = eMAIL;
+		this.ADDRESS = aDDRESS;
 	}
 
+	public String getADDRESS() {
+		return ADDRESS;
+	}
+	public void setADDRESS(String aDDRESS) {
+		ADDRESS = aDDRESS;
+	}
 	public String getID() {
 		return ID;
 	}

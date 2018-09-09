@@ -177,7 +177,7 @@ public class MemberDAO {
 	
 	public MemberDTO getMemberInfo(String id){
 		
-		String sql = "SELECT name, email, phone FROM member WHERE id = ?";
+		String sql = "SELECT name, email, phone,address FROM member WHERE id = ?";
 		
 		try {			
 
@@ -191,7 +191,8 @@ public class MemberDAO {
 				dto = new MemberDTO();
 				dto.setName(rs.getString("name"));
 				dto.setEmail(rs.getString("email"));
-				dto.setPhone(rs.getString("phone"));				
+				dto.setPhone(rs.getString("phone"));
+				dto.setAddress(rs.getString("address"));		
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();

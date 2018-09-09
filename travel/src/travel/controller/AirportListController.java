@@ -13,6 +13,7 @@ import travel.airportList.command.AirportListCommand;
 import travel.airportList.command.AirportListMainCommand;
 import travel.airportList.command.AirportListPaymentCommand;
 import travel.airportList.command.AirportListReservationCommand;
+import travel.airportList.command.AirportListTest;
 
 @WebServlet("*.al")
 public class AirportListController extends HttpServlet {
@@ -51,10 +52,16 @@ public class AirportListController extends HttpServlet {
 			alc = new AirportListReservationCommand();
 			alc.execute(request, response);
 			viewPage = "/View/Reservation.jsp";
-		}else if (com.equals("/AirportPayment.al")) {			
+		}else if (com.equals("/AirportPayment.al")) {
+			System.out.println("AirportPayment 호출");			
 			alc = new AirportListPaymentCommand();
 			alc.execute(request, response);
 			viewPage = "/View/Payment.jsp";
+		}else if (com.equals("/AirportTest.al")) {
+			System.out.println("AirportTest 호출");		
+			alc = new AirportListTest();
+			alc.execute(request, response);
+			viewPage = "/airportList.jsp";
 		}
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);

@@ -24,9 +24,10 @@ public class AirportListPaymentCommand implements AirportListCommand {
 		dto.setID(id);
 		dto.setLNAME(request.getParameter("성"));
 		dto.setFNAME(request.getParameter("이름"));
-		dto.setNATIONALITY(request.getParameter("nationality"));
+		dto.setNATIONALITY(request.getParameter("contury"));
 		dto.setPHONE(request.getParameter("휴대전화"));
 		dto.setEMAIL(request.getParameter("이메일"));
+		dto.setADDRESS(request.getParameter("구매자주소"));
 		dto.setDEPARTURE(request.getParameter("출발지"));
 		dto.setARRIVAL(request.getParameter("도착지"));
 		dto.setDEPARTURE_DATE(request.getParameter("출발날짜"));
