@@ -7,10 +7,21 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	session.invalidate();
-
-	response.sendRedirect("../airportList.jsp");
-%>
+<script>
+$(function(){
+$(".btn1").on({
+	"mouseover":function(){
+	$(".txt1").css({"background-color":"aqua"});
+	},
+	"mouseout":function(){
+	$(".txt1").css({"background-color":"none"});
+	}
+	
+});
+</script>
+<p>
+<button class="btn1">Hover</button>
+</p>
+<p class="txt1">내용2</p>
 </body>
 </html>

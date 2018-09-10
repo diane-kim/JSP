@@ -102,23 +102,28 @@
 	margin-left: 0px;
 	padding-bottom:0px;
 	margin-botoom: 0px;
-	width: 205vh;
+	width: 202vh;
 	z-index: 3;
 }
+
+
 </style>
 </head>
 <body>
 <script> value('${dto.TOTAL_PRICE}','${dto.EMAIL}','${dto.PHONE}','${dto.LNAME}+${dto.FNAME}','${dto.ADDRESS}')</script>
 <div class="img">
 <div class="w3-bar w3-white w3-border-bottom w3-xlarge topvar" style="opacity: 0.7;" >
-  <a href="<%=request.getContextPath()%>/main.jsp" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Home</b></a>
+  <a href="<%=request.getContextPath()%>/main.jsp" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Yolo-Travel</b></a>
   <button class="w3-bar-item w3-button w3-text-red w3-hover-red" style="margin-top:0px;" onclick="document.getElementById('id01').style.display='block'">Login</button>
   <button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" style="margin-top:0px;" onclick="document.getElementById('id02').style.display='block'">Subscribe</button>
   <button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" style="margin-top:0px;" onclick="document.getElementById('id03').style.display='block'">Contact</button>
 </div>
 <div class="img-cover"></div>
+
 <div class="font content" style="max-width:auto; margin-left:100px; margin-top:0px; margin-bottom:70px; ">
 <BR>
+
+ 
  <table class="bor tablesun" style="background-color: #EFEFFF; opacity: 0.7;" > 	
  	<tr>
  		<td colspan="12" width="1200px" class="bor-bot" style="padding-top:20px;" >출발지 : ${dto.DEPARTURE} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 도착지 : ${dto.ARRIVAL}</td><!-- </td><td colspan="2" width="500px" style="padding-top:20px;"></td> -->
@@ -127,11 +132,12 @@
  		<td colspan="4" style="padding-top:20px; padding-left:20px; padding-right:20px;">출발날짜 : ${dto.DEPARTURE_DATE}<br>항공기번호 : ${dto.FLIGHT_NUMBER}</td><td colspan="1" style="padding-top:20px;">성인 : ${dto.TICKET}명, 좌석 : ${dto.SEAT}<br>가격 : ${dto.PRICE}</td> <td colspan="1" style="padding-top:20px;">총금액 : ${dto.TOTAL_PRICE}</td>
  	</tr>
    	<tr>
-   		<td colspan="4" style="padding-top:20px;" class="bor-bot" >항공사 : ${dto.AIRLINE}</td> <td style="padding-top:20px; ">출발시간 : ${dto.DEPARTURE_TIME}</td><td style="padding-top:20px; padding-right:20px; padding-left:20px;">도착시간 : ${dto.ARRIVAL_TIME}</td> <!-- todate 오는날짜-->
+   		<td colspan="4" style="padding-top:20px;"  >항공사 : ${dto.AIRLINE}</td> <td style="padding-top:20px; ">출발시간 : ${dto.DEPARTURE_TIME}</td><td style="padding-top:20px; padding-right:20px; padding-left:20px;">도착시간 : ${dto.ARRIVAL_TIME}</td> <!-- todate 오는날짜-->
    	</tr>
    	<!--  -->  
+  
    	<tr>
- 		<td colspan="12" class="bor-bot" style="padding-top:20px;" > 구매자 정보(ID:${dto.ID}) </td>
+ 		<td colspan="12" class="bor-bot" style="padding-top:60px;" > 결제자 정보(ID:${dto.ID}) </td>
  	</tr>
  	<tr>
  		<td colspan="4" style="padding-top:20px; " >First Name(이름) : ${dto.FNAME}</td> 

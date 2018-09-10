@@ -17,26 +17,99 @@ fromdate = param3;
 todate = param4;
 num = param5;
 seat = param6;
+
+console.log(f+t+fromdate+todate+num+seat);
 }
 
 $(document).ready(function() {	
 		/*getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());*/
 	
-	
+/*	$(".dropdown3-content.centered").on("click", function(){
+		alert("hhhh")
+		$(".dropdown3-content.centered").css("display", "none");
+	})*/
 		$("#btn").click(function() {
 			if (!$("#txt1").val()) {
+				console.log($("#txt1").val());
 				alert("출발공항을 입력해 주세요.");
 				return false; 
 			}else if(!$("#txt2").val()){
 				alert("도착공항을 입력해 주세요.");
 				return false; 
-			}else if(!$("#txt3").val()){
-				alert("날짜를 입력해 주세요.");
-				return false; 
 			}
+			else if ( !$("input[name=fromdate]").val()) {
+				alert("출발일을 선택해주세요.");
+				return false;
+			}
+			else if ( !$("input[name=todate]").val()) {
+				alert("도착일을 선택해주세요.");
+				return false;
+			}
+			else if ( $("input[name=todate]").val() < $("input[name=fromdate]").val() ) {
+		    	alert("도착일이 출발일보다 빠릅니다.");
+		    	return false;
+		    } 
+			else if ( $(".num").val() == 0 ) {
+		    	alert("구매표 개수를 정하세요.");
+		    	return false;
+		    }   	   
 			else{
-			getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());
+				$(function() {
+						
+					
+					
+						var nameReg = /[가-힣]$/;
+						var fromAddress = $("#fromName").val();
+						var toAddress = $("#toName").val();
+						var addressArray = [ fromAddress, toAddress ];
+						var geocoder = new google.maps.Geocoder();
+
+						var code;		
+						for (var i = 0; i < 2; i++) {
+							//alert(addressArray[i]);
+							geocoder.geocode({ 'address' : addressArray[i] }, (function(i) { return function(results, status) {
+								/*  geocoder.geocode({'address': addressArray[i]}, function(results, status) {*/
+								//alert("if밖");
+								if (status == google.maps.GeocoderStatus.OK) {
+									//alert("if안");	
+									results[0].geometry.location;					
+
+									for (var j=0; j<results[0].address_components.length; j++) {
+										for (var b=0;b<results[0].address_components[j].types.length; b++) {
+
+											if (results[0].address_components[j].types[b] == "country") {
+												var city= results[0].address_components[j];
+												code = city.short_name;
+												break;
+											}
+										}
+									}					
+
+									var lat = results[0].geometry.location.lat();
+									var lng = results[0].geometry.location.lng();
+
+									if (i == 0) {					
+										$("#fromLatitude").val(lat);
+										$("#fromLongitude").val(lng);
+										$("#fromCountryCode").val(code);
+									}
+									if (i == 1) {
+										$("#toLatitude").val(lat);
+										$("#toLongitude").val(lng);
+										$("#toCountryCode").val(code);
+									}
+									
+									if ($("#fromLatitude").val() != "" && $("#toLatitude").val() != "") {
+										MarkMap.submit();
+									}			
+								}
+							};
+							})(i));			
+						}
+				});
+
 			}
+		
 		});
 	
 		$("#btn2").click(function(){
@@ -45,14 +118,14 @@ $(document).ready(function() {
 			document.getElementById('txt2').value = tmp;
 		});
 	
-		$("#txt3").keyup(function(e) {
+		/*$("#txt3").keyup(function(e) {
 			if (e.keyCode == 13)
 			getAirLine($("#txt1").val(),$("#txt2").val(),$("#txt3").val());
-		});
+		});*/
 	});
 	
 	function getAirLine(from , to , date) {
-		var price;
+		var price;		
 		
 		console.log(from + to + date);
 		$.ajax({
@@ -114,7 +187,7 @@ $(document).ready(function() {
 					});					
 				}
 			});
-	}
+		}
 // 공항 변경
 /*	$("#btn2").click(function swap_content(){
 		var tmp = document.getElementById('txt1').value;

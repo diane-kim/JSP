@@ -56,7 +56,7 @@ $(function(){
 	});
 // dropdown창
 $(function(){ 
-	$("#dia_bt").click(function(){ //dia_bt라는 아이디를 클릭했을 때
+	$(".dia_bt").click(function(){ //dia_bt라는 아이디를 클릭했을 때
 		$(".dropdown-content").css("display","block");			
 	//함수실행
 	/*	$("#dia_bt").click(function(){ 
@@ -74,6 +74,8 @@ $(function(){
 			console.log($(".contury").index(this));				
 			$("input[name=f]").val(contury[i] +"(" +iata[i] + ")");
 			$("input[name=from]").val(iata[i]);	
+			$("input[name=fromName]").val(contury[i]);
+			
 		});
 
 //	});	
@@ -81,7 +83,7 @@ $(function(){
 });
 
 $(function(){ 
-	$("#dia_bt2").click(function(){ 
+	$(".dia_bt2").click(function(){ 
 		$(".dropdown2-content").css("display","block");	
 /*	$("#dia_bt2").click(function(){ 
 		$("#dia_rs2").dialog({ // dia_rs를 dialog오버레이창으로 띄워주고 넓이 800을 설정합니다
@@ -100,6 +102,7 @@ $(function(){
 		
 			$("input[name=t]").val(contury[i] +"(" +iata[i] + ")");	
 			$("input[name=to]").val(iata[i]);
+			$("input[name=toName]").val(contury[i]);
 		});
 		
 //	});	

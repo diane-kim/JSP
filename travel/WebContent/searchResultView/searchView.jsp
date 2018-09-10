@@ -44,7 +44,7 @@
 			<a class="prev" onclick="plusSlides(-1)">&#10094;</a> 
 			<a class="next2" onclick="plusSlides(1)">&#10095;</a>
 		</div>
-	<br>
+		<br>
 		<div style="text-align: center">
 			<c:forEach var="l" items="${list}">
 				<span class="dot" onclick="currentSlide(${l.count})"></span>
