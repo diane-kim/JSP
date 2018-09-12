@@ -115,7 +115,7 @@ h2 {
 			<h2>Thank you for being with us.</h2>
 			<br><br>
 			<button class="button" style="vertical-align: middle"
-				onclick="location.href='./main.jsp'">
+				onclick="location.href='./AirportMain.al'">
 				<span>Go Home</span>
 			</button>
 		</div>

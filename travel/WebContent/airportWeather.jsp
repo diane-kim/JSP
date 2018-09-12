@@ -1,8 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+<%	request.setCharacterEncoding("UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,23 +8,16 @@
 <title>날씨</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<!--  jquery 라이브러리 -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
-<script src="<%=request.getContextPath()%>/js/airportWeather.js"
-	type="text/javascript"></script>
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/css/airport.css" />
-<%
-	String id = (String) session.getAttribute("id");
-%>
+<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
+<script src="<%=request.getContextPath()%>/js/airportWeather.js" type="text/javascript"></script>
+<!-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/airport.css" />-->
+<%	String id = (String) session.getAttribute("id"); %>
 
 
 <style>
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
-	/* 나눔폰트 */
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic'); /* 나눔폰트 */
 @import url('https://fonts.googleapis.com/css?family=Jua'); /* Jua폰트 */
+
 .nanumfont { /* 나눔폰트  */
 	font-family: 'Nanum Gothic', sans-serif;
 	font-size: 20px;
@@ -40,7 +31,7 @@
 	background-color: #4CAF50; /* Green */
 	border: none;
 	color: white;
-	padding: 16px 32px;
+	padding: 10px 30px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -65,16 +56,8 @@
 
 </head>
 <body>
-	<jsp:include page="rank.jsp" />
-	<jsp:include page="Rheader.jsp" />
-	<jsp:include page="member/loginform.jsp" />
-	<jsp:include page="sidebar.jsp" />
-
+<br><br><br><br>
 	<div class="centered main">
-		<br>
-		<br>
-		<br>
-		<br>
 		<div class="input-container">
 			<div class="dropdown nanumfont">
 				&nbsp;<b>출발공항 : &nbsp;&nbsp;</b> <input
@@ -143,8 +126,6 @@
 				<button class="button button3 input-field1 juafont" id="btn3">검색</button>
 			</div>
 		</div>
-		<p class="prompt">특정 공항 주변의 비행장에 대한 가장 최근의 METAR 일기 예보를 검색하십시오. METAR 보고서는 현재 상태를 기술하고 약 1 시간마다 업데이트됩니다.</p>
-	<p class="prompt">Retrieve the most current available METAR weather report for the aerodrome around a given airport. METAR reports describe current conditions and are updated about once an hour.</p>
 	</div>
 	
 	<div class="dropdown3-content centered">
@@ -164,5 +145,14 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 신규 수정부분-----------------------------------------------------------------------  -->
+	<div class="centered">
+	<br>
+	<p class="prompt">특정 공항 주변의 비행장에 대한 가장 최근의 METAR 일기 예보를 검색하십시오. METAR 보고서는 현재 상태를 기술하고 약 1 시간마다 업데이트됩니다.</p>
+	<p class="prompt">Retrieve the most current available METAR weather report for the aerodrome around a given airport. METAR reports describe current conditions and are updated about once an hour.</p>
+	</div>
+	<!-- -----------------------------------------------------------------------  -->
+
 </body>
 </html>

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/airport.css" />
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/rank.js" ></script>
 <div id="content">

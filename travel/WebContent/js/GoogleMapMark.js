@@ -13,6 +13,8 @@ function createMap(fromName, toName, fromLatitude, toLatitude, fromLongitude, to
 	var lat;
 	var lng;
 	
+	console.log(fromName + " " + toName + " " + fromLatitude + " " + toLatitude + " "+ fromLongitude + " "+toLongitude)
+	
 	// infowindow contents 배열
 	contentArray[0] = fromName;
 	contentArray[1] = toName;

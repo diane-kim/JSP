@@ -21,12 +21,15 @@ $('html').click(function(e) {
 
 $(document).ready(function() {
 	$("#btn3").click(function() {
+		
+		
 		if (!$("#txt4").val()) {
 			alert("날씨를 검색할 공항을 입력해주세요.");
 			return false; 
 		}
 		else {
 		getAirLine1($("#txt4").val());
+		
 		}
 	});	 
 });

@@ -38,7 +38,7 @@
 						String name = dto.getName();
 						session.setAttribute("id", id);
 						session.setAttribute("name", name);
-						response.sendRedirect("../index.jsp");
+						response.sendRedirect("../AirportMain.al");
 					}	
 			%>
 <%

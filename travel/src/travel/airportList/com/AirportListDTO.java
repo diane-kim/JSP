@@ -1,5 +1,7 @@
 package travel.airportList.com;
 
+import java.sql.Date;
+
 public class AirportListDTO {
 	private String ID; // 접속한 회원의 ID
 	private String DEPARTURE;
@@ -18,14 +20,15 @@ public class AirportListDTO {
 	private String NATIONALITY;
 	private String PHONE;
 	private String EMAIL;
-	private String ADDRESS;
-
+	private Date RESERVATION_DATE; 
+	private String ADDRESS; // 실제테이블에는 없는 column 
+	
 	public AirportListDTO() {
 
 	}
 	public AirportListDTO(String ID,String dEPARTURE, String aRRIVAL, String dEPARTURE_DATE, String dEPARTURE_TIME,
 			String aRRIVAL_TIME, String fLIGHT_NUMBER, int tICKET, String sEAT, String pRICE, String tOTAL_PRICE,
-			String aIRLINE, String lNAME, String fNAME, String nATIONALITY, String pHONE, String eMAIL, String aDDRESS) {
+			String aIRLINE, String lNAME, String fNAME, String nATIONALITY, String pHONE, String eMAIL, String aDDRESS, Date rESERVATION_DATE) {
 		this.ID = ID;
 		this.DEPARTURE = dEPARTURE;
 		this.ARRIVAL = aRRIVAL;
@@ -44,8 +47,15 @@ public class AirportListDTO {
 		this.PHONE = pHONE;
 		this.EMAIL = eMAIL;
 		this.ADDRESS = aDDRESS;
+		this.RESERVATION_DATE = rESERVATION_DATE;
 	}
 
+	public Date getRESERVATION_DATE() {
+		return RESERVATION_DATE;
+	}
+	public void setRESERVATION_DATE(Date rESERVATION_DATE) {
+		RESERVATION_DATE = rESERVATION_DATE;
+	}
 	public String getADDRESS() {
 		return ADDRESS;
 	}
@@ -185,4 +195,14 @@ public class AirportListDTO {
 	public void setEMAIL(String eMAIL) {
 		EMAIL = eMAIL;
 	}
+	/*@Override
+	public String toString() {
+		return "AirportListDTO [ID=" + ID + ", DEPARTURE=" + DEPARTURE + ", ARRIVAL=" + ARRIVAL + ", DEPARTURE_DATE="
+				+ DEPARTURE_DATE + ", DEPARTURE_TIME=" + DEPARTURE_TIME + ", ARRIVAL_TIME=" + ARRIVAL_TIME
+				+ ", FLIGHT_NUMBER=" + FLIGHT_NUMBER + ", TICKET=" + TICKET + ", SEAT=" + SEAT + ", PRICE=" + PRICE
+				+ ", TOTAL_PRICE=" + TOTAL_PRICE + ", AIRLINE=" + AIRLINE + ", LNAME=" + LNAME + ", FNAME=" + FNAME
+				+ ", NATIONALITY=" + NATIONALITY + ", PHONE=" + PHONE + ", EMAIL=" + EMAIL + ", RESERVATION_DATE="
+				+ RESERVATION_DATE + ", ADDRESS=" + ADDRESS + "]";
+	}
+	*/
 }

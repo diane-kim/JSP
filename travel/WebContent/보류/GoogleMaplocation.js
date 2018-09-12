@@ -12,7 +12,7 @@ $(function() {
 		$("#fromName").val(fromAddress);
 		$("#toName").val(toAddress);
 		
-		if (fromAddress == "") {
+/*		if (fromAddress == "") {
 			alert("출발지를 입력하세요");
 			return false;
 		}
@@ -28,7 +28,7 @@ $(function() {
 			alert("도착지를 올바른 단어로 입력하세요(한글)");
 			return false;
 		}		
-
+*/
 		var code;
 		for (var i = 0; i < 2; i++) {
 			geocoder.geocode({ 'address' : addressArray[i] }, (function(i) { return function(results, status) {

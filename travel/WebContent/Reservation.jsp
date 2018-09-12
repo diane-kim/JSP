@@ -46,7 +46,7 @@
 .img { /* 배경화면 조절 */
 	position: relative;
 	background: url('./w3images/비행기1.jpg');
-	height: 100%;
+	height: 110%;
 	width: 100%;
 	background-size: cover;
 }
@@ -115,8 +115,7 @@
 		<div class="font content"
 			style="max-width: auto; margin-left: 210px; margin-top: 0px; margin-bottom: 70px;">
 			<BR>
-			<table class="bor tablesun"
-				style="background-color: #EFEFFF; opacity: 0.7;">
+			<table class="bor tablesun" style="background-color: #EFEFFF; opacity: 0.7; margin-top: 40px;">
 				<tr>
 					<td colspan="12" width="1200px" class="bor-bot"
 						style="padding-top: 20px;">출발지 : ${from}

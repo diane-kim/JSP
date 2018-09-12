@@ -10,7 +10,7 @@
 <%
 	session.invalidate();
 
-	response.sendRedirect("../index.jsp");
+	response.sendRedirect("../AirportMain.al");
 %>
 </body>
 </html>

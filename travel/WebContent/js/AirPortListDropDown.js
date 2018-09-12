@@ -1,7 +1,7 @@
 /**
  * 
  */
-// 선택된 영역이 아닌곳을 클릭하면 dropdown창이 안보이도록 함.
+//선택된 영역이 아닌곳을 클릭하면 dropdown창이 안보이도록 함.
 
 var iata = ['ICN','GMP','PUS','CJU','HKG','TPE','MFM','SHA','PEK','TAO','NRT','SIN', 'DMK', 'MNL','KUL','HAN','LCY','BVA','CIA','LAX','JFK','SFO' ];
 $('html').click(function(e) {

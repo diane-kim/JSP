@@ -1,57 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>헤더</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-<script type="text/javascript" src="/travel/js/GoogleMaplocation.js"></script>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
-
+<%-- <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/airport.css" /> --%>
+<style>
+.btn00 { /* 상단 bar 투명도와 마우스 hover시 투명도 1설정 */
+	opacity: 0.7;
+}
+.btn00:hover {
+	opacity: 1;
+}
+</style>
 </head>
-<body class="w3-light-grey" contenteditable="false">
-	<!-- Header -->
-	<header class="w3-display-container w3-content w3-hide-small"
-		style="max-width: 1500px">
-		<img class="w3-image"
-			src="<%=request.getContextPath()%>/w3images/london.jpg" alt="London"
-			width="1500" height="700">
-		<div class="w3-display-middle" style="width: 65%">
-			<div class="w3-bar w3-black">
-				<button class="w3-bar-item w3-button tablink w3-red" onclick="openLink(event, 'Flight');">
-					<i class="fa fa-plane w3-margin-right"></i>Flight
-				</button>
-			</div>
-
-			<div id="Flight" class="w3-container w3-white w3-padding-16 myLink" style="display: block;">
-				<h3>Travel the world with us</h3>
-
-				<div class="w3-row-padding" style="margin: 0 -16px;">
-					<div class="w3-half">
-						<label>From</label> 
-						<input class="w3-input w3-border" type="text" placeholder="Departing from" id="fromAddress" name="fromAddress">
-					</div>
-					<div class="w3-half">
-						<label>To</label> 
-						<input class="w3-input w3-border" type="text" placeholder="Arriving at" id="toAddress" name="toAddress">
-					</div>
-				</div>
-				<p>
-					<button class="w3-button w3-dark-grey bttn" id="getBtn">Search and find dates</button>
-				</p>
-				<form name="MarkMap" action="<%=request.getContextPath()%>/searchResultView.sv" method="get">
-					<input type="hidden" id="fromName" name="fromName">
-					<input type="hidden" id="toName" name="toName"> 
-					<input type="hidden" id="fromLatitude" name="fromLatitude">
-					<input type="hidden" id="fromLongitude" name="fromLongitude"> 
-					<input type="hidden" id="toLatitude" name="toLatitude">
-					<input type="hidden" id="toLongitude" name="toLongitude">
-					<input type="hidden" id="toCountryCode" name="toCountryCode">
-					<input type="hidden" id="fromCountryCode" name="fromCountryCode">
-				</form>
-			</div>
-		</div>
-	</header>
-</body>
+<div class="w3-bar w3-white w3-border-bottom w3-xlarge btn00" style="height: 5%; position: absolute; z-index:4;">
+	<a href="AirportMain.al" class="w3-bar-item w3-button w3-text-red w3-hover-red"><b><i class="fa fa-map-marker w3-margin-right"></i>Yolo-Travel</b></a>
+	<jsp:include page="member/loginform.jsp" />
+	<%if (session.getAttribute("id") == null) {	%>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id01').style.display='block'">Login</button>
+	<%	} else if (session.getAttribute("id").equals("admin1")) {	%>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='<%=request.getContextPath()%>/member/logOut.jsp'">Logout</button>
+	<strong class="w3-bar-item w3-right" style="font-size: 11px;"><%out.print(session.getAttribute("id") + "님 안녕하세요.");%>	</strong>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='AirportManage.al'">예약회원관리</button>
+	<%} else {%>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='<%=request.getContextPath()%>/member/logOut.jsp'">Logout</button>
+	<strong class="w3-bar-item w3-right" style="font-size: 11px;"><%out.print(session.getAttribute("id") + "님 안녕하세요.");%>	</strong>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='AirportMemberReserv.al'">나의 예약정보관리</button>
+	<%}%>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id02').style.display='block'">Subscribe</button>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id03').style.display='block'">Contact</button>
+</div>
 </html>
