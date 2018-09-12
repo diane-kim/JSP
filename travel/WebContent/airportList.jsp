@@ -14,7 +14,10 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/airport.css" type="text/css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <!--  달력 --> 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->  
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/airport.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--  아이콘-->  
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  <!--  jQuery 기본 js파일 -->
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><!-- jQuery UI 라이브러리 js파일  -->
@@ -23,6 +26,8 @@
 <script src="<%=request.getContextPath()%>/js/AirPortListDropDown.js" ></script>
 <script src="<%=request.getContextPath()%>/js/airportList.js" type="text/javascript"></script>
 <script src="<%=request.getContextPath()%>/js/session.js" type="text/javascript"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewCheck.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewSubmitCheck.js"></script>
 
 <% String id = (String)session.getAttribute("id");%>
 </head>
@@ -37,7 +42,6 @@
 	<br><br><br><br>	
 <!--  항공편 드롭다운 -->	
 <!--  항공편 조회폼 -->
-<form action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" onsubmit="return check()">
    	<div class="input-container">
    		<i class="fa fa-plane icon" style="font-size:24px"></i>	 <!-- 비행기 아이콘 -->
    		
@@ -103,8 +107,9 @@
   </div>
   <input type="hidden" name="from"/>
   <input type="hidden" name="to"/>
-  <button type="submit" class="btn" id="getBtn">조회</button><br><br><br><br>
-</form>
+  <!-- <button id="btn" class="btn2 default input-field"  onclick="reserv(document.getElementByName('from'),document.getElementByName('to'),document.getElementByName('fromdate'),document.getElementByName('todate'),document.getElementByName('f'),document.getElementByName('num'),document.getElementByName('seat'))"></button> -->
+ <!--  <button type="submit" class="btn" id="getBtn">조회</button><br><br><br><br> -->
+ <button id="btn" class="btn" onclick="reserv(<script>document.getElementByName('from')</script>,<script>document.getElementByName('to')</script>,<script>document.getElementByName('fromdate')</script>,<script>document.getElementByName('todate')</script>,<script>document.getElementByName('num')</script>,<script>document.getElementByName('seat')</script>)">조회</button><br><br><br><br>
 
 
 
@@ -112,10 +117,7 @@
 
 
 
-
-
-
-		<div class="input-container">	
+		<%-- <div class="input-container">	
 		
 		<form action="/travel/AirportTest.al">
    		<div class="dropdown">
@@ -155,7 +157,7 @@
       		</div>  
       		<button id="btn" class="btn2 default input-field"  onclick="reserv('<%=session.getAttribute("f")%>','<%=session.getAttribute("t")%>','<%=session.getAttribute("fromdate")%>','<%=session.getAttribute("todate")%>','<%=session.getAttribute("num")%>','<%=session.getAttribute("seat")%>')">검색</button>      		
     	</div>	
-    	</form>
+    	</form> --%>
     	
     	<button id="btn2" class="btn2 default input-field" >변경</button>
     	<p class="prompt">표시 금액은 1인당 운임입니다 (예상 TAX 및 유류할증료 포함)  모든 출발·도착 시간은 현지 시각 기준입니다</p>

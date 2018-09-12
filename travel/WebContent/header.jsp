@@ -50,7 +50,6 @@
 					<input type="hidden" id="toCountryCode" name="toCountryCode">
 					<input type="hidden" id="fromCountryCode" name="fromCountryCode">
 				</form>
-
 			</div>
 		</div>
 	</header>
