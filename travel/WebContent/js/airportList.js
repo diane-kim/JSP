@@ -100,7 +100,8 @@ $(document).ready(function() {
 									}
 									
 									if ($("#fromLatitude").val() != "" && $("#toLatitude").val() != "") {
-										MarkMap.submit();
+										/*MarkMap.submit();*/										
+										bing.submit();
 									}			
 								}
 							};

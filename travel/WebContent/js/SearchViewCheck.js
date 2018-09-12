@@ -103,6 +103,7 @@ $(function(){
 			$("input[name=t]").val(contury[i] +"(" +iata[i] + ")");	
 			$("input[name=to]").val(iata[i]);
 			$("input[name=toName]").val(contury[i]);
+			$("input[name=query]").val(contury[i]);
 		});
 		
 //	});	

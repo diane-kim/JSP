@@ -18,9 +18,9 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 </style>
 </head>
 <body class="w3-light-grey" contenteditable="false">
-<jsp:include page="rank.jsp"/>
+<%-- <jsp:include page="rank.jsp"/>
 <jsp:include page="Rheader.jsp"/>
-<jsp:include page="member/loginform.jsp"/>
+<jsp:include page="member/loginform.jsp"/> --%>
 <jsp:include page="header.jsp"/>
 
 <!-- Page content -->
@@ -54,7 +54,7 @@ body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
 
 	
 <!-- End page content -->
-</div>
-<jsp:include page="footer.jsp"></jsp:include>
+</div><%-- 
+<jsp:include page="footer.jsp"></jsp:include> --%>
 </body>
 </html>

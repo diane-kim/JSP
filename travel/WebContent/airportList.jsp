@@ -25,6 +25,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewCheck.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/GoogleMapMark.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchView.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/BingImageSearch.js"></script>
 
 <% String id = (String)session.getAttribute("id");%>
 
@@ -80,7 +81,7 @@
 	<div class="centered main">
 	<br><br><br><br>	
 	
-	<form name="MarkMap" action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" onsubmit="return check()">
+	<form name="bing" action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" onsubmit="return newBingImageSearch(this)">
    	<div class="input-container">
    		<i class="fa fa-plane icon" style="font-size:24px"></i>	 <!-- 비행기 아이콘 -->
    		
@@ -158,6 +159,106 @@
 		
   <button type="button" id="btn" class="button-set button3-set input-field1 juafont" >조회</button>
   <button id="btn2" class="button-set button3-green-set input-field1 juafont" >변경</button>
+  
+  
+    
+  
+      <p><select name="where">
+            <option value="es-AR">Argentina (Spanish)</option>
+            <option value="en-AU">Australia (English)</option>
+            <option value="de-AT">Austria (German)</option>
+            <option value="nl-BE">Belgium (Dutch)</option>
+            <option value="fr-BE">Belgium (French)</option>
+            <option value="pt-BR">Brazil (Portuguese)</option>
+            <option value="en-CA">Canada (English)</option>
+            <option value="fr-CA">Canada (French)</option>
+            <option value="es-CL">Chile (Spanish)</option>
+            <option value="da-DK">Denmark (Danish)</option>
+            <option value="fi-FI">Finland (Finnish)</option>
+            <option value="fr-FR">France (French)</option>
+            <option value="de-DE">Germany (German)</option>
+            <option value="zh-HK">Hong Kong (Traditional Chinese)</option>
+            <option value="en-IN">India (English)</option>
+            <option value="en-ID">Indonesia (English)</option>
+            <option value="it-IT">Italy (Italian)</option>
+            <option value="ja-JP">Japan (Japanese)</option>
+            <option value="ko-KR">Korea (Korean)</option>
+            <option value="en-MY">Malaysia (English)</option>
+            <option value="es-MX">Mexico (Spanish)</option>
+            <option value="nl-NL">Netherlands (Dutch)</option>
+            <option value="en-NZ">New Zealand (English)</option>
+            <option value="no-NO">Norway (Norwegian)</option>
+            <option value="zh-CN">People's Republic of China (Chinese)</option>
+            <option value="pl-PL">Poland (Polish)</option>
+            <option value="pt-PT">Portugal (Portuguese)</option>
+            <option value="en-PH">Philippines (English)</option>
+            <option value="ru-RU">Russia (Russian)</option>
+            <option value="ar-SA">Saudi Arabia (Arabic)</option>
+            <option value="en-ZA">South Africa (English)</option>
+            <option value="es-ES">Spain (Spanish)</option>
+            <option value="sv-SE">Sweden (Swedish)</option>
+            <option value="fr-CH">Switzerland (French)</option>
+            <option value="de-CH">Switzerland (German)</option>
+            <option value="zh-TW">Taiwan (Traditional Chinese)</option>
+            <option value="tr-TR">Turkey (Turkish)</option>
+            <option value="en-GB">United Kingdom (English)</option>
+            <option value="en-US" selected>United States (English)</option>
+            <option value="es-US">United States (Spanish)</option>
+        </select>
+    <p>from Microsoft Cognitive Services
+</div>
+
+<div id="query"><!-- query controls including search field and options (검색 필드 및 옵션을 포함한 쿼리 컨트롤)-->
+    <h1>Bing Image Search API demo</h2>    
+
+        <input type="text" name="query" id="term" placeholder="Search for images" autocomplete=off>
+
+        <p>Aspect
+    <input type=radio name="aspect" id="any" value="all" checked>
+        <label for="any">Any</label>
+    <input type=radio name="aspect" id="square" value="square">
+        <label for="square">Square</label>
+    <input type=radio name="aspect" id="wide" value="wide">
+        <label for="wide">Wide</label>
+    <input type=radio name="aspect" id="tall" value="tall">
+        <label for="tall">Tall</label>
+
+        &nbsp;&nbsp;&nbsp;Color
+    <select name="color">
+        <option value="" selected>Any</option>
+        <option value="coloronly">Only Color</option>
+        <option value="monochrome">Black and White</option>
+        <option value="black">Black</option>
+        <option value="blue">Blue</option>
+        <option value="black">Brown</option>
+        <option value="gray">Gray</option>
+        <option value="green">Green</option>
+        <option value="orange">Orange</option>
+        <option value="pink">Pink</option>
+        <option value="purple">Purple</option>
+        <option value="red">Red</option>
+        <option value="teal">Teal</option>
+        <option value="white">White</option>
+        <option value="yellow">Yellow</option>                
+    </select>
+
+        &nbsp;&nbsp;&nbsp;From
+    <select name="when">
+        <option value="" selected>All time</option>
+        <option value="month">Past month</option>
+        <option value="week">Past week</option>
+        <option value="day">Last 24 hours</option>
+    </select>
+
+    &nbsp;&nbsp;&nbsp;<input type=checkbox id="safe" name="safe" value="on" checked><label for="safe">SafeSearch</label>
+
+    <!-- these hidden fields control paging 이러한 숨겨진 필드는 페이징을 제어합니다.-->
+    <input type=hidden name="count" value="25">
+    <input type=hidden name="offset" value="0">
+    <input type=hidden name="nextoffset" value="">    
+    <input type=hidden name="stack" value="[]"> 
+  
+  
 </form>
 	<c:if test="${check2==1}">
 		<script> reserv('${f}','${t}','${fromdate}','${todate}','${num}','${seat}'); getAirLine('${from}','${to}','${fromdate}');
@@ -167,6 +268,45 @@
     	<p class="prompt">표시 금액은 1인당 운임입니다 (예상 TAX 및 유류할증료 포함)  모든 출발·도착 시간은 현지 시각 기준입니다</p>
 
 		<div class="dropdown3-content centered">	
+<div>
+    <div id="error">
+    <h2>Error</h2>
+    <div id="_error">
+ </div>
+</div>
+
+<h2>Results</h2>
+<div id="paging1">
+    <div id="_paging1"></div>
+</div>
+
+<div id="noresults">
+    <div id="_noresults">None yet.</div>
+</div>
+
+<div id="sidebar">
+    <div id="_sidebar"></div>
+</div>
+
+<div id="results">
+    <div id="_results"></div>
+</div>
+
+
+<div id="paging2">
+    <div id="_paging2"></div>
+</div>
+
+<div id="json">
+    <h3><a href="#" onclick="return toggleDisplay('_json')">JSON</a></h3>
+    <div id="_json" style="display: none"></div>
+</div>
+
+<div id="http">
+    <h3><a href="#" onclick="return toggleDisplay('_http')">HTTP</a></h3>
+    <div id="_http" style="display: none"></div>
+</div>
+
 						<jsp:include page="mapmark.jsp">
 							<jsp:param value="1" name="check"/>
 					        <jsp:param value="${dto.fromName}" name="dtoFromName"/>
