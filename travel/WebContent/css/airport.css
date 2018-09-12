@@ -93,7 +93,7 @@ span.psw {
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
-    z-index: 4; /* Sit on top */
+    z-index: 5; /* Sit on top */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -109,6 +109,7 @@ span.psw {
     background-color: #fefefe;
     margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
     border: 1px solid #888;
+    height: 900px;
     width: 50%; /* Could be more or less, depending on screen size */
 }
 .bgimg {
@@ -228,7 +229,7 @@ a.no-uline { text-decoration:none }
     display: flex;
     width: 120%;  /* 박스 넓이 */
     margin-bottom: 50px;
-    font-family: 'Jua', sans-serif;
+    /* font-family: 'Jua', sans-serif; */ /* 이부분 적용 받고있음 컨테이너  */
 }
 .relative {
     position: relative;
@@ -271,6 +272,15 @@ tr.trr {
 	border-bottom: 1px solid lightgrey;	
 }
 
+.topvar {
+	position: relative;
+	margin-left: 0px;
+	padding-bottom: 0px;
+	margin-botoom: 0px;
+	width: 202vh;
+	z-index: 3;
+}
+
 .sidebar {
   margin: 0;
   padding: 0;
@@ -278,6 +288,7 @@ tr.trr {
   background-color: #f1f1f1;
   height: 100%;
   overflow: auto;
+  
 }
 
 .sidebar a {
@@ -514,7 +525,7 @@ img.img {vertical-align: middle;}
 }
 #content {
     width: 100px;
-    position: fixed;
+    position: absolute;
     top: 7%;
     right: 2%; 
 }
@@ -529,4 +540,5 @@ img.img {vertical-align: middle;}
     padding: 10px;
     outline: none;    
 }
+
 

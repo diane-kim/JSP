@@ -15,14 +15,15 @@ public class AirportListCancelCommand implements AirportListCommand {
 		
 				
 		String id = request.getParameter("id"); 		//회원id
-		String date = request.getParameter("date"); 		//회원id
-		 
+		String date = request.getParameter("date"); 		//날짜
+		String fn = request.getParameter("fn"); 		//비행기번호
+		
 		Date todate = Date.valueOf(date);
 		System.out.println(id);
 		System.out.println(todate);
 		AirportListDAO dao = new AirportListDAO();
 		
-		dao.DeleteReservInfo(id,todate);
+		dao.DeleteReservInfo(id,todate,fn);
 		
 		
 	}

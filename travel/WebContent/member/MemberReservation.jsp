@@ -24,31 +24,28 @@
 <body>
 	<div style="height:5%;">
 		<jsp:include page="../header.jsp" />
-	</div>
-	
-	<div id="datatable" style="display: none;">
+	</div>	
+
+	<div id="datatable" style="display: none; text-align: left; padding-top: 5%;">
 	<table id="example" class="display" border="1">
 		<thead>
 		<tr>
-			<td>회원ID</td>
 			<td>출발지</td>
 			<td>도착지</td>
-			<!-- <td>출발날짜</td>-->
+			<td>출발날짜</td>
 			<td>출발시간</td>
 			<td>도착시간</td>
 			<td>비행기번호</td>
 			<td>표</td>
 			<td>좌석</td>
-			<!-- <td>가격</td>-->
+			<td>가격</td>
 			<td>총가격</td>
 			<td>항공사</td>
 			<td>성</td>
 			<td>이름</td>
-			<td>국적</td>
 			<td>휴대전화</td>
 			<td>이메일</td>
-			<td>예약날짜</td>
-			
+			<td>예약날짜</td>			
 			<td>예약취소</td>
 		</tr>
 		</thead>
@@ -56,26 +53,23 @@
 		<c:forEach items="${ReservationList}" var="dto" varStatus="status">	
 	<%--${status.index}<br/> --%>	
 		<tr>
-			<td>${dto.ID}</td>
 			<td>${dto.DEPARTURE}</td>
 			<td>${dto.ARRIVAL}</td>
-			<!-- <td>${dto.DEPARTURE_DATE}</td>-->
+			<td>${dto.DEPARTURE_DATE}</td>
 			<td>${dto.DEPARTURE_TIME}</td>
 			<td>${dto.ARRIVAL_TIME}</td>
 			<td>${dto.FLIGHT_NUMBER}</td>
 			<td>${dto.TICKET}</td>
 			<td>${dto.SEAT}</td>
-			<!-- <td>${dto.PRICE}</td>-->
+			<td>${dto.PRICE}</td>
 			<td>${dto.TOTAL_PRICE}</td>
 			<td>${dto.AIRLINE}</td>
 			<td>${dto.LNAME}</td>
 			<td>${dto.FNAME}</td>		
-			<td>${dto.NATIONALITY}</td>
 			<td>${dto.PHONE}</td>
 			<td>${dto.EMAIL}</td>
 			<td>${dto.RESERVATION_DATE}</td>
-			
-			<td><a href="./AirportCancel.al?id=${dto.ID}&date=${dto.RESERVATION_DATE}&fn=${dto.FLIGHT_NUMBER}" onclick="return delchk();">취소</a></td>
+			<td><a href="./AirportCancel2.al?id=${dto.ID}&date=${dto.RESERVATION_DATE}&fn=${dto.FLIGHT_NUMBER}" onclick="return delchk();">예약취소</a></td>
 		</tr>
 		</c:forEach>
 		</tbody>

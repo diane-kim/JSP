@@ -93,15 +93,15 @@ function hideDivs() {
 // render functions for various types of search results (다양한 유형의 검색 결과를위한 함수 렌더링)
 searchItemRenderers = { 
     images: function (item, index, count) {
-        var height = 120;
+        var height = 100;
         var width = Math.max(Math.round(height * item.thumbnail.width / item.thumbnail.height), 120);
         var html = [];
         if (index === 0) html.push("<p class='images'>");
         var title = escape(item.name) + "\n" + getHost(item.hostPageDisplayUrl);
-        html.push("<p class='images' style='max-width: " + width + "px'>");
-        html.push("<img src='"+ item.thumbnailUrl + "&h=" + height + "&w=" + width + 
-            "' height=" + height + " width=" + width + "'>");
-/*        html.push("<br>");
+        html.push("<span class='images' style='max-width: " + width + "px;'>");
+        html.push("<a href='" + item.contentUrl + "'><img src='"+ item.thumbnailUrl + "&h=" + height + "&w=" + width + 
+            "' height=" + height + " width=" + width + "'></a>");
+/*      html.push("<br>");
         html.push("<nobr><a href='" + item.contentUrl + "'>Image</a> - ");
         html.push("<a href='" + item.hostPageUrl + "'>Page</a></nobr><br>");
         html.push(title.replace("\n", " (").replace(/([a-z0-9])\.([a-z0-9])/g, "$1.<wbr>$2") + ")</p>");*/

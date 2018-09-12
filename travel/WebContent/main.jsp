@@ -23,17 +23,15 @@ if(contentPage==null)
 	<div style="height:5%;">
 	<jsp:include page="header.jsp" />
 	</div>
-	<div class="sidebar" style="width:15%; height:100%; float:left;">
+	<div class="sidebar" style="width:15%; height:300%; float:left;">
 	<jsp:include page="sidebar.jsp" />
 	</div>
 	<!--  메인화면 부분 -->
-	<div style="width:85%; height:100%; float:left;">
+	<div style="width:75%; height:100%; float:left;">
 	<jsp:include page="<%=contentPage%>" />
 	</div>
-	<!--    	    -->
-<%-- 	<div style="width:100%; height:4%;">
-	<jsp:include page="footer.jsp" />	
-	</div> --%>
+
+
 
 </body>
 </html>

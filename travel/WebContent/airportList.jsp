@@ -1,6 +1,5 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8"%>    
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
@@ -81,7 +80,7 @@
 	<div class="centered main">
 	<br><br><br><br>	
 	
-	<form name="bing" action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" onsubmit="return newBingImageSearch(this)">
+	<form name="bing" action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" >
    	<div class="input-container">
    		<i class="fa fa-plane icon" style="font-size:24px"></i>	 <!-- 비행기 아이콘 -->
    		
@@ -159,11 +158,8 @@
 		
   <button type="button" id="btn" class="button-set button3-set input-field1 juafont" >조회</button>
   <button id="btn2" class="button-set button3-green-set input-field1 juafont" >변경</button>
-  
-  
     
-  
-      <p><select name="where">
+      <p style="display:none;"><select name="where">
             <option value="es-AR">Argentina (Spanish)</option>
             <option value="en-AU">Australia (English)</option>
             <option value="de-AT">Austria (German)</option>
@@ -205,12 +201,8 @@
             <option value="en-US" selected>United States (English)</option>
             <option value="es-US">United States (Spanish)</option>
         </select>
-    <p>from Microsoft Cognitive Services
-</div>
 
-<div id="query"><!-- query controls including search field and options (검색 필드 및 옵션을 포함한 쿼리 컨트롤)-->
-    <h1>Bing Image Search API demo</h2>    
-
+<div id="query" style="display:none;"><!-- query controls including search field and options (검색 필드 및 옵션을 포함한 쿼리 컨트롤)-->
         <input type="text" name="query" id="term" placeholder="Search for images" autocomplete=off>
 
         <p>Aspect
@@ -249,6 +241,7 @@
         <option value="week">Past week</option>
         <option value="day">Last 24 hours</option>
     </select>
+    </p>
 
     &nbsp;&nbsp;&nbsp;<input type=checkbox id="safe" name="safe" value="on" checked><label for="safe">SafeSearch</label>
 
@@ -257,32 +250,38 @@
     <input type=hidden name="offset" value="0">
     <input type=hidden name="nextoffset" value="">    
     <input type=hidden name="stack" value="[]"> 
+  </div>
+    </form>
+</div>
+
+
   
-  
-</form>
 	<c:if test="${check2==1}">
 		<script> reserv('${f}','${t}','${fromdate}','${todate}','${num}','${seat}'); getAirLine('${from}','${to}','${fromdate}');
+		var frm = document.forms.bing;
+		bing.query.value = '${dto.toName}';
+	    newBingImageSearch(frm);
 	</script>
 	</c:if>
     	
-    	<p class="prompt">표시 금액은 1인당 운임입니다 (예상 TAX 및 유류할증료 포함)  모든 출발·도착 시간은 현지 시각 기준입니다</p>
+    	<p class="prompt" style="text-align: center;">표시 금액은 1인당 운임입니다 (예상 TAX 및 유류할증료 포함)  모든 출발·도착 시간은 현지 시각 기준입니다</p>
 
 		<div class="dropdown3-content centered">	
 <div>
     <div id="error">
-    <h2>Error</h2>
+<!--     <h2>Error</h2> -->
     <div id="_error">
  </div>
 </div>
 
-<h2>Results</h2>
-<div id="paging1">
+<!-- <h2>Results</h2> -->
+<!-- <div id="paging1">
     <div id="_paging1"></div>
-</div>
+</div> -->
 
-<div id="noresults">
+<!-- <div id="noresults">
     <div id="_noresults">None yet.</div>
-</div>
+</div> -->
 
 <div id="sidebar">
     <div id="_sidebar"></div>
@@ -297,7 +296,7 @@
     <div id="_paging2"></div>
 </div>
 
-<div id="json">
+<!-- <div id="json">
     <h3><a href="#" onclick="return toggleDisplay('_json')">JSON</a></h3>
     <div id="_json" style="display: none"></div>
 </div>
@@ -305,7 +304,7 @@
 <div id="http">
     <h3><a href="#" onclick="return toggleDisplay('_http')">HTTP</a></h3>
     <div id="_http" style="display: none"></div>
-</div>
+</div> -->
 
 						<jsp:include page="mapmark.jsp">
 							<jsp:param value="1" name="check"/>
@@ -317,9 +316,10 @@
 					        <jsp:param value="${dto.toLongitude}" name="dtoToLongitude"/>
 						</jsp:include>	 		
 		</div>		
-		<br><br>
+		<br><br><br>
 
-		<table id="realTime" class="display table" width="100%"></table>	
+			<table id="realTime" class="display table" width="100%"></table>
 		</div>
+		
 </body>
 </html>

@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import travel.airportList.command.AirportListCancel2Command;
 import travel.airportList.command.AirportListCancelCommand;
 import travel.airportList.command.AirportListCommand;
 import travel.airportList.command.AirportListMainCommand;
 import travel.airportList.command.AirportListManageReservationCommand;
+import travel.airportList.command.AirportListMemberReservationCommand;
 import travel.airportList.command.AirportListPaymentCommand;
 import travel.airportList.command.AirportListReservationCommand;
 import travel.airportList.command.AirportListTest;
@@ -42,7 +44,11 @@ public class AirportListController extends HttpServlet {
 		
 		String uri = request.getRequestURI();
 		String conPath = request.getContextPath();
-		String com = uri.substring(conPath.length());		
+		String com = uri.substring(conPath.length());
+
+		System.out.println(uri);
+		System.out.println(conPath);
+		System.out.println(com);
 			
 		if (com.equals("/AirportList.al")) {
 			System.out.println("AirportList 호출");			
@@ -66,6 +72,7 @@ public class AirportListController extends HttpServlet {
 			alc = new AirportListTest();
 			alc.execute(request, response);
 			viewPage = "/airportList.jsp";
+		// 관리자 : 회원들의 예약정보 관리
 		}else if (com.equals("/AirportManage.al")) {
 			System.out.println("AirportManage 호출");		
 			alc = new AirportListManageReservationCommand();
@@ -73,19 +80,38 @@ public class AirportListController extends HttpServlet {
 			//viewPage = "AirportMain.al?contentPage=/admin/ReservationManage.jsp";
 			viewPage = "/admin/ReservationManage.jsp";
 		}
-		//예약취소
+		// 회원 : 자기자신의 예약정보 관리
+		else if (com.equals("/AirportMemberReserv.al")) {
+			System.out.println("AirportMemberReserv 호출");		
+			alc = new AirportListMemberReservationCommand();
+			alc.execute(request, response);
+			//viewPage = "AirportMain.al?contentPage=/admin/ReservationManage.jsp";
+			viewPage = "/member/MemberReservation.jsp";
+		}
+		//관리자 : 예약취소
 		else if (com.equals("/AirportCancel.al")) {
 			System.out.println("AirportCancel 호출");		
 			alc = new AirportListCancelCommand();
 			alc.execute(request, response);
 			viewPage = "/AirportManage.al";
 		}
+		//회원: 예약취소
+		else if (com.equals("/AirportCancel2.al")) {
+			System.out.println("AirportCancel2 호출");		
+			alc = new AirportListCancel2Command();
+			alc.execute(request, response);
+			viewPage = "/AirportMemberReserv.al";
+		}
+
+		//공항날씨
 		else if (com.equals("/AirportWeather.al")) {
 			viewPage = "AirportMain.al?contentPage=airportWeather.jsp";
 		}
+		//근처의 공항위치
 		else if (com.equals("/AirportNear.al")) {
 			viewPage = "AirportMain.al?contentPage=airportNear.jsp";
 		}
+		//항공사 등급
 		else if (com.equals("/AirportRank.al")) {
 			viewPage = "AirportMain.al?contentPage=airportRank.jsp";
 		}

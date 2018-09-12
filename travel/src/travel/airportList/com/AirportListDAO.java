@@ -77,7 +77,7 @@ public class AirportListDAO {
 			}
 		}
 	}
-	
+	//관리자가 회원예약정보 확인
 	public List<AirportListDTO> SelectReservation() {
 		dtos = new ArrayList<AirportListDTO>();
 		String sql = "select * from reservation";
@@ -126,14 +126,62 @@ public class AirportListDAO {
 		}
 		return dtos;
 	}
+	//회원 자기자신의 예약정보 확인
+	public List<AirportListDTO> SelectMemberReservation(String id) {
+		dtos = new ArrayList<AirportListDTO>();
+		String sql = "select * from reservation where id = ?";
+	try {
+		conn = dataSource.getConnection();
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+		while (rs.next()) {
+		dto = new AirportListDTO();
+		dto.setID(rs.getString("ID"));
+		dto.setDEPARTURE(rs.getString("DEPARTURE"));
+		dto.setARRIVAL(rs.getString("ARRIVAL"));
+		dto.setDEPARTURE_DATE(rs.getString("DEPARTURE_DATE"));
+		dto.setDEPARTURE_TIME(rs.getString("DEPARTURE_TIME"));
+		dto.setARRIVAL_TIME(rs.getString("ARRIVAL_TIME"));
+		dto.setFLIGHT_NUMBER(rs.getString("FLIGHT_NUMBER"));
+		dto.setTICKET(rs.getInt("TICKET"));
+		dto.setSEAT(rs.getString("SEAT"));
+		dto.setPRICE(rs.getString("PRICE"));
+		dto.setTOTAL_PRICE(rs.getString("TOTAL_PRICE"));
+		dto.setAIRLINE(rs.getString("AIRLINE"));
+		dto.setLNAME(rs.getString("LNAME"));
+		dto.setFNAME(rs.getString("FNAME"));
+		dto.setPHONE(rs.getString("PHONE"));
+		dto.setEMAIL(rs.getString("EMAIL"));
+		dto.setRESERVATION_DATE(rs.getDate("RESERVATION_DATE"));
+		dtos.add(dto); 
+		}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dtos;
+	}
 	// 예약취소
-	public void DeleteReservInfo(String id,Date date) {
+	public void DeleteReservInfo(String id,Date date,String fn) {
 		try {
-			String sql = "DELETE FROM reservation WHERE id like ? and reservation_date like ?";
+			String sql = "DELETE FROM reservation WHERE id like ? and reservation_date like ? and flight_number like ?";
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.setDate(2, date);
+			pstmt.setString(3, fn);
 			
 			pstmt.executeUpdate();
 			
