@@ -30,8 +30,52 @@ if(contentPage==null)
 	<div style="width:75%; height:100%; float:left;">
 	<jsp:include page="<%=contentPage%>" />
 	</div>
+	
+	
+	<div id="_chatbox" style="display: none">
+    <fieldset>
+        <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
+        <br/>
+        <input class="typetext" id="inputMessage" type="text"/>
+        <input type="submit" value="send" onclick="send()" />
+    </fieldset>  
+    </div>
+    <img id="_chatimage" class="chat" src="./img/chat.png" />
 
+    <script>
+    $(".chat").on({
+        "click" : function() {
+            if ($(this).attr("src") == "./img/chat.png") {
+                $(".chat").attr("src", "./img/chathide.png");
+                $("#_chatbox").css("display", "block");
+            } else if ($(this).attr("src") == "./img/chathide.png") {
+                $(".chat").attr("src", "./img/chat.png");
+                $("#_chatbox").css("display", "none");
+            }
+        }
+    });
+    
+/*     $(document).ready(function(){
+        
+        $("#_chatimage").hide(); // 탑 버튼 숨김
+        $(function () {
+                try{  
+    		        $(window).scroll(function () {
+    		            if ($(this).scrollTop() > 100) { // 스크롤 내릴 표시
+    		                $('#_chatimage').fadeIn();
+    		            } else {
+    		                $('#_chatimage').fadeOut();
+    		            }
+    		        });
+    	        }catch(e){
+    	        console.log(e);
+            }
+        }); 
+    }); */
 
+	</script> 
+<%-- 	
+	   <jsp:include page="footer.jsp" /> --%>
 
 </body>
 </html>

@@ -21,19 +21,6 @@ public class AirportListMainCommand implements AirportListCommand {
 		MemberDTO memberDto = new MemberDTO();
 		
 		HttpSession session=request.getSession();
-
-/*		String f = request.getParameter("f");
-		String t = request.getParameter("t");*/
-/*		
-		session.setAttribute("f", request.getParameter("f"));
-		session.setAttribute("t", request.getParameter("t"));
-		session.setAttribute("from", request.getParameter("from"));
-		session.setAttribute("to", request.getParameter("to"));
-		session.setAttribute("num", request.getParameter("num"));
-		session.setAttribute("seat", request.getParameter("seat"));
-		session.setAttribute("fromdate", request.getParameter("fromdate"));
-		session.setAttribute("todate", request.getParameter("todate"));
-		*/
 		
 		SearchViewDAO dao = new SearchViewDAO();
 		SearchViewDTO dto = new SearchViewDTO();
@@ -51,8 +38,7 @@ public class AirportListMainCommand implements AirportListCommand {
 		System.out.println("출발지 : " + dto.getFromName()+ ", 도착지 : " + dto.getToName());
 		System.out.println("출발지 위도 : " + dto.getFromLatitude()+", 출발지 경도 : " + dto.getFromLongitude());
 		System.out.println("도착지 위도 : " + dto.getToLatitude() +", 도착지 경도 : " + dto.getToLongitude());
-		System.out.println("출발지 국가 코드"+ dto.getFromCountryCode() + ", 도착지 국가 코드 " + dto.getToCountryCode());
-		
+		System.out.println("출발지 국가 코드"+ dto.getFromCountryCode() + ", 도착지 국가 코드 " + dto.getToCountryCode());		
 		
 		String id = (String) session.getAttribute("id");		
 		String f = request.getParameter("f");
@@ -65,8 +51,6 @@ public class AirportListMainCommand implements AirportListCommand {
 		String todate =  request.getParameter("todate");
 		
 		System.out.println(f + " " + t + " " + from + " " + to + " "+ num + " "+ seat+ " "+ fromdate+ " " + todate);
-
-/*		System.out.println(num + " " + seat + " " + fromdate + " " + todate + " " + t+ " "+ f);*/
 		
 		System.out.println("접속한 ID : "+ id); 
 		int check = 0;

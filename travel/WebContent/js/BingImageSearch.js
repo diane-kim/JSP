@@ -1,7 +1,7 @@
 // cookie names for data we store(저장하는 데이터의 쿠키 이름)
 // YOUR API KEY DOES NOT GO IN THIS CODE; don't paste it in.(귀하의 API 키는이 코드를 따르지 않습니다. 그것을 붙이지 마십시오.)
 API_KEY_COOKIE   = "c6508713f6634f5d866e7c60d96af2c5";
-CLIENT_ID_COOKIE = "bing-search-client-id";
+CLIENT_ID_COOKIE = "c6508713f6634f5d866e7c60d96af2c5";
 
 // Bing Search API endpoint(Bing Search API 엔드 포인트)
 BING_ENDPOINT = "https://api.cognitive.microsoft.com/bing/v7.0/images/search";	

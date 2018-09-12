@@ -23,7 +23,6 @@
 <script src="<%=request.getContextPath()%>/js/airportList.js" type="text/javascript"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewCheck.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/GoogleMapMark.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchView.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/BingImageSearch.js"></script>
 
 <% String id = (String)session.getAttribute("id");%>
