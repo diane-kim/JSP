@@ -137,3 +137,39 @@ COMMENT ON COLUMN reservation.phone IS '휴대전화번호';
 COMMENT ON COLUMN reservation.email IS '이메일';
 COMMENT ON COLUMN reservation.reservation_date IS '예약한 날짜';
 COMMENT ON COLUMN reservation.ID IS '접속한 회원ID';
+
+
+
+
+create sequence countryRank_seq;
+create table countryRank ( 
+countryName varchar2(50),
+Rcount NUMBER
+);
+COMMENT ON TABLE countryRank IS '실시간예약순위';
+COMMENT ON COLUMN countryRank.countryName IS '나라이름';
+COMMENT ON COLUMN countryRank.Rcount IS '출발지';
+
+insert into countryRank values('인천',11);
+insert into countryRank values('서울',12);
+insert into countryRank values('부산',13);
+insert into countryRank values('제주',14);
+insert into countryRank values('홍콩',15);
+insert into countryRank values('타이페이',16);
+insert into countryRank values('마카오',17);
+insert into countryRank values('상하이',18);
+insert into countryRank values('베이징',19);
+insert into countryRank values('칭다오',20);
+insert into countryRank values('도쿄',21);
+insert into countryRank values('싱가포르',22);
+insert into countryRank values('방콕',32);
+insert into countryRank values('마닐라',23);
+insert into countryRank values('쿠알라룸푸르',16);
+insert into countryRank values('하노이',27);
+insert into countryRank values('칭다오',12);
+insert into countryRank values('런던',82);
+insert into countryRank values('파리',6);
+insert into countryRank values('로마',17);
+insert into countryRank values('로스앤젤레스',12);
+insert into countryRank values('뉴욕',84);
+insert into countryRank values('샌프란시스코',34);
