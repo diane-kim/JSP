@@ -34,7 +34,7 @@ if(contentPage==null)
 <jsp:include page="footer.jsp" /> --%>
 	
 	
-<!-- 	<div id="_chatbox" style="display: none">
+	<div id="_chatbox" style="display: none">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
         <br/>
@@ -56,7 +56,7 @@ if(contentPage==null)
             }
         }
     });
-	</script>  -->
+	</script> 
 	
 	   
 

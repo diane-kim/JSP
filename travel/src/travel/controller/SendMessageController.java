@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import travel.sendMessage.command.sendMessageCommand;
 import travel.sendMessage.command.sendMessageInCommand;
-
+import travel.sendMessage.command.sendMessageViewCommand;
 import travel.sendMessage.command.subMailInCommand;
 
 
@@ -50,14 +50,20 @@ public class SendMessageController extends HttpServlet {
 		if(com.equals("/insert.jhw")) {
 			smc = new sendMessageInCommand();
 			smc.execute(req, res);
-			viewPage = "index.jsp";			
+			viewPage = "/AirportMain.al";			
 		}
 		
 		else if(com.equals("/submail.jhw")) {
 			smc = new subMailInCommand();
 			smc.execute(req, res);
-			viewPage = "index.jsp";	
-		}		
+			viewPage = "/AirportMain.al";	
+		}
+		//메시지
+		else if(com.equals("/MemberMessage.jhw")) {
+			smc = new sendMessageViewCommand(); 
+			smc.execute(req, res);
+			viewPage = "/admin/inquiry.jsp";	
+		}	
 			
 		RequestDispatcher dispatcher = req.getRequestDispatcher(viewPage);
 		

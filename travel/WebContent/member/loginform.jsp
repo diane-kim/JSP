@@ -48,7 +48,7 @@
 					
 
      	 			<input class="typetext" type="text" placeholder="Enter Your Email address" name="Submail" id="subscribe" autocomplete="off" required>
-      				<button class="w3-button w3-red w3-margin-top bt" type="submit" onclick="button_click();">Subscribe</button>
+      				<button class="w3-button w3-red w3-margin-top bt" type="submit" onclick="return button_click();">Subscribe</button>
    	  				
 
 					
@@ -76,10 +76,8 @@
      	 			<input class="typetext" type="text" placeholder="Enter Username" name="Name" id="name" autocomplete="off" required>
      	 			<input class="typetext" type="text" placeholder="Enter Your Email address" name="Email" id="email" autocomplete="off" required>
      	 			<input class="typetext" type="text" placeholder="Please enter a message" name="Message" id="mess" autocomplete="off" required>
-      				<button class="w3-button w3-red w3-margin-top bt" type="submit" onclick="button_click1();">Send Message</button>
-   	  				
-					
-					
+      				<button class="w3-button w3-red w3-margin-top bt" type="submit" onclick="return button_click1();">Send Message</button>
+				
 				</div>
 
 				<div class="w3-display-bottomleft w3-padding-large">

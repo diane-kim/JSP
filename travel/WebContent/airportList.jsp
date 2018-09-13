@@ -245,33 +245,27 @@
     </c:otherwise>
 	</c:choose>
 		<div>
-    		<div id="error">
+<!--     		<div id="error">
     			<div id="_error"></div>
 			</div>
-		<!--<div id="paging1">
+		<div id="paging1">
     			<div id="_paging1"></div>
 			</div>
 			<div id="noresults">
     			<div id="_noresults">None yet.</div>
-			</div> -->
+			</div>
 			<div id="sidebar">
     			<div id="_sidebar"></div>
 			</div>
-
-			<div id="results">
-    			<div id="_results"></div>
-			</div>
-			<div id="paging2">
-    			<div id="_paging2"></div>
-			</div>
-		<!--<div id="json">
+			
+		<div id="json">
     			<h3><a href="#" onclick="return toggleDisplay('_json')">JSON</a></h3>
     		<div id="_json" style="display: none"></div>
 			</div>
 			<div id="http">
     			<h3><a href="#" onclick="return toggleDisplay('_http')">HTTP</a></h3>
     		<div id="_http" style="display: none"></div>
-			</div> -->			
+			</div>	 -->	
 			<jsp:include page="mapmark.jsp">
 			<jsp:param value="1" name="check"/>
 		    <jsp:param value="${dto.fromName}" name="dtoFromName"/>
@@ -281,8 +275,15 @@
 			<jsp:param value="${dto.fromLongitude}" name="dtoFromLongitude"/>       
 			<jsp:param value="${dto.toLongitude}" name="dtoToLongitude"/>
 			</jsp:include>		 		
-		</div>		
-		<br><br>
+			
+			<div class='w3-half w3-container' id="results">
+    			<div id="_results"></div>
+    			
+    			<div id="paging2">
+    			<div id="_paging2"></div>
+				</div>
+			</div>
+		</div>
 		<table id="realTime" class="display table" width="100%"></table>	
 	</div>
 </body>

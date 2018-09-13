@@ -94,7 +94,7 @@ function hideDivs() {
 searchItemRenderers = { 
     images: function (item, index, count) {
         var height = 100;
-        var width = Math.max(Math.round(height * item.thumbnail.width / item.thumbnail.height), 120);
+        var width = 100;/*Math.max(Math.round(height * item.thumbnail.width / item.thumbnail.height), 120);*/
         var html = [];
         if (index === 0) html.push("<p class='images'>");
         var title = escape(item.name) + "\n" + getHost(item.hostPageDisplayUrl);
@@ -328,8 +328,8 @@ function renderPagingLinks(results) {
     var count = parseInt(bing.count.value, 10);
     html.push("<p class='paging'><i>Results " + (offset + 1) + " to " + (offset + count));
     html.push(" of about " + results.totalEstimatedMatches + ".</i> ");
-    html.push("<a href='#' onclick='return doPrevSearchPage()'>Prev</a> | ");
-    html.push("<a href='#' onclick='return doNextSearchPage()'>Next</a>");
+    html.push("<a href='javascript:;' onclick='return doPrevSearchPage()'>Prev</a> | ");
+    html.push("<a href='javascript:;' onclick='return doNextSearchPage()'>Next</a>");
     return html.join("");
 }
 

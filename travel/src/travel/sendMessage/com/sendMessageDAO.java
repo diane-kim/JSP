@@ -1,10 +1,10 @@
 package travel.sendMessage.com;
 
-import java.sql.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -69,5 +69,44 @@ public class sendMessageDAO {
 			}
 		}
 		return ri;
+	}
+// 문의정보 보기
+	public ArrayList<sendMessageDTO> SelectsendMessage() {
+		ArrayList<sendMessageDTO> dtos = new ArrayList<sendMessageDTO>();
+		sendMessageDTO dto = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from contact_information";
+	
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+		
+			while(rs.next()) {
+			 dto = new sendMessageDTO();
+			 dto.setName(rs.getString("NAME"));
+			 dto.setEmail(rs.getString("MAIL"));
+			 dto.setMessage(rs.getString("MESSAGE"));
+			 dtos.add(dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dtos;	
 	}
 }
