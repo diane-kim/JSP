@@ -60,8 +60,7 @@
 	<div class="centered main">
 		<div class="input-container">
 			<div class="dropdown nanumfont">
-				&nbsp;<b>출발공항 : &nbsp;&nbsp;</b> <input
-					class="input-field dia_bt area input bbb" id="txt4" value="${from}"
+				&nbsp;<b>출발공항 : &nbsp;&nbsp;</b> <input class="input-field dia_bt area input bbb" id="txt4" value="${from}"
 					placeholder="날씨" name="from" size="10" readonly="readonly" />
 				<div class="dropdown-content area">
 					<table class="area">
@@ -118,8 +117,6 @@
 					</table>
 				</div>
 			</div>
-
-
 			<div>
 				<%-- <input class="dia_bt3" id="txt4" value="${from}" size="10"/>  --%>
 				&nbsp;&nbsp;
@@ -127,8 +124,8 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="dropdown3-content centered">
+	<div id="dropdown3-hide" style="display:none;">
+	<div class="dropdown3-content centered" >
 		<div class="centered-map juafont" style="font-size: 30px;">
 			<div class="w3-half w3-container" style="padding-top: 20px;">
 				<p id="name"></p>
@@ -138,13 +135,16 @@
 				<p id="speedKnots"></p>
 				<img id="weather" src="">
 			</div>
-
 			<br>
 			<div class="w3-half w3-container">
 				<div id="map" style="width: 100%; height: 400px;"></div>
 			</div>
 		</div>
 	</div>
+	</div>
+	
+	
+	
 	
 	<!-- 신규 수정부분-----------------------------------------------------------------------  -->
 	<div class="centered">

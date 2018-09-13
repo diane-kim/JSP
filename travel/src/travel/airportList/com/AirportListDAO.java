@@ -39,6 +39,7 @@ public class AirportListDAO {
 			
 			String sql = "INSERT INTO reservation(KEY, DEPARTURE, ARRIVAL, DEPARTURE_DATE, DEPARTURE_TIME, ARRIVAL_TIME, FLIGHT_NUMBER, TICKET, SEAT, PRICE, TOTAL_PRICE, AIRLINE, LNAME, FNAME, NATIONALITY, PHONE, EMAIL, ID) "
 					+ "VALUES ( reservation_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	
 			conn = dataSource.getConnection();
 			pstmt = conn.prepareStatement(sql);
 			conn.setAutoCommit(false);
@@ -59,7 +60,6 @@ public class AirportListDAO {
 			pstmt.setString(15, DTO.getPHONE());
 			pstmt.setString(16, DTO.getEMAIL());
 			pstmt.setString(17, DTO.getID());
-
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -199,5 +199,72 @@ public class AirportListDAO {
 			}
 		}
 		
+	}
+	
+	public void updateRankInfo(String toName) {
+		
+		try {
+			String sql = "UPDATE countryRank " + 
+					"SET Rcount = Rcount+1 " + 
+					"WHERE countryName= ? ";
+			
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);		
+			pstmt.setString(1, toName);
+			System.out.println("==========================");
+			pstmt.executeUpdate();
+			
+			System.out.println(toName + " 조회수 증가");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	
+	public List<AirportListDTO> rankList(){
+		List<AirportListDTO> list = new ArrayList<AirportListDTO>();
+		
+		String sql = "select rownum as rank, countryName, Rcount " +
+				"from(select countryName,Rcount from countryRank order by Rcount desc) "+
+				"where rownum <=10";
+		try {
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				dto = new AirportListDTO();
+				
+				dto.setRankName(rs.getString("countryName"));
+				dto.setRank(rs.getString("rank"));
+				dto.setRcount(rs.getInt("Rcount"));
+				
+				list.add(dto);
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (conn != null)
+					conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}		
+		return list;
 	}
 }

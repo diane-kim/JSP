@@ -23,6 +23,30 @@ public class AirportListDTO {
 	private Date RESERVATION_DATE; 
 	private String ADDRESS; // 실제테이블에는 없는 column 
 	
+	private String RankName; //나라 이름 랭킹
+	private String Rank; //순위
+	private int Rcount; 
+	
+
+	
+	public int getRcount() {
+		return Rcount;
+	}
+	public void setRcount(int rcount) {
+		Rcount = rcount;
+	}
+	public String getRank() {
+		return Rank;
+	}
+	public void setRank(String rank) {
+		Rank = rank;
+	}
+	public String getRankName() {
+		return RankName;
+	}
+	public void setRankName(String rankName) {
+		RankName = rankName;
+	}
 	public AirportListDTO() {
 
 	}

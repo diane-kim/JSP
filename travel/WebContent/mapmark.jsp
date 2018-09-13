@@ -4,4 +4,4 @@
 <div class="w3-half w3-container">
 <div id="map" style="width:100%;height:400px;"></div>
 </div>
-</div>
+

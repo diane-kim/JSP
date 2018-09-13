@@ -9,7 +9,7 @@
 
 #rank { /*구역 부분 위치조정*/
     overflow: hidden;
-    width: 160px;
+    width: 200px;
     height: 30px; 
     margin: 0;
 }
@@ -535,12 +535,11 @@ img.img {vertical-align: middle;}
     color: #6b8299;
     line-height: 1.5;
 }
+
+
 .input-field1 { /* 장소 박스 크기, 여백 */
     width:80%; /* 박스들 사이 간격  */
     padding: 10px;
     outline: none;    
 }
-
-
-
 

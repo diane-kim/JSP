@@ -29,7 +29,7 @@ $(document).ready(function() {
 		}
 		else {
 		getAirLine1($("#txt4").val());
-		
+		$('#dropdown3-hide').css("display","block");
 		}
 	});	 
 });

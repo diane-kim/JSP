@@ -19,6 +19,7 @@ if(contentPage==null)
 <meta charset="utf-8">
 </head>
 <body>
+
 	<jsp:include page="rank.jsp"/>
 	<div style="height:5%;">
 	<jsp:include page="header.jsp" />
@@ -29,10 +30,11 @@ if(contentPage==null)
 	<!--  메인화면 부분 -->
 	<div style="width:75%; height:100%; float:left;">
 	<jsp:include page="<%=contentPage%>" />
-	</div>
+	</div><%-- 
+<jsp:include page="footer.jsp" /> --%>
 	
 	
-	<div id="_chatbox" style="display: none">
+<!-- 	<div id="_chatbox" style="display: none">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
         <br/>
@@ -54,28 +56,9 @@ if(contentPage==null)
             }
         }
     });
-    
-/*     $(document).ready(function(){
-        
-        $("#_chatimage").hide(); // 탑 버튼 숨김
-        $(function () {
-                try{  
-    		        $(window).scroll(function () {
-    		            if ($(this).scrollTop() > 100) { // 스크롤 내릴 표시
-    		                $('#_chatimage').fadeIn();
-    		            } else {
-    		                $('#_chatimage').fadeOut();
-    		            }
-    		        });
-    	        }catch(e){
-    	        console.log(e);
-            }
-        }); 
-    }); */
-
-	</script> 
-<%-- 	
-	   <jsp:include page="footer.jsp" /> --%>
+	</script>  -->
+	
+	   
 
 </body>
 </html>

@@ -206,9 +206,10 @@
 					type="hidden" name="구매표개당가격" value="${price}"> <input
 					type="hidden" name="총가격" value="${TotalPrice}"> <input
 					type="hidden" name="항공사이름" value="${ac}"> <input
-					type="hidden" name="출발시간" value="${fromdate}/${dt}"> <input
-					type="hidden" name="도착시간" value="${fromdate}/${at}">
-
+					type="hidden" name="출발시간" value="${fromdate}/${dt}"> 
+					<input type="hidden" name="도착시간" value="${fromdate}/${at}">
+					<input type="hidden" name="fromName" value="${fromName}">
+					<input type="hidden" name="toName" value="${toName}">
 			</form>
 		</div>
 	</div>

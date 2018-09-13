@@ -32,6 +32,9 @@ public class AirportListReservationCommand implements AirportListCommand{
 		int price = Integer.parseInt(request.getParameter("price"));
 		int TotalPrice = num * price; 
 		
+		String fromName = request.getParameter("fromName");
+		String toName = request.getParameter("toName");
+		
 		String PriceStr = String.format("%,d", price);		
 		String TotalPriceStr = String.format("%,d", TotalPrice);
 		
@@ -61,5 +64,7 @@ public class AirportListReservationCommand implements AirportListCommand{
 		request.setAttribute("price", PriceStr+"원");	//가격
 		request.setAttribute("TotalPrice", TotalPriceStr+"원");	//전체가격
 		request.setAttribute("check", check);	//로그인 여부 확인
+		request.setAttribute("fromName", fromName);	//iata 를 뺀 순수 출발 국가명
+		request.setAttribute("toName", toName);	//iata 를 뺀 순수 도착 국가명
 	}	
 }

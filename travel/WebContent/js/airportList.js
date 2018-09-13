@@ -10,15 +10,16 @@ function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-function reserv(param1,param2,param3,param4,param5,param6) {
+function reserv(param1,param2,param3,param4,param5,param6,param7,param8) {
 f = param1;
 t = param2;
 fromdate = param3;
 todate = param4;
 num = param5;
 seat = param6;
-
-console.log(f+t+fromdate+todate+num+seat);
+fromName = param7;
+toName = param8;
+console.log(f+" "+t+ " "+fromdate+ " "+todate+ " "+num+ " "+seat+ " "+fromName+ " "+ toName);
 }
 
 $(document).ready(function() {	
@@ -54,8 +55,7 @@ $(document).ready(function() {
 		    	return false;
 		    }   	   
 			else{
-				$(function() {
-						
+				$(function() {						
 					
 					
 						var nameReg = /[가-힣]$/;
@@ -167,6 +167,8 @@ $(document).ready(function() {
 								"&arrivalTime="+datas.scheduledFlights[i].arrivalTime.substring(11,16)+
 								"&airLine="+datas.scheduledFlights[i].carrierFsCode + datas.scheduledFlights[i].flightNumber+
 								"&airCode="+airlines+
+								"&fromName="+fromName+
+								"&toName="+toName+
 								"&price="+price+"'>예약</a>");				
 						console.log(dataArr);
 						dataSet.push(dataArr);		
@@ -189,22 +191,3 @@ $(document).ready(function() {
 				}
 			});
 		}
-// 공항 변경
-/*	$("#btn2").click(function swap_content(){
-		var tmp = document.getElementById('txt1').value;
-		document.getElementById('txt1').value = document.getElementById('txt2').value;
-		document.getElementById('txt2').value = tmp;
-	});*/
-
-/*	$("#btn").click(function check() {
-		if (!$("#txt1").val()) {
-			alert("출발공항을 입력해 주세요.");
-			return false; 
-		}else if(!$("#txt2").val()){
-			alert("도착공항을 입력해 주세요.");
-			return false; 
-		}else if(!$("#txt3").val()){
-			alert("날짜를 입력해 주세요.");
-			return false; 
-		}
-	}); */

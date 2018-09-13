@@ -40,13 +40,19 @@ public class AirportListPaymentCommand implements AirportListCommand {
 		dto.setDEPARTURE_TIME(request.getParameter("출발시간"));
 		dto.setARRIVAL_TIME(request.getParameter("도착시간"));
 		
+		
+		String fromName = request.getParameter("fromName");
+		String toName = request.getParameter("toName");
+		
+		System.out.println(toName);
+		dao.updateRankInfo(toName);		
 		try {
 			dao.InsertReservationInfo(dto);
+					
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		}	
 		
 		request.setAttribute("dto", dto);
 		/*String lname = request.getParameter("성");
@@ -65,10 +71,6 @@ public class AirportListPaymentCommand implements AirportListCommand {
 		String airline = request.getParameter("항공사이름");
 		String dtime = request.getParameter("출발시간");
 		String atime = request.getParameter("도착시간");
-		*/
-		
-		
-		
+		*/		
 	}
-
 }
