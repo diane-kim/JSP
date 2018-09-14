@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/rank.js" ></script>
 <div id="content">
-<h3 style="text-align: center;">실시간 급상승</h3>
+<h4 style="text-align: center;color:#234;font-size: 20px;line-height:2;"><strong>실시간 급상승</strong></h3>
 	<div id="rank" style="text-align: center;">
 		<ul>
 			<ol>

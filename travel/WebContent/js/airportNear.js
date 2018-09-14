@@ -36,8 +36,8 @@ $(document).ready(function() {
 						
 						console.log("latitude : "+ latitude + " longitude : "+longitude);
 
-						iConArray[0] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
-						iConArray[1] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+						iConArray[0] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+						iConArray[1] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
 
 						var airportlatitude = datas.airports[0].latitude;
 						var airportlongitude = datas.airports[0].longitude;

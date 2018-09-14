@@ -17,15 +17,16 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class SendEmail {
-	public static void main(String[] args) {
+public class SendMailDAO {
+
+	public List<String> getMailList() {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<String> list = new ArrayList<>();
 		Connection conn = null;
+
 		try {
-			String usr = "micol";
-			String pw = "micol";
+			String usr = "travel";
+			String pw = "travel";
 			String url = "jdbc:oracle:thin:@localhost:1521:xe";
 
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -42,6 +43,7 @@ public class SendEmail {
 			e.printStackTrace();
 		}
 
+		List<String> list = new ArrayList<>();
 		String sql = "select * from subscribe";
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -51,7 +53,6 @@ public class SendEmail {
 				list.add(email);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
@@ -65,6 +66,11 @@ public class SendEmail {
 				e2.printStackTrace();
 			}
 		}
+		return list;
+	}// end of sendMailList()
+
+	public void sendMail(List<String> list, String contents) {
+		System.out.println(contents);
 
 		String host = "smtp.naver.com";
 		final String user = "yedamtest";
@@ -95,6 +101,7 @@ public class SendEmail {
 				message.setSubject("[Subject] Java Mail Test");
 
 				message.setText("Simple mail test..");
+				message.setContent(contents, "text/html;charset=utf-8");
 
 				Transport.send(message);
 				System.out.println("메일 보내기 성공임 ^^");
@@ -103,6 +110,6 @@ public class SendEmail {
 				e.printStackTrace();
 			}
 		}
+	}// end of sendMail
 
-	} // end of main
 }// end of class

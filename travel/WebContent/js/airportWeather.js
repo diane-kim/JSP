@@ -68,6 +68,8 @@ function getAirLine1(from) {
 					value = datas.metar.tags[i].value;
 				}
 			}
+			console.log(value);
+			if(typeof value == "undefined"){document.getElementById("weather").src = "./img/notImage.png";}
 			document.getElementById("weather").src = "./img/" + value + ".png";
 
 			$(function() {

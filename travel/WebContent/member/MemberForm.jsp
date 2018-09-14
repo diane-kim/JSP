@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>회원가입</title>
-<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js?autoload=false"></script>
+<script src="/travel/js/Addr.js"></script>
+
 <script type="text/javascript" src="/travel/js/MemberJoinCheck.js"></script>
 <script type="text/javascript" src="/travel/js/MemberIdCheck.js"></script>
 
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 <script src="./bootstrap/js/bootstrap.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 <!-- JQuery 호출하기 위한 링크 선언 -->
 </head>
 <style type="text/css">
@@ -131,12 +132,12 @@ td {
 					<br>
 					<br></td>
 					<td><input type="text" id="postcode" name="postcode"
-						placeholder="우편번호" value='${postcode}' class="input-sm"> <input
+						placeholder="우편번호" value='${postcode}' class="input-sm" readonly="readonly"> <input
 						type="button" onclick="execDaumPostcode()" value="Post Search"><br>
 						<input type="text" id="roadAddress" name="roadAddress"
-						placeholder="도로명주소" value='${roadAddress}' class="form-control">
+						placeholder="도로명주소" value='${roadAddress}' class="form-control" readonly="readonly">
 						<input type="text" id="jibunAddress" name="jibunAddress"
-						placeholder="지번주소" value='${jibunAddress}' class="form-control">
+						placeholder="지번주소" value='${jibunAddress}' class="form-control" readonly="readonly">
 						<br>
 					<br>
 					<br> <span id="guide" name="guide" style="color: #999"></span>
@@ -152,7 +153,6 @@ td {
 			style="position: fixed; left: 980px; top: 750px"> <input
 			type="hidden" name="check" value="${check}" />
 	</form>
-	<script src="/travel/js/Addr.js"></script>
 	<form action="MemberIdCheck.do" method="post" name="idCheck">
 		<input type="hidden" name="id" value="" /> <input type="hidden"
 			name="password" value="" /> <input type="hidden"

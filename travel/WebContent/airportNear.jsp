@@ -10,14 +10,11 @@
 <title>근처 항공사 찾기</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <!--  jquery 라이브러리 -->
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
-<script src="<%=request.getContextPath()%>/js/airportNear.js"
-	type="text/javascript"></script>
+<script	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGXKB1k8LOAYWW0KCV9G0NNupVvav0XAs"></script>
+<script src="<%=request.getContextPath()%>/js/airportNear.js" type="text/javascript"></script>
 <% String id = (String)session.getAttribute("id");%>
-
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo'); /* 나눔명조 폰트  */
 @import url('https://fonts.googleapis.com/css?family=Jua'); /* jua 폰트 */

@@ -14,21 +14,29 @@ if(contentPage==null)
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/airport.css" />
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
-
-
 <meta charset="utf-8">
-</head>
-<body>
 
+<style>
+.img { /* 배경화면 조절 */
+	position: relative;
+	background: url('./w3images/배경2.jpg');
+	height: 100%;
+	width: 100%;
+	background-size: cover;
+}
+</style>
+</head>
+
+<body class="img">
 	<jsp:include page="rank.jsp"/>
 	<div style="height:5%;">
 	<jsp:include page="header.jsp" />
 	</div>
-	<div class="sidebar" style="width:15%; height:300%; float:left;">
+	<div class="sidebar" style="width:13%; height:100%;">
 	<jsp:include page="sidebar.jsp" />
 	</div>
 	<!--  메인화면 부분 -->
-	<div style="width:75%; height:100%; float:left;">
+	<div style="width:90%; height:100%;">
 	<jsp:include page="<%=contentPage%>" />
 	</div><%-- 
 <jsp:include page="footer.jsp" /> --%>
@@ -57,8 +65,5 @@ if(contentPage==null)
         }
     });
 	</script> 
-	
-	   
-
 </body>
 </html>

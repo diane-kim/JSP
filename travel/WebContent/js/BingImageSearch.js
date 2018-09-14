@@ -43,7 +43,9 @@ try {
 
 // get stored API subscription key, or prompt if it's not found(저장된 API 구독 키를 받거나 찾지 못한 경우 프롬프트합니다.)
 function getSubscriptionKey() {
-    var key = retrieveValue(API_KEY_COOKIE);
+    //var key = retrieveValue(API_KEY_COOKIE);
+	var key = "c6508713f6634f5d866e7c60d96af2c5";
+    console.log(key);
     while (key.length !== 32) {
         key = prompt("Enter Bing Search API subscription key:", "").trim();
     }

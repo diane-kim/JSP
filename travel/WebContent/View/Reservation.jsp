@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script src="<%=request.getContextPath()%>/js/ReservationCheck.js" type="text/javascript"></script>
-<script src="<%=request.getContextPath()%>/js/main.js" type="text/javascript"></script>
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- JQuery 호출하기 위한 링크 선언 -->
 

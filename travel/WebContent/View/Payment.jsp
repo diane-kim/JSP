@@ -14,8 +14,6 @@
 <script src="<%=request.getContextPath()%>/js/Payment.js" type="text/javascript"></script>
 <!--  결제api -->
 <title>결제</title>
-
-<jsp:include page="../member/loginform.jsp" />
 <style>
 @import url('https://fonts.googleapis.com/css?family=Jua');
 .font {

@@ -1,6 +1,21 @@
 // 다음 주소 API 자바스크립트
-    function execDaumPostcode() {
+function execDaumPostcode() {
+    daum.postcode.load(function() {
+    	var themeObj = {
+    			   bgColor: "#162525", //바탕 배경색
+    			   searchBgColor: "#162525", //검색창 배경색
+    			   contentBgColor: "#162525", //본문 배경색(검색결과,결과없음,첫화면,검색서제스트)
+    			   pageBgColor: "#162525", //페이지 배경색
+    			   textColor: "#FFFFFF", //기본 글자색
+    			   queryTextColor: "#FFFFFF", //검색창 글자색
+    			   //postcodeTextColor: "", //우편번호 글자색
+    			   //emphTextColor: "", //강조 글자색
+    			   outlineColor: "#444444" //테두리
+    	};
+    	
         new daum.Postcode({
+        	theme: themeObj,
+        	
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
  
@@ -47,4 +62,5 @@
                 }
             }
         }).open();
-    }
+    });
+}

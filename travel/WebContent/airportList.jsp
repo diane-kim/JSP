@@ -2,7 +2,7 @@
 <%	request.setCharacterEncoding("UTF-8");%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html>
+<!-- <html> -->
 <head>
 <title>운항정보</title>
 <meta charset="UTF-8">
@@ -11,16 +11,15 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/airport.css" type="text/css"/>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
 <!--  달력 --> 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->  
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->  
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  <!--  jQuery 기본 js파일 -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><!-- jQuery UI 라이브러리 js파일  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  <!--  jQuery 기본 js파일 -->
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><!-- jQuery UI 라이브러리 js파일  -->
 <!--  달력 -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/airportList.js" type="text/javascript"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewCheck.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/GoogleMapMark.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchView.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/BingImageSearch.js"></script>
 <% String id = (String)session.getAttribute("id");%>
 <style>
@@ -44,25 +43,25 @@
 }
 .button3-set {
 	background-color: white;
-	color: red;
-	border: 2px solid #f44336;
+	color: black; 
+	border: 1px solid #EAEAEA; 
 }
 .button3-green-set {
 	background-color: white;
-	color: green;
-	border: 2px solid #30b539;
+	color: black;
+	border: 1px solid #EAEAEA; 
 }
 .button3-green-set:hover {
-	background-color: #30b539;
-	color: white;
+	background-color: #EAEAEA;
+	color: black;
 }
 .button3-set:hover {
-	background-color: #f44336;
-	color: white;
+	background-color: #EAEAEA;
+	color: black;
 }
 </style>
-</head>
-<body>
+</head> <!-- 
+<body> --> 
 	<div class="centered main">
 	<br><br><br><br>		
 		<form name="bing" action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" >
@@ -107,12 +106,13 @@
     			<input class="input-field testDatepicker bbb input" type="text" placeholder="도착날짜" name="todate" id="todate" readonly="readonly">
   			</div>
   			<div class="input-container">	
-  				<h2><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  				성인&nbsp;&nbsp;</b> </h2>
-    			<a href="javascript:;" style="font-size:30px" class="bt_up fa fa-plus cal no-uline " > </a> <!-- 숫자 부분  -->
-    			<input class="num input" type="text" placeholder="성인" value="0" readonly="readonly" name="num">
-    			<a href="javascript:;" style="font-size:30px" class="bt_down fa fa-minus cal no-uline" > </a> <!-- 좌석 등급 부분  -->
-    			<h2><b>&nbsp;&nbsp;&nbsp;&nbsp;좌석 등급 &nbsp;&nbsp;&nbsp;</b></h2>
+  				<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  				성인&nbsp;&nbsp;</h3>
+  				
+    			<a href="javascript:;" style="font-size:20px" class="bt_up fa fa-plus cal no-uline " > </a> <!-- 숫자 부분  -->    			
+    			<input class="num input2" type="text" placeholder="성인" value="0" readonly="readonly" name="num">
+    			<a href="javascript:;" style="font-size:20px" class="bt_down fa fa-minus cal no-uline" > </a> <!-- 좌석 등급 부분  -->
+    			<h3>&nbsp;&nbsp;&nbsp;&nbsp;좌석 등급 &nbsp;&nbsp;&nbsp;</h3>
     			<select name="seat" font-size="10px">
     				<option value="일반"><b>일반</b></option>
     				<option value="비즈니스"><b>비즈니스</b></option>
@@ -285,6 +285,6 @@
 			</div>
 		</div>
 		<table id="realTime" class="display table" width="100%"></table>	
-	</div>
+	</div><!-- 
 </body>
-</html>
+</html> -->

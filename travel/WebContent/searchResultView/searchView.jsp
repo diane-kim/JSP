@@ -5,7 +5,7 @@
 <title>여행</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="http://code.jquery.com/jquery-latest.min.js"></script> <!--  jquery 라이브러리 -->
+<script src="https://code.jquery.com/jquery-latest.min.js"></script> <!--  jquery 라이브러리 -->
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewCheck.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/SearchViewSubmitCheck.js"></script>
 <!--  스타일 -->
@@ -13,9 +13,9 @@
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/airport.css" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!--  아이콘-->
 <!--  달력 --> 
-<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->  
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  <!--  jQuery 기본 js파일 -->
-<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><!-- jQuery UI 라이브러리 js파일  -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" /><!--  jQuery UI CSS파일-->  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>  <!--  jQuery 기본 js파일 -->
+<script src="https://code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script><!-- jQuery UI 라이브러리 js파일  -->
 </head>
 <body>
 <!--  타이틀 -->

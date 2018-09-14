@@ -19,8 +19,8 @@ function createMap(fromName, toName, fromLatitude, toLatitude, fromLongitude, to
 	contentArray[0] = fromName;
 	contentArray[1] = toName;
 	// marker icon 배열
-	iConArray[0] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
-	iConArray[1] = "http://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+	iConArray[0] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
+	iConArray[1] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
 	// marker를 찍을 위도,경도
 	markerArray[0] = new google.maps.LatLng(fromLatitude, fromLongitude);
 	markerArray[1] = new google.maps.LatLng(toLatitude, toLongitude);
