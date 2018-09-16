@@ -246,14 +246,19 @@ h4 { /* 여행장소 컨테인 정렬  */
 	
 }
 select {
-	border: 1px solid #EAEAEA;
+	border: 2px solid #a398a9;
 	 font-size: 15px;
+	 background-color: #e8e8e8;
+	 border-radius: 12px;
 }
 input.input {
-	border: 2px solid #FF5A5A;	
+	border: 2px solid #c5bebe;	
+	background-color: #e8e8e8;
 }
 input.input2 {
-	border: 1px solid #EAEAEA;	 
+	border: 2px solid #a398a9;	 
+	background-color: #e8e8e8;
+	border-radius: 12px;
 }
 
 .centered {
@@ -306,7 +311,7 @@ tr.trr {
 
 .sidebar a {
   display: block;
-  color: black;
+  color: white;
   padding: 16px;
   text-decoration: none;
 }
@@ -359,7 +364,7 @@ tr.trr {
 .icon { /* 아이콘 이미지 조절  */
     padding: 10px;
     /* font-size: 30px; */
-    background: #FF5A5A;
+    background: #5d5151;
     color: white;
     min-width: 60px;
     text-align: center;
@@ -367,7 +372,7 @@ tr.trr {
 
 
 .cal {
-    padding: 15px;
+    padding: 20px;
     min-width: 80px;
     text-align: center;
     font-size: 10px;
@@ -380,7 +385,8 @@ tr.trr {
     
 }
 .input-field:focus { /* 박스 선택시 박스 테두리 */
-    border: 2px dashed red;
+    /* border: 2px dashed red; */
+    border: 2px dashed black;
 }
 
 /* Set a style for the submit button */
@@ -408,7 +414,7 @@ tr.trr {
 	 opacity: 5;
 /* 	 padding: 5px; 
  	  */
- 	  margin-top: 5px;
+ 	  margin-top: 9px;
 }
 .seat { /* 좌석 숫자 */
 	 width: 66px;
@@ -523,7 +529,7 @@ img.img {vertical-align: middle;}
 #_chatimage {
 	position: fixed;
     bottom: 3%;
-	left: 1%;
+	right: 1%;
 	width: 100px; 
 }
 #_chatbox {
@@ -544,19 +550,41 @@ img.img {vertical-align: middle;}
     position: absolute;
     top: 7%;
     right: 2%; 
-    border: 3px solid #f1f1f1;
+    border: 1px solid #c2becc;
 }
 /*airportRank */
 .starColor{color:#EDD200;}
 .prompt {
-    color: #6b8299;
+    color: #f3f3f3;
     line-height: 1.5;
 }
-
-
+input::placeholder {
+  color: black;
+  font-weight: bold;
+}
 .input-field1 { /* 장소 박스 크기, 여백 */
     width:80%; /* 박스들 사이 간격  */
     padding: 10px;
     outline: none;    
+}
+
+
+.footer {     width:100%;
+            position:relative; top:45%;
+             text-align:center;
+            font-size:15px;
+            background: linear-gradient(270deg, black, gray);
+        }
+
+.footer h2 { color: #3498DB; }
+.footer a { color: #ABB2B9; }
+.footer i { color: #3498DB;}
+.footer small { color: white;}
+
+nav { float:left; }
+
+.m-flight-schedule{
+	border: 1px solid #ccc;
+	padding:5px;
 }
 

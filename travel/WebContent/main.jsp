@@ -24,10 +24,29 @@ if(contentPage==null)
 	width: 100%;
 	background-size: cover;
 }
+#videobcg { 
+     position: absolute;
+     top: 0px;
+     left: 0px;
+     min-width: 100%;
+     min-height: 100%;
+     width: auto;
+     height: auto;
+     z-index: -1000;
+     overflow: hidden;
+}
 </style>
 </head>
 
-<body class="img">
+<!-- <body class="img"> -->
+<body>
+
+<video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
+     <source src="lax-big.mp4" type="video/mp4">
+     <source src="movie.webm" type="video/webm">
+          Sorry, your browser does not support HTML5 video.
+</video>
+
 	<jsp:include page="rank.jsp"/>
 	<div style="height:5%;">
 	<jsp:include page="header.jsp" />
@@ -36,7 +55,7 @@ if(contentPage==null)
 	<jsp:include page="sidebar.jsp" />
 	</div>
 	<!--  메인화면 부분 -->
-	<div style="width:90%; height:100%;">
+	<div style="width:100%; height:100%;float:left;">
 	<jsp:include page="<%=contentPage%>" />
 	</div><%-- 
 <jsp:include page="footer.jsp" /> --%>

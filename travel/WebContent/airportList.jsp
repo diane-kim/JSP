@@ -23,15 +23,19 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/BingImageSearch.js"></script>
 <% String id = (String)session.getAttribute("id");%>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Jua'); /* Jua폰트 */
-.juafont { /* jua폰트 */
+/* @import url('https://fonts.googleapis.com/css?family=Jua'); /* Jua폰트 */ */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+.Notofont { /* jua폰트 */
 	font-family: 'Jua', sans-serif;
+}
+.Notofont{
+font-family: 'Noto Sans KR', sans-serif;
 }
 .button-set {
 	background-color: #4CAF50; /* Green */
 	border: none;
 	color: white;
-	padding: 10px 30px;
+	padding: 15px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -40,16 +44,18 @@
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
 	cursor: pointer;
+	font-weight: bold;
+	border-radius: 10px;
 }
 .button3-set {
-	background-color: white;
+	background-color: #e8e8e8;
 	color: black; 
-	border: 1px solid #EAEAEA; 
+	border: 2px solid #9c959c; 
 }
 .button3-green-set {
-	background-color: white;
+	background-color: #e8e8e8;
 	color: black;
-	border: 1px solid #EAEAEA; 
+	border: 2px solid #9c959c;  
 }
 .button3-green-set:hover {
 	background-color: #EAEAEA;
@@ -106,17 +112,20 @@
     			<input class="input-field testDatepicker bbb input" type="text" placeholder="도착날짜" name="todate" id="todate" readonly="readonly">
   			</div>
   			<div class="input-container">	
-  				<h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  				<h3 style="color:gainsboro; font-family:나눔바른고딕;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
   				성인&nbsp;&nbsp;</h3>
   				
-    			<a href="javascript:;" style="font-size:20px" class="bt_up fa fa-plus cal no-uline " > </a> <!-- 숫자 부분  -->    			
-    			<input class="num input2" type="text" placeholder="성인" value="0" readonly="readonly" name="num">
-    			<a href="javascript:;" style="font-size:20px" class="bt_down fa fa-minus cal no-uline" > </a> <!-- 좌석 등급 부분  -->
-    			<h3>&nbsp;&nbsp;&nbsp;&nbsp;좌석 등급 &nbsp;&nbsp;&nbsp;</h3>
-    			<select name="seat" font-size="10px">
-    				<option value="일반"><b>일반</b></option>
-    				<option value="비즈니스"><b>비즈니스</b></option>
+    			<a href="javascript:;" style="font-size:20px; color:gainsboro;" class="bt_up fa fa-plus cal no-uline " > </a> <!-- 숫자 부분  -->    			
+    			<input class="num input2" type="text" placeholder="성인" value="0" readonly="readonly" name="num" >
+    			<a href="javascript:;" style="font-size:20px; color:gainsboro;" class="bt_down fa fa-minus cal no-uline" > </a>     			
+    			
+    			<h3 style="color:gainsboro; font-family:나눔바른고딕;">&nbsp;&nbsp;&nbsp;&nbsp;좌석 등급 &nbsp;&nbsp;&nbsp;</h3> <!-- 좌석 등급 부분  -->
+    			<select name="seat"  style="font-weight:bold; font-size:20px;">
+    				<option value="일반" ><b>일반</b></option>
+    				<option value="비즈니스" ><b>비즈니스</b></option>
     			</select>
+    			
+    			
   			</div>
 			<input type="hidden" name="from"/>
 			<input type="hidden" name="to"/>
@@ -128,8 +137,8 @@
 			<input type="hidden" id="toLongitude" name="toLongitude">
 			<input type="hidden" id="toCountryCode" name="toCountryCode">
 			<input type="hidden" id="fromCountryCode" name="fromCountryCode">
-  			<button type="button" id="btn" class="button-set button3-set input-field1 juafont" >조회</button>
-  			<button id="btn2" class="button-set button3-green-set input-field1 juafont" >변경</button>
+  			<button type="button" id="btn" class="button-set button3-set input-field1 Notofont">조회</button>
+  			<button id="btn2" class="button-set button3-green-set input-field1 Notofont" >변경</button>
      		
      		<p style="display:none;">
      			<select name="where">
@@ -285,6 +294,18 @@
 			</div>
 		</div>
 		<table id="realTime" class="display table" width="100%"></table>	
-	</div><!-- 
+	</div>
+	
+<div class="footer">
+    <div class="ui divided grid">
+        <div class="row">
+          <div class="four wide column"><a><h2>Create By</h2></div>
+          <div class="four wide column"><a></i><br>MAIL<br>xxx@xxxx.com</a></div>
+          <div class="four wide column"><a id="liked"><i class="huge phone icon"></i><br>CALL<br>Number : 053-421-2460<br>FAX : 053-356-3939</a></div>
+          <div class="four wide column"><a><i class="huge map marker alternate icon"></i><br>FIND US<br>대구광역시 중구 국채보상로 537 (수동, 5층)</a></div>
+        </div>
+    </div>    
+        <small> Thanks To : Yedam Vocational Training Institute<br>Copyright &copy; 2018 Yestagram</small>
+</div>
 </body>
-</html> -->
+</html>

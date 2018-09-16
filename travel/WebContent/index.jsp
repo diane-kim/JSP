@@ -60,8 +60,8 @@
 	border-bottom: none;
 	margin: 1rem auto;
 	text-align: center;
-}
-
+}  
+ 
 @media ( min-aspect-ratio : 16/9) {
 	.video-foreground {
 		height: 300%;
@@ -90,7 +90,7 @@
 	.vid-info .acronym {
 		display: none;
 	}
-}
+}  
 
 .layer {
 	position: absolute;
@@ -117,7 +117,7 @@
     <div class="video-foreground">
       <iframe src="https://www.youtube.com/embed/RIQqVqQs9Xs?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&playlist=RIQqVqQs9Xs" frameborder="0" allowfullscreen></iframe>
     </div>
-  </div>
+</div>
 
 <div class="layer">
   <div class="layer_inner">
@@ -131,9 +131,6 @@
 </div> 
 </div>
 </div>
-
-
-
 
 </body>
 </html>
