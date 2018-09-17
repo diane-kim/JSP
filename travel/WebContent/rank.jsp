@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <link href="https://fonts.googleapis.com/css?family=Gaegu|Rancho" rel="stylesheet">
 <script src="<%=request.getContextPath()%>/js/rank.js" ></script>
+
 <div id="content" style="border-radius: 10px;">
 <h4 style="text-align: center; font-size: 20px;line-height:2;"><strong style="color:white;">실시간 급상승</strong></h3>
 	<div id="rank" style="text-align:center;" >

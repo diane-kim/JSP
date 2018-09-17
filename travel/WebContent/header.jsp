@@ -22,7 +22,8 @@
 	<%	} else if (session.getAttribute("id").equals("admin1")) {	%>
 	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='<%=request.getContextPath()%>/member/logOut.jsp'">Logout</button>
 	<strong class="w3-bar-item w3-right" style="font-size: 11px;"><%out.print(session.getAttribute("id") + "님 안녕하세요.");%>	</strong>
-	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='AirportManage.al'">예약회원관리</button>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='sendMail.jsp'">메일전송</button>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='AirportManage.al'">회원예약관리</button>
 	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='MemberMessage.jhw'">문의</button>
 	<%} else {%>
 	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='<%=request.getContextPath()%>/member/logOut.jsp'">Logout</button>

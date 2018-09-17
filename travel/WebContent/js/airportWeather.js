@@ -50,11 +50,34 @@ function getAirLine1(from) {
 			var value;
 			var temperatureCelsius;
 			var speedKnots;
+			var iConArray = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";			
+			var markerArray;
+			
+			function addMarker() {
+				var marker = new google.maps.Marker({
+					position : markerArray,
+					animation : google.maps.Animation.BOUNCE,
+					map : map,
+					draggable : false,
+					icon : iConArray
+				});
+				// markers.push(marker);
+
+				var infowindow = new google.maps.InfoWindow({
+					content : name
+				});
+
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map, marker);
+				});
+			}
 
 			name = datas.appendix.airports[0].name;
 			city = datas.appendix.airports[0].city;
 			latitude = datas.appendix.airports[0].latitude;
-			longitude = datas.appendix.airports[0].longitude;
+			longitude = datas.appendix.airports[0].longitude;			
+			markerArray = new google.maps.LatLng(latitude, longitude);
+			console.log("위도"+latitude+"경도"+longitude)
 			temperatureCelsius = datas.metar.temperatureCelsius;
 			speedKnots = datas.metar.conditions.wind.speedKnots;
 			document.getElementById("name").innerHTML = "공항 : " + name;
@@ -82,8 +105,9 @@ function getAirLine1(from) {
 						mapTypeId : google.maps.MapTypeId.ROADMAP,
 						center : new google.maps.LatLng(a, b)
 					};
-					map = new google.maps.Map(document.getElementById('map'),
-							mapOptions);
+					map = new google.maps.Map(document.getElementById('map'),mapOptions);
+					
+					addMarker();
 				}
 				google.maps.event.addDomListener(window, 'load', x(latitude,longitude));
 			});

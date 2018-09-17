@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>bootstrap4</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
@@ -24,8 +23,15 @@
 				},
 				type : "post",
 				success : function(result) {
-					console.log(result);
-					console.log($html);
+					console.log("result======"+result);
+					console.log("$html======"+$html);
+					
+			/* 		$('#view').html(http://mail3.nate.com/#list/?pop3id=M&page=1&mboxid=60); */
+					
+					  var iframe = document.getElementById("myFrame");
+					  var elmnt = iframe.contentWindow.document.getElementsByTagName("H1")[0];
+					  elmnt.style.display = "none";
+					
 				}
 			});// end of ajax
 		});
@@ -42,5 +48,6 @@
 		});
 	</script>
 	<button id="btn">Send Subscrib</button>
+	<iframe id="myFrame" src="https://mail3.nate.com/#list/?pop3id=M&page=1&mboxid=60" style="height:600px;width:100%"></iframe>
 </body>
 </html>

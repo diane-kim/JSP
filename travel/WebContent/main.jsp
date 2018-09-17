@@ -25,7 +25,7 @@ if(contentPage==null)
 	background-size: cover;
 }
 #videobcg { 
-     position: absolute;
+     position: fixed;
      top: 0px;
      left: 0px;
      min-width: 100%;
@@ -58,7 +58,7 @@ if(contentPage==null)
 	<div style="width:100%; height:100%;float:left;">
 	<jsp:include page="<%=contentPage%>" />
 	</div><%-- 
-<jsp:include page="footer.jsp" /> --%>
+	<jsp:include page="footer.jsp" /> --%>
 	
 	
 	<div id="_chatbox" style="display: none">
