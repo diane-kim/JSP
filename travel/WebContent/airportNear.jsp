@@ -34,7 +34,7 @@ font-family: 'Nanum Myeongjo', serif;
 </head>
 <body>
 
-	<br><br><br><br><br><br>
+	<br><br><br><br>
 	<div class="centered"><!-- 
 		<span class="juafont" style="font-size: 40px;"><b>현재 위치에서 가까운 공항 안내 </b></span> -->
 	</div>
@@ -48,11 +48,11 @@ font-family: 'Nanum Myeongjo', serif;
 	</div>
 	
 	<br><br>
-	<div class="dropdown3-content centered">
-		<div class="centered-map Nanum-Myeongjo" style="font-size: 30px;">
-			<div class="w3-half w3-container" style="padding-top: 20px; margin-left: auto; margin-top: 20px;">
-				<img id="airport" src="">
-				<p id="name"></p>
+	<div class="dropdown3-content centered" style="border-radius: 10px;">
+		<div class="centered-map Nanum-Myeongjo" style="font-size: 30px;">			
+			<div class="w3-half w3-container" style="padding-top: 20px; margin-left: auto; margin-top: 20px;">				
+				<img id="airport" src="">				
+				<p id="airportName"></p>
 			</div>
 
 			<div class="w3-half w3-container">
@@ -67,6 +67,7 @@ font-family: 'Nanum Myeongjo', serif;
 	<footer class="w3-container footer" style="padding:32px">
   <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
   <p>Create By <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">-</a></p>
+  
 </footer>
 
 

@@ -39,16 +39,32 @@
 		});
 	});
 </script>
+<style>
+.dropdown-content {
+   
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 1900px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+
+	}
+</style>
 </head>
 <body>
 
 <div style="height:5%;">
 	<jsp:include page="header.jsp" />
 </div>
-
+  
 <br><br><br><br>
-
+ <div class="dropdown-content">
 	<div id="summernote"></div>
+	<button id="btn" onclick="alert('메일 전송완료!')">메일 보내기</button> 
+	<br><br><br>
+	<iframe id="myFrame" src="https://mail3.nate.com/#list/?pop3id=M&page=1&mboxid=60" style="height:600px;width:100%"></iframe>
+</div>
 	<script>
 		$('#summernote').summernote({
 			placeholder : 'Hello bootstrap 4',

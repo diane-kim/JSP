@@ -40,17 +40,18 @@
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
 	cursor: pointer;
+	border-radius: 10px;
 }
 
 .button3 {
-	background-color: white;
-	color: red;
-	border: 2px solid #f44336;
+	background-color: #e8e8e8;
+	color: black; 
+	border: 2px solid #9c959c; 
 }
 
 .button3:hover {
-	background-color: #f44336;
-	color: white;
+    background-color: #EAEAEA;
+    color: black;
 }
 </style>
 
@@ -61,10 +62,10 @@
 	<div class="centered main">	
 		<div class="input-container">
 			<div class="dropdown nanumfont">
-				&nbsp;<b>출발공항 : &nbsp;&nbsp;</b> <input class="input-field dia_bt area input bbb" id="txt4" value="${from}"
-					placeholder="날씨" name="from" size="10" readonly="readonly" />
+				&nbsp;<b style="color:#dedede;">출발공항 : &nbsp;&nbsp;</b> <input class="input-field dia_bt area input bbb" id="txt4" value="${from}"
+					placeholder="날씨" name="from" size="10" readonly="readonly" style="border-radius: 10px;"/>
 				<div class="dropdown-content area">
-					<table class="area">
+					<table class="area ddTable">
 						<tr class="trr">
 							<td><h4 class="area">
 									<b class="area">국내</b>
@@ -110,7 +111,7 @@
 						<tr class="trr">
 							<td><a class="contury" href="#;">런던</a></td>
 							<td class="area"><a class="contury" href="#;">파리</a></td>
-							<td class="area"><a class="contury" href="#;">로마</a></td>
+							<td class="area"><a class="contury" href="#;">체코</a></td>
 							<td class="area"><a class="contury" href="#;">로스앤젤레스</a></td>
 							<td class="area"><a class="contury" href="#;">뉴욕</a></td>
 							<td class="area"><a class="contury" href="#;">샌프란시스코</a></td>
@@ -132,7 +133,7 @@
 	</div>
 	<br>
 	<div id="dropdown3-hide" style="display:none;">
-	<div class="dropdown3-content centered" >
+	<div class="dropdown3-content centered" style="border-radius: 10px;">
 		<div class="centered-map juafont" style="font-size: 30px;">
 			<div class="w3-half w3-container" style="padding-top: 20px;">
 				<p id="name"></p>

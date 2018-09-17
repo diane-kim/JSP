@@ -8,8 +8,11 @@
 	}
 }*/
 
-var contury = ['인천','서울','부산','제주','홍콩','타이페이','마카오','상하이','베이징','칭다오','도쿄','싱가포르','방콕','마닐라','쿠알라룸프르','하노이','런던','파리','로마','로스앤젤레스','뉴욕','샌프란시스코'];
-var iata = ['ICN','GMP','PUS','CJU','HKG','TPE',    'MFM','SHA',   'PEK', 'TAO', 'NRT',   'SIN', 'DMK', 'MNL',    'KUL',   'HAN',  'LCY','BVA','CIA','LAX',      'JFK','SFO' ];
+//var contury = ['인천','서울','부산','제주','홍콩','타이페이','마카오','상하이','베이징','칭다오','도쿄','싱가포르','방콕','마닐라','쿠알라룸프르','하노이','런던','파리','로마','로스앤젤레스','뉴욕','샌프란시스코'];
+//var iata = ['ICN','GMP','PUS','CJU','HKG','TPE',    'MFM','SHA',   'PEK', 'TAO', 'NRT',   'SIN', 'DMK', 'MNL',    'KUL',   'HAN',  'LCY','BVA','CIA','LAX',      'JFK','SFO' ];
+
+var contury = ['인천','서울','부산','제주','홍콩','타이페이','마카오','상하이','베이징','칭다오','도쿄','싱가포르','방콕','마닐라','쿠알라룸프르','하노이','런던','파리','체코','로스앤젤레스','뉴욕','샌프란시스코'];
+var iata = ['ICN','GMP','PUS','CJU','HKG','TPE',    'MFM','SHA',   'PEK', 'TAO', 'NRT',   'SIN', 'DMK', 'MNL',    'KUL',   'HAN',  'LCY','BVA','PRG','LAX',      'JFK','SFO' ];
 // 선택된 영역이 아닌곳을 클릭하면 dropdown창이 안보이도록 함.
 $('html').click(function(e) {
 	if(!$(e.target).hasClass("area")) { 

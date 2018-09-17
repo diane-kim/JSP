@@ -1,4 +1,6 @@
-var iata = ['ICN','GMP','PUS','CJU','HKG','TPE','MFM','SHA','PEK','TAO','NRT','SIN','DMK','MNL','KUL','HAN','LCY','BVA','CIA','LAX','JFK','SFO'];
+//var iata = ['ICN','GMP','PUS','CJU','HKG','TPE','MFM','SHA','PEK','TAO','NRT','SIN','DMK','MNL','KUL','HAN','LCY','BVA','CIA','LAX','JFK','SFO'];
+var iata = ['ICN','GMP','PUS','CJU','HKG','TPE','MFM','SHA','PEK','TAO','NRT','SIN','DMK','MNL','KUL','HAN','LCY','BVA','PRG','LAX','JFK','SFO'];
+
 
 $(function(){ 
 	$(".dia_bt").click(function(){ //dia_bt라는 아이디를 클릭했을 때

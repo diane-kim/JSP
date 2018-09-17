@@ -101,7 +101,7 @@ searchItemRenderers = {
         if (index === 0) html.push("<p class='images'>");
         var title = escape(item.name) + "\n" + getHost(item.hostPageDisplayUrl);
         html.push("<span class='images' style='max-width: " + width + "px;'>");
-        html.push("<a href='" + item.contentUrl + "'><img src='"+ item.thumbnailUrl + "&h=" + height + "&w=" + width + 
+        html.push("<a href='" + item.contentUrl + "' target='_blank'><img src='"+ item.thumbnailUrl + "&h=" + height + "&w=" + width + 
             "' height=" + height + " width=" + width + "'></a>");
 /*      html.push("<br>");
         html.push("<nobr><a href='" + item.contentUrl + "'>Image</a> - ");

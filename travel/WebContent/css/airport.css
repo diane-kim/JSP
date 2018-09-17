@@ -185,19 +185,23 @@ span.psw {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 700px;
+    min-width: 800px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
+    font-size: 20px;
+    border-radius: 10px;
 }
 .dropdown2-content {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 700px;
+    min-width: 800px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 1;
+    font-size: 20px;
+    border-radius: 10px;
 }
 .dropdown3-content {
     display: inline-block;
@@ -207,7 +211,17 @@ span.psw {
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
     z-index: 0;
-    width: 1300px;
+    width: 1300px;   
+} 
+.dropdown4-content {
+    display: inline-block;
+    position: absolute;
+    background-color: #efefef;
+    min-width: 1000px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 0;
+    width: 1000px;
     
 } 
 a.no-uline { text-decoration:none }
@@ -588,4 +602,11 @@ nav { float:left; }
 	border: 1px solid #ccc;
 	padding:5px;
 }
-
+a { text-decoration:none }
+.ddTable td{
+	width:130px;
+	height:32px;
+}
+.welcome {
+	width:50px;
+}

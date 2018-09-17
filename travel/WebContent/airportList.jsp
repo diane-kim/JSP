@@ -76,7 +76,7 @@ font-family: 'Noto Sans KR', sans-serif;
    				<div class="dropdown">   		
     				<input class="dia_bt input-field area bbb input" type="text" id="txt1" placeholder="출발지" name="f" readonly="readonly">  		
     				<div class="dropdown-content area">
-    					<table class="area table">
+    					<table class="area table ddTable">
     						<tr class="tr"><td class="area td"><h4><b>국내</b></h4></td></tr>
     						<tr class="tr"><td class="td"><a class ="contury" href="#;">인천</a></td><td class="td"><a class ="contury" href="#;">서울</a></td><td class="td"><a class ="contury" href="#;">부산</a></td><td class="td"><a class ="contury" href="#;">제주</a></td></tr>
     						<tr class="tr"><td class="area td"><h4><b>중화권</b></h4></td></tr>
@@ -84,7 +84,7 @@ font-family: 'Noto Sans KR', sans-serif;
     						<tr class="tr"><td class="area td"><h4><b>아시아</b></h4></td></tr>
     						<tr class="tr"><td class="td"><a class ="contury" href="#;">도쿄</a></td><td class="td"><a class ="contury" href="#;">싱가포르</a></td><td class="td"><a class ="contury" href="#;">방콕</a></td><td class="td"><a class ="contury" href="#;">마닐라</a></td><td class="td"><a class ="contury" href="#;">쿠알라룸푸르</a></td><td class="td"><a class ="contury" href="#;">하노이</a></td></tr>
     						<tr class="tr"><td class="area td"><h4><b>미주/유럽</b></h4></td></tr>      
-	    					<tr class="tr"><td class="td"><a class ="contury" href="#;">런던</a></td><td class="td"><a class ="contury" href="#;">파리</a></td><td class="td"><a class ="contury" href="#;">로마</a></td><td class="td"><a class ="contury" href="#;">로스앤젤레스</a></td><td class="td"><a class ="contury" href="#;">뉴욕</a></td><td class="td"><a class ="contury" href="#;">샌프란시스코</a></td></tr>
+	    					<tr class="tr"><td class="td"><a class ="contury" href="#;">런던</a></td><td class="td"><a class ="contury" href="#;">파리</a></td><td class="td"><a class ="contury" href="#;">체코</a></td><td class="td"><a class ="contury" href="#;">로스앤젤레스</a></td><td class="td"><a class ="contury" href="#;">뉴욕</a></td><td class="td"><a class ="contury" href="#;">샌프란시스코</a></td></tr>
     					</table>
       				</div>
     			</div>    	
@@ -92,7 +92,7 @@ font-family: 'Noto Sans KR', sans-serif;
     				<div class="dropdown2">   
     					<input class="dia_bt2 input-field area2 bbb input" type="text"  id="txt2" placeholder="도착지" name="t" readonly="readonly">
     					<div class="dropdown2-content area2">
-      						<table class="area2 table">
+      						<table class="area2 table ddTable">
       							<tr class="tr"><td class="area2 td"><h4><b>국내</b></h4></td></tr>
       							<tr class="tr"><td class="td"><a class ="tocontury" href="#;">인천</a></td><td class="td"><a class ="tocontury" href="#;">서울</a></td><td class="td"><a class ="tocontury" href="#;">부산</a></td><td class="td"><a class ="tocontury" href="#;">제주</a></td></tr>
       							<tr class="tr"><td class="area2 td"><h4><b>중화권</b></h4></td></tr>
@@ -100,7 +100,7 @@ font-family: 'Noto Sans KR', sans-serif;
      							<tr class="tr"><td class="area2 td"><h4><b>아시아</b></h4></td></tr>
       							<tr class="tr"><td class="td"><a class ="tocontury" href="#;">도쿄</a></td><td class="td"><a class ="tocontury" href="#;">싱가포르</a></td><td class="td"><a class ="tocontury" href="#;">방콕</a></td><td class="td"><a class ="tocontury" href="#;">마닐라</a></td><td class="td"><a class ="tocontury" href="#;">쿠알라룸푸르</a></td><td class="td"><a class ="tocontury" href="#;">하노이</a></td></tr>
       							<tr class="tr"><td class="area2 td"><h4><b>미주/유럽</b></h4></td></tr>      
-      							<tr class="tr"><td class="td"><a class ="tocontury" href="#;">런던</a></td><td class="td"><a class ="tocontury" href="#;">파리</a></td><td class="td"><a class ="tocontury" href="#;">로마</a></td><td class="td"><a class ="tocontury" href="#;">로스앤젤레스</a></td><td class="td"><a class ="tocontury" href="#;">뉴욕</a></td><td class="td"><a class ="tocontury" href="#;">샌프란시스코</a></td></tr>
+      							<tr class="tr"><td class="td"><a class ="tocontury" href="#;">런던</a></td><td class="td"><a class ="tocontury" href="#;">파리</a></td><td class="td"><a class ="tocontury" href="#;">체코</a></td><td class="td"><a class ="tocontury" href="#;">로스앤젤레스</a></td><td class="td"><a class ="tocontury" href="#;">뉴욕</a></td><td class="td"><a class ="tocontury" href="#;">샌프란시스코</a></td></tr>
       						</table>
       					</div>
     				</div>   
@@ -244,13 +244,13 @@ font-family: 'Noto Sans KR', sans-serif;
 	<c:when test="${check2==1}">
     	<script> reserv('${f}','${t}','${fromdate}','${todate}','${num}','${seat}','${dto.fromName}','${dto.toName}'); getAirLine('${from}','${to}','${fromdate}');
 				 var frm = document.forms.bing;
-				 bing.query.value = '${dto.toName}';
+				 bing.query.value = '${dto.toName}+travel';
 	    	 	newBingImageSearch(frm);
 		</script>
-     	<div id="dropdown3-hide" class="dropdown3-content centered" style="display:block;">
+     	<div id="dropdown3-hide" class="dropdown3-content centered" style="display:block; border-radius: 10px;">
     </c:when>
     <c:otherwise>
-    	<div id="dropdown3-hide" class="dropdown3-content centered" style="display:none;"> 
+    	<div id="dropdown3-hide" class="dropdown3-content centered" style="display:none; border-radius: 10px;"> 
     </c:otherwise>
 	</c:choose>
 		<div>

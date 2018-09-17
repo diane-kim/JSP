@@ -32,9 +32,10 @@ $(document).ready(function() {
 						name = datas.airports[0].name;
 
 						document.getElementById("airport").src = "./img/"+image+".jpg";
-						document.getElementById("name").innerHTML = "공항 : "+ name;
+						document.getElementById("airportName").innerHTML = "공항 : "+ name;
 						
 						console.log("latitude : "+ latitude + " longitude : "+longitude);
+						console.log("공항이름=========="+name);
 
 						iConArray[0] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
 						iConArray[1] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";

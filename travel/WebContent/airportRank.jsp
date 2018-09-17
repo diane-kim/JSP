@@ -42,28 +42,29 @@
 	-webkit-transition-duration: 0.4s; /* Safari */
 	transition-duration: 0.4s;
 	cursor: pointer;
+	border-radius: 10px;
 }
 
 .button3 {
-	background-color: white;
-	color: red;
-	border: 2px solid #f44336;
+	background-color: #e8e8e8;
+	color: black; 
+	border: 2px solid #9c959c; 
 }
 
 .button3-green {
-	background-color: white;
-	color: green;
-	border: 2px solid #30b539;
+	background-color: #e8e8e8;
+	color: black; 
+	border: 2px solid #9c959c; 
 }
 
 .button3:hover {
-	background-color: #f44336;
-	color: white;
+    background-color: #EAEAEA;
+    color: black;
 }
 
 .button3-green:hover {
-	background-color: #30b539;
-	color: white;
+    background-color: #EAEAEA;
+    color: black;
 }
 </style>
 </head>
@@ -73,9 +74,9 @@
 <!--  항공편 드롭다운 -->	
 		<div class="input-container">	
    		<div class="dropdown nanumfont">
-   		&nbsp;<b>출발공항 : &nbsp;</b><input class="input-field dia_bt area input aaa" id="txt5" value="${from}" placeholder="출발지" name="from" size="10" readonly="readonly"/>
+   		&nbsp;<b style="color:#dedede;">출발공항 : &nbsp;</b><input class="input-field dia_bt area input aaa" id="txt5" value="${from}" placeholder="출발지" name="from" size="10" readonly="readonly" style="border-radius: 10px;"/>
     		<div class="dropdown-content area">
-    			<table class="area">
+    			<table class="area ddTable">
     				<tr><td><h4 class="area" ><b class="area">국내</b></h4></td></tr>
     				<tr><td><a class ="contury" href="#;">인천</a></td><td><a class ="contury area" href="#;">서울</a></td><td class="area"><a class ="contury area" href="#;">부산</a></td><td class="area"><a class ="contury area" href="#;">제주</a></td></tr>
     				<tr><td><h4 class="area"><b class="area">중화권</b></h4></td></tr>
@@ -83,28 +84,29 @@
     				<tr><td><h4 class="area"><b class="area">아시아</b></h4></td></tr>
     				<tr><td><a class ="contury" href="#;">도쿄</a></td><td class="area"><a class ="contury" href="#;">싱가포르</a></td><td class="area"><a class ="contury" href="#;">방콕</a></td><td class="area"><a class ="contury" href="#;">마닐라</a></td><td class="area"><a class ="contury" href="#;">쿠알라룸푸르</a></td><td class="area"><a class ="contury" href="#;">하노이</a></td></tr>
     				<tr><td><h4 class="area"><b class="area">미주/유럽</b></h4></td></tr>      
-	    			<tr><td><a class ="contury" href="#;">런던</a></td><td class="area"><a class ="contury" href="#;">파리</a></td><td class="area"><a class ="contury" href="#;">로마</a></td><td class="area"><a class ="contury" href="#;">로스앤젤레스</a></td><td class="area"><a class ="contury" href="#;">뉴욕</a></td><td class="area"><a class ="contury" href="#;">샌프란시스코</a></td></tr>
+	    			<tr><td><a class ="contury" href="#;">런던</a></td><td class="area"><a class ="contury" href="#;">파리</a></td><td class="area"><a class ="contury" href="#;">체코</a></td><td class="area"><a class ="contury" href="#;">로스앤젤레스</a></td><td class="area"><a class ="contury" href="#;">뉴욕</a></td><td class="area"><a class ="contury" href="#;">샌프란시스코</a></td></tr>
     			</table>
       		</div>
     	</div>   
     	<div class="dropdown nanumfont">
-   		&nbsp;&nbsp;<b>도착공항 : &nbsp;</b><input class="input-field dia_bt2 area2 input aaa" id="txt6" value="${to}" placeholder="도착지" name="to" size="10" readonly="readonly"/>   
+   		&nbsp;&nbsp;<b style="color:#dedede;">도착공항 : &nbsp;</b><input class="input-field dia_bt2 area2 input aaa" id="txt6" value="${to}" placeholder="도착지" name="to" size="10" readonly="readonly" style="border-radius: 10px;"/>   
     		<div class="dropdown2-content area2">
-      			<table class="area2">
+      			<table class="area2 ddTable">
       				<tr><td class="area2"><h4 class="area2"><b class="area2">국내</b></h4></td></tr>
-      				<tr><td><a class ="tocontury" href="#;">인천</a></td><td><a class ="tocontury" href="#;">서울</a></td><td><a class ="tocontury" href="#;">부산</a></td><td><a class ="tocontury" href="#;">제주</a></td></tr>
+      				<tr><td><a class ="tocontury" href="#;" >인천</a></td><td><a class ="tocontury" href="#;">서울</a></td><td><a class ="tocontury" href="#;">부산</a></td><td><a class ="tocontury" href="#;">제주</a></td></tr>
       				<tr><td class="area2"><h4><b>중화권</b></h4></td></tr>
       				<tr><td><a class ="tocontury" href="#;">홍콩</a></td><td><a class ="tocontury" href="#;">타이페이</a></td><td><a class ="tocontury" href="#;">마카오</a></td><td><a class ="tocontury" href="#;">상하이</a></td><td><a class ="tocontury" href="#;">베이징</a></td><td><a class ="tocontury" href="#;">칭다오</a></td></tr>
      				<tr><td class="area2"><h4><b>아시아</b></h4></td></tr>
       				<tr><td><a class ="tocontury" href="#;">도쿄</a></td><td><a class ="tocontury" href="#;">싱가포르</a></td><td><a class ="tocontury" href="#;">방콕</a></td><td><a class ="tocontury" href="#;">마닐라</a></td><td><a class ="tocontury" href="#;">쿠알라룸푸르</a></td><td><a class ="tocontury" href="#;">하노이</a></td></tr>
       				<tr><td class="area2"><h4><b>미주/유럽</b></h4></td></tr>      
-      				<tr><td><a class ="tocontury" href="#;">런던</a></td><td><a class ="tocontury" href="#;">파리</a></td><td><a class ="tocontury" href="#;">로마</a></td><td><a class ="tocontury" href="#;">로스앤젤레스</a></td><td><a class ="tocontury" href="#;">뉴욕</a></td><td><a class ="tocontury" href="#;">샌프란시스코</a></td></tr>
+      				<tr><td><a class ="tocontury" href="#;">런던</a></td><td><a class ="tocontury" href="#;">파리</a></td><td><a class ="tocontury" href="#;">체코</a></td><td><a class ="tocontury" href="#;">로스앤젤레스</a></td><td><a class ="tocontury" href="#;">뉴욕</a></td><td><a class ="tocontury" href="#;">샌프란시스코</a></td></tr>
       			</table>
       		</div>
     	</div>  
-			
+			<div style="width:220px;">
       		<button id="btn5" class="button button3 input-field1 juafont" style="width: 100px;">검색</button>
       		<button id="btn6" class="button button3-green input-field1 juafont" style="width: 100px;" >변경</button>
+      		</div>
 	   	 </div>	
 	</div>
 	
@@ -116,14 +118,17 @@
 		<br>
 	</div>
 	
-	<div id="dropdown3-hide" class="dropdown3-content centered" style="display:none;">
+	<div id="dropdown3-hide" class="dropdown4-content centered" style="display:none;border-radius: 10px;">
 	<div class="centered main">
 		<table id="airportRank" class="display" width="100%"></table>		
 	</div>
 	</div>
 	
 	<!-- -------------------------------------------------------------------- -->
-	
+		<footer class="w3-container footer" style="padding:32px">
+  <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Create By <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">-</a></p>
+</footer>
 		 
 </body>
 </html>

@@ -41,6 +41,7 @@ if(contentPage==null)
 <!-- <body class="img"> -->
 <body>
 
+
 <video id="videobcg" preload="auto" autoplay="true" loop="loop" muted="muted" volume="0">
      <source src="lax-big.mp4" type="video/mp4">
      <source src="movie.webm" type="video/webm">
@@ -71,7 +72,11 @@ if(contentPage==null)
     </div>
     <img id="_chatimage" class="chat" src="./img/chat.png" />
 
-    <script>
+    
+</body>
+<script>
+
+<%session.getAttribute("id");%>
     $(".chat").on({
         "click" : function() {
             if ($(this).attr("src") == "./img/chat.png") {
@@ -83,6 +88,33 @@ if(contentPage==null)
             }
         }
     });
+    
+    var textarea = document.getElementById("messageWindow");
+    var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); 
+    var inputMessage = document.getElementById('inputMessage');
+    
+	webSocket.onerror = function(event) {
+	  onError(event)
+	};
+	webSocket.onopen = function(event) {
+	  onOpen(event)
+	};
+	webSocket.onmessage = function(event) {
+	  onMessage(event)
+	};
+	function onMessage(event) {
+	    textarea.value += "상대 : " + event.data + "\n";
+	}
+	function onOpen(event) {
+	    textarea.value += "연결 성공\n";
+	}
+	function onError(event) {
+	  alert(event.data);
+	}
+	function send() {
+	    textarea.value += "<%=session.getAttribute("id")%> : " + inputMessage.value + "\n";
+	    webSocket.send(inputMessage.value);
+	    inputMessage.value = "";
+	}
 	</script> 
-</body>
 </html>
