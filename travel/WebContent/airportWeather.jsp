@@ -134,8 +134,8 @@
 	<br>
 	<div id="dropdown3-hide" style="display:none;">
 	<div class="dropdown3-content centered" style="border-radius: 10px;">
-		<div class="centered-map juafont" style="font-size: 30px;">
-			<div class="w3-half w3-container" style="padding-top: 20px;">
+		<!-- <div class="centered-map juafont" style="font-size: 30px;"> -->
+			<div class="w3-half w3-container juafont" style="padding:20px; font-size:30px;">
 				<p id="name"></p>
 				<p id="city"></p>
 				<p id="temperatureCelsius"></p>
@@ -143,11 +143,11 @@
 				<p id="speedKnots"></p>
 				<img id="weather" src="">
 			</div>
-			<br>
-			<div class="w3-half w3-container">
+			<div class="w3-half w3-container" style="padding:20px; font-size:30px;">
 				<div id="map" style="width: 100%; height: 400px;"></div>
 			</div>
-		</div>
+			<br>
+		<!-- </div> -->
 	</div>
 	</div>
 	

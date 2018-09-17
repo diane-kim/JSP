@@ -30,7 +30,7 @@
 	<%} else {%>	
 	<strong class="welcome" style="font-size: 11px;"><%out.print(session.getAttribute("id") + "님 안녕하세요");%>	</strong> 
 	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='<%=request.getContextPath()%>/member/logOut.jsp'">Logout</button>
-	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='AirportMemberReserv.al'">나의 예약정보관리</button>
+	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="location='AirportMemberReserv.al'">예약정보</button>
 	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id02').style.display='block'">Subscribe</button>
 	<button class="w3-bar-item w3-button w3-text-red w3-hover-red w3-right" onclick="document.getElementById('id03').style.display='block'">Contact</button>		
 	<%}%>

@@ -75,22 +75,21 @@ if(contentPage==null)
     
 </body>
 <script>
-
-<%session.getAttribute("id");%>
     $(".chat").on({
         "click" : function() {
             if ($(this).attr("src") == "./img/chat.png") {
                 $(".chat").attr("src", "./img/chathide.png");
-                $("#_chatbox").css("display", "block");
+                $("#_chatbox").fadeIn();
             } else if ($(this).attr("src") == "./img/chathide.png") {
                 $(".chat").attr("src", "./img/chat.png");
-                $("#_chatbox").css("display", "none");
+                $("#_chatbox").fadeOut();
             }
         }
     });
     
     var textarea = document.getElementById("messageWindow");
-    var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); 
+    /* var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); */
+    var webSocket = new WebSocket('ws://192.168.0.2/travel/broadcasting'); 
     var inputMessage = document.getElementById('inputMessage');
     
 	webSocket.onerror = function(event) {
@@ -103,17 +102,18 @@ if(contentPage==null)
 	  onMessage(event)
 	};
 	function onMessage(event) {
-	    textarea.value += "상대 : " + event.data + "\n";
+	    textarea.value += event.data + "\n";
 	}
 	function onOpen(event) {
-	    textarea.value += "연결 성공\n";
+	    textarea.value += "연결 되었습니다.\n";
 	}
 	function onError(event) {
 	  alert(event.data);
 	}
 	function send() {
+		var sendVar = "<%=(String)session.getAttribute("id")%> : " +inputMessage.value;
 	    textarea.value += "<%=session.getAttribute("id")%> : " + inputMessage.value + "\n";
-	    webSocket.send(inputMessage.value);
+	    webSocket.send(sendVar);
 	    inputMessage.value = "";
 	}
 	</script> 
