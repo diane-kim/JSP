@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 * {
 	box-sizing: border-box;
@@ -41,6 +43,7 @@
 	background: rgba(0, 0, 0, 0.3);
 	color: #fff;
 	padding: 1rem;
+	border-radius: 10px;
 	font-family: Avenir, Helvetica, sans-serif;
 }
 
@@ -115,7 +118,7 @@
 <body>
 <div class="video-background">
     <div class="video-foreground">
-      <iframe src="https://www.youtube.com/embed/RIQqVqQs9Xs?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&playlist=RIQqVqQs9Xs" frameborder="0" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/RIQqVqQs9Xs?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&start=4&end=262&playlist=RIQqVqQs9Xs" frameborder="0" allowfullscreen></iframe>
     </div>
 </div>
 
@@ -126,8 +129,8 @@
 	 <!--  <h1>YouTube Fullscreen Background Demo</h1>
 	  <p>The International Space Station orbits the Earth every 92 minutes, with its crew seeing a sunrise 15 times a day. It exists as a scientific, educational, and engineering platform in low orbit, 330 to 435 kilometres above the Earth.
      <p>Original timelapse by Riccardo Rossi (ISAA), used under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. Raw photos courtesy of http://eol.jsc.nasa.gov/ -->
-	 <h1><a href="AirportMain.al">Go Main</a></h1>
-  </div>
+	 <h1><a href="AirportMain.al" class="w3-bar-item w3-button w3-text-red w3-hover-red"><i class="fa fa-power-off w3-margin-center"><b>&nbsp;&nbsp;Yolo Travel</b></i></a></h1>
+  </div> 
 </div> 
 </div>
 </div>

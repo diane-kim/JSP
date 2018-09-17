@@ -35,8 +35,16 @@ font-family: 'Nanum Myeongjo', serif;
 <body>
 
 	<br><br><br><br><br><br>
-	<div class="centered">
-		<span class="juafont" style="font-size: 40px;"><b>현재 위치에서 가까운 공항 안내 </b></span>
+	<div class="centered"><!-- 
+		<span class="juafont" style="font-size: 40px;"><b>현재 위치에서 가까운 공항 안내 </b></span> -->
+	</div>
+	<br><br>
+	 
+		<div class="centered">
+		<p class="prompt">현재 위치에서 가장 가까운 공항을 탐색합니다. 반경은 30 마일 입니다. 모든 시간은
+			현지 시각 기준입니다 (지정된 위치의 지정된 반경 내에있는 공항의 목록을 반환합니다.)</p>
+		<p class="prompt">Returns a listing of airports located within a
+			specified radius of the given position.</p>
 	</div>
 	
 	<br><br>
@@ -55,12 +63,12 @@ font-family: 'Nanum Myeongjo', serif;
 
 	<br>
 	<br>
-	<div class="centered">
-		<p class="prompt">현재 위치에서 가장 가까운 공항을 탐색합니다. 반경은 30 마일 입니다. 모든 시간은
-			현지 시각 기준입니다 (지정된 위치의 지정된 반경 내에있는 공항의 목록을 반환합니다.)</p>
-		<p class="prompt">Returns a listing of airports located within a
-			specified radius of the given position.</p>
-	</div>
+	
+	<footer class="w3-container footer" style="padding:32px">
+  <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Create By <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">-</a></p>
+</footer>
+
 
 </body>
 </html>

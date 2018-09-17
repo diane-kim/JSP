@@ -296,7 +296,7 @@ font-family: 'Noto Sans KR', sans-serif;
 		<table id="realTime" class="display table" width="100%"></table>	
 	</div>
 	
-<div class="footer">
+<!-- <div class="footer">
     <div class="ui divided grid">
         <div class="row">
           <div class="four wide column"><a><h2>Create By</h2></div>
@@ -305,7 +305,12 @@ font-family: 'Noto Sans KR', sans-serif;
           <div class="four wide column"><a><i class="huge map marker alternate icon"></i><br>FIND US<br>대구광역시 중구 국채보상로 537 (수동, 5층)</a></div>
         </div>
     </div>    
-        <small> Thanks To : Yedam Vocational Training Institute<br>Copyright &copy; 2018 Yestagram</small>
+    <small> Thanks To : Yedam Vocational Training Institute<br>Copyright &copy; 2018 Yestagram</small>
 </div>
+ -->
+<footer class="w3-container footer" style="padding:32px">
+  <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Create By <a href="https://localhost:8443/travel/AirportMain.al" target="_blank">-</a></p>
+</footer>
 </body>
 </html>

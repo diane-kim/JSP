@@ -1,12 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css"	rel="stylesheet">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
 <script	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.css"	rel="stylesheet">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote-bs4.js"></script>
 <script>
 	$(function() {
@@ -30,8 +33,7 @@
 					
 					  var iframe = document.getElementById("myFrame");
 					  var elmnt = iframe.contentWindow.document.getElementsByTagName("H1")[0];
-					  elmnt.style.display = "none";
-					
+					  elmnt.style.display = "none";					
 				}
 			});// end of ajax
 		});
@@ -39,6 +41,13 @@
 </script>
 </head>
 <body>
+
+<div style="height:5%;">
+	<jsp:include page="header.jsp" />
+</div>
+
+<br><br><br><br>
+
 	<div id="summernote"></div>
 	<script>
 		$('#summernote').summernote({

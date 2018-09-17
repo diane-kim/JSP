@@ -57,7 +57,8 @@
 </head>
 <body>
 <br><br><br><br>
-	<div class="centered main">
+
+	<div class="centered main">	
 		<div class="input-container">
 			<div class="dropdown nanumfont">
 				&nbsp;<b>출발공항 : &nbsp;&nbsp;</b> <input class="input-field dia_bt area input bbb" id="txt4" value="${from}"
@@ -124,6 +125,12 @@
 			</div>
 		</div>
 	</div>
+	<div class="centered">
+	<br>
+	<p class="prompt">특정 공항 주변의 비행장에 대한 가장 최근의 METAR 일기 예보를 검색하십시오. METAR 보고서는 현재 상태를 기술하고 약 1 시간마다 업데이트됩니다.</p>
+	<p class="prompt">Retrieve the most current available METAR weather report for the aerodrome around a given airport. METAR reports describe current conditions and are updated about once an hour.</p>
+	</div>
+	<br>
 	<div id="dropdown3-hide" style="display:none;">
 	<div class="dropdown3-content centered" >
 		<div class="centered-map juafont" style="font-size: 30px;">
@@ -143,16 +150,11 @@
 	</div>
 	</div>
 	
-	
-	
-	
-	<!-- 신규 수정부분-----------------------------------------------------------------------  -->
-	<div class="centered">
-	<br>
-	<p class="prompt">특정 공항 주변의 비행장에 대한 가장 최근의 METAR 일기 예보를 검색하십시오. METAR 보고서는 현재 상태를 기술하고 약 1 시간마다 업데이트됩니다.</p>
-	<p class="prompt">Retrieve the most current available METAR weather report for the aerodrome around a given airport. METAR reports describe current conditions and are updated about once an hour.</p>
-	</div>
-	<!-- -----------------------------------------------------------------------  -->
+
+	<footer class="w3-container footer" style="padding:32px">
+  <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
+  <p>Create By <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">-</a></p>
+</footer>
 
 </body>
 </html>

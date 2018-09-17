@@ -116,8 +116,10 @@
 		<br>
 	</div>
 	
+	<div id="dropdown3-hide" class="dropdown3-content centered" style="display:none;">
 	<div class="centered main">
 		<table id="airportRank" class="display" width="100%"></table>		
+	</div>
 	</div>
 	
 	<!-- -------------------------------------------------------------------- -->
