@@ -23,13 +23,17 @@ $(document).ready(function() {
 				longitude = position.coords.longitude;				
 				////////////////////////
 				$.ajax({
-					url: "https://api.flightstats.com/flex/airports/rest/v1/json/withinRadius/" + longitude + "/" + latitude + "/30?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590",
-					dataType: 'json',
+					url: "https://api.flightstats.com/flex/airports/rest/v1/jsonp/withinRadius/" + longitude + "/" + latitude + "/30?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590",
+					/*dataType: 'json',*/
+					dataType: 'jsonp',
+					jsonpCallback: "myCallback",
 					success: function(datas) {
 						console.log(datas);										
+						console.log(datas[0].iata);
+						image = datas[0].iata;
+						/*image = datas.[[0]].iata;*/
 						
-						image = datas.airports[0].iata;
-						name = datas.airports[0].name;
+						name = datas[0].name;
 
 						document.getElementById("airport").src = "./img/"+image+".jpg";
 						document.getElementById("airportName").innerHTML = "공항 : "+ name;
@@ -40,8 +44,8 @@ $(document).ready(function() {
 						iConArray[0] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
 						iConArray[1] = "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png";
 
-						var airportlatitude = datas.airports[0].latitude;
-						var airportlongitude = datas.airports[0].longitude;
+						var airportlatitude = datas[0].latitude;
+						var airportlongitude = datas[0].longitude;
 
 						// marker를 찍을 위도,경도
 						markerArray[0] = new google.maps.LatLng(latitude, longitude);

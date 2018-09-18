@@ -130,8 +130,10 @@ $(document).ready(function() {
 		
 		console.log(from + to + date);
 		$.ajax({
-				url : "https://api.flightstats.com/flex/schedules/rest/v1/json/from/"+from+"/to/"+to+"/departing/"+date+"?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590&extendedOptions=languageCode:ko",
-				dataType: 'json', 
+				url : "https://api.flightstats.com/flex/schedules/rest/v1/jsonp/from/"+from+"/to/"+to+"/departing/"+date+"?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590&extendedOptions=languageCode:ko",
+				/*dataType: 'json',*/
+				dataType: 'jsonp',
+			    jsonpCallback: "myCallback",			    
 				success : function(datas) {
 					console.log(datas);
 					var dataSet = [];

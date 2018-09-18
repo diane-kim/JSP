@@ -28,8 +28,9 @@ function getAirLine(from , to) {
 
 	console.log(from + " " + to);
 	$.ajax({
-		url : "https://api.flightstats.com/flex/ratings/rest/v1/json/route/"+ from+"/"+to+"?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590&extendedOptions=languageCode:ko",
-		dataType: 'json', 
+		url : "https://api.flightstats.com/flex/ratings/rest/v1/jsonp/route/"+ from+"/"+to+"?appId=6d442315&appKey=301aa216b58dee04e31de0f4d5733590&extendedOptions=languageCode:ko",
+		dataType: 'jsonp',
+		jsonpCallback: "callback",
 		success : function(datas) {
 			console.log(datas);
 			
