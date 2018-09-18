@@ -584,12 +584,14 @@ input::placeholder {
 }
 
 
-.footer {     width:100%;
+.footer {   
+			width:100%;
             position:relative; top:80%;
-             text-align:center;
+            text-align:center;
             font-size:15px;
             background: #424040;
-        }
+            z-index:0; 
+}
 
 .footer h2 { color: #3498DB; }
 .footer a { color: #ABB2B9; }
@@ -601,6 +603,11 @@ nav { float:left; }
 .m-flight-schedule{
 	border: 1px solid #ccc;
 	padding:5px;
+	border-radius: 10px;
+	opacity: 0.9;
+	position: relative;
+	top: 170px;
+	margin: 5px;
 }
 a { text-decoration:none }
 .ddTable td{

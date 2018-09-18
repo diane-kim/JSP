@@ -18,6 +18,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css?family=Nanum+Myeongjo'); /* 나눔명조 폰트  */
 @import url('https://fonts.googleapis.com/css?family=Jua'); /* jua 폰트 */
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script'); 
 
 nanum-myeongjo { /* 나눔명조 폰트 */
 font-family: 'Nanum Myeongjo', serif;
@@ -25,6 +26,9 @@ font-family: 'Nanum Myeongjo', serif;
 
 .juafont { /* jua폰트 */
 	font-family: 'Jua', sans-serif;
+}
+.headerfont { /* jua폰트 */
+	font-family: 'Dancing Script', cursive;
 }
 
 </style>
@@ -35,8 +39,9 @@ font-family: 'Nanum Myeongjo', serif;
 <body>
 
 	<br><br><br><br>
-	<div class="centered"><!-- 
-		<span class="juafont" style="font-size: 40px;"><b>현재 위치에서 가까운 공항 안내 </b></span> -->
+		
+	<div class="centered">
+	<h1 style="color:#efefef;" class="headerfont">Near Airport</h1>	
 	</div>
 	<br><br>
 	 
@@ -64,9 +69,15 @@ font-family: 'Nanum Myeongjo', serif;
 	<br>
 	<br>
 	
-	<footer class="w3-container footer" style="padding:32px">
+	<footer class="w3-container footer" style="padding:16px">
   <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <p>Create By <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">-</a></p>
+    <br>
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
   
 </footer>
 

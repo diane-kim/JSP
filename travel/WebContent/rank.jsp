@@ -7,7 +7,7 @@
 <script src="<%=request.getContextPath()%>/js/rank.js" ></script>
 
 <div id="content" style="border-radius: 10px;">
-<h4 style="text-align: center; font-size: 20px;line-height:2;"><strong style="color:white;">실시간 급상승</strong></h4>
+<h4 style="text-align: center; font-size: 20px;line-height:2;"><strong style="color:white;"><i class="fas fa-list-ol" style="padding:5px;"></i>실시간 급상승</strong></h4>
 	<div id="rank" style="text-align:center;" >
 		<ul>
 			<ol>

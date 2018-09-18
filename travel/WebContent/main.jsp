@@ -61,8 +61,7 @@ if(contentPage==null)
 	</div><%-- 
 	<jsp:include page="footer.jsp" /> --%>
 	
-	
-	<div id="_chatbox" style="display: none">
+		<div id="_chatbox" style="display: none">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
         <br/>
@@ -70,67 +69,63 @@ if(contentPage==null)
         <!-- <input type="submit" value="send" onclick="send()" /> -->
     </fieldset>  
     </div>
-    <img id="_chatimage" class="chat" src="./img/chat.png" />
-
+    <img id="_chatimage" class="chat" src="./img/chat.png" />    
     
-</body>
-<script>
-		
-	function keydown()
-	{
-		/* $('#messageWindow').scrollTop($('#messageWindow')[0].scrollHeight); */
-		var objDiv = document.getElementById("messageWindow"); 
-		objDiv.scrollTop = objDiv.scrollHeight;
-		if(event.keyCode==13)
-		{	
-			send();
-			return false;
-		} 
-		  
-	}
-	
-	
-    $(".chat").on({
-        "click" : function() {
-            if ($(this).attr("src") == "./img/chat.png") {
-                $(".chat").attr("src", "./img/chathide.png");
-                $("#_chatbox").fadeIn();
-            } else if ($(this).attr("src") == "./img/chathide.png") {
-                $(".chat").attr("src", "./img/chat.png");
-                $("#_chatbox").fadeOut();
+    <script>
+    	function keydown()
+    	{
+    		/* $('#messageWindow').scrollTop($('#messageWindow')[0].scrollHeight); */
+    		var objDiv = document.getElementById("messageWindow"); 
+    		objDiv.scrollTop = objDiv.scrollHeight;
+    		if(event.keyCode==13)
+    		{	
+    			send();
+    			return false;
+    		} 		  
+    	}	
+    	
+        $(".chat").on({
+            "click" : function() {
+                if ($(this).attr("src") == "./img/chat.png") {
+                    $(".chat").attr("src", "./img/chathide.png");
+                    $("#_chatbox").fadeIn();
+                } else if ($(this).attr("src") == "./img/chathide.png") {
+                    $(".chat").attr("src", "./img/chat.png");
+                    $("#_chatbox").fadeOut();
+                }
             }
-        }
-    });
-    
-    var textarea = document.getElementById("messageWindow");
-    /* var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); */
-    console.log(webSocket)
-    var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); 
-    var inputMessage = document.getElementById('inputMessage');
-    
-	webSocket.onerror = function(event) {
-	  onError(event)
-	};
-	webSocket.onopen = function(event) {
-	  onOpen(event)
-	};
-	webSocket.onmessage = function(event) {
-	  onMessage(event)
-	};
-	function onMessage(event) {
-	    textarea.value += event.data + "\n";
-	}
-	function onOpen(event) {
-	    textarea.value += "연결 되었습니다.\n";
-	}
-	function onError(event) {
-	  alert(event.data);
-	}
-	function send() {
-		var sendVar = "<%=session.getAttribute("id")%> : " +inputMessage.value;
-	    textarea.value += "<%=session.getAttribute("id")%> : " + inputMessage.value + "\n";
-	    webSocket.send(sendVar);
-	    inputMessage.value = "";
-	}
-	</script> 
+        });
+        
+        var textarea = document.getElementById("messageWindow");
+        /* var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); */
+        var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); 
+        var inputMessage = document.getElementById('inputMessage');
+        
+    	webSocket.onerror = function(event) {
+    	  onError(event)
+    	};
+    	webSocket.onopen = function(event) {
+    	  onOpen(event)
+    	};
+    	webSocket.onmessage = function(event) {
+    	  onMessage(event)
+    	};
+    	function onMessage(event) {
+    	    textarea.value += event.data + "\n";
+    	}
+    	function onOpen(event) {
+    	    textarea.value += "연결 되었습니다.\n";
+    	}
+    	function onError(event) {
+    	  alert(event.data);
+    	}
+    	function send() {
+    		var sendVar = "<%=session.getAttribute("id")%> : " +inputMessage.value;
+    	    textarea.value += "<%=session.getAttribute("id")%> : " + inputMessage.value + "\n";
+    	    webSocket.send(sendVar);
+    	    inputMessage.value = "";
+    	}
+   
+    </script>	    
+</body>
 </html>

@@ -23,14 +23,18 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/BingImageSearch.js"></script>
 <% String id = (String)session.getAttribute("id");%>
 <style>
-/* @import url('https://fonts.googleapis.com/css?family=Jua'); /* Jua폰트 */ */
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR');
+@import url('https://fonts.googleapis.com/css?family=Dancing+Script'); 
 .Notofont { /* jua폰트 */
 	font-family: 'Jua', sans-serif;
 }
 .Notofont{
 font-family: 'Noto Sans KR', sans-serif;
 }
+.headerfont { /* jua폰트 */
+	font-family: 'Dancing Script', cursive;
+}
+
 .button-set {
 	background-color: #4CAF50; /* Green */
 	border: none;
@@ -69,7 +73,9 @@ font-family: 'Noto Sans KR', sans-serif;
 </head> <!-- 
 <body> --> 
 	<div class="centered main">
-	<br><br><br><br>		
+	<br><br><br><br>	
+	<h1 style="color:#efefef;" class="headerfont">flight information</h1>
+	<br>		
 		<form name="bing" action="<%=request.getContextPath()%>/AirportList.al" style="max-width:1100px; margin:auto" >
    			<div class="input-container">
    				<i class="fa fa-plane icon" style="font-size:24px"></i>	 <!-- 비행기 아이콘 -->  		
@@ -308,9 +314,15 @@ font-family: 'Noto Sans KR', sans-serif;
     <small> Thanks To : Yedam Vocational Training Institute<br>Copyright &copy; 2018 Yestagram</small>
 </div>
  -->
-<footer class="w3-container footer" style="padding:32px">
+<footer class="w3-container footer" style="padding:16px">
   <a href="#" class="w3-button w3-black w3-padding-large w3-margin-bottom"><i class="fa fa-arrow-up w3-margin-right"></i>To the top</a>
-  <p>Create By <a href="https://localhost:8443/travel/AirportMain.al" target="_blank">-</a></p>
+  <br>
+  <i class="fa fa-facebook-official w3-hover-opacity"></i>
+    <i class="fa fa-instagram w3-hover-opacity"></i>
+    <i class="fa fa-snapchat w3-hover-opacity"></i>
+    <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+    <i class="fa fa-twitter w3-hover-opacity"></i>
+    <i class="fa fa-linkedin w3-hover-opacity"></i>
 </footer>
 </body>
 </html>

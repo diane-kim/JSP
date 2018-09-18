@@ -39,8 +39,8 @@ public class Broadsocket {
 
 	@OnClose
 	public void onClose(Session session) {
-		// Remove session from the connected sessions set
-		System.out.println("WebSocket Close 호출 "+session);
+		// Remove session from the connected sessions set		
 		clients.remove(session);
+		System.out.println("WebSocket Close 호출 "+session);
 	}
 }
