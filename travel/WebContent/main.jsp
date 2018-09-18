@@ -62,7 +62,7 @@ if(contentPage==null)
 	<jsp:include page="footer.jsp" /> --%>
 	
 	
-	<div id="_chatbox" style="display: none">
+	<div id="_chatbox" style="display: block">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
         <br/>
@@ -89,7 +89,8 @@ if(contentPage==null)
     
     var textarea = document.getElementById("messageWindow");
     /* var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); */
-    var webSocket = new WebSocket('ws://192.168.0.2/travel/broadcasting'); 
+    console.log(webSocket)
+    var webSocket = new WebSocket('wss://192.168.0.73:8443/travel/broadcasting'); 
     var inputMessage = document.getElementById('inputMessage');
     
 	webSocket.onerror = function(event) {

@@ -44,7 +44,7 @@ function createMap(fromName, toName, fromLatitude, toLatitude, fromLongitude, to
 		lat = ((-fromLatitude) + toLatitude) / 2;
 	}
 	// 경도 -180 ~ 180
-	if (fromLongitude > 0 && toLongitude > 0) {
+/*	if (fromLongitude > 0 && toLongitude > 0) {
 		lng = (fromLongitude + toLongitude) / 2;
 	} else if (fromLongitude < 0 && toLongitude < 0) {
 		lng = (fromLongitude + toLongitude) / 2;
@@ -58,7 +58,19 @@ function createMap(fromName, toName, fromLatitude, toLatitude, fromLongitude, to
 		if (-180 > lng || lng > 180) {
 			lng = 180;
 		}
-	}
+	}*/
+	var fromLon = (fromLongitude > 0) ? fromLongitude : (360 + fromLongitude); 
+    var toLon = (toLongitude > 0) ? toLongitude : (360 + toLongitude);
+    var Lon;
+    if(fromLon - toLon > 180 || fromLon - toLon < -180)
+        Lon = (fromLon + toLon) / 2 + 180;
+    else
+        Lon = (fromLon + toLon) / 2;
+    if (Lon > 180)
+        Lon = Lon - 360;
+    lng = Lon;
+	
+	
 
 	//맵 생성
 	function initialize() {
