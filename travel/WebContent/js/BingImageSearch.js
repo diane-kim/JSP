@@ -1,7 +1,7 @@
 // cookie names for data we store(저장하는 데이터의 쿠키 이름)
 // YOUR API KEY DOES NOT GO IN THIS CODE; don't paste it in.(귀하의 API 키는이 코드를 따르지 않습니다. 그것을 붙이지 마십시오.)
-API_KEY_COOKIE   = "c6508713f6634f5d866e7c60d96af2c5";
-CLIENT_ID_COOKIE = "c6508713f6634f5d866e7c60d96af2c5";
+API_KEY_COOKIE   = "938c20c182734b108a3220a76b57e728";
+CLIENT_ID_COOKIE = "938c20c182734b108a3220a76b57e728";
 
 // Bing Search API endpoint(Bing Search API 엔드 포인트)
 BING_ENDPOINT = "https://api.cognitive.microsoft.com/bing/v7.0/images/search";	
@@ -44,7 +44,7 @@ try {
 // get stored API subscription key, or prompt if it's not found(저장된 API 구독 키를 받거나 찾지 못한 경우 프롬프트합니다.)
 function getSubscriptionKey() {
     //var key = retrieveValue(API_KEY_COOKIE);
-	var key = "c6508713f6634f5d866e7c60d96af2c5";
+	var key = "938c20c182734b108a3220a76b57e728";
     console.log(key);
     while (key.length !== 32) {
         key = prompt("Enter Bing Search API subscription key:", "").trim();
