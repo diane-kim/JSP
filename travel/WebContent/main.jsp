@@ -62,12 +62,12 @@ if(contentPage==null)
 	<jsp:include page="footer.jsp" /> --%>
 	
 	
-	<div id="_chatbox" style="display: block">
+	<div id="_chatbox" style="display: none">
     <fieldset>
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
         <br/>
-        <input class="typetext" id="inputMessage" type="text"/>
-        <input type="submit" value="send" onclick="send()" />
+        <input class="typetext" id="inputMessage" type="text" onkeydown="keydown();" />
+        <!-- <input type="submit" value="send" onclick="send()" /> -->
     </fieldset>  
     </div>
     <img id="_chatimage" class="chat" src="./img/chat.png" />
@@ -75,6 +75,21 @@ if(contentPage==null)
     
 </body>
 <script>
+		
+	function keydown()
+	{
+		/* $('#messageWindow').scrollTop($('#messageWindow')[0].scrollHeight); */
+		var objDiv = document.getElementById("messageWindow"); 
+		objDiv.scrollTop = objDiv.scrollHeight;
+		if(event.keyCode==13)
+		{	
+			send();
+			return false;
+		} 
+		  
+	}
+	
+	
     $(".chat").on({
         "click" : function() {
             if ($(this).attr("src") == "./img/chat.png") {
@@ -112,7 +127,7 @@ if(contentPage==null)
 	  alert(event.data);
 	}
 	function send() {
-		var sendVar = "<%=(String)session.getAttribute("id")%> : " +inputMessage.value;
+		var sendVar = "<%=session.getAttribute("id")%> : " +inputMessage.value;
 	    textarea.value += "<%=session.getAttribute("id")%> : " + inputMessage.value + "\n";
 	    webSocket.send(sendVar);
 	    inputMessage.value = "";

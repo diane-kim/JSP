@@ -14,8 +14,7 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint("/broadcasting")
 public class Broadsocket {
 
-	private static Set<Session> clients = Collections
-			.synchronizedSet(new HashSet<Session>());
+	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
 	@OnMessage
 	public void onMessage(String message, Session session) throws IOException {
@@ -41,6 +40,7 @@ public class Broadsocket {
 	@OnClose
 	public void onClose(Session session) {
 		// Remove session from the connected sessions set
+		System.out.println("WebSocket Close 호출 "+session);
 		clients.remove(session);
 	}
 }
