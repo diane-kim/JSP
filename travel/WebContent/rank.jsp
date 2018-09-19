@@ -18,7 +18,7 @@
 			AirportListDAO dao = new AirportListDAO();			
 			List<AirportListDTO> list = dao.rankList();			
 			for (AirportListDTO dto : list){ %>
-				<li><a href="https://www.google.co.kr/search?source=hp&ei=sl-fW5mUI4T18gWf8bOoBw&q=<%=dto.getRankName()%>+여행" style="color:white; font-family: 'Sunflower', sans-serif;" target="_blank"><%=dto.getRank()%>. <%=dto.getRankName()%> <%=dto.getRcount()%></a></li> <%} %>
+				<li><a href="rankInfo.al?name=<%=dto.getRankName()%>" style="color:white; font-family: 'Sunflower', sans-serif;"  target='_self'><%=dto.getRank()%>. <%=dto.getRankName()%> <%=dto.getRcount()%></a></li> <%} %>
 			</ol>
 		</ul>
 	</div>

@@ -43,7 +43,9 @@
 .dropdown-content {   
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 1900px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     padding: 12px 16px;
 }
@@ -60,16 +62,16 @@
 	<div id="summernote"></div>
 	<button id="btn" onclick="alert('메일 전송완료!')">메일 보내기</button> 
 	<br><br><br>
-	<iframe id="myFrame" src="https://mail3.nate.com/#list/?pop3id=M&page=1&mboxid=60" style="height:600px;width:100%"></iframe>
+	<iframe id="myFrame" src="https://mail3.nate.com/#list/?pop3id=M&page=1&mboxid=60" style="height:470px;width:100%"></iframe> 
 </div>
 	<script>
 		$('#summernote').summernote({
 			placeholder : 'Hello bootstrap 4',
 			tabsize : 2,
-			height : 350,
+			height : 250,
+			maxHeight: 250
 		});
 	</script>
-	<button id="btn">Send Subscrib</button>
-	<iframe id="myFrame" src="https://mail3.nate.com/#list/?pop3id=M&page=1&mboxid=60" style="height:600px;width:100%"></iframe>
+	
 </body>
 </html>

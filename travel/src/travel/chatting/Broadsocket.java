@@ -16,8 +16,11 @@ public class Broadsocket {
 
 	private static Set<Session> clients = Collections.synchronizedSet(new HashSet<Session>());
 
-	@OnMessage
+	@OnMessage	
 	public void onMessage(String message, Session session) throws IOException {
+		ChatMsgDAO dao = new ChatMsgDAO();
+		String id = message.substring(0, message.indexOf(":"));
+		dao.insertMsg(message,  session.getId());
 		System.out.println(message);
 		synchronized (clients) {
 			// Iterate over the connected sessions

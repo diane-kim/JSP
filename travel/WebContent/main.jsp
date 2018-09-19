@@ -61,7 +61,7 @@ if(contentPage==null)
 	</div><%-- 
 	<jsp:include page="footer.jsp" /> --%>
 	
-		<div id="_chatbox" style="display:block">
+	<div id="_chatbox" style="display:none">
     <fieldset style="background-color: #e0e0e0;border-radius: 10px;">
         <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none;background-color: #f1f1f1;"></textarea>
         <br/>
@@ -69,16 +69,18 @@ if(contentPage==null)
         <!-- <input type="submit" value="send" onclick="send()" /> -->
     </fieldset>  
     </div>
-    <img id="_chatimage" class="chat" src="./img/chat.png" />    
+    
+    <%if (session.getAttribute("id") != null) {	%>
+    <img id="_chatimage" class="chat" src="./img/chat.png" />
+    <%} %>    
     
     <script>
     	function keydown()
-    	{
-    		/* $('#messageWindow').scrollTop($('#messageWindow')[0].scrollHeight); */
-    		var objDiv = document.getElementById("messageWindow"); 
-    		objDiv.scrollTop = objDiv.scrollHeight;
+    	{    		
     		if(event.keyCode==13)
     		{	
+    			var objDiv = document.getElementById("messageWindow"); 
+        		objDiv.scrollTop = objDiv.scrollHeight;
     			send();
     			return false;
     		} 		  
@@ -170,7 +172,7 @@ if(contentPage==null)
     	    textarea.value += event.data + "\n";
     	}
     	function onOpen(event) {
-    	    textarea.value += "연결 되었습니다.\n";
+    	    /* textarea.value += "연결 되었습니다.\n"; */
     	}
     	function onError(event) {
     	  alert(event.data);

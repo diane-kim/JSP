@@ -116,11 +116,19 @@ public class AirportListController extends HttpServlet {
 			viewPage = "AirportMain.al?contentPage=airportRank.jsp";
 		}
 		
+		//실시간급상승
+		else if (com.equals("/rankInfo.al")) {
+			viewPage = "AirportMain.al?contentPage=rankInfo.jsp";
+			request.setAttribute("name", request.getParameter("name"));
+		}
+		
 		//메인화면
 		else if (com.equals("/AirportMain.al")) {
 			System.out.println("AirportMain 호출");		
 			viewPage = "main.jsp";
 		}
+		
+
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
