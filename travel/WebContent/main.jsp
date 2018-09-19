@@ -61,11 +61,11 @@ if(contentPage==null)
 	</div><%-- 
 	<jsp:include page="footer.jsp" /> --%>
 	
-		<div id="_chatbox" style="display: none">
-    <fieldset>
-        <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none"></textarea>
+		<div id="_chatbox" style="display:block">
+    <fieldset style="background-color: #e0e0e0;border-radius: 10px;">
+        <textarea id="messageWindow" rows="10" cols="30" readonly="true" autofozus required style="resize: none;background-color: #f1f1f1;"></textarea>
         <br/>
-        <input class="typetext" id="inputMessage" type="text" onkeydown="keydown();" />
+        <input class="typetext" id="inputMessage" type="text" onkeydown="keydown();" style="background-color: #f1f1f1;"/>
         <!-- <input type="submit" value="send" onclick="send()" /> -->
     </fieldset>  
     </div>
@@ -82,8 +82,64 @@ if(contentPage==null)
     			send();
     			return false;
     		} 		  
-    	}	
+    	}
     	
+    	/*ajax로 데이터 가져오기 */
+    	var sid = "<%=(String)session.getAttribute("id")%>";
+    	console.log(sid);
+
+    	function getDigit(a){
+    		if (a.length == 1)
+    			var comp = "0".concat(a);
+    		else
+    			var comp = a;
+    		return comp;
+    	}
+    	if (sid != "null") {
+    		console.log(getDigit("8"));
+    		var startDate;
+    		console.log(localStorage.getItem('startDate'));
+    		if(localStorage.getItem('startDate') == null){
+    			console.log("in");
+    			var sd = new Date();
+    			//2018/09/19 10:05:07
+    			var $year = sd.getFullYear();
+    			var $mon = (sd.getMonth()+1);
+    			var $day =  (sd.getDate());
+    			var $hour = (sd.getHours());
+    			var $min = (sd.getMinutes());
+    			var $sec = (sd.getSeconds());
+
+    			var sDate = ($year)+"/"+getDigit($mon.toString())+"/"+getDigit($day.toString())+" "+getDigit($hour.toString())+":"+getDigit($min.toString())+":"+getDigit($sec.toString());
+    			localStorage.setItem('startDate',sDate);
+    			console.log(localStorage.getItem('startDate'));
+    		}
+    		console.log("out");
+    		startDate = localStorage.getItem('startDate');
+    		console.log(localStorage.getItem('startDate'));
+
+    		$.ajax({
+    			url : "ChatMsg?startDate="+startDate,
+    			success : function(result){
+    				var datas = JSON.parse(result);
+    				var res = "";
+    				for(var i=0;i<datas.length;i++){
+    					res += datas[i]+"\n";
+    				}
+    				$("#messageWindow").val("");
+    				$("#messageWindow").val(res);
+    				$("#messageWindow").scrollTop(500);
+    			}
+    		})
+
+    	}else{
+    		console.log("else")
+    		console.log(localStorage.getItem('startDate'));
+    		
+    	}
+    	
+    	
+    	/*채팅 이미지 클릭시*/    	
         $(".chat").on({
             "click" : function() {
                 if ($(this).attr("src") == "./img/chat.png") {

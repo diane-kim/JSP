@@ -7,10 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	session.invalidate();
-
-	response.sendRedirect("../AirportMain.al");
-%>
+	<%
+		session.invalidate();
+	%>
+	<script>
+		/*로그아웃시 localStorage 클리어 */
+		localStorage.clear();
+		location.href = "../AirportMain.al";
+	</script>
+	<%
+		//response.sendRedirect("../AirportMain.al");
+	%>
 </body>
 </html>
