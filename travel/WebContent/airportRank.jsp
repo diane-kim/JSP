@@ -125,12 +125,16 @@
 		<p class="prompt">Returns the calculated ratings information for all flights having the given departure and arrival airports</p>
 		<br>
 	</div>
+	<div id="spec1" style="z-index:1;display:none;">
+	<jsp:include page="reference.jsp"/>
+	</div>
 	
-	<div id="dropdown3-hide" class="dropdown4-content centered" style="display:none;border-radius: 10px;">
-	<div class="centered main">
-		<table id="airportRank" class="display" width="100%"></table>		
+	<div id="dropdown3-hide" class="dropdown4-content centered" style="display:none; border-radius: 10px;">
+		<div class="centered main" onmouseover="view(true)" onmouseout="view(false)">
+			<table id="airportRank" class="display" width="100%"></table>		
+		</div>
 	</div>
-	</div>
+	
 	
 	<!-- -------------------------------------------------------------------- -->
 		<footer class="w3-container footer" style="padding:16px">
@@ -143,6 +147,16 @@
     <i class="fa fa-twitter w3-hover-opacity"></i>
     <i class="fa fa-linkedin w3-hover-opacity"></i>
 </footer>
-		 
+		<script>
+function view(opt) {
+  if(opt) {
+     spec1.style.display = "block";
+  }
+  else {
+     spec1.style.display = "none";
+  }
+}
+</script>
+ 
 </body>
 </html>

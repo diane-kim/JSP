@@ -56,8 +56,6 @@ $(document).ready(function() {
 		    }   	   
 			else{
 				$(function() {						
-					
-					
 						var nameReg = /[가-힣]$/;
 						var fromAddress = $("#fromName").val();
 						var toAddress = $("#toName").val();

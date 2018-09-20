@@ -130,7 +130,7 @@ if(contentPage==null)
     				}
     				$("#messageWindow").val("");
     				$("#messageWindow").val(res);
-    				$("#messageWindow").scrollTop(500);
+    				$("#messageWindow").scrollTop(5000);
     			}
     		})
 

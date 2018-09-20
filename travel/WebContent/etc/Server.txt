@@ -3,8 +3,7 @@ server.xml 부분
     keystorePass="fan983" maxThreads="150" port="8443" 
     protocol="org.apache.coyote.http11.Http11NioProtocol" 
     scheme="https" secure="true" SSLEnabled="true" sslProtocol="TLS"/>
-    
-    
+        
     
 web.xml 부분    
 	<security-constraint>   
@@ -16,8 +15,7 @@ web.xml 부분
         <transport-guarantee>CONFIDENTIAL</transport-guarantee>
     </user-data-constraint>
    </security-constraint>
-   
-   
+      
    
 openssl 설정부분
    http://namjackson.tistory.com/24       

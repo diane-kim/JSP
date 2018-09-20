@@ -138,9 +138,6 @@ COMMENT ON COLUMN reservation.email IS '이메일';
 COMMENT ON COLUMN reservation.reservation_date IS '예약한 날짜';
 COMMENT ON COLUMN reservation.ID IS '접속한 회원ID';
 
-
-
-
 create sequence countryRank_seq;
 create table countryRank ( 
 countryName varchar2(50),
@@ -173,3 +170,11 @@ insert into countryRank values('로마',17);
 insert into countryRank values('로스앤젤레스',12);
 insert into countryRank values('뉴욕',84);
 insert into countryRank values('샌프란시스코',34);
+
+create table CHATTING_TEMP
+(
+  ses_id NUMBER,
+  id VARCHAR2(30),
+  chat_msg VARCHAR2(4000),
+  chat_date DATE
+);

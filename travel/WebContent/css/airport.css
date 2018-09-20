@@ -617,3 +617,14 @@ a { text-decoration:none }
 .welcome {
 	width:50px;
 }
+.reference{
+	border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 10px;
+/*     opacity: 0.9; */
+    position: absolute;
+    top: 45.5%;
+    margin: 5px;
+    right: 10%;
+    width: 250px;
+}
