@@ -92,19 +92,19 @@ public class SendMailDAO {
 		for (String str : list) {
 
 			to = str.toString();
-			System.out.println("to =====" + to);
+			System.out.println("to : " + to);
 			try {
 				MimeMessage message = new MimeMessage(session);
 				message.setFrom(new InternetAddress(user));
 				message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 
-				message.setSubject("[Subject] Java Mail Test");
+				message.setSubject("[Yolo-Travel] Yolo-Travel에서 알리는 새로운 소식!!!");
 
 				message.setText("Simple mail test..");
 				message.setContent(contents, "text/html;charset=utf-8");
 
 				Transport.send(message);
-				System.out.println("메일 보내기 성공임 ^^");
+				System.out.println("Send Mail Success");
 
 			} catch (MessagingException e) {
 				e.printStackTrace();

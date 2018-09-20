@@ -176,5 +176,5 @@ create table CHATTING_TEMP
   ses_id NUMBER,
   id VARCHAR2(30),
   chat_msg VARCHAR2(4000),
-  chat_date DATE
+  create_date DATE
 );

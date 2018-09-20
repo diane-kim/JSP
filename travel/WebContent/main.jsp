@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-String contentPage=request.getParameter("contentPage");
-if(contentPage==null)
-    contentPage="airportList.jsp";
+	String contentPage=request.getParameter("contentPage");
+	if(contentPage==null)
+	    contentPage="airportList.jsp";
+	
 %>
 <!DOCTYPE html>
 <html>

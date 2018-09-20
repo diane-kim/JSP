@@ -33,6 +33,7 @@ public class ChatMsg extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8"); 
 		String startDate = request.getParameter("startDate");
 		PrintWriter out = response.getWriter();
 		ChatMsgDAO dao = new ChatMsgDAO();
